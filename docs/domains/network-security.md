@@ -1,15 +1,49 @@
-# Network Security & Perimeter Defense
+<div class="hero-box">
+  <span style="font-size: 0.85rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #00f0ff; display: block; margin-bottom: 0.5rem;">
+    <span class="live-pulse"></span>DOMAIN ARCHITECTURE // 01
+  </span>
+  <h1 style="margin-top: 0; font-size: 2.1rem; font-weight: 800;">Network Security & Perimeter Defense</h1>
+  <p style="color: #c9d1d9; font-size: 1.05rem; margin-bottom: 0;">
+    Protecting enterprise communications, internal segments, and transit boundaries against packet exploitation, lateral movement, and C2 beacons[cite: 13].
+  </p>
+</div>
 
-Network Security protects enterprise internal communications, perimeter boundaries, and data pipelines from unauthorized access, exploitation, and lateral attacker movement.
+## 🛡️ Core Defensive Controls
 
-## Architectural Pillars
+<div class="grid cards" markdown>
 
-* **Stateful & Next-Generation Firewalls (NGFW)**: Inspects ingress and egress packets at Layers 3 through 7, terminating suspicious sessions and enforcing egress filtering to defeat Command and Control (C2) callbacks.
-* **Network Segmentation & Micro-segmentation**: Segregates assets into trust zones (e.g., DMZ, Corporate, Engineering, Management) using internal firewalls, VLANs, and Software-Defined Networking (SDN) to prevent unrestricted East-West lateral movement.
-* **Intrusion Detection and Prevention (IDS/IPS)**: Deep-inspects network traffic payloads using signature matching (Suricata) and protocol parsing (Zeek) to surface exploit attempts in real time.
-* **Zero Trust Network Access (ZTNA)**: Replaces legacy site-to-site VPNs with identity-aware proxies that verify context, device posture, and user identity before brokering a session to an internal resource.
+-   :material-wall:{ .lg .middle } **Stateful & Next-Gen Firewalls (NGFW)**
+    
+    ---
+    
+    Inspection across OSI Layers 3 through 7[cite: 13]. Enforces deep packet filtering, application-layer awareness, and strict outbound egress rules to neutralize command-and-control (C2) callbacks[cite: 13].
 
-## Key Tools
-* **Suricata 8.0**: Multi-threaded signature IDS/IPS engine.
-* **Zeek 9.0**: Real-time passive network metadata extractor.
-* **Wireshark 4.6**: Interactive packet capture and deep dissection.
+-   :material-vector-polyline:{ .lg .middle } **Network Micro-Segmentation**
+    
+    ---
+    
+    Dividing corporate environments into isolated trust zones (DMZ, Corporate, Engineering, Management) using internal firewalls and VLANs to stop unrestricted lateral movement[cite: 13].
+
+-   :material-radar:{ .lg .middle } **Intrusion Detection & Prevention (IDS/IPS)**
+    
+    ---
+    
+    Continuous payload inspection using multi-threaded signature engines (Suricata) and protocol state analyzers (Zeek) to surface exploitation attempts in real time.
+
+-   :material-shield-account:{ .lg .middle } **Zero Trust Network Access (ZTNA)**
+    
+    ---
+    
+    Replacing legacy site-to-site VPNs with identity-aware proxies that verify device compliance, user credentials, and context before brokering granular application connections[cite: 13].
+
+</div>
+
+---
+
+## 🔍 Protocol Telemetry & Traffic Baselines
+
+| Protocol | Normal Behavior | Anomaly Indicator | Detection Tool |
+| :--- | :--- | :--- | :--- |
+| **DNS (Port 53)** | High-frequency, low-payload domain queries. | High entropy base64 subdomains (DNS tunneling/data exfiltration). | **Zeek `dns.log`** |
+| **TLS/HTTPS (Port 443)** | Standard enterprise certificate validation. | Self-signed certs, rare JA3/JA4 cryptographic fingerprints. | **Suricata / Zeek `ssl.log`** |
+| **SMB (Port 445)** | Internal file sharing between verified workstations. | PsExec execution, pass-the-hash patterns, mass East-West traversal. | **Wireshark / Suricata** |
