@@ -4,7 +4,6 @@ site_url: https://atharvajdhumal.github.io/cybersecurity-handbook/
 
 theme:
   name: material
-  custom_dir: null
   palette:
     # Sleek dark theme by default
     - scheme: slate
