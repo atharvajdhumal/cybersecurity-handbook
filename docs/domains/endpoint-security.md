@@ -1,14 +1,49 @@
-# Endpoint Security & Host Defense
+<div class="hero-box">
+  <span style="font-size: 0.85rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #00f0ff; display: block; margin-bottom: 0.5rem;">
+    <span class="live-pulse"></span>DOMAIN ARCHITECTURE // 03
+  </span>
+  <h1 style="margin-top: 0; font-size: 2.1rem; font-weight: 800;">Endpoint Security & Host Hardening</h1>
+  <p style="color: #c9d1d9; font-size: 1.05rem; margin-bottom: 0;">
+    Securing user endpoints, engineering workstations, and physical or virtual servers where untrusted code executes.
+  </p>
+</div>
 
-Endpoint Security hardens individual user and server endpoints—laptops, workstations, mobile devices, and virtual servers—where untrusted data and executable binaries are processed.
+## 🖥️ Evolution of Endpoint Defense
 
-## Defensive Architecture
+<div class="grid cards" markdown>
 
-* **Signature Antivirus vs. EDR**: Legacy signature scanning (comparing file hashes to blocklists) is insufficient against fileless attacks, memory injection, and living-off-the-land binaries (LOLBins). Endpoint Detection and Response (EDR) records process parent-child telemetry, memory modifications, and registry events to disrupt malicious behavior dynamically.
-* **Application Allow-Listing**: Restricting the execution of untrusted scripts and binaries by default using platform controls like Windows Defender Application Control (WDAC) or AppLocker.
-* **Automated Containment**: EDR systems automatically severing an endpoint's network connection upon detecting mass file encryption or wiper indicators, allowing SOC analysts to triage the host remotely without risk to the fleet.
+-   :material-shield-search:{ .lg .middle } **Legacy Antivirus (AV)**
+    
+    ---
+    
+    Relies on known signature databases and static file hashes. Effective against commodity threats, but blind to fileless malware, memory injection, and living-off-the-land techniques.
 
-## Key Open-Source Tools
-* **CISA Logging Made Easy (LME)**: Streamlined Windows and Linux event log baselining.
-* **YARA & CAPA**: Binary pattern matching and executable capability triage.
-* **ClamAV**: Open-source antivirus engine for gateway and server scanning.
+-   :material-memory:{ .lg .middle } **EDR & Process Telemetry**
+    
+    ---
+    
+    Monitors process ancestry, parent-child process relationships, DLL injections, and memory anomalies in real time to disrupt unknown zero-days.
+
+-   :material-network-strength-off:{ .lg .middle } **Automated Host Quarantine**
+    
+    ---
+    
+    Immediately severs network connectivity for compromised endpoints upon detecting wiper or ransomware signatures, allowing remote SOC investigation without risk to the fleet.
+
+-   :material-playlist-check:{ .lg .middle } **Application Allow-Listing**
+    
+    ---
+    
+    Blocks unauthorized scripts and unknown binaries by default using system policies (Windows Defender Application Control / AppLocker).
+
+</div>
+
+---
+
+## 📋 Endpoint Forensics Matrix
+
+| Forensic Artifact | Analysis Value | Open-Source Extraction Tool |
+| :--- | :--- | :--- |
+| **Windows Event Logs** | Detects privilege escalation, account lockouts, and suspicious service creation. | **CISA LME / Hayabusa** |
+| **File Signatures & Hashes** | Identifies specific binary families, unpacked variants, and capabilities. | **YARA & CAPA** |
+| **Dynamic Execution Trace** | Records API hooks, dropped files, and outbound connections in an isolated VM. | **Cuckoo Sandbox** |
