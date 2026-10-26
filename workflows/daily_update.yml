@@ -1,0 +1,48 @@
+name: Daily Security Intelligence Auto-Update
+
+on:
+  schedule:
+    # Runs every day at 06:00 UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub UI for testing
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  update-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r scripts/requirements.txt
+
+      - name: Fetch Feeds and Synthesize Updates via Gemini
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python scripts/daily_updater.py
+
+      - name: Commit and Push Updated Markdown
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update threat feed: $(date +'%Y-%m-%d')" && git push)
+
+      - name: Deploy MkDocs to GitHub Pages
+        run: |
+          mkdocs gh-deploy --force

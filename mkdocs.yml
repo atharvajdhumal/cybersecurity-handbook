@@ -1,0 +1,30 @@
+site_name: Global Cyber Defense & Threat Intelligence Hub
+site_description: Real-time dynamic cybersecurity architecture, tools, and daily threat intelligence.
+site_url: https://<your-username>.github.io/cybersecurity-handbook/
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: deep orange
+      accent: cyan
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Core Domains:
+      - Network Security: domains/network-security.md
+      - Cloud Security: domains/cloud-security.md
+      - Endpoint Security: domains/endpoint-security.md
+      - Application Security: domains/application-security.md
+      - IAM: domains/iam.md
+      - Information & Data: domains/data-security.md
+      - OT & Critical Infrastructure: domains/ot-infrastructure.md
+      - AI Security: domains/ai-security.md
+  - Open-Source Arsenal: tools/open-source-arsenal.md
+  - Certifications: certifications/2026-roadmap.md
+  - Daily Threat Feed: news/index.md
