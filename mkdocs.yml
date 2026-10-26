@@ -5,14 +5,14 @@ site_url: https://atharvajdhumal.github.io/cybersecurity-handbook/
 theme:
   name: material
   palette:
-    # Sleek dark theme by default
+    # High-tech dark theme by default
     - scheme: slate
       primary: black
       accent: cyan
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
-    # Clean high-contrast light theme option
+    # High-contrast light theme
     - scheme: default
       primary: black
       accent: deep orange
@@ -23,18 +23,18 @@ theme:
     text: Inter
     code: JetBrains Mono
   features:
+    # Smooth Single Page Application (SPA) transitions
     - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
     - navigation.tracking
     - navigation.tabs
     - navigation.tabs.sticky
-    - navigation.sections
-    - navigation.expand
     - navigation.top
     - search.suggest
     - search.highlight
     - search.share
     - content.code.copy
-    - content.action.edit
 
 markdown_extensions:
   - admonition
