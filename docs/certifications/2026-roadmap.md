@@ -1,53 +1,41 @@
 <div class="hero-box">
   <span style="font-size: 0.85rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #00f0ff; display: block; margin-bottom: 0.5rem;">
-    <span class="live-pulse"></span>2026 VERIFIED CAREER PATHWAYS
+    <span class="live-pulse"></span>INTERACTIVE CAREER & CERTIFICATION PATHWAYS
   </span>
-  <h1 style="margin-top: 0; font-size: 2.1rem; font-weight: 800;">Cybersecurity Professional Certification Roadmap</h1>
+  <h1 style="margin-top: 0; font-size: 2.1rem; font-weight: 800;">Complete Cybersecurity Roadmap & Career Matrix</h1>
   <p style="color: #c9d1d9; font-size: 1.05rem; margin-bottom: 0;">
-    Role-based career roadmaps from entry-level fundamentals to senior enterprise architecture under CompTIA, ISC2, and ISACA.
+    A complete step-by-step interactive learning path inspired by industry standards, mapping every cybersecurity role, required technical skill, certification tier, and experience level.
   </p>
 </div>
 
-## 🎯 Career Progression by Experience Tier
+## 🗺️ Interactive Visual Learning Roadmap (Beginner to Principal)
 
-<div class="grid cards" markdown>
+```mermaid
+flowchart TD
+    subgraph S1["STAGE 1: IT & SYSTEM FOUNDATIONS (Months 1-3)"]
+        A1["Computer Hardware & Virtualization<br/>(VMware, Proxmox, VirtualBox)"] --> A2["Operating Systems Deep-Dive<br/>(Linux CLI, Bash, Windows Registry/AD, PowerShell)"]
+        A2 --> A3["Networking Fundamentals<br/>(OSI Model, TCP/IP, Subnetting, DNS, DHCP, TLS, ARP, NAT)"]
+    end
 
--   :material-school:{ .lg .middle } **Foundational Tier (0–2 Years)**
-    
-    ---
-    
-    - **CompTIA A+ & Network+**: Hardware, routing, switching, and TCP/IP fundamentals.
-    - **CompTIA Security+**: Foundational baseline covering cryptographic concepts, identity management, and network defense[cite: 11].
-    - **Target Roles**: Junior SOC Analyst, Systems Administrator, Junior Cybersecurity Specialist[cite: 11].
+    subgraph S2["STAGE 2: CORE SECURITY FUNDAMENTALS (Months 4-6)"]
+        B1["Core Principles<br/>(CIA Triad, Zero Trust, Defense-in-Depth, Least Privilege)"] --> B2["Applied Cryptography<br/>(AES, RSA, SHA, Salting, PKI, X.509 Certificates)"]
+        B2 --> B3["Attack Mechanics & Frameworks<br/>(MITRE ATT&CK, Cyber Kill Chain, OWASP Top 10, Diamond Model)"]
+        B3 --> B4["Hands-On Practice Labs<br/>(TryHackMe, HackTheBox, picoCTF, VulnHub)"]
+    end
 
--   :material-sword-cross:{ .lg .middle } **Intermediate & Specialist Tier (2–5 Years)**
-    
-    ---
-    
-    - **CompTIA CySA+**: Blue Team threat intelligence, behavioral anomaly detection, and SIEM triage.
-    - **CompTIA PenTest+**: Red Team vulnerability exploitation, scoping, and network attack simulation.
-    - **Target Roles**: SOC Analyst Tier 2, Incident Responder, Penetration Tester.
+    subgraph S3["STAGE 3: SPECIALIZED CAREER TRACKS (Years 1-5+)"]
+        C1["🛡️ BLUE TEAM / DEFENSIVE<br/>SIEM (Wazuh/Splunk), EDR, PCAP (Wireshark/Zeek), Incident Response, Threat Hunting"]
+        C2["⚔️ RED TEAM / OFFENSIVE<br/>Recon, Web App Pentesting, AD Exploitation, C2 Frameworks, Reverse Engineering"]
+        C3["☁️ CLOUD, DEVSECOPS & AI<br/>AWS/Azure/GCP Security, Kubernetes, IaC (Terraform), SAST/DAST, LLM Security"]
+        C4["⚖️ GRC & MANAGEMENT<br/>NIST CSF 2.0, ISO 27001, Risk Audits, SOC2, Executive Leadership (CISO)"]
+    end
 
--   :material-crown:{ .lg .middle } **Senior Technical & Architecture (5–10+ Years)**
-    
-    ---
-    
-    - **CompTIA SecurityX (CAS-005)**: Replaces CASP+ (CAS-004). Rigorous pass/fail technical architecture exam[cite: 11].
-    - **ISC2 CISSP**: Industry standard for governance, management policy, and enterprise risk oversight.
-    - **Target Roles**: Chief Information Security Officer (CISO), Principal Security Architect, Enterprise Risk Director.
+    A3 --> B1
+    B4 --> C1
+    B4 --> C2
+    B4 --> C3
+    B4 --> C4
 
-</div>
-
----
-
-## ⚡ The SecurityX (CAS-005) Evolution
-
-CompTIA officially retired the CASP+ (CAS-004) brand in favor of **CompTIA SecurityX (CAS-005)**.
-
-| Specification | Exam Standard |
-| :--- | :--- |
-| **Exam Code** | CAS-005 |
-| **Format** | Up to 90 Performance-Based (PBQ) and Multiple-Choice Questions[cite: 11] |
-| **Duration** | 165 Minutes[cite: 11] |
-| **Scoring** | Pass / Fail (No scaled numerical score)[cite: 11] |
-| **Domain Weights** | **Security Engineering (31%)**, **Security Architecture (27%)**, **Security Operations (22%)**, **GRC (20%)** |
+    style S1 fill:#0f172a,stroke:#00f0ff,stroke-width:2px,color:#fff
+    style S2 fill:#0f172a,stroke:#00ff66,stroke-width:2px,color:#fff
+    style S3 fill:#0f172a,stroke:#ff3366,stroke-width:2px,color:#fff
