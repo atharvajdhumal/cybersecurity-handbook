@@ -40,15 +40,9 @@ flowchart TD
     style S2 fill:#0f172a,stroke:#00ff66,stroke-width:2px,color:#fff
     style S3 fill:#0f172a,stroke:#ff3366,stroke-width:2px,color:#fff
 
-✅ Interactive Self-Study Checklist (Click to Expand Each Phase)???+ info "Phase 1: Fundamental IT, OS & Networking Skills"
-- [x] Operating Systems: Master Linux CLI (grep, awk, chmod, chown, systemd, iptables), Windows Active Directory, Group Policy (GPO), and PowerShell.
-- [ ] Networking: Understand the 7-layer OSI Model, TCP 3-way handshake, CIDR subnetting, VLANs, DMZs, VPNs, and NAT.
-- [ ] Essential Protocols & Ports: SSH (22), FTP/SFTP (21/22), SMTP (25), DNS (53), HTTP/HTTPS (80/443), SMB (445), RDP (3389), Kerberos (88), LDAP (389/636).
-- [ ] Virtualization: Build isolated home labs using VirtualBox, VMware ESXi, or Proxmox running Kali Linux and Windows Server.   ??? info "Phase 2: Defensive & Offensive Core Competencies"
-- [ ] Log & Traffic Analysis: Capture and filter packets in Wireshark; inspect Windows Event Logs (4624, 4625, 4688), Linux syslog, and firewall logs.
-- [ ] Incident Response Lifecycle: Master Preparation, Identification, Containment, Eradication, Recovery, and Lessons Learned (PICERL).
-- [ ] Web & Network Attacks: Understand SQL Injection, XSS, CSRF, SSRF, Directory Traversal, Pass-the-Hash, ARP Spoofing, and DDoS.
-- [ ] Scripting & Automation: Automate security tasks using Python, Bash, PowerShell, or Go.   💼 Complete Cybersecurity Career Role MatrixSwitch between the tabs below to explore every major role in cybersecurity, including experience required, daily duties, technical skills, and certifications:=== "🛡️ Blue Team (Defensive & SOC)"
+💼 Complete Cybersecurity Career Role MatrixSwitch between the tabs below to explore every major role in cybersecurity, including experience required, daily duties, technical skills, and certifications:
+
+=== "🛡️ Blue Team (Defensive & SOC)"
 
 | Role Title | Experience Level | Core Daily Responsibilities | Must-Have Technical Skills | Recommended Certifications |
 | :--- | :--- | :--- | :--- | :--- |
