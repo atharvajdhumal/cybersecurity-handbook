@@ -2,13 +2,13 @@
   <span style="font-size: 0.85rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #00f0ff; display: block; margin-bottom: 0.5rem;">
     <span class="live-pulse"></span>INTERACTIVE CAREER & CERTIFICATION PATHWAYS
   </span>
-  <h1 style="margin-top: 0; font-size: 2.1rem; font-weight: 800;">Complete Cybersecurity Roadmap & Career Matrix</h1>
+  <h1 style="margin-top: 0; font-size: 2.1rem; font-weight: 800;">Complete Cybersecurity Roadmap, Roles & Certifications</h1>
   <p style="color: #c9d1d9; font-size: 1.05rem; margin-bottom: 0;">
-    A complete step-by-step interactive learning path inspired by industry standards, mapping every cybersecurity role, required technical skill, certification tier, and experience level.
+    A complete step-by-step interactive learning path mapping every cybersecurity role, required technical skill, certification tier, and experience level.
   </p>
 </div>
 
-## 🗺️ Interactive Visual Learning Roadmap (Beginner to Principal)
+## 🗺️ Interactive Visual Learning Roadmap (Zero to Principal)
 
 ```mermaid
 flowchart TD
