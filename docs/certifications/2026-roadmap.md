@@ -39,10 +39,3 @@ flowchart TD
     style S1 fill:#0f172a,stroke:#00f0ff,stroke-width:2px,color:#fff
     style S2 fill:#0f172a,stroke:#00ff66,stroke-width:2px,color:#fff
     style S3 fill:#0f172a,stroke:#ff3366,stroke-width:2px,color:#fff
-
-| Role Title | Experience Level | Core Daily Responsibilities | Must-Have Technical Skills | Recommended Certifications |
-| :--- | :--- | :--- | :--- | :--- |
-| **SOC Analyst (Tier 1 / 2)** | Entry to Mid (0–3 yrs) | Triage SIEM alerts, analyze phishing emails, inspect network PCAPs, isolate infected endpoints. | SIEM (Wazuh/Splunk), Wireshark, EDR triage, Windows/Linux Event Logs, TCP/IP. | CompTIA Security+, BTL1, CompTIA CySA+, GIAC GSEC |
-| **Incident Responder / DFIR** | Mid to Senior (3–6 yrs) | Lead breach containment, conduct memory and disk forensics, reverse engineer malware, eradicate root causes. | Volatility 3, Autopsy, Velociraptor, YARA, Timeline analysis, Ransomware recovery. | GIAC GCIH, GCFA, BTL2, CompTIA CySA+ |
-| **Threat Intelligence Analyst** | Mid (2–5 yrs) | Track APT groups, map adversary TTPs to MITRE ATT&CK, curate IOC feeds, brief executives on dark web threats. | MITRE ATT&CK, Diamond Model, OpenCTI, MISP, YARA, OSINT (SpiderFoot), Python. | GIAC GCTI, CompTIA CySA+ |
-| **Detection Engineer / Threat Hunter** | Senior (4–8 yrs) | Write custom SIEM/Sigma/Suricata detection rules, proactively hunt for stealthy Living-off-the-Land (LOLBins) actors. | Sigma rules, YARA, Suricata, Zeek, KQL/SPL query languages, EDR telemetry engineering. | GIAC GCIA, GCFA, OSDA |
