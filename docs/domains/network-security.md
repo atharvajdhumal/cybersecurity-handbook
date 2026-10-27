@@ -36,3 +36,19 @@ flowchart LR
     InternalFW --> Corp["Corporate VLAN<br/>(Workstations)"]
     InternalFW --> Prod["Production VLAN<br/>(Databases / App Servers)"]
     InternalFW --> SecOps["SOC Sensor Stack<br/>(Zeek + Suricata + SIEM)"]
+
+Key Architectural Components:Firewalls (Evolution):Stateless (Packet Filtering): Inspects individual packets via static Access Control Lists (ACLs: Source/Dest IP & Port) without tracking connection state.Stateful Inspection: Tracks active TCP handshakes (SYN, SYN-ACK, ACK) in a state table; blocks unsolicited inbound packets.Next-Generation Firewall (NGFW): Adds Layer 7 Deep Packet Inspection (DPI), TLS decryption, application awareness, and integrated IPS.Network Segmentation & DMZ:DMZ (Demilitarized Zone): A buffer subnet placed between the public internet and internal LAN to host public-facing web/mail servers.Micro-segmentation: Enforcing software-defined firewall policies down to individual workloads so an infected workstation cannot laterally scan neighboring hosts via SMB (445) or RDP (3389).IDS vs. IPS:IDS (Intrusion Detection System): Out-of-band passive sensor connected via a network TAP or switch SPAN port. Alerts SOC teams without dropping traffic (e.g., Zeek, Suricata in passive mode).IPS (Intrusion Prevention System): Sits inline with network traffic; actively drops malicious packets and resets suspicious connections in real time.3. Practical Packet Analysis & Detection RulesSecurity engineers use Wireshark, Tcpdump, and Suricata to hunt threats on the wire.   === "Wireshark Display Filters Cheat Sheet"
+```text
+# 1. Detect TCP SYN Scans / Floods (SYN flag set, ACK flag not set)
+tcp.flags.syn == 1 and tcp.flags.ack == 0
+
+# 2. Hunt for Cleartext Credentials in HTTP POST or FTP
+http.request.method == "POST" or ftp.request.command == "PASS"
+
+# 3. Identify Suspicious DNS Tunneling (Long query names)
+dns.qry.name.len > 50 and not mdns
+
+# 4. Detect SMB Lateral Movement / PsExec activity
+smb2.Tree == "\\\\*\\IPC$" or smb2.filename contains "svcctl"
+```
+
