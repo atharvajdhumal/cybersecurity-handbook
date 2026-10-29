@@ -1,0 +1,686 @@
+export const ARSENAL_CATEGORIES = [
+  "All Tools",
+  "Network & IDS/IPS",
+  "SIEM, XDR & SOC Suites",
+  "Red Team & Exploitation",
+  "Web AppSec & Supply Chain",
+  "Cloud & Kubernetes Security",
+  "Forensics & Reverse Engineering",
+  "Password, OSINT & Wireless",
+  "AI & LLM Security"
+];
+
+export const ARSENAL_TOOLS = [
+  // 1. Network & IDS/IPS (12 tools)
+  {
+    id: "wireshark",
+    name: "Wireshark",
+    category: "Network & IDS/IPS",
+    license: "GPLv2",
+    nistFunction: "Detect (DE) / Respond (RS)",
+    capabilities: "Industry-standard graphical deep packet inspection (DPI) and protocol analyzer supporting 3,000+ enterprise, cloud, and industrial OT protocols with TCP/TLS stream reassembly.",
+    cli: "wireshark -r capture.pcap -Y \"http.request.method == POST || dns.qry.name contains \\\"evil\\\"\""
+  },
+  {
+    id: "zeek",
+    name: "Zeek (formerly Bro)",
+    category: "Network & IDS/IPS",
+    license: "BSD-3-Clause",
+    nistFunction: "Detect (DE)",
+    capabilities: "Passive network security monitoring (NSM) framework that transforms raw packet streams into structured, high-fidelity transactional logs (conn.log, dns.log, http.log, ssl.log, x509.log) and executes custom behavioral scripts.",
+    cli: "zeek -C -r enterprise_traffic.pcap local \"Site::local_nets += { 10.0.0.0/8 }\""
+  },
+  {
+    id: "suricata",
+    name: "Suricata",
+    category: "Network & IDS/IPS",
+    license: "GPLv2",
+    nistFunction: "Detect (DE) / Protect (PR)",
+    capabilities: "High-performance, multi-threaded IDS, inline IPS, and NSM engine developed by OISF. Inspects TLS/JA3/JA4 fingerprints, extracts files over HTTP/SMB, and evaluates Emerging Threats (ET) rules at 100Gbps+.",
+    cli: "suricata -c /etc/suricata/suricata.yaml -i eth0 --af-packet -v"
+  },
+  {
+    id: "snort3",
+    name: "Snort 3",
+    category: "Network & IDS/IPS",
+    license: "GPLv2",
+    nistFunction: "Detect (DE) / Protect (PR)",
+    capabilities: "Next-generation Cisco/Talos signature-based network intrusion detection and prevention system featuring multi-threaded packet processing, LuaJIT configuration, and protocol autodetection.",
+    cli: "snort -c /etc/snort/snort.lua -R /etc/snort/rules/local.rules -i eth0 -A alert_fast"
+  },
+  {
+    id: "arkime",
+    name: "Arkime (formerly Moloch)",
+    category: "Network & IDS/IPS",
+    license: "Apache 2.0",
+    nistFunction: "Detect (DE) / Respond (RS)",
+    capabilities: "Large-scale, indexed full Packet Capture (PCAP) storage and search system backed by OpenSearch/Elasticsearch with session carving, CyberChef integration, and REST APIs.",
+    cli: "capture -c /opt/arkime/etc/config.ini -r /data/pcap/incident_2026.pcap --tags dfir-case-01"
+  },
+  {
+    id: "nmap",
+    name: "Nmap (Network Mapper)",
+    category: "Network & IDS/IPS",
+    license: "NPSL",
+    nistFunction: "Identify (ID)",
+    capabilities: "Definitive network discovery, SYN/UDP port scanning, OS TCP/IP stack fingerprinting, service version enumeration, and Nmap Scripting Engine (NSE) vulnerability auditing tool.",
+    cli: "nmap -sS -sV -sC -O -p- --min-rate=2500 -oA corp_perimeter_audit 10.10.14.0/24"
+  },
+  {
+    id: "masscan",
+    name: "Masscan",
+    category: "Network & IDS/IPS",
+    license: "AGPLv3",
+    nistFunction: "Identify (ID)",
+    capabilities: "Asynchronous, stateless TCP port scanner using custom driver rings (PF_RING) capable of scanning the entire IPv4 Internet in under 5 minutes at 10 million packets per second.",
+    cli: "masscan 10.0.0.0/8 -p80,443,445,3389,8080 --rate=100000 -oL internal_open_ports.txt"
+  },
+  {
+    id: "tcpdump",
+    name: "Tcpdump",
+    category: "Network & IDS/IPS",
+    license: "BSD-3-Clause",
+    nistFunction: "Detect (DE) / Respond (RS)",
+    capabilities: "Ubiquitous, zero-dependency CLI packet analyzer using libpcap and Berkeley Packet Filters (BPF) for live troubleshooting and forensic PCAP capture on headless Linux servers and firewalls.",
+    cli: "tcpdump -i eth0 -nn -s0 -vv \"tcp port 443 and (tcp-syn|tcp-ack) != 0\" -w tls_capture.pcap"
+  },
+  {
+    id: "netcat",
+    name: "Netcat / Ncat",
+    category: "Network & IDS/IPS",
+    license: "GPL / NPSL",
+    nistFunction: "Identify (ID) / Respond (RS)",
+    capabilities: "Foundational networking utility for reading/writing raw TCP and UDP sockets, banner grabbing, firewall egress validation, port forwarding, and TLS-wrapped socket debugging.",
+    cli: "ncat --ssl -zv 10.10.20.15 443 8443"
+  },
+  {
+    id: "bettercap",
+    name: "Bettercap",
+    category: "Network & IDS/IPS",
+    license: "GPLv3",
+    nistFunction: "Identify (ID)",
+    capabilities: "Modular Go framework for Ethernet, 802.11 Wi-Fi, BLE, and IPv4/IPv6 network reconnaissance, ARP/DNS spoofing, and Adversary-in-the-Middle (AitM) resilience testing.",
+    cli: "bettercap -iface eth0 -eval \"net.probe on; net.recon on; events.stream on\""
+  },
+  {
+    id: "pfsense",
+    name: "pfSense CE",
+    category: "Network & IDS/IPS",
+    license: "Apache 2.0",
+    nistFunction: "Protect (PR)",
+    capabilities: "Enterprise-grade FreeBSD-based stateful firewall, VLAN router, WireGuard/IPsec/OpenVPN concentrator, HAProxy load balancer, and inline Suricata/Snort appliance.",
+    cli: "pfctl -sr && pfctl -ss | grep -i \"ESTABLISHED\""
+  },
+  {
+    id: "opnsense",
+    name: "OPNsense",
+    category: "Network & IDS/IPS",
+    license: "BSD-2-Clause",
+    nistFunction: "Protect (PR)",
+    capabilities: "Hardened FreeBSD firewall and routing platform featuring an MVC architecture, REST API automation, inline Zenarmor NGFW plugin support, Suricata IPS, and NetFlow telemetry.",
+    cli: "configctl filter reload && pluginctl -s suricata status"
+  },
+
+  // 2. SIEM, XDR & SOC Suites (10 tools)
+  {
+    id: "wazuh",
+    name: "Wazuh SIEM & XDR",
+    category: "SIEM, XDR & SOC Suites",
+    license: "GPLv2",
+    nistFunction: "Detect (DE) / Respond (RS)",
+    capabilities: "Unified open-source XDR and SIEM platform providing log aggregation, File Integrity Monitoring (FIM), CVE vulnerability detection, CIS SCA auditing, and automated active response.",
+    cli: "/var/ossec/bin/agent_control -l && /var/ossec/bin/wazuh-logtest"
+  },
+  {
+    id: "security-onion",
+    name: "Security Onion 3",
+    category: "SIEM, XDR & SOC Suites",
+    license: "Elastic / GPLv2",
+    nistFunction: "Detect (DE) / Respond (RS)",
+    capabilities: "Complete enterprise Linux distribution for Threat Hunting, Network Security Monitoring (NSM), and Log Management integrating Zeek, Suricata, Stenographer, Wazuh, Elastic, and Strelka.",
+    cli: "sudo so-status && sudo so-suricata-rule-update"
+  },
+  {
+    id: "cisa-malcolm",
+    name: "CISA Malcolm",
+    category: "SIEM, XDR & SOC Suites",
+    license: "Apache 2.0",
+    nistFunction: "Detect (DE)",
+    capabilities: "CISA-maintained, easily deployable network traffic analysis tool suite designed for full PCAP artifacts, Zeek logs, Suricata alerts, and ICS/OT industrial protocol visibility (Modbus, DNP3, S7comm).",
+    cli: "./scripts/control.py --start && ./scripts/pcap_upload.sh /captures/ot_substation.pcap"
+  },
+  {
+    id: "cisa-lme",
+    name: "CISA Logging Made Easy (LME)",
+    category: "SIEM, XDR & SOC Suites",
+    license: "CC0 1.0 Public Domain",
+    nistFunction: "Detect (DE) / Govern (GV)",
+    capabilities: "Turnkey, no-cost centralized log management and endpoint threat detection stack for Windows and Linux organizations combining Sysmon, Windows Event Forwarding (WEF), Wazuh, and Kibana.",
+    cli: "ansible-playbook -i inventory.yml deploy_lme_cluster.yml"
+  },
+  {
+    id: "thehive-cortex",
+    name: "TheHive & Cortex",
+    category: "SIEM, XDR & SOC Suites",
+    license: "AGPLv3",
+    nistFunction: "Respond (RS)",
+    capabilities: "Scalable 4-in-1 Security Incident Response Platform (SIRP) paired with Cortex observable analysis engine to automate IOC enrichment (VirusTotal, AbuseIPDB, Shodan) and active containment responders.",
+    cli: "curl -H \"Authorization: Bearer $THEHIVE_API_KEY\" https://soc.internal/api/v1/case"
+  },
+  {
+    id: "misp",
+    name: "MISP Threat Sharing",
+    category: "SIEM, XDR & SOC Suites",
+    license: "AGPLv3",
+    nistFunction: "Identify (ID) / Detect (DE)",
+    capabilities: "Global standard Open-Source Threat Intelligence Platform (TIP) for collecting, correlating, and automatically exporting structured IOCs directly to Suricata, Zeek, and SIEMs.",
+    cli: "/var/www/MISP/app/Console/cake Server pull 1 full"
+  },
+  {
+    id: "opencti",
+    name: "OpenCTI",
+    category: "SIEM, XDR & SOC Suites",
+    license: "Apache 2.0",
+    nistFunction: "Govern (GV) / Identify (ID)",
+    capabilities: "Graph-based Cyber Threat Intelligence platform built on the STIX 2.1 schema and MITRE ATT&CK framework to link APT threat actors, campaigns, victimology, and technical observables.",
+    cli: "docker compose -f opencti-stack.yml up -d"
+  },
+  {
+    id: "velociraptor",
+    name: "Velociraptor (Rapid7 OSS)",
+    category: "SIEM, XDR & SOC Suites",
+    license: "AGPLv3",
+    nistFunction: "Respond (RS) / Detect (DE)",
+    capabilities: "Surgical endpoint visibility, digital forensics, and live incident response platform powered by VQL (Velociraptor Query Language) to hunt memory/MFT artifacts across 50,000+ hosts in seconds.",
+    cli: "velociraptor --config client.config.yaml query \"SELECT Name, Pid, CommandLine FROM pslist()\""
+  },
+  {
+    id: "osquery",
+    name: "OSQuery",
+    category: "SIEM, XDR & SOC Suites",
+    license: "Apache 2.0 / GPLv2",
+    nistFunction: "Identify (ID) / Detect (DE)",
+    capabilities: "Linux Foundation agent that exposes operating system telemetry (processes, kernel modules, open sockets, crontab, browser extensions) as relational SQL tables.",
+    cli: "osqueryi \"SELECT p.pid, p.name, p.cmdline, l.port FROM processes p JOIN listening_ports l ON p.pid = l.pid;\""
+  },
+  {
+    id: "elastalert2",
+    name: "Sigma CLI / sigmac",
+    category: "SIEM, XDR & SOC Suites",
+    license: "LGPLv3",
+    nistFunction: "Detect (DE)",
+    capabilities: "Universal open-source detection signature format and compiler that translates vendor-neutral YAML detection rules into Splunk SPL, Microsoft Sentinel KQL, Elastic EQL, and Wazuh rules.",
+    cli: "sigma convert -t splunk -p sysmon rules/windows/process_creation/proc_creation_win_lolbin.yml"
+  },
+
+  // 3. Red Team & Exploitation (10 tools)
+  {
+    id: "metasploit",
+    name: "Metasploit Framework",
+    category: "Red Team & Exploitation",
+    license: "BSD-3-Clause",
+    nistFunction: "Identify (ID)",
+    capabilities: "World's premier penetration testing framework containing 2,400+ validated exploit modules, `msfvenom` payload encoders, auxiliary scanners, and Meterpreter post-exploitation routing.",
+    cli: "msfconsole -q -x \"use exploit/multi/handler; set PAYLOAD linux/x64/meterpreter/reverse_https; run\""
+  },
+  {
+    id: "openvas",
+    name: "OpenVAS (Greenbone CE)",
+    category: "Red Team & Exploitation",
+    license: "GPLv2",
+    nistFunction: "Identify (ID)",
+    capabilities: "Enterprise vulnerability management scanner backed by a daily-updated feed of 120,000+ Network Vulnerability Tests (NVTs) for authenticated and unauthenticated CVE assessment.",
+    cli: "gvm-cli socket --xml \"<get_tasks/>\""
+  },
+  {
+    id: "nuclei",
+    name: "Nuclei (ProjectDiscovery)",
+    category: "Red Team & Exploitation",
+    license: "MIT",
+    nistFunction: "Identify (ID)",
+    capabilities: "High-speed, declarative YAML template-based vulnerability scanner backed by 9,000+ community templates for zero-days, CISA KEVs, cloud misconfigurations, and exposed panels.",
+    cli: "nuclei -l targets.txt -tags kev,cve2026 -severity critical,high -o kev_findings.json"
+  },
+  {
+    id: "bloodhound",
+    name: "BloodHound CE",
+    category: "Red Team & Exploitation",
+    license: "Apache 2.0",
+    nistFunction: "Identify (ID) / Protect (PR)",
+    capabilities: "Uses Neo4j graph theory to map hidden, transitive Active Directory and Azure/Entra ID privilege escalation paths from standard domain users to Tier-0 Domain Admins.",
+    cli: "sharpHound.exe -c All --domain corp.internal --zipfilename ad_graph_audit.zip"
+  },
+  {
+    id: "impacket",
+    name: "Impacket",
+    category: "Red Team & Exploitation",
+    license: "Apache 2.0",
+    nistFunction: "Identify (ID)",
+    capabilities: "Python library and script suite (`secretsdump.py`, `GetUserSPNs.py`, `ntlmrelayx.py`, `psexec.py`, `ticketer.py`) for low-level manipulation of SMB, MSRPC, and Kerberos protocols.",
+    cli: "impacket-GetUserSPNs corp.internal/svc_audit -dc-ip 10.10.10.5 -request -outputfile kerberoast.hashes"
+  },
+  {
+    id: "netexec",
+    name: "NetExec (nxc / CrackMapExec)",
+    category: "Red Team & Exploitation",
+    license: "BSD-2-Clause",
+    nistFunction: "Identify (ID)",
+    capabilities: "Swiss-army knife for security-auditing large Active Directory environments across SMB, WinRM, LDAP, MSSQL, RDP, and SSH; verifies SMB signing, LAPS, and credential reuse.",
+    cli: "nxc smb 10.10.10.0/24 --gen-relay-list unsigned_smb_hosts.txt"
+  },
+  {
+    id: "mimikatz",
+    name: "Mimikatz",
+    category: "Red Team & Exploitation",
+    license: "CC BY 4.0",
+    nistFunction: "Identify (ID)",
+    capabilities: "Post-exploitation research utility demonstrating Windows credential extraction from LSASS memory, Pass-the-Hash, Pass-the-Ticket, DCSync auditing, and Kerberos Golden Ticket mechanics.",
+    cli: "mimikatz.exe \"privilege::debug\" \"lsadump::dcsync /domain:corp.internal /user:krbtgt\" \"exit\""
+  },
+  {
+    id: "responder",
+    name: "Responder",
+    category: "Red Team & Exploitation",
+    license: "GPLv3",
+    nistFunction: "Identify (ID)",
+    capabilities: "LLMNR, NBT-NS, and mDNS poisoner with built-in rogue SMB/HTTP/LDAP servers used during internal pentests to identify legacy name-resolution fallback and capture NetNTLMv2 hashes.",
+    cli: "sudo responder -I eth0 -A"
+  },
+  {
+    id: "sliver",
+    name: "Sliver C2 (Bishop Fox)",
+    category: "Red Team & Exploitation",
+    license: "GPLv3",
+    nistFunction: "Identify (ID) / Detect (DE)",
+    capabilities: "Modern, cross-platform adversary emulation and Command & Control (C2) framework built in Go supporting mTLS, WireGuard, HTTP(S), DNS beacons, and dynamic per-implant compilation.",
+    cli: "generate --mtls c2.redteam.internal --os windows --arch amd64 --format exe --save beacon.exe"
+  },
+  {
+    id: "havoc",
+    name: "Havoc C2 Framework",
+    category: "Red Team & Exploitation",
+    license: "GPLv3",
+    nistFunction: "Identify (ID)",
+    capabilities: "Malleable post-exploitation Command & Control framework featuring the Demon agent, sleep obfuscation (Ekko/Foliage), indirect syscalls, and collaborative red-team operations.",
+    cli: "havoc server --profile ./profiles/redteam_malleable.yaotl -v"
+  },
+
+  // 4. Web AppSec & Supply Chain (10 tools)
+  {
+    id: "owasp-zap",
+    name: "OWASP ZAP (Zed Attack Proxy)",
+    category: "Web AppSec & Supply Chain",
+    license: "Apache 2.0",
+    nistFunction: "Identify (ID) / Protect (PR)",
+    capabilities: "Intercepting HTTP/WebSocket proxy, passive analyzer, fuzzer, and automated Dynamic Application Security Testing (DAST) scanner for web apps and OpenAPI/GraphQL endpoints.",
+    cli: "zap-baseline.py -t https://staging.corp.internal -r zap_dast_report.html"
+  },
+  {
+    id: "sqlmap",
+    name: "SQLmap",
+    category: "Web AppSec & Supply Chain",
+    license: "GPLv2",
+    nistFunction: "Identify (ID)",
+    capabilities: "Automated SQL injection detection and database auditing tool supporting boolean-based blind, time-based blind, error-based, UNION query, and stacked queries across 30+ DBMS engines.",
+    cli: "sqlmap -u \"https://app.local/items?id=1\" --batch --level=3 --risk=2 --dbs"
+  },
+  {
+    id: "ffuf",
+    name: "Ffuf (Fuzz Faster U Fool)",
+    category: "Web AppSec & Supply Chain",
+    license: "MIT",
+    nistFunction: "Identify (ID)",
+    capabilities: "Blazing-fast web fuzzer written in Go for hidden directory/file discovery, virtual host (VHost) enumeration, and GET/POST/JSON parameter fuzzing.",
+    cli: "ffuf -w /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt -u https://target.local/FUZZ -mc 200,301,403"
+  },
+  {
+    id: "gobuster",
+    name: "Gobuster",
+    category: "Web AppSec & Supply Chain",
+    license: "Apache 2.0",
+    nistFunction: "Identify (ID)",
+    capabilities: "Multi-mode Go enumeration utility for brute-forcing URIs (directories and files), DNS subdomains, Virtual Host names, and public AWS S3 / GCS buckets.",
+    cli: "gobuster dir -u https://api.target.local -w common.txt -x php,bak,json,env -t 50"
+  },
+  {
+    id: "semgrep",
+    name: "Semgrep OSS",
+    category: "Web AppSec & Supply Chain",
+    license: "LGPLv2.1",
+    nistFunction: "Protect (PR)",
+    capabilities: "Fast, syntax-aware Static Application Security Testing (SAST) scanner supporting 30+ languages (Python, JS/TS, Go, Rust, Java, C#) using intuitive code-pattern rules in CI/CD.",
+    cli: "semgrep scan --config=p/owasp-top-ten --config=p/security-audit --error ."
+  },
+  {
+    id: "trivy",
+    name: "Trivy (Aqua Security)",
+    category: "Web AppSec & Supply Chain",
+    license: "Apache 2.0",
+    nistFunction: "Identify (ID) / Govern (GV)",
+    capabilities: "All-in-one cloud-native scanner for OS packages and language dependencies in container images, filesystems, Git repos, Kubernetes clusters, IaC, and CycloneDX/SPDX SBOM generation.",
+    cli: "trivy image --severity CRITICAL,HIGH --format cyclonedx --output sbom.json node:22-alpine"
+  },
+  {
+    id: "gitleaks",
+    name: "Gitleaks",
+    category: "Web AppSec & Supply Chain",
+    license: "MIT",
+    nistFunction: "Protect (PR)",
+    capabilities: "High-speed SAST tool for detecting and preventing hardcoded secrets—AWS keys, GitHub PATs, private keys, JWTs, database passwords—across Git commit histories and pre-commit hooks.",
+    cli: "gitleaks detect --source . --verbose --report-path gitleaks-audit.json"
+  },
+  {
+    id: "trufflehog",
+    name: "TruffleHog",
+    category: "Web AppSec & Supply Chain",
+    license: "AGPLv3",
+    nistFunction: "Protect (PR) / Identify (ID)",
+    capabilities: "Finds leaked credentials across Git repositories, S3 buckets, Docker images, Jira, and Slack—and actively verifies live credential validity against 800+ cloud/SaaS APIs.",
+    cli: "trufflehog git https://github.com/org/service.git --only-verified"
+  },
+  {
+    id: "dependency-check",
+    name: "OWASP Dependency-Check",
+    category: "Web AppSec & Supply Chain",
+    license: "Apache 2.0",
+    nistFunction: "Identify (ID) / Govern (GV)",
+    capabilities: "Software Composition Analysis (SCA) utility that identifies project dependencies and checks if there are any known, publicly disclosed CVEs in the NVD/CISA KEV catalogs.",
+    cli: "dependency-check.sh --project \"CoreAPI\" --scan ./src --format HTML --out ./reports"
+  },
+  {
+    id: "nikto",
+    name: "Nikto Web Scanner",
+    category: "Web AppSec & Supply Chain",
+    license: "GPLv2",
+    nistFunction: "Identify (ID)",
+    capabilities: "Classic web server assessment tool testing for 6,700+ dangerous legacy CGI scripts, exposed `.git`/backup files, missing HTTP security headers (CSP, HSTS), and server misconfigurations.",
+    cli: "nikto -h https://legacy-portal.internal -Tuning 123bde -o nikto_scan.html"
+  },
+
+  // 5. Cloud & Kubernetes Security (8 tools)
+  {
+    id: "prowler",
+    name: "Prowler Cloud Security",
+    category: "Cloud & Kubernetes Security",
+    license: "Apache 2.0",
+    nistFunction: "Identify (ID) / Govern (GV)",
+    capabilities: "Leading open-source Cloud Security Posture Management (CSPM) tool auditing AWS, Azure, GCP, and Kubernetes against CIS, NIST CSF 2.0, SOC2, PCI-DSS, HIPAA, and GDPR frameworks.",
+    cli: "prowler aws --compliance nist_csf_2.0_aws cis_3.0_aws -M csv json-ocsf"
+  },
+  {
+    id: "scoutsuite",
+    name: "ScoutSuite (NCC Group)",
+    category: "Cloud & Kubernetes Security",
+    license: "GPLv2",
+    nistFunction: "Identify (ID)",
+    capabilities: "Multi-cloud security-auditing tool querying cloud provider APIs (AWS, Azure, GCP, Alibaba, Oracle) to generate an offline, interactive HTML attack-surface dashboard.",
+    cli: "scout aws --profile prod-readonly --report-dir ./scout-audit-report"
+  },
+  {
+    id: "checkov",
+    name: "Checkov (Bridgecrew/Palo Alto)",
+    category: "Cloud & Kubernetes Security",
+    license: "Apache 2.0",
+    nistFunction: "Protect (PR)",
+    capabilities: "Graph-based static code analysis for Infrastructure-as-Code (Terraform, OpenTofu, CloudFormation, Kubernetes manifests, Helm charts, Bicep, Dockerfiles) with 1,000+ built-in policies.",
+    cli: "checkov -d ./terraform --framework terraform --compact --quiet"
+  },
+  {
+    id: "terrascan",
+    name: "Terrascan",
+    category: "Cloud & Kubernetes Security",
+    license: "Apache 2.0",
+    nistFunction: "Protect (PR)",
+    capabilities: "Open Policy Agent (OPA/Rego) powered static analyzer for Infrastructure-as-Code detecting cloud security violations before cloud provisioning.",
+    cli: "terrascan scan -i terraform -d ./infra/aws -t aws"
+  },
+  {
+    id: "falco",
+    name: "Falco (CNCF Graduated)",
+    category: "Cloud & Kubernetes Security",
+    license: "Apache 2.0",
+    nistFunction: "Detect (DE)",
+    capabilities: "Cloud-native runtime security project (CWPP) using Linux kernel eBPF probes to detect anomalous container syscalls, privilege escalations, shell spawns, and `/etc/shadow` reads in real time.",
+    cli: "falco -c /etc/falco/falco.yaml -r /etc/falco/falco_rules.yaml"
+  },
+  {
+    id: "kube-bench",
+    name: "Kube-bench (Aqua Security)",
+    category: "Cloud & Kubernetes Security",
+    license: "Apache 2.0",
+    nistFunction: "Identify (ID) / Protect (PR)",
+    capabilities: "Go application that checks whether Kubernetes control plane (API server, etcd, scheduler) and worker nodes are deployed securely according to the CIS Kubernetes Benchmark.",
+    cli: "kube-bench run --targets master,node,etcd,policies --benchmark cis-1.9"
+  },
+  {
+    id: "kube-hunter",
+    name: "Kube-hunter",
+    category: "Cloud & Kubernetes Security",
+    license: "Apache 2.0",
+    nistFunction: "Identify (ID)",
+    capabilities: "Probes Kubernetes clusters from external network perimeters or internal compromised pod perspectives to identify exposed kubelet ports (10250), anonymous API access, and RBAC flaws.",
+    cli: "kube-hunter --pod --quick --report json"
+  },
+  {
+    id: "pacu",
+    name: "Pacu (Rhino Security Labs)",
+    category: "Cloud & Kubernetes Security",
+    license: "BSD-3-Clause",
+    nistFunction: "Identify (ID)",
+    capabilities: "Modular AWS offensive security and red-teaming framework designed for testing IAM privilege escalation paths, Lambda backdoors, S3 enumeration, and GuardDuty detection coverage.",
+    cli: "pacu --session aws_redteam_audit --exec \"run iam__enum_permissions && run iam__privesc_scan\""
+  },
+
+  // 6. Forensics & Reverse Engineering (10 tools)
+  {
+    id: "ghidra",
+    name: "Ghidra (NSA SRE)",
+    category: "Forensics & Reverse Engineering",
+    license: "Apache 2.0",
+    nistFunction: "Respond (RS)",
+    capabilities: "NSA's industrial-strength Software Reverse Engineering (SRE) suite featuring a multi-architecture disassembler, P-code intermediate representation, and C pseudo-code decompiler for x86/ARM/MIPS.",
+    cli: "analyzeHeadless /tmp/ghidra_proj MalwareAnalysis -import ./suspicious_implant.elf -postScript ExtractIOCs.py"
+  },
+  {
+    id: "radare2",
+    name: "Radare2 & Cutter",
+    category: "Forensics & Reverse Engineering",
+    license: "LGPLv3",
+    nistFunction: "Respond (RS)",
+    capabilities: "Portable UNIX-like reverse engineering framework, scriptable hexadecimal editor, control-flow graph visualizer, debugger, and Cutter Qt GUI decompiler.",
+    cli: "r2 -A -q -c \"afl; pdf @ main\" ./packed_sample.bin"
+  },
+  {
+    id: "volatility3",
+    name: "Volatility 3",
+    category: "Forensics & Reverse Engineering",
+    license: "Volatility Software License",
+    nistFunction: "Respond (RS)",
+    capabilities: "World-standard memory forensics framework for analyzing volatile RAM dumps (`.raw`, `.vmem`, `.dmp`) to uncover hidden rootkit processes, hollowing (`malfind`), network sockets, and kernel callbacks.",
+    cli: "vol -f workstation_ram.raw windows.malfind.Malfind"
+  },
+  {
+    id: "autopsy",
+    name: "Autopsy & The Sleuth Kit",
+    category: "Forensics & Reverse Engineering",
+    license: "Apache 2.0 / CPL",
+    nistFunction: "Respond (RS) / Recover (RC)",
+    capabilities: "End-to-end digital forensics platform for analyzing disk images (E01/RAW), NTFS `$MFT` timelines, registry hives, web artifacts, carved deleted files, and hashset filtering.",
+    cli: "fls -r -m \"C:/\" -o 2048 workstation_disk.raw > bodyfile.txt && mactime -b bodyfile.txt -d > timeline.csv"
+  },
+  {
+    id: "yara-x",
+    name: "YARA / YARA-X (VirusTotal)",
+    category: "Forensics & Reverse Engineering",
+    license: "BSD-3-Clause",
+    nistFunction: "Detect (DE) / Respond (RS)",
+    capabilities: "Next-generation Rust rewrite of the pattern-matching swiss-army knife used by malware hunters to classify malware families across files and process memory using hex/regex/PE conditions.",
+    cli: "yr scan --recursive ./yara_rules/apt_ransomware.yar /mnt/forensic_mount/"
+  },
+  {
+    id: "capa",
+    name: "CAPA (Mandiant FLARE)",
+    category: "Forensics & Reverse Engineering",
+    license: "Apache 2.0",
+    nistFunction: "Respond (RS)",
+    capabilities: "Automatically identifies capabilities in PE, ELF, .NET, and shellcode binaries (e.g., 'injects via CreateRemoteThread', 'encrypts data via AES') and maps them to MITRE ATT&CK & MBC.",
+    cli: "capa -v ./unknown_dropper.exe"
+  },
+  {
+    id: "capev2",
+    name: "CAPEv2 Malware Sandbox",
+    category: "Forensics & Reverse Engineering",
+    license: "GPLv3",
+    nistFunction: "Respond (RS) / Detect (DE)",
+    capabilities: "Advanced community fork of Cuckoo Sandbox that dynamically detonates malware in isolated VMs, bypasses anti-analysis checks, dumps unpacked payloads from memory, and extracts C2 configurations.",
+    cli: "python3 utils/submit.py --timeout 180 /samples/invoice_loader.exe"
+  },
+  {
+    id: "cyberchef",
+    name: "CyberChef (GCHQ)",
+    category: "Forensics & Reverse Engineering",
+    license: "Apache 2.0",
+    nistFunction: "Respond (RS)",
+    capabilities: "GCHQ's client-side 'Cyber Swiss Army Knife' web application for chaining 300+ operations: Base64/Hex decoding, XOR brute-forcing, Gzip/Brotli decompression, AES decryption, and shellcode disassembly.",
+    cli: "docker run -d -p 8000:80 ghcr.io/gchq/cyberchef:latest"
+  },
+  {
+    id: "hayabusa",
+    name: "Hayabusa (Yamato Security)",
+    category: "Forensics & Reverse Engineering",
+    license: "GPLv3",
+    nistFunction: "Detect (DE) / Respond (RS)",
+    capabilities: "Blazingly fast Rust-based Windows Event Log (`.evtx`) threat hunting and forensic timeline generator utilizing 3,500+ built-in Sigma rules.",
+    cli: "hayabusa csv-timeline -d ./evtx_logs/ -o incident_timeline.csv --min-level medium"
+  },
+  {
+    id: "chainsaw",
+    name: "Chainsaw",
+    category: "Forensics & Reverse Engineering",
+    license: "MIT",
+    nistFunction: "Respond (RS)",
+    capabilities: "Rapidly searches and hunts through Windows forensic artifacts (`evtx` event logs, `$MFT`, Shimcache, Amcache, SRUM) using Sigma detection rules and custom TOML logic.",
+    cli: "chainsaw hunt ./evtx_logs -s ./sigma/rules/ --mapping ./mappings/sigma-event-logs-all.yml"
+  },
+
+  // 7. Password, OSINT & Wireless (8 tools)
+  {
+    id: "hashcat",
+    name: "Hashcat",
+    category: "Password, OSINT & Wireless",
+    license: "MIT",
+    nistFunction: "Identify (ID) / Protect (PR)",
+    capabilities: "World's fastest OpenCL/CUDA GPU-accelerated password recovery and hash-auditing engine supporting 350+ algorithms including NTLM (-m 1000), Kerberos 5 TGS-REP (-m 13100), and WPA2/3 (-m 22000).",
+    cli: "hashcat -m 13100 -a 0 kerberoast_tgs.txt /usr/share/wordlists/rockyou.txt -r rules/best64.rule"
+  },
+  {
+    id: "john",
+    name: "John the Ripper (Jumbo)",
+    category: "Password, OSINT & Wireless",
+    license: "GPLv2",
+    nistFunction: "Identify (ID)",
+    capabilities: "Versatile offline password security auditor with 400+ `*2john` extractors for encrypted ZIP/7z/RAR archives, KeePass DBs, SSH private keys, BitLocker, and `/etc/shadow` hashes.",
+    cli: "ssh2john id_rsa_encrypted > ssh.hash && john --wordlist=rockyou.txt ssh.hash"
+  },
+  {
+    id: "hydra",
+    name: "THC-Hydra",
+    category: "Password, OSINT & Wireless",
+    license: "AGPLv3",
+    nistFunction: "Identify (ID)",
+    capabilities: "Parallelized network authentication stress-tester supporting 50+ protocols (SSH, RDP, SMB, FTP, HTTP-POST-Form, PostgreSQL, LDAP, SNMP) to validate account lockout controls.",
+    cli: "hydra -L users.txt -P top100_passwords.txt -t 4 -w 30 ssh://10.10.20.5"
+  },
+  {
+    id: "aircrack-ng",
+    name: "Aircrack-ng Suite",
+    category: "Password, OSINT & Wireless",
+    license: "GPLv2",
+    nistFunction: "Identify (ID)",
+    capabilities: "Complete 802.11 Wi-Fi security auditing suite including monitor mode control (`airmon-ng`), frame capture (`airodump-ng`), frame injection (`aireplay-ng`), and WPA/WPA2 PSK cracking.",
+    cli: "airmon-ng start wlan0 && airodump-ng -c 6 --bssid 00:11:22:33:44:55 -w corp_wifi_audit wlan0mon"
+  },
+  {
+    id: "spiderfoot",
+    name: "SpiderFoot HX OSS",
+    category: "Password, OSINT & Wireless",
+    license: "MIT",
+    nistFunction: "Identify (ID)",
+    capabilities: "Automated Open-Source Intelligence (OSINT) and External Attack Surface Management (EASM) platform integrating 200+ modules for DNS, WHOIS, Shodan, HaveIBeenPwned, and BGP correlation.",
+    cli: "python3 ./sf.py -s corp-target.com -u all -o json > osint_footprint.json"
+  },
+  {
+    id: "amass",
+    name: "OWASP Amass",
+    category: "Password, OSINT & Wireless",
+    license: "Apache 2.0",
+    nistFunction: "Identify (ID)",
+    capabilities: "In-depth external attack surface mapping and asset discovery framework using Certificate Transparency logs, passive DNS aggregators, ASN/BGP routing tables, and active brute-forcing.",
+    cli: "amass enum -passive -d enterprise-domain.com -o discovered_subdomains.txt"
+  },
+  {
+    id: "theharvester",
+    name: "theHarvester",
+    category: "Password, OSINT & Wireless",
+    license: "GPLv2",
+    nistFunction: "Identify (ID)",
+    capabilities: "Pre-engagement reconnaissance tool that gathers employee email addresses, subdomains, virtual hosts, and open ports from 35+ public intelligence sources (crt.sh, Shodan, Censys, DuckDuckGo).",
+    cli: "theHarvester -d enterprise-domain.com -b crtsh,rapiddns,anubis -f recon_report"
+  },
+  {
+    id: "kismet",
+    name: "Kismet Wireless IDS",
+    category: "Password, OSINT & Wireless",
+    license: "GPLv2",
+    nistFunction: "Detect (DE)",
+    capabilities: "Passive RF wireless network detector, packet sniffer, and Wireless Intrusion Detection System (WIDS) for 802.11 Wi-Fi, Bluetooth/BLE, Zigbee, and SDR sensors—transmits zero packets.",
+    cli: "kismet -c wlan0:name=SOC_North_Sensor --daemonize"
+  },
+
+  // 8. AI & LLM Security (5 tools)
+  {
+    id: "garak",
+    name: "Garak (NVIDIA LLM Vulnerability Scanner)",
+    category: "AI & LLM Security",
+    license: "Apache 2.0",
+    nistFunction: "Identify (ID) / Protect (PR)",
+    capabilities: "Generative AI red-teaming scanner ('Nmap for LLMs') that probes models with thousands of automated adversarial payloads for direct/indirect prompt injection, jailbreaks (DAN), XSS encoding bypasses, and data leakage.",
+    cli: "python3 -m garak --model_type openai --model_name gpt-4o --probes promptinject,dan,encoding,xss"
+  },
+  {
+    id: "promptfoo",
+    name: "Promptfoo",
+    category: "AI & LLM Security",
+    license: "MIT",
+    nistFunction: "Protect (PR) /Identify (ID)",
+    capabilities: "CLI and CI/CD red-teaming framework for evaluating LLM prompts, RAG pipelines, and autonomous agent tool permissions against OWASP LLM Top 10, PII leakage, BOLA, and SSRF.",
+    cli: "npx promptfoo@latest redteam run --config promptfooconfig.yaml --output llm_security_audit.html"
+  },
+  {
+    id: "pyrit",
+    name: "Microsoft PyRIT",
+    category: "AI & LLM Security",
+    license: "MIT",
+    nistFunction: "Identify (ID)",
+    capabilities: "Python Risk Identification Toolkit developed by Microsoft AI Red Team to automate multi-turn adversarial attacks, Crescendo jailbreaks, and multimodal safety evaluations aligned to MITRE ATLAS.",
+    cli: "python3 -m pyrit.cli --orchestrator RedTeamingOrchestrator --target-endpoint https://ai.corp.internal/v1"
+  },
+  {
+    id: "art-toolbox",
+    name: "Adversarial Robustness Toolbox (ART)",
+    category: "AI & LLM Security",
+    license: "MIT",
+    nistFunction: "Protect (PR)",
+    capabilities: "Linux Foundation AI & Data Python library defending Machine Learning models (PyTorch, TensorFlow, Scikit-learn) against Evasion (FGSM/PGD), Poisoning (Backdoors), Extraction, and Membership Inference.",
+    cli: "pytest tests/attacks/evasion/test_projected_gradient_descent.py"
+  },
+  {
+    id: "llm-guard",
+    name: "LLM Guard (Protect AI)",
+    category: "AI & LLM Security",
+    license: "MIT",
+    nistFunction: "Protect (PR) / Detect (DE)",
+    capabilities: "Comprehensive security toolkit providing real-time input and output scanners for LLM APIs: detects prompt injection, redacts PII/secrets, blocks toxic content, and validates output schemas.",
+    cli: "docker run -p 8000:8000 -v ./scanners.yaml:/home/user/app/config/scanners.yaml laiello/llm-guard-api:latest"
+  }
+];
