@@ -6,6 +6,7 @@ import ThreatFeedView from './components/ThreatFeedView';
 import DomainsView from './components/DomainsView';
 import ArsenalView from './components/ArsenalView';
 import RoadmapView from './components/RoadmapView';
+import CyberArenaView from './components/CyberArenaView';
 import { ROADMAP_STAGES } from './data/roadmapData';
 import { CORE_DOMAINS } from './data/domainsData';
 import { Shield, Terminal, Search, ArrowUp } from 'lucide-react';
@@ -21,9 +22,56 @@ const INITIAL_FALLBACK_THREATS = {
   detectionRules: []
 };
 
+const VALID_TABS = new Set(['home', 'threats', 'domains', 'arsenal', 'roadmap', 'arena']);
+
+function parseLocationHash(hashStr) {
+  const cleaned = (hashStr || '').replace(/^#\/?/, '').trim();
+  if (!cleaned) {
+    return { tabId: 'home', payload: null };
+  }
+  const [rawTab, rawSub] = cleaned.split('/');
+  const tabId = VALID_TABS.has(rawTab) ? rawTab : 'home';
+  const sub = rawSub ? decodeURIComponent(rawSub) : null;
+
+  if (!sub) {
+    return { tabId, payload: null };
+  }
+
+  if (tabId === 'arena') {
+    return { tabId, payload: { mode: sub } };
+  }
+  if (tabId === 'domains') {
+    return { tabId, payload: { domainId: sub } };
+  }
+  if (tabId === 'threats') {
+    return { tabId, payload: { section: sub } };
+  }
+  if (tabId === 'arsenal') {
+    return { tabId, payload: { toolSearch: sub } };
+  }
+  if (tabId === 'roadmap') {
+    return { tabId, payload: { nodeId: sub } };
+  }
+  return { tabId, payload: null };
+}
+
+function buildLocationHash(tabId, payload) {
+  if (!tabId || tabId === 'home') return '#home';
+  if (tabId === 'arena' && payload?.mode) return `#arena/${encodeURIComponent(payload.mode)}`;
+  if (tabId === 'domains' && payload?.domainId) return `#domains/${encodeURIComponent(payload.domainId)}`;
+  if (tabId === 'threats' && payload?.section) return `#threats/${encodeURIComponent(payload.section)}`;
+  if (tabId === 'arsenal' && payload?.toolSearch) return `#arsenal/${encodeURIComponent(payload.toolSearch)}`;
+  if (tabId === 'roadmap' && payload?.nodeId) return `#roadmap/${encodeURIComponent(payload.nodeId)}`;
+  return `#${tabId}`;
+}
+
 export default function App() {
-  const [activeTab, setActiveTab] = useState('home');
-  const [navPayload, setNavPayload] = useState(null);
+  const initialRoute = useMemo(
+    () => parseLocationHash(typeof window !== 'undefined' ? window.location.hash : ''),
+    []
+  );
+  const [activeTab, setActiveTab] = useState(initialRoute.tabId);
+  const [navPayload, setNavPayload] = useState(initialRoute.payload);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
 
   // Daily threats state loaded from /public/data/daily-threats.json
@@ -50,16 +98,64 @@ export default function App() {
     }
   });
 
+  // Cyber Arena XP, Rank & Daily Streak persisted in localStorage
+  const [arenaProfile, setArenaProfile] = useState(() => {
+    const todayStr = new Date().toISOString().slice(0, 10);
+    try {
+      const saved = localStorage.getItem('cyberhub_arena_profile');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return {
+          xp: typeof parsed.xp === 'number' ? parsed.xp : 0,
+          streak: typeof parsed.streak === 'number' ? parsed.streak : 1,
+          lastPlayedDate: parsed.lastPlayedDate || todayStr
+        };
+      }
+    } catch {
+      // ignore localStorage read error
+    }
+    return { xp: 0, streak: 1, lastPlayedDate: todayStr };
+  });
+
+  const handleAwardXp = useCallback((amount) => {
+    if (!amount || amount <= 0) return;
+    const todayStr = new Date().toISOString().slice(0, 10);
+    setArenaProfile((prev) => {
+      let nextStreak = prev.streak || 1;
+      if (prev.lastPlayedDate && prev.lastPlayedDate !== todayStr) {
+        const lastDate = new Date(`${prev.lastPlayedDate}T00:00:00Z`);
+        const currDate = new Date(`${todayStr}T00:00:00Z`);
+        const diffDays = Math.round((currDate - lastDate) / (1000 * 60 * 60 * 24));
+        if (diffDays === 1) {
+          nextStreak += 1;
+        } else if (diffDays > 1) {
+          nextStreak = 1;
+        }
+      }
+      const updated = {
+        xp: (prev.xp || 0) + amount,
+        streak: nextStreak,
+        lastPlayedDate: todayStr
+      };
+      try {
+        localStorage.setItem('cyberhub_arena_profile', JSON.stringify(updated));
+      } catch {
+        // ignore localStorage write error
+      }
+      return updated;
+    });
+  }, []);
+
   const fetchDailyThreats = useCallback(async () => {
     setIsReloadingFeed(true);
     try {
-      const response = await fetch('./data/daily-threats.json');
+      const response = await fetch(`${import.meta.env.BASE_URL}data/daily-threats.json`);
       if (response.ok) {
         const data = await response.json();
         setDailyThreats(data);
       }
     } catch (err) {
-      console.error('Error loading ./data/daily-threats.json:', err);
+      console.error('Error loading daily-threats.json:', err);
     } finally {
       setTimeout(() => setIsReloadingFeed(false), 300);
     }
@@ -81,9 +177,24 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleGlobalKeyDown);
   }, []);
 
+  // Sync state when user clicks browser Back/Forward or changes URL hash directly
+  useEffect(() => {
+    const handleHashChange = () => {
+      const parsed = parseLocationHash(window.location.hash);
+      setActiveTab(parsed.tabId);
+      setNavPayload(parsed.payload);
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   const handleNavigate = useCallback((tabId, payload = null) => {
     setActiveTab(tabId);
     setNavPayload(payload);
+    const targetHash = buildLocationHash(tabId, payload);
+    if (typeof window !== 'undefined' && window.location.hash !== targetHash) {
+      window.history.pushState(null, '', targetHash);
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
@@ -133,6 +244,7 @@ export default function App() {
         completedNodesCount={completedNodesCount}
         totalNodesCount={totalRoadmapNodes}
         quizScoreSummary={quizScoreSummary}
+        arenaProfile={arenaProfile}
       />
 
       {/* Global Search Modal (Ctrl+K) */}
@@ -181,6 +293,15 @@ export default function App() {
             onResetRoadmapProgress={handleResetRoadmapProgress}
             initialNavState={navPayload}
             onNavigate={handleNavigate}
+          />
+        )}
+
+        {activeTab === 'arena' && (
+          <CyberArenaView
+            arenaProfile={arenaProfile}
+            onAwardXp={handleAwardXp}
+            dailyThreats={dailyThreats}
+            initialMode={navPayload?.mode}
           />
         )}
       </main>

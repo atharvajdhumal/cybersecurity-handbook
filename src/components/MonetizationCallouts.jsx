@@ -13,14 +13,72 @@ import {
   Check
 } from 'lucide-react';
 
+// ============================================================================
+// CENTRALIZED MONETIZATION & NEWSLETTER CONFIGURATION
+// Plug in your live Formspree/Beehiiv/Substack & Gumroad URLs below in 1 spot:
+// ============================================================================
+export const MONETIZATION_CONFIG = {
+  // Option A: Direct POST endpoint (e.g., "https://formspree.io/f/xxxxxxxx" or Make/Zapier/Cloudflare Worker webhook)
+  newsletterWebhookUrl: '',
+  // Option B: External newsletter landing page (e.g., "https://yourname.substack.com/subscribe" or Beehiiv URL)
+  newsletterExternalUrl: '',
+  // Default Gumroad profile/store URL + individual product checkout links
+  gumroadStoreUrl: 'https://gumroad.com',
+  playbooks: [
+    {
+      id: 'secx-vault',
+      title: 'CompTIA SecurityX (CAS-005) & Security+ Master Vault',
+      price: '$29',
+      tag: 'ARCHITECTURE & PBQ LAB VAULT',
+      checkoutUrl: 'https://gumroad.com', // Replace with e.g. "https://yourname.gumroad.com/l/secx-vault"
+      desc: '450+ scenario-based architecture PBQs, NIST CSF 2.0 mapping matrices, Post-Quantum Cryptography (ML-KEM) notes, and Linux/Cloud simulation labs.',
+      sampleTitle: 'Excerpt: CAS-005 Zero Trust & Post-Quantum TLS 1.3 Hybrid Key Exchange',
+      sampleCode: `# Hybrid Post-Quantum TLS 1.3 OpenSSL 3.4+ Verification (X25519MLKEM768)
+openssl s_client -connect api.enterprise.internal:443 -groups X25519MLKEM768:X25519 -tls1_3
+
+# Verify FIPS 203 (ML-KEM) & FIPS 204 (ML-DSA) Certificate Chain:
+openssl x509 -in server_mldsa65.crt -text -noout | grep -E "Public Key Algorithm|Signature Algorithm"`
+    },
+    {
+      id: 'cli-field-manual',
+      title: 'Red & Blue Team 65+ CLI Tactical Playbook Bundle',
+      price: '$24',
+      tag: 'SOC & OFFSEC FIELD MANUAL',
+      checkoutUrl: 'https://gumroad.com', // Replace with e.g. "https://yourname.gumroad.com/l/cli-playbook"
+      desc: 'Copy-paste command chains for Wireshark, Zeek, Suricata, Velociraptor, Volatility 3, BloodHound, Impacket, Nmap, and Garak LLM Red-Teaming.',
+      sampleTitle: 'Excerpt: Live Incident Response 60-Second Linux Triage One-Liner',
+      sampleCode: `# Hunt deleted binaries still executing in RAM + active C2 sockets + eBPF/LD_PRELOAD hooks:
+ls -la /proc/*/exe 2>/dev/null | grep '(deleted)'
+ss -tunap | awk 'NR>1 {print $1, $5, $6, $7}'
+cat /etc/ld.so.preload 2>/dev/null; find / -perm -4000 -type f 2>/dev/null`
+    },
+    {
+      id: 'ciso-nist-kit',
+      title: 'CISO & Principal Architect NIST CSF 2.0 Kit',
+      price: '$39',
+      tag: 'EXECUTIVE & GRC TEMPLATES',
+      checkoutUrl: 'https://gumroad.com', // Replace with e.g. "https://yourname.gumroad.com/l/nist-csf-kit"
+      desc: 'Ready-to-use Board Risk Appetite decks, FAIR quantitative spreadsheets, Third-Party SBOM contract clauses, and Ransomware Tabletop scripts.',
+      sampleTitle: 'Excerpt: Mandatory Vendor Procurement SBOM & Vulnerability SLA Clause',
+      sampleCode: `SECTION 14.2 - SOFTWARE SUPPLY CHAIN & SBOM MANDATE (NIST CSF 2.0 GV.SC-07):
+Vendor shall deliver a machine-readable CycloneDX v1.5+ SBOM signed via Sigstore Cosign
+with every production release. Any CISA KEV vulnerability (CVSS >= 9.0) in direct or
+transitive dependencies must be patched or mitigated within 48 hours of advisory publication.`
+    }
+  ]
+};
+
 export default function MonetizationCallouts({ compact = false }) {
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('SOC / DFIR Analyst');
   const [subscribed, setSubscribed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [previewModal, setPreviewModal] = useState(null); // 'brief' | 'gumroad' | null
   const [selectedPlaybook, setSelectedPlaybook] = useState(0);
   const [copiedSnippet, setCopiedSnippet] = useState(false);
+
+  const playbooks = MONETIZATION_CONFIG.playbooks;
 
   useEffect(() => {
     const saved = localStorage.getItem('cyberhub_newsletter_sub');
@@ -29,56 +87,50 @@ export default function MonetizationCallouts({ compact = false }) {
     }
   }, []);
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
-    if (!email || !email.includes('@') || !email.includes('.')) {
+    const cleanEmail = email.trim();
+    if (!cleanEmail || !cleanEmail.includes('@') || !cleanEmail.includes('.')) {
       setError('Please enter a valid enterprise or personal email address.');
       return;
     }
     setError('');
-    setSubscribed(true);
-    localStorage.setItem(
-      'cyberhub_newsletter_sub',
-      JSON.stringify({ email, role, timestamp: new Date().toISOString() })
-    );
-  };
+    setIsSubmitting(true);
 
-  const playbooks = [
-    {
-      title: "CompTIA SecurityX (CAS-005) & Security+ Master Vault",
-      price: "$29",
-      tag: "BESTSELLER // 2026 EDITION",
-      desc: "450+ scenario-based architecture PBQs, NIST CSF 2.0 mapping matrices, Post-Quantum Cryptography (ML-KEM) notes, and Linux/Cloud simulation labs.",
-      sampleTitle: "Excerpt: CAS-005 Zero Trust & Post-Quantum TLS 1.3 Hybrid Key Exchange",
-      sampleCode: `# Hybrid Post-Quantum TLS 1.3 OpenSSL 3.4+ Verification (X25519MLKEM768)
-openssl s_client -connect api.enterprise.internal:443 -groups X25519MLKEM768:X25519 -tls1_3
+    const payload = {
+      email: cleanEmail,
+      role,
+      source: 'cyberdefense-global-intel-hub',
+      timestamp: new Date().toISOString()
+    };
 
-# Verify FIPS 203 (ML-KEM) & FIPS 204 (ML-DSA) Certificate Chain:
-openssl x509 -in server_mldsa65.crt -text -noout | grep -E "Public Key Algorithm|Signature Algorithm"`
-    },
-    {
-      title: "Red & Blue Team 65+ CLI Tactical Playbook Bundle",
-      price: "$24",
-      tag: "SOC & OFFSEC FIELD MANUAL",
-      desc: "Copy-paste command chains for Wireshark, Zeek, Suricata, Velociraptor, Volatility 3, BloodHound, Impacket, Nmap, and Garak LLM Red-Teaming.",
-      sampleTitle: "Excerpt: Live Incident Response 60-Second Linux Triage One-Liner",
-      sampleCode: `# Hunt deleted binaries still executing in RAM + active C2 sockets + eBPF/LD_PRELOAD hooks:
-ls -la /proc/*/exe 2>/dev/null | grep '(deleted)'
-ss -tunap | awk 'NR>1 {print $1, $5, $6, $7}'
-cat /etc/ld.so.preload 2>/dev/null; find / -perm -4000 -type f 2>/dev/null`
-    },
-    {
-      title: "CISO & Principal Architect NIST CSF 2.0 Kit",
-      price: "$39",
-      tag: "EXECUTIVE & GRC TEMPLATES",
-      desc: "Ready-to-use Board Risk Appetite decks, FAIR quantitative spreadsheets, Third-Party SBOM contract clauses, and Ransomware Tabletop scripts.",
-      sampleTitle: "Excerpt: Mandatory Vendor Procurement SBOM & Vulnerability SLA Clause",
-      sampleCode: `SECTION 14.2 - SOFTWARE SUPPLY CHAIN & SBOM MANDATE (NIST CSF 2.0 GV.SC-07):
-Vendor shall deliver a machine-readable CycloneDX v1.5+ SBOM signed via Sigstore Cosign
-with every production release. Any CISA KEV vulnerability (CVSS >= 9.0) in direct or
-transitive dependencies must be patched or mitigated within 48 hours of advisory publication.`
+    try {
+      if (MONETIZATION_CONFIG.newsletterWebhookUrl) {
+        const res = await fetch(MONETIZATION_CONFIG.newsletterWebhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) {
+          throw new Error('Subscription endpoint returned an error.');
+        }
+      } else if (MONETIZATION_CONFIG.newsletterExternalUrl) {
+        const targetUrl = new URL(MONETIZATION_CONFIG.newsletterExternalUrl);
+        targetUrl.searchParams.set('email', cleanEmail);
+        window.open(targetUrl.toString(), '_blank', 'noopener,noreferrer');
+      }
+
+      setSubscribed(true);
+      localStorage.setItem('cyberhub_newsletter_sub', JSON.stringify(payload));
+    } catch {
+      setError('Could not reach subscription server. Please try again in a moment.');
+    } finally {
+      setIsSubmitting(false);
     }
-  ];
+  };
 
   const handleCopySample = (text) => {
     navigator.clipboard.writeText(text);
@@ -111,7 +163,7 @@ transitive dependencies must be patched or mitigated within 48 hours of advisory
             Subscribe to the Free <span className="text-[#00f0ff] font-mono">06:00 UTC</span> Threat Brief
           </h3>
           <p className="text-sm text-slate-300 mt-2 leading-relaxed">
-            Join <strong className="text-white font-mono">42,800+</strong> SOC analysts, detection engineers, and CISOs receiving our autonomous daily synthesis of CISA KEV additions, zero-day exploit mechanics, copyable Suricata/Sigma rules, and daily SecurityX practice questions.
+            Built for <strong className="text-white font-mono">SOC analysts, detection engineers, and security architects</strong>—get our autonomous daily synthesis of CISA KEV additions, zero-day exploit mechanics, copyable Suricata/Sigma rules, and daily SecurityX practice questions.
           </p>
 
           {subscribed ? (
@@ -173,9 +225,10 @@ transitive dependencies must be patched or mitigated within 48 hours of advisory
                     </div>
                     <button
                       type="submit"
-                      className="px-4 py-2.5 rounded-xl bg-[#00f0ff] hover:bg-[#00f0ff]/90 text-slate-950 font-mono font-bold text-xs uppercase tracking-wider transition-all shadow-cyan-glow shrink-0"
+                      disabled={isSubmitting}
+                      className="px-4 py-2.5 rounded-xl bg-[#00f0ff] hover:bg-[#00f0ff]/90 disabled:opacity-50 text-slate-950 font-mono font-bold text-xs uppercase tracking-wider transition-all shadow-cyan-glow shrink-0"
                     >
-                      Subscribe
+                      {isSubmitting ? 'Syncing...' : 'Subscribe'}
                     </button>
                   </div>
                 </div>
@@ -329,7 +382,7 @@ transitive dependencies must be patched or mitigated within 48 hours of advisory
                 </div>
                 <div className="flex justify-end gap-3 pt-2">
                   <a
-                    href="https://gumroad.com"
+                    href={playbooks[selectedPlaybook].checkoutUrl || MONETIZATION_CONFIG.gumroadStoreUrl}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#00ff66] text-slate-950 font-mono font-bold text-xs uppercase tracking-wider shadow-emerald-glow"

@@ -10,8 +10,11 @@ import {
   Menu,
   X,
   Terminal,
-  Award
+  Award,
+  Gamepad2,
+  Flame
 } from 'lucide-react';
+import { getRankForXp } from '../data/cyberArenaData';
 
 export default function Navbar({
   activeTab,
@@ -19,16 +22,19 @@ export default function Navbar({
   onOpenSearch,
   completedNodesCount,
   totalNodesCount,
-  quizScoreSummary
+  quizScoreSummary,
+  arenaProfile
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const rankInfo = getRankForXp(arenaProfile?.xp || 0);
 
   const navItems = [
     { id: 'home', label: 'Dashboard & NIST 2.0', shortLabel: 'Dashboard', icon: Home },
     { id: 'threats', label: 'Daily Threats & Infamy', shortLabel: 'Threat Feed', icon: Activity, live: true },
     { id: 'domains', label: '8 Core Domains', shortLabel: '8 Domains', icon: BookOpen, badge: '8' },
     { id: 'arsenal', label: 'Open-Source Arsenal', shortLabel: 'Arsenal', icon: Wrench, badge: '68' },
-    { id: 'roadmap', label: 'Roadmap, Roles & Certs', shortLabel: 'Roadmap', icon: Map }
+    { id: 'roadmap', label: 'Roadmap, Roles & Certs', shortLabel: 'Roadmap', icon: Map },
+    { id: 'arena', label: '🕹️ Cyber Arena', shortLabel: '🕹️ Arena', icon: Gamepad2, badge: 'LIVE' }
   ];
 
   const handleNav = (id) => {
@@ -47,18 +53,37 @@ export default function Navbar({
               <span className="w-2 h-2 rounded-full bg-[#00ff66] animate-ping" />
               SOC TELEMETRY: ONLINE
             </span>
-            <span className="hidden sm:inline text-slate-400">
-              FRAMEWORK: <strong className="text-[#00f0ff]">NIST CSF 2.0</strong> // CERT STANDARD: <strong className="text-slate-200">SECURITYX (CAS-005)</strong>
+            <span className="hidden md:inline text-slate-400">
+              FRAMEWORK: <strong className="text-[#00f0ff]">NIST CSF 2.0</strong> // CERT: <strong className="text-slate-200">SECURITYX (CAS-005)</strong>
             </span>
           </div>
-          <div className="flex items-center gap-4 text-slate-400">
-            <span className="hidden md:inline-flex items-center gap-1.5">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-slate-400">
+            {/* Live XP & Rank Badge saved in localStorage */}
+            <button
+              onClick={() => handleNav('arena')}
+              className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-md bg-gradient-to-r from-[#00f0ff]/15 via-slate-900 to-[#00ff66]/15 border border-[#00f0ff]/40 hover:border-[#00f0ff] transition-all group"
+              title="Click to open 🕹️ Cyber Arena (Saved in localStorage)"
+            >
+              <Gamepad2 className="w-3.5 h-3.5 text-[#00f0ff] group-hover:scale-110 transition-transform" />
+              <span className="text-[11px] font-bold text-white">
+                {rankInfo.title}
+              </span>
+              <span className="text-[#00ff66] font-extrabold">
+                {arenaProfile?.xp || 0} XP
+              </span>
+              <span className="inline-flex items-center gap-0.5 text-amber-400 font-bold border-l border-slate-700 pl-2">
+                <Flame className="w-3 h-3 fill-amber-400" />
+                {arenaProfile?.streak || 1}d
+              </span>
+            </button>
+
+            <span className="hidden lg:inline-flex items-center gap-1.5">
               <Award className="w-3.5 h-3.5 text-[#00f0ff]" />
-              <span>QUIZ MASTERY: <strong className="text-[#00f0ff]">{quizScoreSummary.correct}/{quizScoreSummary.total}</strong></span>
+              <span>QUIZ: <strong className="text-[#00f0ff]">{quizScoreSummary.correct}/{quizScoreSummary.total}</strong></span>
             </span>
-            <span className="inline-flex items-center gap-1.5">
+            <span className="hidden sm:inline-flex items-center gap-1.5">
               <Terminal className="w-3.5 h-3.5 text-[#00ff66]" />
-              <span>ROADMAP: <strong className="text-[#00ff66]">{completedNodesCount}/{totalNodesCount} NODES</strong></span>
+              <span>ROADMAP: <strong className="text-[#00ff66]">{completedNodesCount}/{totalNodesCount}</strong></span>
             </span>
           </div>
         </div>
@@ -100,14 +125,15 @@ export default function Navbar({
                 <button
                   key={item.id}
                   onClick={() => handleNav(item.id)}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium transition-all ${
+                  className={`flex items-center gap-1.5 px-2.5 xl:px-3 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
                     isActive
                       ? 'bg-[#00f0ff]/15 text-[#00f0ff] border border-[#00f0ff]/40 shadow-cyan-glow font-semibold'
                       : 'text-slate-300 hover:text-white hover:bg-slate-800/60 border border-transparent'
                   }`}
                 >
-                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#00f0ff]' : 'text-slate-400'}`} />
-                  <span>{item.label}</span>
+                  <Icon className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-[#00f0ff]' : 'text-slate-400'}`} />
+                  <span className="hidden xl:inline">{item.label}</span>
+                  <span className="xl:hidden">{item.shortLabel}</span>
                   {item.live && (
                     <span className="w-2 h-2 rounded-full bg-[#ff3366] animate-pulse" title="Live Threat Feed" />
                   )}

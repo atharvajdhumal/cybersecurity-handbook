@@ -122,6 +122,37 @@ export default function GlobalSearchModal({
       });
     });
 
+    // 6. Cyber Arena Interactive Game Modes
+    items.push(
+      {
+        id: 'arena-soc-siege',
+        type: 'CYBER ARENA GAME',
+        category: 'ARENA',
+        title: '🕹️ Mode 1: SOC Under Siege (Live Incident Triage Simulator)',
+        subtitle: '90s timer, Network Integrity health bar, Windows 4688 PowerShell, Suricata SQLi/SSRF, AWS PassRole & Kerberoasting triage.',
+        badge: '+45 XP/Alert',
+        action: () => onNavigate('arena', { mode: 'soc-siege' })
+      },
+      {
+        id: 'arena-terminal-ctf',
+        type: 'CYBER ARENA GAME',
+        category: 'ARENA',
+        title: '🕹️ Mode 2: Terminal CTF (Interactive Browser Shell)',
+        subtitle: 'Interactive Linux shell supporting ls, cd, cat, grep, strings, base64, netstat, ps, history, whoami & submit <flag>.',
+        badge: '+100 XP/Flag',
+        action: () => onNavigate('arena', { mode: 'terminal-ctf' })
+      },
+      {
+        id: 'arena-spot-vuln',
+        type: 'CYBER ARENA GAME',
+        category: 'ARENA',
+        title: '🕹️ Mode 3: Spot the Vuln (Code & Config Inspector)',
+        subtitle: 'Click the exact vulnerable line & select the secure patch across Python SQLi, Node.js RCE, Terraform S3, Docker root, IMDSv1 & JWT.',
+        badge: '+70 XP/Patch',
+        action: () => onNavigate('arena', { mode: 'spot-vuln' })
+      }
+    );
+
     return items;
   }, [dailyThreats, onNavigate]);
 

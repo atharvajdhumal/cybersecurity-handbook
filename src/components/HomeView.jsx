@@ -17,7 +17,8 @@ import {
   CheckCircle2,
   Activity,
   Layers,
-  Terminal
+  Terminal,
+  Gamepad2
 } from 'lucide-react';
 import { CORE_DOMAINS } from '../data/domainsData';
 import { NIST_CSF_FUNCTIONS } from '../data/nistData';
@@ -122,6 +123,14 @@ export default function HomeView({
             >
               <Zap className="w-4 h-4 fill-slate-950" />
               Today&apos;s Cyber Attack Feed
+            </button>
+
+            <button
+              onClick={() => onNavigate('arena')}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#00ff66] to-emerald-400 hover:opacity-95 text-slate-950 font-mono font-extrabold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-emerald-glow"
+            >
+              <Gamepad2 className="w-4 h-4" />
+              🕹️ Launch Cyber Arena (3 Modes)
             </button>
 
             <button
