@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-10-29T20:55:01Z",
-  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-10-29)",
+  "lastUpdated": "2026-10-30T13:05:55Z",
+  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-10-30)",
   "threatLevel": "CRITICAL (DEFCON 2)",
   "summaryMetrics": {
     "activeKevExploits": 14,
@@ -10,14 +10,14 @@
   },
   "attackLog": [
     {
-      "id": "INC-2026-10-29-01",
-      "incidentOrCve": "CVE-2026-98432",
-      "target": "Linux Kernel TCP Subsystem (Ubuntu, RHEL, Debian)",
-      "domain": "Network Security",
+      "id": "INC-2026-10-30-01",
+      "incidentOrCve": "CVE-2026-97229",
+      "target": "GitLab Community & Enterprise Edition",
+      "domain": "Application Security",
       "severity": "CRITICAL",
-      "cvss": "9.8",
-      "attackVector": "Remote unauthenticated memory corruption in Linux kernel TCP packet handling state machine triggered via crafted TCP segments, demonstrated by autonomous AI synthesis.",
-      "immediateSolution": "Apply upstream Linux kernel security update; restrict exposed listening interfaces using eBPF/nftables drop filters for malformed SYN/ACK flags.",
+      "cvss": "10.0",
+      "attackVector": "Integer overflow/wraparound in repository processing pipeline enabling unauthenticated remote code execution (RCE) on GitLab server host.",
+      "immediateSolution": "Upgrade GitLab CE/EE to latest security release immediately; enforce ingress network isolation and review CISA KEV mandate.",
       "nistImpact": [
         "Protect (PR.PS-02)",
         "Detect (DE.CM-01)",
@@ -26,188 +26,188 @@
       "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-10-29-02",
-      "incidentOrCve": "CVE-2026-20127 (KeyDrift Malware)",
-      "target": "Cisco Catalyst SD-WAN Controllers",
-      "domain": "Network Security",
-      "severity": "CRITICAL",
-      "cvss": "9.8",
-      "attackVector": "UAT-11473 exploited an authentication-bypass flaw in web-based management interfaces to drop and execute the KeyDrift persistence framework and pivot laterally.",
-      "immediateSolution": "Upgrade Cisco Catalyst SD-WAN Controller software to latest patched release; isolate controller management interfaces behind dedicated Out-of-Band (OOB) jump hosts.",
-      "nistImpact": [
-        "Protect (PR.AC-05)",
-        "Detect (DE.AE-02)",
-        "Respond (RS.AN-03)"
-      ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-10-29-03",
-      "incidentOrCve": "Fragnesia (CVE-2026-44081) Chained with PHP2Shell",
-      "target": "Enterprise Linux Servers / Web Workloads",
-      "domain": "Endpoint Security",
-      "severity": "CRITICAL",
-      "cvss": "9.8",
-      "attackVector": "Attackers chain initial remote code execution via PHP2Shell web vulnerabilities with Fragnesia local privilege escalation in the Linux kernel memory manager to obtain root access.",
-      "immediateSolution": "Patch kernel packages per CISA KEV directive; enforce seccomp and read-only root filesystems on containerized web services.",
-      "nistImpact": [
-        "Protect (PR.PS-01)",
-        "Protect (PR.AC-04)",
-        "Respond (RS.MI-02)"
-      ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-10-29-04",
-      "incidentOrCve": "Telegram Android 0-Click Audio RCE",
-      "target": "Telegram for Android (< v12.10.4)",
+      "id": "INC-2026-10-30-02",
+      "incidentOrCve": "CVE-2026-118539",
+      "target": "Drupal Commerce Core",
       "domain": "Application Security",
       "severity": "CRITICAL",
-      "cvss": "9.6",
-      "attackVector": "Memory corruption in WebRTC/VoIP codec parsing executed automatically upon answering incoming voice calls, chained with two secondary flaws to defeat sandbox containment.",
-      "immediateSolution": "Deploy MDM policy enforcing immediate update of Telegram to version 12.10.4 or higher; restrict unmanaged communications on enterprise-enrolled devices.",
+      "cvss": "9.8",
+      "attackVector": "Missing authorization flaw across Commerce Core versions (0.0.0-2.41, 3.0.0-3.3.13) allowing unauthenticated threat actors to manipulate transactions, order states, and customer cart data.",
+      "immediateSolution": "Upgrade Drupal Commerce Core to patched releases (>= 2.42 or >= 3.3.14); block unauthorized checkout workflow state transitions at WAF.",
       "nistImpact": [
-        "Protect (PR.PS-02)",
-        "Detect (DE.CM-03)",
-        "Respond (RS.MI-01)"
+        "Protect (PR.AC-04)",
+        "Protect (PR.PS-01)",
+        "Detect (DE.AE-02)"
       ],
       "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-10-29-05",
-      "incidentOrCve": "Campaign Yoba Fake AI Miners",
-      "target": "Developer & Enterprise Endpoints (Windows/macOS)",
+      "id": "INC-2026-10-30-03",
+      "incidentOrCve": "Cursor Marketplace Claude Code Trojan",
+      "target": "Developer Workstations & Anthropic Claude Extension Ecosystem",
+      "domain": "AI & LLM Security",
+      "severity": "CRITICAL",
+      "cvss": "9.6",
+      "attackVector": "Compromised publisher account pushed malicious update v2.1.313 for the official Claude Code extension on Cursor Marketplace, embedding a persistent SSH backdoor via ~/.ssh/authorized_keys injection.",
+      "immediateSolution": "Revoke developer SSH keys globally, audit developer endpoint authorized_keys files, and enforce cryptographic signature verification on IDE extension marketplaces.",
+      "nistImpact": [
+        "Protect (PR.SR-03)",
+        "Detect (DE.CM-03)",
+        "Respond (RS.AN-03)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-10-30-04",
+      "incidentOrCve": "Binance Mega-Breach Investigation ($6.3B)",
+      "target": "Binance Cloud Infrastructure & Hot Wallet Vaults",
+      "domain": "Cloud Security",
+      "severity": "CRITICAL",
+      "cvss": "9.9",
+      "attackVector": "Compromise of a senior DevOps engineer's endpoint led to credential harvesting, CI/CD pipeline access, and lateral movement into production key management systems (KMS) governing multi-party computation (MPC) nodes.",
+      "immediateSolution": "Isolate all DevOps administrative session tokens, rotate HSM master access seeds, deploy hardware-enforced FIDO2/WebAuthn with mandatory device attestation for cloud administration.",
+      "nistImpact": [
+        "Protect (PR.AC-01)",
+        "Protect (PR.AC-07)",
+        "Detect (DE.AE-04)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-10-30-05",
+      "incidentOrCve": "CryptoBilis Trezor Safe 5 Hardware Implant",
+      "target": "Trezor Safe 5 Hardware Wallets (CryptoBilis Reseller)",
+      "domain": "Endpoint Security",
+      "severity": "CRITICAL",
+      "cvss": "9.4",
+      "attackVector": "Physical interdiction attack in reseller supply chain: rogue daughterboard soldered to internal circuitry containing an embedded GSM/cellular modem that exfiltrates mnemonic seed phrases over cellular networks during initialization.",
+      "immediateSolution": "Quarantine all Trezor devices procured via CryptoBilis since March 2026; immediately transfer crypto assets to virgin hardware wallets generated with verified uncompromised PRNGs.",
+      "nistImpact": [
+        "Protect (PR.SR-01)",
+        "Protect (PR.SR-02)",
+        "Respond (RS.MI-02)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-10-30-06",
+      "incidentOrCve": "Cisco Secure Firewall DoS Exploitation",
+      "target": "Cisco Adaptive Security Appliance (ASA) & Firepower Threat Defense (FTD)",
+      "domain": "Network Security",
+      "severity": "HIGH",
+      "cvss": "8.6",
+      "attackVector": "Crafted network packet processing failure triggering kernel panic and infinite reload loop on perimeter inspection engines, leading to unrecoverable denial of service.",
+      "immediateSolution": "Apply Cisco hotfix bundle as mandated by CISA KEV; place fronting rate-limiting ACLs on untrusted transit interfaces.",
+      "nistImpact": [
+        "Protect (PR.IR-01)",
+        "Detect (DE.CM-01)",
+        "Respond (RS.RP-01)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-10-30-07",
+      "incidentOrCve": "FrostyNeighbor Destructive Campaign",
+      "target": "Ukrainian Critical Infrastructure & Allied Defense Contractors",
       "domain": "Endpoint Security",
       "severity": "HIGH",
-      "cvss": "7.8",
-      "attackVector": "Trojanized GitHub desktop installers imitating frontier LLM applications (GPT-5.6 Sol, Claude Opus) abuse stolen code-signing certificates to deliver cryptominers and infostealers.",
-      "immediateSolution": "Revoke compromised signing certificates in AppLocker/WDAC; block untrusted GitHub releases on corporate web proxies; enforce enterprise software catalogs.",
+      "cvss": "8.8",
+      "attackVector": "State-sponsored wiper deployment by Belarusian threat group FrostyNeighbor leveraging hijacked active directory group policy objects (GPO) to execute raw disk sector overwrites.",
+      "immediateSolution": "Enforce strict tiered administration for Active Directory, monitor GPO modification events (Event ID 5136/5137), and deploy immutable off-site volume shadow backups.",
       "nistImpact": [
-        "Protect (PR.PS-06)",
-        "Detect (DE.CM-09)",
-        "Respond (RS.AN-01)"
-      ],
-      "source": "The Hacker News"
-    },
-    {
-      "id": "INC-2026-10-29-06",
-      "incidentOrCve": "Shadow AI Sandbox Bypass Relays",
-      "target": "Corporate Source Code & LLM Developer Pipelines",
-      "domain": "AI & LLM Security",
-      "severity": "HIGH",
-      "cvss": "8.2",
-      "attackVector": "Unofficial third-party proxy relays routing traffic to commercial LLMs in sanctioned regions deliberately strip safety alignment and containerized execution sandboxes.",
-      "immediateSolution": "Enforce strict egress inspection and mutual TLS for LLM API calls; block unvetted proxy/relay endpoints using Secure Access Service Edge (SASE) policies.",
-      "nistImpact": [
-        "Protect (PR.AC-03)",
-        "Protect (PR.DS-05)",
-        "Detect (DE.AE-04)"
+        "Protect (PR.IP-04)",
+        "Detect (DE.CM-07)",
+        "Respond (RS.MI-03)"
       ],
       "source": "Dark Reading"
     },
     {
-      "id": "INC-2026-10-29-07",
-      "incidentOrCve": "Padre Terminal Rogue iOS Wallet",
-      "target": "Apple App Store / Solana Cryptowallet Users",
+      "id": "INC-2026-10-30-08",
+      "incidentOrCve": "SEG-Bypassing Anthropic Brand Impersonation Phishing",
+      "target": "Enterprise Mailboxes & AI API Account Owners",
+      "domain": "Identity & Access Management",
+      "severity": "HIGH",
+      "cvss": "8.1",
+      "attackVector": "Multi-stage phishing campaign exploiting trusted legitimate cloud hosting redirectors to bypass Secure Email Gateway (SEG) heuristics, harvesting corporate Anthropic/OpenAI API credentials.",
+      "immediateSolution": "Enforce conditional access policies restricting API console access to compliant managed devices; mandate strict SPF/DKIM/DMARC alignment checks and inspect dynamic redirect URLs.",
+      "nistImpact": [
+        "Protect (PR.AT-01)",
+        "Detect (DE.AE-05)",
+        "Respond (RS.AN-01)"
+      ],
+      "source": "Dark Reading"
+    },
+    {
+      "id": "INC-2026-10-30-09",
+      "incidentOrCve": "Syrian Electronic Army Market Manipulation Sentencing",
+      "target": "Global Financial Markets & Media Social Media Accounts",
       "domain": "Identity & Access Management",
       "severity": "HIGH",
       "cvss": "7.5",
-      "attackVector": "Malicious crypto trading application evaded App Store vetting by toggling C2 logic post-approval, harvesting mnemonic seed phrases and draining victim wallets.",
-      "immediateSolution": "Implement Mobile Application Management (MAM) policies preventing unapproved crypto and financial applications on corporate-managed iOS devices.",
+      "attackVector": "Account takeover via spear-phishing against tier-1 news organization social media handlers, disseminating fake geopolitical reports resulting in $136B flash market drops.",
+      "immediateSolution": "Implement mandatory hardware security keys (FIDO2) for high-impact corporate social media handles and configure multi-party authorization for public enterprise broadcasts.",
       "nistImpact": [
-        "Protect (PR.AC-01)",
-        "Protect (PR.DS-01)",
-        "Respond (RS.MI-03)"
+        "Protect (PR.AC-06)",
+        "Detect (DE.CM-01)",
+        "Recover (RC.RP-01)"
       ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-10-29-08",
-      "incidentOrCve": "13.4M Chrome Extensions Search-Hijack",
-      "target": "Google Chrome Web Store / Enterprise Browsers",
-      "domain": "Application Security",
-      "severity": "HIGH",
-      "cvss": "7.4",
-      "attackVector": "A cluster of 319 browser extensions abused declarativeNetRequest permissions to intercept omnibox queries, redirecting search traffic through affiliate tracking nodes.",
-      "immediateSolution": "Push Chrome Enterprise Administrative Template forcing ExtensionInstallBlocklist: ['*'] with an explicit enterprise-approved allowlist.",
-      "nistImpact": [
-        "Protect (PR.PS-08)",
-        "Detect (DE.CM-04)",
-        "Respond (RS.MI-01)"
-      ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-10-29-09",
-      "incidentOrCve": "GhostAction GitHub Runner Persistence",
-      "target": "GitHub Actions CI/CD Infrastructure",
-      "domain": "Cloud Security",
-      "severity": "HIGH",
-      "cvss": "8.5",
-      "attackVector": "Adversaries maintain dormant persistence across CI/CD workflows using compromised developer PAT tokens, targeting build runner caches to poison downstream artifacts.",
-      "immediateSolution": "Enforce short-lived OIDC tokens over static PATs; mandate pin-to-hash commit SHA references for all third-party GitHub Actions.",
-      "nistImpact": [
-        "Protect (PR.AC-04)",
-        "Detect (DE.AE-03)",
-        "Respond (RS.AN-02)"
-      ],
-      "source": "Dark Reading"
+      "source": "The Hacker News"
     }
   ],
   "deepDives": [
     {
       "id": "dd-01",
-      "badge": "DEEP DIVE #01 // NETWORK SECURITY",
-      "title": "Linux Kernel TCP Subsystem Remote Code Execution (CVE-2026-98432)",
-      "cve": "CVE-2026-98432",
-      "cvss": "9.8 CRITICAL",
-      "domain": "Network Security",
-      "nistMapping": "Protect (PR.PS-02), Detect (DE.CM-01), Respond (RS.MI-01)",
-      "whatHappened": "A critical vulnerability was identified in the Linux kernel TCP state machine affecting distributions including Ubuntu, RHEL, and Debian. Anthropic reported that automated frontier reasoning models successfully synthesized weaponized exploits capable of delivering zero-interaction root command execution via crafted network packets without prior credentials. This represents an alarming convergence where algorithmic exploit generation meets fundamental protocol stack weaknesses.",
-      "technicalMechanism": "The vulnerability stems from improper state verification in the TCP window-scaling and out-of-order segment assembly buffer (tcp_ofo_queue). An attacker transmitting a malformed sequence of segmented TCP payloads with specially crafted options causes an integer underflow when calculating packet sk_buff offsets. This corrupts adjacent kernel heap memory pointers, allowing an adversary to overwrite socket function pointers and redirect control flow directly to an unconstrained ring-0 execution primitive.",
-      "asciiFlow": "[Remote Attacker] ──► [Malformed TCP Segments (Window Scale Mismatch)] ──► [tcp_ofo_queue Heap Underflow] ──► [Socket Pointer Overwrite] ──► [Kernel Root Execution]",
+      "badge": "DEEP DIVE #01 // SUPPLY CHAIN & DEV ENVIRONMENT",
+      "title": "Trojanized Claude Code Extension on Cursor Marketplace Deploys Persistent SSH Backdoor",
+      "cve": "T1195.002",
+      "cvss": "9.6 CRITICAL",
+      "domain": "AI & LLM Security",
+      "nistMapping": "Protect (PR.SR-03), Detect (DE.CM-03), Respond (RS.AN-03)",
+      "whatHappened": "Threat actors successfully compromised developer publishing credentials on the Cursor Marketplace to release version 2.1.313 of the official Anthropic Claude Code extension. The malicious version weaponized developer installations by installing a stealthy persistent SSH backdoor, establishing reverse tunnels from internal corporate engineering networks directly to attacker-controlled infrastructure.",
+      "technicalMechanism": "Upon execution during IDE initialization, an obfuscated post-install JavaScript hook dynamically decoded a payload that invoked system shell commands. It read local public identity keys, injected an attacker-controlled ED25519 public key into the active user's `~/.ssh/authorized_keys`, altered `/etc/ssh/sshd_config` (or activated an embedded user-space SSH server if permissions were restricted), and beaconed the system's external IP, username, and local interface subnet topology to a command-and-control endpoint over HTTPS port 443.",
+      "asciiFlow": "[Cursor Marketplace: Compromised Publisher] ──► [v2.1.313 Auto-Update via IDE] ──► [Executes Post-Install Hook] ──► [Injects SSH Key into ~/.ssh/authorized_keys] ──► [Reverse Shell to C2]",
       "remediation": [
-        "Deploy distro-specific kernel security patches immediately across all public-facing infrastructure (kernel >= 6.12.18-sec or distribution vendor backport).",
-        "Deploy intermediate eBPF/XDP mitigations or firewalld rules to drop TCP packets exhibiting abnormal option lengths or non-standard flag sequences.",
-        "Perform enterprise-wide fleet kernel inventory reconciliation via telemetry agents to identify unpatched Linux bare-metal and hypervisor nodes."
+        "Audit all developer workstations running Cursor or VS Code derivatives for the Claude Code extension version 2.1.313; remove immediately and wipe IDE extension directories.",
+        "Inspect and sanitize user and root `~/.ssh/authorized_keys` across all developer endpoints; revoke and rotate all enterprise SSH host keys and personal keypairs generated or stored on impacted endpoints.",
+        "Enforce enterprise MDM/EDR policies restricting IDE extension installation strictly to vetted internal private mirrors requiring manual hash verification and multi-maintainer approvals."
       ],
-      "lessonsLearned": "Critical OS network stacks must be hardened with memory-safe primitives and isolated networking namespaces; edge perimeter firewalls must strip non-standard TCP options before packets reach critical internal operating system kernels."
+      "lessonsLearned": "Developer environments represent zero-trust boundary failures when third-party extension ecosystems operate with full user privilege. Organizations must treat IDE plugins as untrusted binaries, enforce software bill of materials (SBOM) scanning on development extensions, and execute AI agent plugins strictly within isolated sandboxes or containerized development environments."
     },
     {
       "id": "dd-02",
-      "badge": "DEEP DIVE #02 // NETWORK SECURITY",
-      "title": "Cisco Catalyst SD-WAN Controller Auth Bypass & KeyDrift Framework",
-      "cve": "CVE-2026-20127",
-      "cvss": "9.8 CRITICAL",
-      "domain": "Network Security",
-      "nistMapping": "Protect (PR.AC-05), Detect (DE.AE-02), Respond (RS.AN-03)",
-      "whatHappened": "Nation-state threat group UAT-11473 was detected exploiting an unauthenticated remote code execution flaw in Cisco Catalyst SD-WAN Controllers (tracked under CVE-2026-20127). Exploitation allows adversaries to compromise the control plane of enterprise wide-area networks, subsequently deploying a bespoke modular malware family dubbed KeyDrift to intercept transit traffic, siphon VPN credentials, and pivot across distributed branch sites.",
-      "technicalMechanism": "CVE-2026-20127 resides within the web management daemon's token parsing handler. An unauthenticated remote attacker issues a crafted REST API request containing an empty authorization header accompanied by conflicting HTTP header encodings (HTTP request smuggling), causing the backend proxy to inadvertently treat the request as authenticated administrative localhost traffic. UAT-11473 leveraged this flaw to write a persistent rootkit (KeyDrift) to non-volatile flash memory, hooking raw socket interfaces to exfiltrate routing tables and cryptographic material.",
-      "asciiFlow": "[UAT-11473] ──► [Smuggled HTTP REST Request] ──► [Auth Bypass on Catalyst Web Daemon] ──► [KeyDrift Framework Dropped to Flash] ──► [SD-WAN Control Plane Hijack]",
+      "badge": "DEEP DIVE #02 // CRITICAL VULNERABILITY EXPLOITATION",
+      "title": "CVE-2026-97229: Maximum Severity Integer Overflow in GitLab CE/EE Exploited In The Wild",
+      "cve": "CVE-2026-97229",
+      "cvss": "10.0 CRITICAL",
+      "domain": "Application Security",
+      "nistMapping": "Protect (PR.PS-02), Detect (DE.CM-01), Respond (RS.MI-01)",
+      "whatHappened": "The Cybersecurity and Infrastructure Security Agency (CISA) added CVE-2026-97229 to its Known Exploited Vulnerabilities (KEV) catalog following widespread telemetry showing automated threat actors weaponizing a maximum-severity integer overflow in GitLab Community and Enterprise Editions to achieve unauthenticated remote code execution on production source code repositories.",
+      "technicalMechanism": "The vulnerability resides in the backend repository object parsing and serialization routine when handling maliciously crafted archive streams or packfiles. By supplying an overly large chunk size parameter in a Git HTTP transport negotiation request, an attacker triggers an integer wrap during buffer size allocation. This leads to an undersized heap allocation followed by an unchecked memcpy, causing heap corruption that overwrites function pointer tables within the worker process, yielding arbitrary code execution under the privileges of the `git` user.",
+      "asciiFlow": "[Remote Attacker] ──► [HTTP POST /git-upload-pack with Malicious Packfile] ──► [Integer Wrap in Buffer Calculation] ──► [Heap Overflow & Memory Corruption] ──► [Root/Git Shell Execution]",
       "remediation": [
-        "Apply Cisco Catalyst SD-WAN hotfixes or upgrade to releases containing the validated CVE-2026-20127 patch.",
-        "Immediately disable external, public-facing access to SD-WAN Controller management web interfaces; re-route through dedicated Out-of-Band (OOB) jump hosts.",
-        "Execute cryptographic certificate revocation and re-keying for all SD-WAN fabric edge-to-controller tunnels to mitigate credential siphoning."
+        "Apply GitLab emergency security update immediately across all self-hosted Community Edition and Enterprise Edition instances.",
+        "Restrict access to self-hosted GitLab web and API interfaces using zero-trust network access (ZTNA) or VPN tunnels, removing public internet exposure.",
+        "Monitor GitLab host system logs and auditd for unexpected spawned child processes from the `git` or `gitlab-www` service accounts (e.g., execution of `/bin/sh`, `/bin/bash`, `curl`, or `wget`)."
       ],
-      "lessonsLearned": "Infrastructure management control planes must never be exposed to the public internet; zero-trust network segmentation and strict mutual TLS authentication are mandatory for all administrative interfaces."
+      "lessonsLearned": "Source code management systems are tier-0 assets containing the crown jewels of enterprise intellectual property and deployment pipelines. Exposing SCM web interfaces directly to the public internet without an application-aware identity reverse proxy exposes the organization to catastrophic supply chain takeover upon day-zero disclosure."
     },
     {
       "id": "dd-03",
-      "badge": "DEEP DIVE #03 // ENDPOINT SECURITY",
-      "title": "Fragnesia (CVE-2026-44081) Chained in PHP2Shell In-the-Wild Exploitation",
-      "cve": "CVE-2026-44081",
-      "cvss": "9.8 CRITICAL",
+      "badge": "DEEP DIVE #03 // HARDWARE INTERDICTION & SUPPLY CHAIN",
+      "title": "Physical Supply Chain Interdiction: Cellular Hardware Implant Discovered in Trezor Safe 5",
+      "cve": "T1195.003",
+      "cvss": "9.4 CRITICAL",
       "domain": "Endpoint Security",
-      "nistMapping": "Protect (PR.PS-01), Protect (PR.AC-04), Respond (RS.MI-02)",
-      "whatHappened": "CISA added the Fragnesia Linux kernel privilege escalation vulnerability to its Known Exploited Vulnerabilities (KEV) catalog after field telemetry confirmed widespread chaining with PHP2Shell web exploits. Threat actors leverage initial web shell access obtained through internet-facing application servers, then instantly execute Fragnesia to escape web application sandboxes and elevate privileges to root across cloud and on-premises Linux workloads.",
-      "technicalMechanism": "The Fragnesia vulnerability exists in the Linux virtual memory manager's handling of shared anonymous memory remapping (mremap). An unprivileged process invokes mremap with concurrent madvise(MADV_DONTNEED) flags, inducing a race condition that triggers a use-after-free (UAF) condition within physical page tables. Attackers manipulate the freed page struct to gain arbitrary kernel read/write capabilities, allowing overwrite of the calling process's struct cred to elevate UID/GID to 0 (root).",
-      "asciiFlow": "[Internet Exploit: PHP2Shell] ──► [Low-Priv Web Process Shell] ──► [mremap/madvise Race (Fragnesia)] ──► [UAF Page Table Overwrite] ──► [UID=0 Root Escalation]",
+      "nistMapping": "Protect (PR.SR-01), Protect (PR.SR-02), Respond (RS.MI-02)",
+      "whatHappened": "A critical hardware supply chain interdiction incident was uncovered involving Trezor Safe 5 hardware wallets distributed by third-party reseller CryptoBilis. Devices were surgically modified prior to retail delivery with an unauthorized hardware daughterboard designed to secretly capture and transmit the user's master recovery seed over cellular bands during wallet initialization.",
+      "technicalMechanism": "Threat actors intercepted packaging downstream of original manufacturing, disassembling the ultrasonic-welded casing of the Trezor Safe 5. A micro-daughterboard featuring an eSIM-enabled GSM radio was micro-soldered directly to the internal I2C and SPI buses connecting the secure microcontroller to the touchscreen display. When the victim generates a new mnemonic seed phrase, the implant intercepts the unencrypted serial bus traffic directly off the display traces, formats the 12/24-word recovery phrase, and transmits it via SMS/cellular data to a foreign command server.",
+      "asciiFlow": "[User Initializes Wallet] ──► [Touchscreen SPI/I2C Displays Seed] ──► [Physical Implant Sniffs Bus] ──► [GSM Radio Exfiltrates Seed via Cellular] ──► [Attacker Drains Crypto Vault]",
       "remediation": [
-        "Patch Linux host and container base images with the latest vendor-supplied kernel packages as mandated by CISA KEV deadlines.",
-        "Restrict unprivileged namespaces and block kernel page remapping abuse using hardened seccomp profiles and AppArmor/SELinux in Enforcing mode.",
-        "Audit existing Linux web hosting environments for suspicious unprivileged processes spawning root shells or modifying core system libraries."
+        "Issue mandatory security bulletins to all personnel and customers instructing anyone who purchased Trezor devices from CryptoBilis since March 2026 to immediately cease usage.",
+        "Perform immediate hot-to-cold asset migration: establish a new wallet on an authentic, factory-direct hardware unit using a newly generated seed phrase and transfer all balances immediately.",
+        "Establish hardware custody verification controls: mandate that cryptographic key generation devices must only be sourced directly from the original equipment manufacturer (OEM) with verifiable anti-tamper optical packaging."
       ],
-      "lessonsLearned": "Defense-in-depth requires that web application compromise does not lead to total host takeover; strict seccomp system-call filtering and container isolation remain essential barriers against local kernel exploits."
+      "lessonsLearned": "Zero-trust principles must extend to physical hardware acquisition. Critical security appliances and cryptographic signing devices sourced via third-party resellers or intermediaries carry intolerable supply chain risks. Organizations must enforce strict vendor pedigree, anti-tamper physical inspections, and independent bus-level hardware integrity audits."
     }
   ],
   "dailyQuestions": [
@@ -215,47 +215,47 @@
       "id": "q-secplus-01",
       "examBadge": "CompTIA Security+ (SY0-701)",
       "domain": "Domain 4.0: Security Operations",
-      "scenario": "A security analyst discovers that multiple corporate workstations have been infected with cryptocurrency mining software following employee downloads of fake AI desktop assistants from third-party repositories. The malware executed successfully because it was signed with a compromised, valid digital certificate. Which of the following controls would most effectively prevent the execution of these malicious signed binaries across the enterprise?",
+      "scenario": "A security operations analyst investigates an incident where an external attacker exploited an integer overflow vulnerability (CVE-2026-97229) in an internet-facing source code management server, achieving unauthenticated remote code execution. Which of the following compensating controls would have BEST mitigated the immediate impact before an official software patch was available?",
       "options": [
-        "A) Implementing browser content filtering to block all GitHub download domains.",
-        "B) Deploying application control policies that enforce code signing trust by specific publisher and root certificate thumbprints.",
-        "C) Increasing the threshold of endpoint heuristic antivirus alerting.",
-        "D) Implementing network-level DNS sinkholing for known cryptocurrency mining pools."
+        "A) Implementing disk-level full encryption on the database volume hosting repository metadata.",
+        "B) Placing the application behind a Web Application Firewall (WAF) configured with strict packet inspection and restricting administrative ingress to authorized VPN/ZTNA endpoints.",
+        "C) Changing the repository SSH access protocol from RSA-2048 to ED25519.",
+        "D) Enabling DNSSEC across the enterprise authoritative domain nameservers."
       ],
       "correctIndex": 1,
-      "rationale": "Application control policies (such as Windows Defender Application Control or AppLocker) allow administrators to specify exact publisher rules, product names, and authorized certificate thumbprints, rather than merely trusting any valid signature. Blocking GitHub (Option A) disrupts legitimate engineering operations without addressing the execution vector; DNS sinkholing (Option D) is a reactive detective/compensating measure for C2 traffic, not an execution prevention control; heuristic antivirus (Option C) frequently fails against zero-day signed binaries."
+      "rationale": "Placing the vulnerable application behind a Web Application Firewall (WAF) capable of deep payload inspection to filter malformed packfile requests, combined with restricting network ingress via Zero Trust Network Access (ZTNA) or VPN, isolates the vulnerable endpoint from unauthenticated internet-based exploitation. Full-disk encryption protects data at rest against physical theft, updating SSH key algorithms does not prevent HTTP transport layer exploitation, and DNSSEC only guarantees DNS response integrity."
     },
     {
       "id": "q-secx-01",
       "examBadge": "CompTIA SecurityX (CAS-005)",
       "domain": "Domain 2.0: Security Architecture",
-      "scenario": "A Principal Security Architect is redesigning the network and access architecture for enterprise software-defined networking (SDN) controllers following reports of unauthenticated remote exploitation (such as CVE-2026-20127) targeting web management planes. Which of the following architectural strategies provides the most comprehensive defense against both external exploitation and subsequent lateral pivot from compromised edge appliances?",
+      "scenario": "Following the discovery of a rogue cellular daughterboard physically implanted into hardware wallets within an authorized reseller's distribution chain, a Principal Security Architect is tasked with overhauling the enterprise cryptographic key generation and cold storage architecture. Which of the following architectural strategies provides the STRONGEST defense-in-depth against hardware interdiction and physical bus-sniffing attacks?",
       "options": [
-        "A) Expose management interfaces via standard TLS termination on a reverse proxy equipped with automated rate limiting.",
-        "B) Isolate the SDN controller management plane to a physically or cryptographically separated Out-of-Band (OOB) network, mandating mutual TLS (mTLS) with hardware-backed credentials and ephemeral jump hosts.",
-        "C) Implement Web Application Firewall (WAF) inspect-and-replace rules on the public ingress to strip malformed HTTP request smuggling headers.",
-        "D) Rely on daily configuration state backups and automated hypervisor snapshots of the management appliances."
+        "A) Procuring cryptographic hardware exclusively from commercial secondary marketplaces that provide certificate of authenticity (CoA) stickers.",
+        "B) Implementing air-gapped, multi-vendor Shamir's Secret Sharing (SSS) or Multi-Party Computation (MPC) where key shares are generated on independently verified, diverse hardware platforms sourced strictly via direct OEM custody chains with tamper-evident packaging.",
+        "C) Enforcing full-disk bitlocker encryption on all engineer workstations that interface with hardware signing tokens over USB.",
+        "D) Requiring dual-custody passwords for accessing the enterprise password vault containing the hardware wallet mnemonic passphrases."
       ],
       "correctIndex": 1,
-      "rationale": "Critical infrastructure control planes must be strictly decoupled from production data planes. An Out-of-Band (OOB) isolated management network requiring mutual TLS (mTLS) with cryptographic identity assurance and access through ephemeral, audited bastion/jump hosts eliminates the remote attack surface entirely. Relying on perimeter WAFs or reverse proxies (Options A and C) leaves the architecture vulnerable to novel bypasses and zero-day protocols, while configuration backups (Option D) represent disaster recovery, not prevention or containment."
+      "rationale": "To defeat physical supply chain interdiction and bus-sniffing attacks, the architecture must eliminate single points of physical failure. Employing multi-party computation (MPC) or Shamir's Secret Sharing (SSS) across heterogeneous, independently audited hardware sourced strictly via verified OEM direct custody chains guarantees that a compromise of any single vendor's device or supply chain will not result in the exfiltration or compromise of the master key. Secondary marketplaces heighten interdiction risk, workstation disk encryption does not protect external hardware buses, and storing mnemonic seeds in a shared password vault completely undermines hardware-isolated key generation."
     }
   ],
   "detectionRules": [
     {
       "id": "rule-suricata-01",
       "type": "SURICATA IDS / IPS RULE",
-      "title": "Cisco Catalyst SD-WAN Controller Authentication Bypass Attempt (CVE-2026-20127)",
+      "title": "GitLab CE/EE CVE-2026-97229 Integer Overflow RCE Attempt",
       "targetEngine": "Suricata 7.x+",
       "mitreTechnique": "T1190 - Exploit Public-Facing Application",
-      "code": "alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:\"EXPLOIT Cisco Catalyst SD-WAN Controller Auth Bypass Attempt (CVE-2026-20127)\"; flow:to_server,established; http.method; content:\"POST\"; http.uri; content:\"/dataservice/\"; fast_pattern; http.header; content:\"X-Forwarded-Host\"; content:\"localhost\"; http.header; pcre:\"/(Authorization\\s*:\\s*(?:\\r?\\n|$)|Transfer-Encoding\\s*:\\s*chunked.*Content-Length)/si\"; classtype:attempted-admin; sid:20262012; rev:1;)"
+      "code": "alert http $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:\"ET EXPLOIT GitLab CE/EE Integer Overflow RCE Attempt (CVE-2026-97229)\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/git-upload-pack\"; fast_pattern; http.request_body; content:\"0014command=git-upload-pack\"; content:\"packfile\"; pcre:\"/(?:chunk_size|pack_len)=[0-9a-fA-F]{8,16}/i\"; threshold:type limit, track by_src, count 1, seconds 60; classtype:attempted-admin; sid:20269721; rev:1; metadata:created_at 2026_10_30, cve CVE_2026_97229;)"
     },
     {
       "id": "rule-sigma-01",
       "type": "SIGMA SIEM / EDR RULE",
-      "title": "Suspicious Linux Privilege Escalation and Child Shell Spawning via Web Server",
+      "title": "Suspicious Modification of SSH Authorized Keys via IDE or Extension Child Process",
       "targetEngine": "Wazuh / Splunk / Sentinel",
       "mitreTechnique": "T1059 - Command and Scripting Interpreter",
-      "code": "title: Web Server Spawning Root Shell via Kernel Privilege Escalation\nid: 9a5b3f21-789a-4c81-b552-e3a19dc98432\nstatus: production\ndescription: Detects web service service accounts (e.g., www-data, apache, nginx) spawning interactive root shells or executing memory-remapping exploits consistent with Fragnesia/PHP2Shell campaigns.\nlogsource:\n  category: process_creation\n  product: linux\ndetection:\n  selection_parent:\n    ParentImage|endswith:\n      - '/php-fpm'\n      - '/apache2'\n      - '/httpd'\n      - '/nginx'\n  selection_child:\n    Image|endswith:\n      - '/bash'\n      - '/sh'\n      - '/dash'\n      - '/python'\n      - '/python3'\n  selection_privilege:\n    User: 'root'\n  condition: selection_parent and selection_child and selection_privilege\nfields:\n  - ComputerName\n  - User\n  - Image\n  - CommandLine\n  - ParentImage\nfalsepositives:\n  - Highly unusual custom administrative maintenance scripts executed directly through web interfaces.\nlevel: critical\ntags:\n  - attack.initial_access\n  - attack.privilege_escalation\n  - attack.t1190\n  - attack.t1068"
+      "code": "title: Suspicious Modification of SSH Authorized Keys by IDE Subprocess\nid: 9b2d8e41-01f4-4a27-a63e-72bc38f2190a\nstatus: production\ndescription: Detects IDE execution contexts (Cursor, Code, VSCode) spawning shell or script interpreters that append or overwrite SSH authorized_keys files, characteristic of trojanized marketplace extensions.\nreferences:\n  - https://thehackernews.com/2026/10/official-claude-code-vs-code-extension.html\nauthor: Global Intel Hub Engineering\ndate: 2026-10-30\nlogsource:\n  category: process_creation\n  product: linux\ndetection:\n  selection_parent:\n    ParentImage|endswith:\n      - '/cursor'\n      - '/code'\n      - '/electron'\n      - '/node'\n  selection_child:\n    Image|endswith:\n      - '/bash'\n      - '/sh'\n      - '/zsh'\n      - '/python'\n      - '/python3'\n    CommandLine|contains:\n      - '.ssh/authorized_keys'\n      - 'authorized_keys'\n  condition: selection_parent and selection_child\nfields:\n  - Image\n  - CommandLine\n  - ParentImage\n  - ParentCommandLine\n  - User\nfalsepositives:\n  - Legitimate remote development configuration tools or internal SSH key management utilities specifically invoked by developers.\nlevel: critical\ntags:\n  - attack.persistence\n  - attack.t1098.004\n  - attack.t1195.002"
     }
   ]
 }
