@@ -108,6 +108,7 @@ export default function DomainsView({
     delete updatedAll[domain.id];
     setQuizSelections(updatedAll);
     localStorage.setItem('cyberhub_domain_quiz_selections', JSON.stringify(updatedAll));
+    onSaveDomainQuizScore(domain.id, null);
   };
 
   const currentDomainAnswers = quizSelections[domain.id] || {};
@@ -161,6 +162,9 @@ export default function DomainsView({
                   key={d.id}
                   onClick={() => {
                     setActiveDomainId(d.id);
+                    if (typeof window !== 'undefined') {
+                      window.history.replaceState(null, '', `#domains/${d.id}`);
+                    }
                     window.scrollTo({ top: 180, behavior: 'smooth' });
                   }}
                   className={`w-full text-left px-3.5 py-3 rounded-xl border transition-all flex items-center justify-between gap-2 ${
@@ -1174,6 +1178,9 @@ export default function DomainsView({
               <button
                 onClick={() => {
                   setActiveDomainId(nextDomain.id);
+                  if (typeof window !== 'undefined') {
+                    window.history.replaceState(null, '', `#domains/${nextDomain.id}`);
+                  }
                   window.scrollTo({ top: 180, behavior: 'smooth' });
                 }}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#00f0ff] hover:bg-[#00f0ff]/90 text-slate-950 font-mono font-bold text-xs uppercase tracking-wider shadow-cyan-glow transition-all"

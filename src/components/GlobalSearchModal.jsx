@@ -9,7 +9,8 @@ import {
   Map,
   Briefcase,
   ArrowRight,
-  CornerDownLeft
+  CornerDownLeft,
+  Gamepad2
 } from 'lucide-react';
 import { CORE_DOMAINS } from '../data/domainsData';
 import { ARSENAL_TOOLS } from '../data/arsenalData';
@@ -31,8 +32,14 @@ export default function GlobalSearchModal({
     if (isOpen) {
       setQuery('');
       setSelectedIndex(0);
+      document.body.style.overflow = 'hidden';
       setTimeout(() => inputRef.current?.focus(), 50);
+    } else {
+      document.body.style.overflow = '';
     }
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [isOpen]);
 
   // Build unified search index across all 5 pages
@@ -211,6 +218,8 @@ export default function GlobalSearchModal({
         return <History className="w-4 h-4 text-amber-400" />;
       case 'ROADMAP':
         return <Map className="w-4 h-4 text-purple-400" />;
+      case 'ARENA':
+        return <Gamepad2 className="w-4 h-4 text-[#00ff66]" />;
       default:
         return <Briefcase className="w-4 h-4 text-slate-400" />;
     }
@@ -257,6 +266,7 @@ export default function GlobalSearchModal({
         <div className="flex items-center gap-1.5 px-4 py-2.5 bg-slate-950/70 border-b border-slate-800/80 overflow-x-auto">
           {[
             { id: 'ALL', label: `All Intel (${allSearchItems.length})` },
+            { id: 'ARENA', label: '🕹️ Cyber Arena' },
             { id: 'DOMAINS', label: '8 Learning Domains' },
             { id: 'TOOLS', label: '68+ OSS Tools' },
             { id: 'THREATS', label: 'Daily CVEs' },

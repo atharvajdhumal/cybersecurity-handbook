@@ -178,12 +178,14 @@ export default function ThreatFeedView({
               className="px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-mono text-slate-200 focus:outline-none focus:border-[#00f0ff]"
             >
               <option value="ALL">All Security Domains</option>
-              <option value="Application Security">Application Security</option>
-              <option value="Identity & Access Management">Identity & Access Management</option>
+              <option value="Network Security">Network Security</option>
               <option value="Cloud Security">Cloud Security</option>
               <option value="Endpoint Security">Endpoint Security</option>
-              <option value="AI & LLM Security">AI & LLM Security</option>
+              <option value="Application Security">Application Security</option>
+              <option value="Identity & Access Management">Identity & Access Management</option>
+              <option value="Cryptography & Data Security">Cryptography & Data Security</option>
               <option value="OT / ICS Security">OT / ICS Security</option>
+              <option value="AI & LLM Security">AI & LLM Security</option>
             </select>
           </div>
         </div>
@@ -543,7 +545,12 @@ export default function ThreatFeedView({
               return (
                 <button
                   key={incident.id}
-                  onClick={() => setSelectedInfamyId(incident.id)}
+                  onClick={() => {
+                    setSelectedInfamyId(incident.id);
+                    if (typeof window !== 'undefined') {
+                      window.history.replaceState(null, '', '#threats/infamy');
+                    }
+                  }}
                   className={`w-full text-left p-4 rounded-2xl border transition-all ${
                     isSelected
                       ? 'bg-[#00f0ff]/15 border-[#00f0ff] shadow-cyan-glow'

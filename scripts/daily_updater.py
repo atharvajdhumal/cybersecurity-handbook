@@ -161,32 +161,40 @@ def generate_daily_threats_json(articles):
     - Include 2 items in `detectionRules` (1 Suricata rule and 1 Sigma rule).
     """
 
+    fallback_models = ["gemini-3.8-flash", "gemini-3.5-flash-lite"]
     max_retries = 3
-    for attempt in range(1, max_retries + 1):
-        try:
-            print(f"Calling Gemini API gemini-3.8-flash (Attempt {attempt} of {max_retries})...")
-            response = client.models.generate_content(
-                model="gemini-3.8-flash",
-                contents=prompt,
-                config=types.GenerateContentConfig(
-                    response_mime_type="application/json"
+    last_error = None
+
+    for model_name in fallback_models:
+        for attempt in range(1, max_retries + 1):
+            try:
+                print(f"Calling Gemini API {model_name} (Attempt {attempt} of {max_retries})...")
+                response = client.models.generate_content(
+                    model=model_name,
+                    contents=prompt,
+                    config=types.GenerateContentConfig(
+                        response_mime_type="application/json"
+                    )
                 )
-            )
-            raw_text = response.text.strip()
-            if raw_text.startswith("```"):
-                raw_text = raw_text.strip("`")
-                if raw_text.startswith("json"):
-                    raw_text = raw_text[4:].strip()
-            parsed_json = json.loads(raw_text)
-            return parsed_json
-        except Exception as e:
-            print(f"Attempt {attempt} failed: {e}")
-            if attempt < max_retries:
-                wait_seconds = attempt * 12
-                print(f"Waiting {wait_seconds}s before retrying...")
-                time.sleep(wait_seconds)
-            else:
-                raise e
+                raw_text = response.text.strip()
+                if raw_text.startswith("```"):
+                    raw_text = raw_text.strip("`")
+                    if raw_text.startswith("json"):
+                        raw_text = raw_text[4:].strip()
+                parsed_json = json.loads(raw_text)
+                print(f"Successfully generated threat intelligence using {model_name}.")
+                return parsed_json
+            except Exception as e:
+                last_error = e
+                print(f"[{model_name}] Attempt {attempt} failed: {e}")
+                if attempt < max_retries:
+                    wait_seconds = attempt * 10
+                    print(f"Waiting {wait_seconds}s before retrying {model_name}...")
+                    time.sleep(wait_seconds)
+                else:
+                    print(f"All {max_retries} attempts for {model_name} exhausted; falling back to next model...")
+
+    raise last_error
 
 
 def update_threat_feed():

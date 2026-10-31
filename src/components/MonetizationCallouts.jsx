@@ -87,6 +87,24 @@ export default function MonetizationCallouts({ compact = false }) {
     }
   }, []);
 
+  useEffect(() => {
+    if (!previewModal) {
+      document.body.style.overflow = '';
+      return;
+    }
+    document.body.style.overflow = 'hidden';
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setPreviewModal(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [previewModal]);
+
   const handleSubscribe = async (e) => {
     e.preventDefault();
     const cleanEmail = email.trim();

@@ -54,6 +54,28 @@ export default function RoadmapView({
     }
   }, [initialNavState]);
 
+  // Close drawer on Escape key & lock body scroll while drawer is open
+  useEffect(() => {
+    if (!activeDrawerNode) {
+      document.body.style.overflow = '';
+      return;
+    }
+    document.body.style.overflow = 'hidden';
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `#roadmap/${activeDrawerNode.id}`);
+    }
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setActiveDrawerNode(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [activeDrawerNode]);
+
   const activeTrack =
     CAREER_ROLE_TRACKS.find((t) => t.id === activeRoleTab) || CAREER_ROLE_TRACKS[0];
 

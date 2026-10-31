@@ -218,6 +218,34 @@ export default function CyberArenaView({
     }
   };
 
+  // Keyboard hotkeys (1-4 for actions, Enter for Next Alert) during SOC Under Siege
+  useEffect(() => {
+    if (activeMode !== 'soc-siege' || !siegeRunning || siegeFinished) return;
+    const handleKeyDown = (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (!siegeDecisionFeedback) {
+        if (e.key === '1') {
+          e.preventDefault();
+          handleSocAction('ISOLATE_HOST');
+        } else if (e.key === '2') {
+          e.preventDefault();
+          handleSocAction('BLOCK_IP_WAF');
+        } else if (e.key === '3') {
+          e.preventDefault();
+          handleSocAction('REVOKE_TOKEN');
+        } else if (e.key === '4') {
+          e.preventDefault();
+          handleSocAction('FALSE_POSITIVE');
+        }
+      } else if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleNextSocAlert();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  });
+
   // ============================================================================
   // MODE 2 STATE: "TERMINAL CTF" (Interactive Browser Shell)
   // ============================================================================
@@ -920,10 +948,11 @@ ${alreadySolved ? '(Scenario already completed previously)' : `+${activeScenario
                 </div>
               </div>
 
-              {/* 4 Required Action Buttons */}
+              {/* 4 Required Action Buttons (with 1-4 Keyboard Hotkeys) */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
                 {[
                   {
+                    hotkey: '1',
                     code: 'ISOLATE_HOST',
                     label: '[Isolate Endpoint]',
                     sub: 'Quarantine workstation/host NIC via EDR',
@@ -931,6 +960,7 @@ ${alreadySolved ? '(Scenario already completed previously)' : `+${activeScenario
                     color: 'hover:border-[#ff3366] hover:bg-[#ff3366]/10 text-[#ff3366]'
                   },
                   {
+                    hotkey: '2',
                     code: 'BLOCK_IP_WAF',
                     label: '[Block Source IP / WAF]',
                     sub: 'Drop attacker IP & deploy WAF virtual rule',
@@ -938,6 +968,7 @@ ${alreadySolved ? '(Scenario already completed previously)' : `+${activeScenario
                     color: 'hover:border-[#00f0ff] hover:bg-[#00f0ff]/10 text-[#00f0ff]'
                   },
                   {
+                    hotkey: '3',
                     code: 'REVOKE_TOKEN',
                     label: '[Revoke Identity Token]',
                     sub: 'Kill IAM STS / OAuth / Kerberos TGT session',
@@ -945,6 +976,7 @@ ${alreadySolved ? '(Scenario already completed previously)' : `+${activeScenario
                     color: 'hover:border-amber-400 hover:bg-amber-500/10 text-amber-300'
                   },
                   {
+                    hotkey: '4',
                     code: 'FALSE_POSITIVE',
                     label: '[Dismiss as False Positive]',
                     sub: 'Authorized admin activity / allowlisted scan',
@@ -960,9 +992,14 @@ ${alreadySolved ? '(Scenario already completed previously)' : `+${activeScenario
                       onClick={() => handleSocAction(btn.code)}
                       className={`p-4 rounded-2xl bg-slate-950 border border-slate-800 text-left transition-all ${btn.color} disabled:opacity-50`}
                     >
-                      <div className="flex items-center gap-2 font-mono font-extrabold text-xs sm:text-sm">
-                        <Icon className="w-4 h-4 shrink-0" />
-                        <span>{btn.label}</span>
+                      <div className="flex items-center justify-between gap-2 font-mono font-extrabold text-xs sm:text-sm">
+                        <div className="flex items-center gap-2">
+                          <Icon className="w-4 h-4 shrink-0" />
+                          <span>{btn.label}</span>
+                        </div>
+                        <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-slate-900 border border-slate-700 rounded text-slate-300 shrink-0">
+                          {btn.hotkey}
+                        </kbd>
                       </div>
                       <p className="text-[11px] text-slate-400 mt-1">{btn.sub}</p>
                     </button>
@@ -995,9 +1032,10 @@ ${alreadySolved ? '(Scenario already completed previously)' : `+${activeScenario
                   </div>
                   <button
                     onClick={handleNextSocAlert}
-                    className="px-5 py-3 rounded-xl bg-[#00f0ff] text-slate-950 font-mono font-extrabold text-xs uppercase shrink-0"
+                    className="px-5 py-3 rounded-xl bg-[#00f0ff] text-slate-950 font-mono font-extrabold text-xs uppercase shrink-0 inline-flex items-center gap-2"
                   >
-                    Next Alert ──►
+                    <span>Next Alert ──►</span>
+                    <kbd className="px-1.5 py-0.5 text-[10px] bg-slate-950/20 rounded">Enter</kbd>
                   </button>
                 </div>
               )}

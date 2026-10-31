@@ -1,15 +1,17 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import GlobalSearchModal from './components/GlobalSearchModal';
 import HomeView from './components/HomeView';
-import ThreatFeedView from './components/ThreatFeedView';
-import DomainsView from './components/DomainsView';
-import ArsenalView from './components/ArsenalView';
-import RoadmapView from './components/RoadmapView';
-import CyberArenaView from './components/CyberArenaView';
 import { ROADMAP_STAGES } from './data/roadmapData';
 import { CORE_DOMAINS } from './data/domainsData';
 import { Shield, Terminal, Search, ArrowUp } from 'lucide-react';
+
+// Route-level code splitting for faster initial load
+const ThreatFeedView = lazy(() => import('./components/ThreatFeedView'));
+const DomainsView = lazy(() => import('./components/DomainsView'));
+const ArsenalView = lazy(() => import('./components/ArsenalView'));
+const RoadmapView = lazy(() => import('./components/RoadmapView'));
+const CyberArenaView = lazy(() => import('./components/CyberArenaView'));
 
 // Fallback initial daily threats in case fetch is still resolving
 const INITIAL_FALLBACK_THREATS = {
@@ -213,7 +215,12 @@ export default function App() {
 
   const handleSaveDomainQuizScore = useCallback((domainId, score) => {
     setDomainQuizScores((prev) => {
-      const updated = { ...prev, [domainId]: score };
+      const updated = { ...prev };
+      if (score === null || score === undefined) {
+        delete updated[domainId];
+      } else {
+        updated[domainId] = score;
+      }
       localStorage.setItem('cyberhub_domain_quiz_scores', JSON.stringify(updated));
       return updated;
     });
@@ -257,53 +264,61 @@ export default function App() {
 
       {/* Active View Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-10">
-        {activeTab === 'home' && (
-          <HomeView
-            onNavigate={handleNavigate}
-            dailyThreats={dailyThreats}
-            domainQuizScores={domainQuizScores}
-          />
-        )}
+        <Suspense
+          fallback={
+            <div className="soc-card rounded-3xl p-12 text-center border border-[#00f0ff]/30 font-mono text-xs text-[#00f0ff]">
+              INITIALIZING TELEMETRY MODULE...
+            </div>
+          }
+        >
+          {activeTab === 'home' && (
+            <HomeView
+              onNavigate={handleNavigate}
+              dailyThreats={dailyThreats}
+              domainQuizScores={domainQuizScores}
+            />
+          )}
 
-        {activeTab === 'threats' && (
-          <ThreatFeedView
-            dailyThreats={dailyThreats}
-            onReloadFeed={fetchDailyThreats}
-            isReloadingFeed={isReloadingFeed}
-            initialNavState={navPayload}
-          />
-        )}
+          {activeTab === 'threats' && (
+            <ThreatFeedView
+              dailyThreats={dailyThreats}
+              onReloadFeed={fetchDailyThreats}
+              isReloadingFeed={isReloadingFeed}
+              initialNavState={navPayload}
+            />
+          )}
 
-        {activeTab === 'domains' && (
-          <DomainsView
-            initialDomainId={navPayload?.domainId}
-            domainQuizScores={domainQuizScores}
-            onSaveDomainQuizScore={handleSaveDomainQuizScore}
-          />
-        )}
+          {activeTab === 'domains' && (
+            <DomainsView
+              initialDomainId={navPayload?.domainId}
+              domainQuizScores={domainQuizScores}
+              onSaveDomainQuizScore={handleSaveDomainQuizScore}
+            />
+          )}
 
-        {activeTab === 'arsenal' && (
-          <ArsenalView initialToolSearch={navPayload?.toolSearch} />
-        )}
+          {activeTab === 'arsenal' && (
+            <ArsenalView initialToolSearch={navPayload?.toolSearch} />
+          )}
 
-        {activeTab === 'roadmap' && (
-          <RoadmapView
-            completedNodes={completedNodes}
-            onToggleNodeComplete={handleToggleNodeComplete}
-            onResetRoadmapProgress={handleResetRoadmapProgress}
-            initialNavState={navPayload}
-            onNavigate={handleNavigate}
-          />
-        )}
+          {activeTab === 'roadmap' && (
+            <RoadmapView
+              completedNodes={completedNodes}
+              onToggleNodeComplete={handleToggleNodeComplete}
+              onResetRoadmapProgress={handleResetRoadmapProgress}
+              initialNavState={navPayload}
+              onNavigate={handleNavigate}
+            />
+          )}
 
-        {activeTab === 'arena' && (
-          <CyberArenaView
-            arenaProfile={arenaProfile}
-            onAwardXp={handleAwardXp}
-            dailyThreats={dailyThreats}
-            initialMode={navPayload?.mode}
-          />
-        )}
+          {activeTab === 'arena' && (
+            <CyberArenaView
+              arenaProfile={arenaProfile}
+              onAwardXp={handleAwardXp}
+              dailyThreats={dailyThreats}
+              initialMode={navPayload?.mode}
+            />
+          )}
+        </Suspense>
       </main>
 
       {/* Cyber-SOC Footer */}
