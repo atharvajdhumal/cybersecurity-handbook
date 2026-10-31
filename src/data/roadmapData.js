@@ -23,9 +23,10 @@ export const ROADMAP_STAGES = [
           "Container Virtualization Internals: Linux namespaces (`pid`, `net`, `mnt`, `user`), `cgroups`, and `seccomp-bpf`"
         ],
         handsOnLabs: [
+          { platform: "pwnable.kr", name: "Toddler's Bottle (System Binary Exploitation & Memory Layout)", url: "https://pwnable.kr" },
           { platform: "TryHackMe", name: "Pre-Security & Linux Strength Training Track", url: "https://tryhackme.com" },
           { platform: "picoCTF", name: "General Skills & Binary Warmup Challenges", url: "https://picoctf.org" },
-          { platform: "Home Lab Project", name: "Deploy Proxmox VE / VirtualBox Isolated NAT Network with pfSense", url: "https://proxmox.com" }
+          { platform: "CTFtime", name: "Global Live CTF Event Calendar & Writeups", url: "https://ctftime.org" }
         ],
         recommendedTools: ["VirtualBox / Proxmox", "Docker", "pfSense CE"]
       },
@@ -46,7 +47,8 @@ export const ROADMAP_STAGES = [
         ],
         handsOnLabs: [
           { platform: "OverTheWire", name: "Bandit (Levels 0 to 34 Linux CLI Wargame)", url: "https://overthewire.org/wargames/bandit/" },
-          { platform: "TryHackMe", name: "Windows Internals & Active Directory Basics", url: "https://tryhackme.com" },
+          { platform: "pwnable.tw", name: "Advanced Linux Binary & Kernel Exploitation Wargame", url: "https://pwnable.tw" },
+          { platform: "TryHackMe", name: "Windows Internals, Linux PrivEsc & Active Directory Basics", url: "https://tryhackme.com" },
           { platform: "HackTheBox Academy", name: "Linux Fundamentals & Windows Command Line Modules", url: "https://academy.hackthebox.com" }
         ],
         recommendedTools: ["OSQuery", "Velociraptor", "CISA LME"]
@@ -507,3 +509,164 @@ export const SECURITYX_CAS005_DATA = {
     }
   ]
 };
+
+export const LIVE_CTF_PRACTICE_ARENAS = [
+  {
+    name: "CTFtime.org",
+    category: "Global CTF Calendar & Writeup Archive",
+    level: "All Tiers",
+    url: "https://ctftime.org",
+    desc: "The official global directory of upcoming Jeopardy & Attack-Defense CTF competitions, team rankings, and thousands of technical exploit writeups."
+  },
+  {
+    name: "pwnable.kr",
+    category: "Binary Exploitation & Linux Internals",
+    level: "Beginner → Advanced",
+    url: "https://pwnable.kr",
+    desc: "Premier SSH-based system exploitation wargame (Toddler's Bottle to Rookiss) covering file descriptors, BOF, UAF, format strings, and syscall internals."
+  },
+  {
+    name: "pwnable.tw",
+    category: "Advanced Heap & Kernel Exploitation",
+    level: "Advanced / Expert",
+    url: "https://pwnable.tw",
+    desc: "High-difficulty binary exploitation challenges testing glibc heap internals (tcache/fastbins), ROP chains, seccomp bypasses, and ELF reverse engineering."
+  },
+  {
+    name: "OverTheWire (Bandit / Natas)",
+    category: "Linux CLI, PrivEsc & Web Security",
+    level: "Foundational",
+    url: "https://overthewire.org/wargames/",
+    desc: "Hands-on SSH wargames teaching Linux permissions, SUID binaries, cron jobs, Git history forensics, and web server logic flaws from first principles."
+  },
+  {
+    name: "HackTheBox (Labs & Pro Labs)",
+    category: "Active Directory, Red Team & SOC",
+    level: "Intermediate → Expert",
+    url: "https://www.hackthebox.com",
+    desc: "Full-scale vulnerable Linux/Windows machines, Enterprise Active Directory Pro Labs (Zephyr, RastaLabs), and Sherlock DFIR blue-team investigations."
+  },
+  {
+    name: "TryHackMe",
+    category: "Guided Red/Blue/SOC Career Paths",
+    level: "Foundational → Intermediate",
+    url: "https://tryhackme.com",
+    desc: "Browser-based interactive labs for SOC Level 1/2, Junior Penetration Tester, Linux/Windows Privilege Escalation, and CompTIA Security+ prep."
+  },
+  {
+    name: "picoCTF (CMU)",
+    category: "Reverse Engineering, Crypto & Forensics",
+    level: "Foundational → Intermediate",
+    url: "https://picoctf.org",
+    desc: "Carnegie Mellon University's year-round picoGym featuring 400+ challenges across Binary Exploitation, Cryptography, Web, and Memory Forensics."
+  },
+  {
+    name: "CyberDefenders & LetsDefend",
+    category: "Blue Team DFIR, SIEM & PCAP Triage",
+    level: "Intermediate",
+    url: "https://cyberdefenders.org",
+    desc: "Defensive SOC challenges using real Wireshark PCAPs, Volatility memory dumps, Splunk/ELK SIEM logs, and Velociraptor endpoint artifacts."
+  }
+];
+
+export const OS_PRIVESC_AD_CHEATSHEET = [
+  {
+    id: "linux-privesc",
+    label: "🐧 Linux Internals & PrivEsc",
+    subtitle: "SUID, Capabilities, Sudoers/LD_PRELOAD, Cron Wildcards, Namespaces & Kernel Hardening",
+    items: [
+      {
+        vector: "SUID / SGID Binaries & GTFOBins",
+        mechanism: "Binaries with the SUID bit (`-rwsr-xr-x`, octal `4000`) execute with the effective UID (`euid=0`) of the file owner (root). If `find`, `vim`, `python3`, `bash`, or a custom binary calling `system()` without an absolute path has SUID set, an unprivileged user spawns an instant root shell.",
+        enumCli: "find / -perm -4000 -type f -ls 2>/dev/null",
+        defense: "Mount user-writable partitions (`/tmp`, `/home`, `/dev/shm`) with `nosuid,nodev,noexec` in `/etc/fstab` and audit SUID binaries via `auditd`."
+      },
+      {
+        vector: "Linux POSIX Capabilities (`cap_setuid`, `cap_dac_read_search`)",
+        mechanism: "Capabilities break root privileges into granular kernel bits. Even without an SUID bit, a binary granted `cap_setuid+ep` (e.g., `/usr/bin/python3`) or `cap_dac_read_search+ep` (e.g., `/usr/bin/tar`) can call `os.setuid(0)` or read `/etc/shadow` directly.",
+        enumCli: "getcap -r / 2>/dev/null",
+        defense: "Strip unnecessary file capabilities with `setcap -r <binary>` and restrict container capabilities using Docker `--cap-drop=ALL`."
+      },
+      {
+        vector: "Sudoers Misconfigurations & `LD_PRELOAD` Hijacking",
+        mechanism: "If `/etc/sudoers` grants `NOPASSWD` on interpreters/utilities or preserves `env_keep+=LD_PRELOAD`, an attacker compiles a shared object (`.so`) overriding `_init()` to call `setuid(0); system(\"/bin/bash\");` before the target binary even runs.",
+        enumCli: "sudo -l && cat /etc/ld.so.preload 2>/dev/null",
+        defense: "Never allow `env_keep+=LD_PRELOAD` in `/etc/sudoers`, enforce full argument matching, and require `Defaults use_pty`."
+      },
+      {
+        vector: "Cron Job PATH Hijacking & `tar` Wildcard Injection",
+        mechanism: "Root cron jobs executing `tar czf /backups/html.tgz *` inside a world-writable folder expand filenames starting with `--checkpoint=1` and `--checkpoint-action=exec=sh shell.sh` as CLI flags instead of file names.",
+        enumCli: "cat /etc/crontab; ls -la /etc/cron* /var/spool/cron/crontabs 2>/dev/null",
+        defense: "Always prefix wildcards with `./*` (`tar czf backup.tgz ./*`) and ensure root cron scripts are owned `root:root` (`chmod 700`)."
+      },
+      {
+        vector: "Docker Socket (`/var/run/docker.sock`) & Namespace Escape",
+        mechanism: "Membership in the `docker` group or write access to `/var/run/docker.sock` is equivalent to root on the host: mounting the host root filesystem (`-v /:/mnt --privileged`) allows editing `/mnt/etc/shadow` directly.",
+        enumCli: "id; ls -la /var/run/docker.sock; grep -E 'CapEff|NoNewPrivs' /proc/self/status",
+        defense: "Use Rootless Docker/Podman, never mount `/var/run/docker.sock` into untrusted containers, and enforce `no-new-privileges:true`."
+      }
+    ]
+  },
+  {
+    id: "windows-privesc",
+    label: "🪟 Windows Internals & PrivEsc",
+    subtitle: "Access Tokens (`SeImpersonate`), LSASS, Unquoted Service Paths, Service ACLs & Registry",
+    items: [
+      {
+        vector: "Token Privileges (`SeImpersonatePrivilege` / `SeAssignPrimaryToken`)",
+        mechanism: "Service accounts (`IIS apppool`, `MSSQL`, `Network Service`) hold `SeImpersonatePrivilege` by default. Attackers use Potato primitives (PrintSpoofer, GodPotato, JuicyPotatoNG) to coerce `NT AUTHORITY\\SYSTEM` to authenticate to a rogue named pipe and impersonate its primary token.",
+        enumCli: "whoami /priv && whoami /groups",
+        defense: "Isolate service accounts into Group Managed Service Accounts (gMSAs) with minimal privileges and monitor named-pipe creation (Sysmon Event ID 17/18)."
+      },
+      {
+        vector: "LSASS Memory Credential Dumping (`SeDebugPrivilege`)",
+        mechanism: "Local Administrators hold `SeDebugPrivilege`, allowing processes like Mimikatz (`sekurlsa::logonpasswords`), `procdump.exe -ma lsass.exe`, or `comsvcs.dll MiniDump` to read NTLM hashes and Kerberos tickets from `lsass.exe` virtual memory.",
+        enumCli: "tasklist /svc | findstr lsass && reg query HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa /v RunAsPPL",
+        defense: "Enable LSA Protection (`RunAsPPL=1`), Windows Defender Credential Guard (VBS), and alert on Sysmon Event ID 10 (`TargetImage: lsass.exe`, `GrantedAccess: 0x1010` / `0x1FFFFF`)."
+      },
+      {
+        vector: "Unquoted Service Paths & Weak Service Binary ACLs",
+        mechanism: "If a SYSTEM service has an unquoted path containing spaces (`C:\\Program Files\\Custom App\\Service.exe`) without quotes, the Windows Service Control Manager (SCM) sequentially attempts to execute `C:\\Program.exe` and `C:\\Program Files\\Custom.exe` as `SYSTEM`.",
+        enumCli: "wmic service get name,displayname,pathname,startmode | findstr /i \"auto\" | findstr /i /v \"c:\\windows\\\\\" | findstr /i /v \"\"\"\"",
+        defense: "Wrap all service `ImagePath` registry values in quotes and verify `BUILTIN\\Users` lacks `(F)` or `(M)` permissions via `icacls`."
+      },
+      {
+        vector: "SAM / SYSTEM Registry Hives & Volume Shadow Copies",
+        mechanism: "Backup operators (`SeBackupPrivilege`) or attackers finding leftover `C:\\Windows\\Repair\\SAM` or VSS snapshots can extract the `SAM` and `SYSTEM` hives offline to dump local NTLM password hashes with Impacket `secretsdump.py`.",
+        enumCli: "reg save HKLM\\SAM sam.bak && reg save HKLM\\SYSTEM sys.bak",
+        defense: "Restrict `SeBackupPrivilege`, audit Registry hive exports (Event ID 4688 `reg.exe save`), and enforce LAPS (Windows Local Administrator Password Solution)."
+      }
+    ]
+  },
+  {
+    id: "ad-escalation",
+    label: "🏰 Active Directory & Kerberos",
+    subtitle: "Kerberoasting, AS-REP Roasting, BloodHound ACLs, AD CS (`ESC1-8`), RBCD & DCSync",
+    items: [
+      {
+        vector: "Kerberoasting (Service Principal Name TGS Cracking)",
+        mechanism: "Any authenticated domain user can request a Kerberos TGS service ticket (`TGS-REQ`) for any account with a registered `servicePrincipalName` (SPN). Because the ticket is encrypted with the service account's NTLM/AES hash, attackers crack it offline at 10+ GH/s with Hashcat (`-m 13100`).",
+        enumCli: "impacket-GetUserSPNs corp.local/jdoe -request -dc-ip 10.10.10.5 -outputfile tgs_hashes.txt",
+        defense: "Migrate service accounts to gMSAs (120-character auto-rotating random passwords), disable RC4_HMAC (`0x17`) in favor of AES-256 (`0x12`), and monitor Event ID 4769 (`TicketEncryptionType: 0x17`)."
+      },
+      {
+        vector: "AS-REP Roasting (`DONT_REQ_PREAUTH`)",
+        mechanism: "If an AD user account has 'Do not require Kerberos preauthentication' (`UF_DONT_REQUIRE_PREAUTH`) enabled, anyone can send an `AS-REQ` without a password and receive an `AS-REP` chunk encrypted with the user's password hash (`Hashcat -m 18200`).",
+        enumCli: "impacket-GetNPUsers corp.local/ -usersfile users.txt -format hashcat -dc-ip 10.10.10.5",
+        defense: "Enforce Kerberos Pre-Authentication on 100% of domain accounts and alert on Event ID 4768 with pre-auth type `0`."
+      },
+      {
+        vector: "BloodHound DACL Abuse (`GenericAll`, `WriteDacl`, Shadow Credentials)",
+        mechanism: "Over-permissive Active Directory Object ACLs allow lower-tier accounts to take over Domain Admins: `GenericWrite` enables adding a rogue `msDS-KeyCredentialLink` (Whisker / PKINIT Shadow Credentials), while `WriteDacl` lets an attacker grant themselves DCSync rights.",
+        enumCli: "bloodhound-python -u jdoe -p 'Pass123!' -d corp.local -ns 10.10.10.5 -c All",
+        defense: "Audit Tier-0 object ACLs continuously with BloodHound CE, enable `AdminSDHolder` protection, and place privileged accounts in the `Protected Users` security group."
+      },
+      {
+        vector: "DCSync (`DS-Replication-Get-Changes-All`) & Golden Ticket",
+        mechanism: "Attackers compromising an account with Domain Controller replication permissions simulate a DC over MS-DRSR (`drsuapi`) to pull the `krbtgt` NTLM/AES keys, enabling forged Golden Tickets valid for 10 years.",
+        enumCli: "impacket-secretsdump corp.local/admin@10.10.10.5 -just-dc-user krbtgt",
+        defense: "Alert immediately on Event ID 4662 for GUID `1131f6ad-9c07-11d1-f79f-00c04fc2dcd2` from any IP that is not an authorized Domain Controller, and rotate `krbtgt` twice during incident recovery."
+      }
+    ]
+  }
+];

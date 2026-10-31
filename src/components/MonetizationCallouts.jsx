@@ -124,7 +124,11 @@ export default function MonetizationCallouts({ compact = false }) {
 
     try {
       if (MONETIZATION_CONFIG.newsletterWebhookUrl) {
-        const res = await fetch(MONETIZATION_CONFIG.newsletterWebhookUrl, {
+        const webhookUrl = new URL(MONETIZATION_CONFIG.newsletterWebhookUrl);
+        if (webhookUrl.protocol !== 'https:') {
+          throw new Error('Insecure webhook protocol blocked.');
+        }
+        const res = await fetch(webhookUrl.toString(), {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -137,6 +141,9 @@ export default function MonetizationCallouts({ compact = false }) {
         }
       } else if (MONETIZATION_CONFIG.newsletterExternalUrl) {
         const targetUrl = new URL(MONETIZATION_CONFIG.newsletterExternalUrl);
+        if (targetUrl.protocol !== 'https:') {
+          throw new Error('Insecure external newsletter URL blocked.');
+        }
         targetUrl.searchParams.set('email', cleanEmail);
         window.open(targetUrl.toString(), '_blank', 'noopener,noreferrer');
       }
@@ -402,7 +409,7 @@ export default function MonetizationCallouts({ compact = false }) {
                   <a
                     href={playbooks[selectedPlaybook].checkoutUrl || MONETIZATION_CONFIG.gumroadStoreUrl}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#00ff66] text-slate-950 font-mono font-bold text-xs uppercase tracking-wider shadow-emerald-glow"
                   >
                     Open Gumroad Checkout ({playbooks[selectedPlaybook].price})

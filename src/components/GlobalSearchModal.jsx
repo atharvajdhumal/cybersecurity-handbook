@@ -15,7 +15,12 @@ import {
 import { CORE_DOMAINS } from '../data/domainsData';
 import { ARSENAL_TOOLS } from '../data/arsenalData';
 import { HALL_OF_INFAMY } from '../data/hallOfInfamyData';
-import { ROADMAP_STAGES, CAREER_ROLE_TRACKS } from '../data/roadmapData';
+import {
+  ROADMAP_STAGES,
+  CAREER_ROLE_TRACKS,
+  LIVE_CTF_PRACTICE_ARENAS,
+  OS_PRIVESC_AD_CHEATSHEET
+} from '../data/roadmapData';
 
 export default function GlobalSearchModal({
   isOpen,
@@ -126,6 +131,34 @@ export default function GlobalSearchModal({
           badge: role.compRange,
           action: () => onNavigate('roadmap', { trackId: track.id })
         });
+      });
+    });
+
+    // 5b. OS Internals, Privilege Escalation & Active Directory Cheat Sheets
+    OS_PRIVESC_AD_CHEATSHEET.forEach((group) => {
+      group.items.forEach((entry) => {
+        items.push({
+          id: `privesc-${group.id}-${entry.vector}`,
+          type: 'PRIVESC / AD CHEAT SHEET',
+          category: 'ROADMAP',
+          title: `${group.label}: ${entry.vector}`,
+          subtitle: `${entry.mechanism} | CLI: ${entry.enumCli}`,
+          badge: 'OS INTERNALS',
+          action: () => onNavigate('roadmap', { privescId: group.id })
+        });
+      });
+    });
+
+    // 5c. Live CTF & Binary Exploitation Practice Arenas
+    LIVE_CTF_PRACTICE_ARENAS.forEach((arena) => {
+      items.push({
+        id: `ctf-arena-${arena.name}`,
+        type: 'LIVE CTF PLATFORM',
+        category: 'ROADMAP',
+        title: `${arena.name} (${arena.category})`,
+        subtitle: `${arena.desc} — ${arena.url}`,
+        badge: arena.level,
+        action: () => onNavigate('roadmap', { ctfArenaId: arena.name })
       });
     });
 

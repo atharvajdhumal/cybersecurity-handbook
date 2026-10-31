@@ -13,13 +13,17 @@ import {
   Sparkles,
   ChevronRight,
   ShieldCheck,
-  RotateCcw
+  RotateCcw,
+  Copy,
+  Check
 } from 'lucide-react';
 import {
   ROADMAP_STAGES,
   CAREER_ROLE_TRACKS,
   VENDOR_CERT_MATRIX,
-  SECURITYX_CAS005_DATA
+  SECURITYX_CAS005_DATA,
+  LIVE_CTF_PRACTICE_ARENAS,
+  OS_PRIVESC_AD_CHEATSHEET
 } from '../data/roadmapData';
 import MonetizationCallouts from './MonetizationCallouts';
 
@@ -32,6 +36,14 @@ export default function RoadmapView({
 }) {
   const [activeDrawerNode, setActiveDrawerNode] = useState(null);
   const [activeRoleTab, setActiveRoleTab] = useState(CAREER_ROLE_TRACKS[0].id);
+  const [activePrivEscTab, setActivePrivEscTab] = useState(OS_PRIVESC_AD_CHEATSHEET[0].id);
+  const [copiedPrivEscCmd, setCopiedPrivEscCmd] = useState(null);
+
+  const handleCopyPrivEsc = (key, text) => {
+    navigator.clipboard.writeText(text);
+    setCopiedPrivEscCmd(key);
+    setTimeout(() => setCopiedPrivEscCmd(null), 2000);
+  };
 
   // Total nodes count across all 3 stages
   const allNodes = ROADMAP_STAGES.flatMap((s) => s.nodes);
@@ -50,6 +62,17 @@ export default function RoadmapView({
       setActiveRoleTab(initialNavState.trackId);
       setTimeout(() => {
         document.getElementById('career-role-matrix')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+    if (initialNavState.privescId) {
+      setActivePrivEscTab(initialNavState.privescId);
+      setTimeout(() => {
+        document.getElementById('os-internals-privesc')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+    if (initialNavState.ctfArenaId) {
+      setTimeout(() => {
+        document.getElementById('live-ctf-arenas')?.scrollIntoView({ behavior: 'smooth' });
       }, 100);
     }
   }, [initialNavState]);
@@ -440,6 +463,173 @@ export default function RoadmapView({
         </div>
       </section>
 
+      {/* 5. FIRST-PRINCIPLES OS INTERNALS, LINUX/WINDOWS PRIVESC & ACTIVE DIRECTORY CHEAT SHEET */}
+      <section id="os-internals-privesc" className="soc-card rounded-3xl p-6 sm:p-8 lg:p-10 border border-[#00f0ff]/40 space-y-6">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+          <div>
+            <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#00f0ff] font-bold mb-2">
+              <Terminal className="w-4 h-4 text-[#00ff66]" />
+              FIRST-PRINCIPLES OPERATOR FIELD MANUAL
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+              Linux/Windows Internals, Privilege Escalation &amp; Active Directory Cheat Sheet
+            </h2>
+            <p className="text-sm text-slate-300 mt-1 max-w-3xl">
+              Deep technical reference for OS kernel primitives, SUID/Capabilities, Windows Access Tokens (<code className="text-[#00f0ff] font-mono">SeImpersonatePrivilege</code>, LSASS), and Active Directory Kerberos/ACL attack &amp; defense vectors.
+            </p>
+          </div>
+        </div>
+
+        {/* 3 Cheat-Sheet Sub-Tabs */}
+        <div className="flex flex-wrap gap-2.5 border-b border-slate-800 pb-4">
+          {OS_PRIVESC_AD_CHEATSHEET.map((tab) => {
+            const isSelected = tab.id === activePrivEscTab;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActivePrivEscTab(tab.id)}
+                className={`px-4 py-2.5 rounded-xl font-mono text-xs sm:text-sm font-bold transition-all ${
+                  isSelected
+                    ? 'bg-[#00ff66] text-slate-950 shadow-emerald-glow'
+                    : 'bg-slate-950 text-slate-300 hover:text-white border border-slate-800'
+                }`}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Active Cheat-Sheet Vector Cards */}
+        {(() => {
+          const currentSheet =
+            OS_PRIVESC_AD_CHEATSHEET.find((s) => s.id === activePrivEscTab) ||
+            OS_PRIVESC_AD_CHEATSHEET[0];
+          return (
+            <div className="space-y-4">
+              <div className="text-xs font-mono text-[#00f0ff] uppercase tracking-wider">
+                {currentSheet.subtitle}
+              </div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                {currentSheet.items.map((item, idx) => {
+                  const cmdKey = `${currentSheet.id}-${idx}`;
+                  const isCopied = copiedPrivEscCmd === cmdKey;
+                  return (
+                    <div
+                      key={item.vector}
+                      className="rounded-2xl bg-slate-950/90 border border-slate-800 p-5 flex flex-col justify-between space-y-4 hover:border-[#00f0ff]/40 transition-all"
+                    >
+                      <div className="space-y-2.5">
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="px-2 py-0.5 rounded bg-[#ff3366]/15 border border-[#ff3366]/35 text-[#ff3366] font-mono text-[10px] font-bold">
+                            VECTOR 0{idx + 1}
+                          </span>
+                          <button
+                            onClick={() => handleCopyPrivEsc(cmdKey, item.enumCli)}
+                            className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg font-mono text-[11px] font-bold transition-colors ${
+                              isCopied
+                                ? 'bg-[#00ff66] text-slate-950'
+                                : 'bg-slate-900 hover:bg-[#00f0ff]/20 text-[#00f0ff] border border-[#00f0ff]/30'
+                            }`}
+                          >
+                            {isCopied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                            {isCopied ? 'COPIED CLI' : 'COPY ENUM CLI'}
+                          </button>
+                        </div>
+
+                        <h3 className="text-base font-extrabold text-white">
+                          {item.vector}
+                        </h3>
+
+                        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                          {item.mechanism}
+                        </p>
+                      </div>
+
+                      <div className="space-y-2.5 pt-2 border-t border-slate-800/80">
+                        <div
+                          onClick={() => handleCopyPrivEsc(cmdKey, item.enumCli)}
+                          title="Click to copy enumeration command"
+                          className="p-2.5 rounded-xl bg-[#050811] border border-slate-800 hover:border-[#00f0ff]/40 cursor-pointer font-mono text-[11px] text-[#00ff66] overflow-x-auto whitespace-nowrap"
+                        >
+                          <span className="text-slate-500 select-none mr-1.5">$</span>
+                          {item.enumCli}
+                        </div>
+
+                        <div className="p-3 rounded-xl bg-[#00ff66]/5 border border-[#00ff66]/25 text-xs text-slate-200 leading-relaxed">
+                          <strong className="text-[#00ff66] font-mono uppercase mr-1.5">
+                            Blue Team Defense:
+                          </strong>
+                          {item.defense}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })()}
+      </section>
+
+      {/* 6. GLOBAL LIVE CTF & BINARY EXPLOITATION PRACTICE ARENAS */}
+      <section id="live-ctf-arenas" className="soc-card rounded-3xl p-6 sm:p-8 lg:p-10 border border-[#00ff66]/40 space-y-6">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+          <div>
+            <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#00ff66] font-bold mb-2">
+              <Sparkles className="w-4 h-4" />
+              EXTERNAL HANDS-ON WARGAMES &amp; CTF ECOSYSTEM
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+              Global Live CTF, Binary Exploitation &amp; DFIR Practice Arenas
+            </h2>
+            <p className="text-sm text-slate-300 mt-1 max-w-3xl">
+              Pair our in-browser <strong className="text-[#00f0ff]">🕹️ Cyber Arena</strong> with the world&apos;s top live SSH wargames, binary exploitation labs, and global CTF calendars.
+            </p>
+          </div>
+          <button
+            onClick={() => onNavigate('arena')}
+            className="px-4 py-2.5 rounded-xl bg-[#00f0ff] hover:bg-[#00f0ff]/90 text-slate-950 font-mono font-extrabold text-xs uppercase tracking-wider shrink-0 self-start lg:self-auto"
+          >
+            🕹️ Launch In-Browser Cyber Arena
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {LIVE_CTF_PRACTICE_ARENAS.map((arena) => (
+            <a
+              key={arena.name}
+              href={arena.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-2xl p-5 bg-slate-950/90 border border-slate-800 hover:border-[#00ff66] transition-all flex flex-col justify-between group hover:-translate-y-1"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-2.5">
+                  <span className="px-2 py-0.5 rounded bg-[#00f0ff]/15 text-[#00f0ff] font-mono text-[10px] font-bold">
+                    {arena.level}
+                  </span>
+                  <ExternalLink className="w-3.5 h-3.5 text-slate-500 group-hover:text-[#00ff66] transition-colors" />
+                </div>
+                <h3 className="text-base font-extrabold text-white group-hover:text-[#00ff66] transition-colors">
+                  {arena.name}
+                </h3>
+                <div className="text-[11px] font-mono text-[#00ff66] mt-0.5">
+                  {arena.category}
+                </div>
+                <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+                  {arena.desc}
+                </p>
+              </div>
+              <div className="mt-4 pt-2.5 border-t border-slate-800/80 text-[11px] font-mono text-slate-300 group-hover:text-white flex items-center justify-between">
+                <span className="truncate">{arena.url.replace('https://', '')}</span>
+                <ChevronRight className="w-3.5 h-3.5 text-[#00ff66] shrink-0" />
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
       {/* =====================================================================
           INTERACTIVE ROADMAP NODE DETAIL DRAWER (SLIDE-OVER PANEL)
          ===================================================================== */}
@@ -545,7 +735,7 @@ export default function RoadmapView({
                     key={lab.name}
                     href={lab.url}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="p-3.5 rounded-xl bg-slate-950 hover:bg-slate-900 border border-slate-800 hover:border-[#00ff66]/50 flex items-center justify-between gap-3 transition-all group"
                   >
                     <div>
