@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-11-01T13:34:20Z",
-  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-01)",
+  "lastUpdated": "2026-11-02T16:09:42Z",
+  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-02)",
   "threatLevel": "CRITICAL (DEFCON 2)",
   "summaryMetrics": {
     "activeKevExploits": 14,
@@ -10,146 +10,162 @@
   },
   "attackLog": [
     {
-      "id": "INC-2026-11-01-01",
-      "incidentOrCve": "Canonical LXD/MicroCloud Auth Bypass",
-      "target": "Canonical LXD & MicroCloud HTTPS Management APIs",
-      "domain": "Cloud Security",
-      "severity": "CRITICAL",
-      "cvss": "10.0",
-      "attackVector": "TLS client certificate authentication flaw where API validates only public certificate presence rather than enforcing proof-of-possession via private key cryptographic challenge.",
-      "immediateSolution": "Upgrade Canonical LXD/MicroCloud to patched upstream release immediately; restrict management API port 8443 via perimeter firewalls/mTLS proxy.",
-      "nistImpact": [
-        "Protect (PR.AA-01)",
-        "Protect (PR.AC-05)",
-        "Detect (DE.CM-01)"
-      ],
-      "source": "The Hacker News"
-    },
-    {
-      "id": "INC-2026-11-01-02",
-      "incidentOrCve": "CVE-2026-111357",
-      "target": "Ivanti Connect Secure (ICS) Appliances",
-      "domain": "Network Security",
-      "severity": "CRITICAL",
-      "cvss": "8.8",
-      "attackVector": "Multi-vulnerability exploit chain leveraging missing authentication for critical function combined with path traversal to execute arbitrary code as root.",
-      "immediateSolution": "Apply Ivanti emergency security advisory update; run External Integrity Checker Tool (ICT) and isolate administrative web interfaces.",
-      "nistImpact": [
-        "Protect (PR.PS-02)",
-        "Respond (RS.MI-01)",
-        "Govern (GV.RM-03)"
-      ],
-      "source": "The Hacker News"
-    },
-    {
-      "id": "INC-2026-11-01-03",
-      "incidentOrCve": "Linux Kernel MPTCP Remote Root Exploit",
-      "target": "Linux Kernel Multipath TCP (MPTCP) Subsystem",
-      "domain": "Endpoint Security",
+      "id": "INC-2026-11-02-01",
+      "incidentOrCve": "Langflow RCE & Auth Bypass",
+      "target": "Langflow (Versions 1.0.0 through 1.12.8)",
+      "domain": "AI & LLM Security",
       "severity": "CRITICAL",
       "cvss": "9.8",
-      "attackVector": "Remote buffer overflow/memory corruption in MPTCP packet handling enabling unauthenticated network attackers to achieve arbitrary code execution in ring 0.",
-      "immediateSolution": "Set sysctl net.mptcp.enabled=0 immediately across all host endpoints; patch to stable kernel releases resolving MPTCP parser state corruption.",
-      "nistImpact": [
-        "Protect (PR.PS-01)",
-        "Protect (PR.PT-01)",
-        "Detect (DE.CM-07)"
-      ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-11-01-04",
-      "incidentOrCve": "Polymarket Third-Party Script Hijack",
-      "target": "Polymarket Trading Web Frontend & DebugBear Asset Host",
-      "domain": "Application Security",
-      "severity": "HIGH",
-      "cvss": "8.2",
-      "attackVector": "Client-side supply chain injection via compromised external performance tracking script (DebugBear) manipulating DOM to execute illicit trading transactions.",
-      "immediateSolution": "Implement strict Content Security Policy (CSP) with script-src hashes/nonces, enforce Subresource Integrity (SRI), and revoke unauthorized external vendor scripts.",
-      "nistImpact": [
-        "Protect (PR.PS-06)",
-        "Govern (GV.SC-04)",
-        "Detect (DE.CM-03)"
-      ],
-      "source": "The Hacker News"
-    },
-    {
-      "id": "INC-2026-11-01-05",
-      "incidentOrCve": "TraderTraitor (UNC4899) $6.43B Virtual Asset Intrusion",
-      "target": "Binance / Digital Asset Infrastructure",
-      "domain": "Identity & Access Management",
-      "severity": "CRITICAL",
-      "cvss": "9.5",
-      "attackVector": "Social engineering, compromised DevOps tooling, and trojanized engineering packages resulting in internal network pivoting and key compromise.",
-      "immediateSolution": "Mandate hardware-bound FIDO2 tokens, enforce multi-party threshold computation (MPC) on critical signing ops, and deploy strict developer workstation telemetry.",
-      "nistImpact": [
-        "Govern (GV.OC-03)",
-        "Protect (PR.AA-05)",
-        "Detect (DE.AE-02)"
-      ],
-      "source": "The Hacker News"
-    },
-    {
-      "id": "INC-2026-11-01-06",
-      "incidentOrCve": "Chainalysis Offensive Agentic Intrusion",
-      "target": "Chainalysis Internal Support & Identity Directories",
-      "domain": "AI & LLM Security",
-      "severity": "HIGH",
-      "cvss": "7.5",
-      "attackVector": "Autonomous agentic attack framework orchestrating reconnaissance, contextual payload generation, and internal tool exploitation targeting customer role mappings.",
-      "immediateSolution": "Deploy AI runtime behavioral anomaly monitoring, enforce granular RBAC on administrative directories, and isolate API agent service accounts.",
-      "nistImpact": [
-        "Identify (ID.AM-05)",
-        "Protect (PR.AC-03)",
-        "Detect (DE.AE-04)"
-      ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-11-01-07",
-      "incidentOrCve": "Northflank AI Secret Invalidation",
-      "target": "Northflank Cloud PaaS Secret Storage",
-      "domain": "Cloud Security",
-      "severity": "HIGH",
-      "cvss": "8.6",
-      "attackVector": "Platform breach enabling adversary extraction of environment variables and third-party AI provider API credentials across tenant boundaries.",
-      "immediateSolution": "Immediately cycle all OpenAI, Anthropic, and cloud API tokens; transition to dynamic ephemeral secret management (HashiCorp Vault / AWS Secrets Manager).",
-      "nistImpact": [
-        "Protect (PR.PS-04)",
-        "Respond (RS.MI-02)",
-        "Govern (GV.SC-06)"
-      ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-11-01-08",
-      "incidentOrCve": "CVE-2026-58882 (SMS of Death)",
-      "target": "Android Cellular Telephony Protocol Stack",
-      "domain": "Endpoint Security",
-      "severity": "HIGH",
-      "cvss": "8.1",
-      "attackVector": "Specially crafted SMS/PDU payload triggering memory corruption or unbounded loop in unpatched baseband/telephony service causing denial-of-service.",
-      "immediateSolution": "Deploy Android 2026-11 vendor security patch level across all mobile fleet devices via MDM/UEM enforcement.",
+      "attackVector": "Unauthenticated remote attackers can bypass authentication flows and achieve remote code execution on servers running vulnerable Langflow instances.",
+      "immediateSolution": "Upgrade immediately to Langflow version 1.13.0.",
       "nistImpact": [
         "Protect (PR.PS-02)",
         "Detect (DE.CM-01)",
+        "Respond (RS.MI-01)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-02-02",
+      "incidentOrCve": "DarkBlinders Espionage Campaign",
+      "target": "Israeli Targets and Iraqi Kurdish Government Cloud",
+      "domain": "Cloud Security",
+      "severity": "CRITICAL",
+      "cvss": "9.0",
+      "attackVector": "Iran state-aligned threat actors executed targeted cyber espionage operations, compromising high-profile cloud environments and personal accounts.",
+      "immediateSolution": "Enforce strict multi-factor authentication, audit cloud IAM permissions, and review anomalous API logging.",
+      "nistImpact": [
+        "Protect (PR.AC-04)",
+        "Detect (DE.AE-03)",
+        "Respond (RS.AN-01)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-02-03",
+      "incidentOrCve": "Teams Social Engineering & AD CS Abuse",
+      "target": "Enterprise Domain Controllers via Active Directory Certificate Services",
+      "domain": "Identity & Access Management",
+      "severity": "CRITICAL",
+      "cvss": "8.8",
+      "attackVector": "Attackers pose as IT support via Microsoft Teams, trick users into remote PC control, and abuse insecure AD CS settings to mint domain controller certificates.",
+      "immediateSolution": "Disable vulnerable certificate templates (ESC1-ESC8), harden AD CS permissions, and train staff against IT impersonation.",
+      "nistImpact": [
+        "Protect (PR.AC-01)",
+        "Detect (DE.CM-02)",
+        "Respond (RS.MI-02)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-02-04",
+      "incidentOrCve": "CL-UNK-1211 SysGoRAT & AI Scripts",
+      "target": "Government Linux Infrastructure",
+      "domain": "Endpoint Security",
+      "severity": "HIGH",
+      "cvss": "8.5",
+      "attackVector": "State-sponsored threat cluster deploys SysGoRAT alongside suspected AI-generated utility scripts to compromise Linux-based government servers.",
+      "immediateSolution": "Deploy endpoint detection and response (EDR) for Linux, monitor cron jobs and atypical SSH keys, and patch underlying OS vulnerabilities.",
+      "nistImpact": [
+        "Protect (PR.PT-01)",
+        "Detect (DE.CM-07)",
+        "Respond (RS.AN-03)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-02-05",
+      "incidentOrCve": "VOLTA-AUTODOXER Infostealer",
+      "target": "Windows Workstations (Browsers, Outlook, Slack)",
+      "domain": "Endpoint Security",
+      "severity": "HIGH",
+      "cvss": "7.8",
+      "attackVector": "Windows infostealer harvests browser credentials, cookies, and chat data, leveraging external LLMs (Claude, Gemini, Kimi) to monetize victim files.",
+      "immediateSolution": "Block execution of unauthorized binaries, implement memory protection, and invalidate compromised session tokens immediately.",
+      "nistImpact": [
+        "Protect (PR.DS-01)",
+        "Detect (DE.AE-01)",
+        "Respond (RS.MI-03)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-02-06",
+      "incidentOrCve": "BTCPay Server Hot Wallet Drain",
+      "target": "Outdated BTCPay Server Instances",
+      "domain": "Application Security",
+      "severity": "CRITICAL",
+      "cvss": "9.1",
+      "attackVector": "Threat actors exploit known vulnerabilities in unpatched BTCPay Server deployments to drain cryptocurrency hot wallets.",
+      "immediateSolution": "Update BTCPay Server to the latest release and migrate hot wallet assets to cold storage environments.",
+      "nistImpact": [
+        "Protect (PR.PS-01)",
+        "Detect (DE.CM-08)",
+        "Respond (RS.MI-01)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-02-07",
+      "incidentOrCve": "European Supermarket Refrigeration Sabotage",
+      "target": "Commercial HVAC & Refrigeration Systems",
+      "domain": "OT / ICS Security",
+      "severity": "HIGH",
+      "cvss": "8.2",
+      "attackVector": "Remote cyberattackers altered temperature settings on freezers and cooling units across multi-chain European supermarkets.",
+      "immediateSolution": "Isolate ICS/SCADA networks from the corporate network, enforce VPN access with MFA, and audit vendor remote access tools.",
+      "nistImpact": [
+        "Protect (PR.PT-04)",
+        "Detect (DE.CM-05)",
         "Respond (RS.RP-01)"
       ],
       "source": "BleepingComputer"
     },
     {
-      "id": "INC-2026-11-01-09",
-      "incidentOrCve": "Trojanized Claude Code IDE Extension",
-      "target": "Cursor IDE Developer Workstations",
-      "domain": "AI & LLM Security",
-      "severity": "HIGH",
-      "cvss": "8.4",
-      "attackVector": "Typosquatting/marketplace abuse publishing backdoored Claude Code extensions executing arbitrary Node/Python telemetry payloads to exfiltrate code repositories.",
-      "immediateSolution": "Lock down IDE extension marketplaces via enterprise allowlists; restrict developer environment egress via enterprise proxies.",
+      "id": "INC-2026-11-02-08",
+      "incidentOrCve": "GitLab RCE Exploitation",
+      "target": "Internet-Exposed GitLab Servers (>1,000 instances)",
+      "domain": "Application Security",
+      "severity": "CRITICAL",
+      "cvss": "9.8",
+      "attackVector": "Active remote code execution attacks targeting unpatched, public-facing GitLab server instances.",
+      "immediateSolution": "Apply the latest security patches provided by GitLab and ensure instances are not directly exposed to the public internet without a WAF.",
       "nistImpact": [
-        "Govern (GV.SC-07)",
-        "Protect (PR.PS-06)",
-        "Detect (DE.CM-03)"
+        "Protect (PR.PS-02)",
+        "Detect (DE.CM-01)",
+        "Respond (RS.MI-01)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-02-09",
+      "incidentOrCve": "Synology C3RB3R Ransomware",
+      "target": "Synology Network-Attached Storage (NAS) Devices",
+      "domain": "Network Security",
+      "severity": "HIGH",
+      "cvss": "8.6",
+      "attackVector": "Surge of ransomware attacks exploiting legacy firmware and misconfigured admin services on internet-facing NAS appliances.",
+      "immediateSolution": "Update DiskStation Manager (DSM), disable default administrator accounts, and restrict external exposure of management ports.",
+      "nistImpact": [
+        "Protect (PR.AC-03)",
+        "Detect (DE.AE-02)",
+        "Respond (RS.CO-02)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-02-10",
+      "incidentOrCve": "PapRAT Cyber Espionage Campaign",
+      "target": "Organizations in South Asia",
+      "domain": "Endpoint Security",
+      "severity": "HIGH",
+      "cvss": "7.9",
+      "attackVector": "India-linked threat actor leverages legitimate Windows utilities across three distinct attack chains to conduct long-term espionage.",
+      "immediateSolution": "Monitor execution of native Windows binaries (Living off the Land) and enforce strict application allowlisting.",
+      "nistImpact": [
+        "Protect (PR.PT-01)",
+        "Detect (DE.CM-07)",
+        "Respond (RS.AN-02)"
       ],
       "source": "Dark Reading"
     }
@@ -157,57 +173,57 @@
   "deepDives": [
     {
       "id": "dd-01",
-      "badge": "DEEP DIVE #01 // CLOUD SECURITY",
-      "title": "Zero-Key Cryptographic Bypass in Canonical LXD & MicroCloud REST Subsystems",
-      "cve": "CVE-2026-LXD-BYPASS",
-      "cvss": "10.0 CRITICAL",
-      "domain": "Cloud Security",
-      "nistMapping": "Protect (PR.AA-01), Protect (PR.AC-05), Detect (DE.CM-01)",
-      "whatHappened": "A critical authentication bypass flaw was identified in Canonical's LXD and MicroCloud clustering architecture that permits unauthenticated remote threat actors to impersonate any trusted client without access to their cryptographic private key. Attackers with direct network visibility to the LXD HTTPS daemon (TCP 8443) need only present a known or sniffed public certificate of an administrator to gain unfettered control over underlying containers, virtual machines, and host volumes.",
-      "technicalMechanism": "The LXD API daemon failed to complete standard TLS Client Certificate handshake verification. Rather than forcing the client to sign a cryptographic challenge verifying possession of the associated private key (TLS CertificateVerify message), the internal authentication hook parsed client cert headers blindly forwarded or injected during session initiation. Because public certificates are routinely distributed across logs and public cluster manifests, an external adversary can present the certificate fingerprint to obtain an administrative session token.",
-      "asciiFlow": "[Adversary] ──(HTTPS with Public Cert Only)──► [LXD TCP/8443] ──[Bypasses CertVerify]──► [Cluster Root Shell]",
+      "badge": "DEEP DIVE #01 // AI & LLM SECURITY",
+      "title": "Langflow Unauthenticated Authentication Bypass and RCE",
+      "cve": "CVE-2026-LANGFLOW",
+      "cvss": "9.8 CRITICAL",
+      "domain": "AI & LLM Security",
+      "nistMapping": "NIST CSF 2.0: PR.PS-02, DE.CM-01, RS.MI-01",
+      "whatHappened": "IBM disclosed two critical vulnerabilities affecting all versions of Langflow from 1.0.0 through 1.12.8, allowing unauthenticated attackers to completely bypass security controls and execute arbitrary system commands.",
+      "technicalMechanism": "The vulnerability stems from improper validation in Langflow's workflow parsing modules. Attackers craft specially structured API requests that bypass session validation routines, directly invoking execution sinks within the agent pipeline handler.",
+      "asciiFlow": "[External Attacker] ──► (Unauthenticated HTTP) ──► [Langflow Vulnerable Endpoint] ──► [OS Command Execution Sink]",
       "remediation": [
-        "Immediately upgrade LXD and MicroCloud packages to Canonical patch release v5.21.2/v6.0+ via apt.",
-        "Restrict LXD API access strictly to isolated internal management VLANs or WireGuard bastion tunnels.",
-        "Audit existing trusted certificate registries and regenerate cluster CA trust stores across all production nodes."
+        "Immediately upgrade Langflow instances to version 1.13.0 or later.",
+        "Implement network-level segmentation blocking external access to developer AI workflow tools.",
+        "Deploy WAF signatures to detect abnormal payload structures targeting Langflow API routes."
       ],
-      "lessonsLearned": "Never decouple identity presentation from cryptographic proof of possession; application-layer auth handlers must rely exclusively on fully validated mTLS context terminated at the transport layer."
+      "lessonsLearned": "Rapid proliferation of AI agent orchestration tools has outpaced standard secure coding paradigms. Edge AI components must be treated with the same zero-trust perimeter enforcement as critical database servers."
     },
     {
       "id": "dd-02",
-      "badge": "DEEP DIVE #02 // APPLICATION SECURITY",
-      "title": "Client-Side Supply Chain Hijack via Third-Party DOM Manipulation at Polymarket",
-      "cve": "MITRE ATT&CK T1195.002",
-      "cvss": "8.2 HIGH",
-      "domain": "Application Security",
-      "nistMapping": "Protect (PR.PS-06), Govern (GV.SC-04), Detect (DE.CM-03)",
-      "whatHappened": "Decentralized prediction market Polymarket suffered an exploitation incident resulting in the unauthorized liquidation and theft of approximately $2.7 million across 726 user wallets. Threat actors compromised an external vendor host script (DebugBear) loaded dynamically by the Polymarket web application, injecting malicious JavaScript directly into active trader sessions to trigger wallet transactions without direct user intent.",
-      "technicalMechanism": "The vulnerability stems from dynamic script loading without cryptographic immutability guarantees. The web application dynamically sourced an external telemetry script from a CDN without Subresource Integrity (SRI) attributes and maintained an overly permissive Content Security Policy (CSP). Attackers modified the hosted asset on DebugBear's infrastructure to inject payload logic that hooked Web3 provider APIs (e.g., window.ethereum), intercepting authenticated sessions and submitting batched transaction orders to attacker-controlled smart contract wallets.",
-      "asciiFlow": "[Compromised CDN (DebugBear)] ──(Tampered JS Payload)──► [Victim Browser DOM] ──► [Unauthorized Wallet Drain]",
+      "badge": "DEEP DIVE #02 // IDENTITY & ACCESS MANAGEMENT",
+      "title": "Microsoft Teams Social Engineering Combined with AD CS Abuse",
+      "cve": "T1566.003 / T1649",
+      "cvss": "8.8 HIGH",
+      "domain": "Identity & Access Management",
+      "nistMapping": "NIST CSF 2.0: PR.AC-01, DE.CM-02, RS.MI-02",
+      "whatHappened": "Threat actors successfully compromised enterprise domain controllers by combining high-touch social engineering over Microsoft Teams with deep internal privilege escalation via Active Directory Certificate Services.",
+      "technicalMechanism": "Attackers posed as IT helpdesk personnel via Teams, persuading employees to grant remote PC access. Once inside, they abused misconfigured AD CS templates (specifically vulnerable to ESC1-like abuse) to enroll for authentication certificates on behalf of privileged domain accounts.",
+      "asciiFlow": "[Teams Social Engineering] ──► [Remote PC Access] ──► [AD CS Certificate Enrollment] ──► [Domain Controller Compromise]",
       "remediation": [
-        "Enforce strict Subresource Integrity (SRI) hashes on all externally hosted JavaScript libraries.",
-        "Deploy CSP headers restricting script-src to strict nonces, disallowing wildcard and unvetted third-party domains.",
-        "Implement client-side script integrity monitoring and real-time DOM mutation defense architectures."
+        "Audit Active Directory Certificate Services (AD CS) templates for dangerous configurations (e.g., EDIT_FLAGS, ENROLLEE_SUPPLIES_SUBJECT).",
+        "Implement strict verification protocols for internal IT support interactions.",
+        "Deploy EDR rules alerting on anomalous certutil or MMC certificate requests."
       ],
-      "lessonsLearned": "Third-party client-side dependencies run within the full trust context of the originating application; unpinned external scripts represent direct execution pathways into user sessions."
+      "lessonsLearned": "Identity is the new perimeter, but human gullibility remains a persistent bypass. Combining collaboration platform trust with foundational cryptographic weaknesses highlights the danger of siloed security assessments."
     },
     {
       "id": "dd-03",
-      "badge": "DEEP DIVE #03 // AI & LLM SECURITY",
-      "title": "Autonomous Offensive Agentic Intrusions Exploiting Internal Role Telemetry",
-      "cve": "MITRE ATT&CK T1078 / T1059",
-      "cvss": "7.5 HIGH",
-      "domain": "AI & LLM Security",
-      "nistMapping": "Identify (ID.AM-05), Protect (PR.AC-03), Detect (DE.AE-04)",
-      "whatHappened": "Blockchain intelligence firm Chainalysis confirmed an intrusion into internal systems driven by external threat actors leveraging offensive agentic tooling. The intrusion focused on navigating internal tool frameworks and identity stores, resulting in the unauthorized exfiltration of corporate customer role listings, operational user IDs, and system directory metadata while evading traditional anomaly baselines.",
-      "technicalMechanism": "Adversaries deployed multi-agent autonomous execution loops that combine LLM-driven decision engines with dynamic API orchestration. Upon securing an initial foothold, the autonomous agent parsed internal API documentation, generated customized GraphQL/REST query patterns to bypass rate limits, and adapted exfiltration schedules based on real-time endpoint latency and error code analysis. This minimized human operator footprints and outpaced standard static rule behavioral heuristics.",
-      "asciiFlow": "[Offensive LLM Agent] ──(Dynamic API Discovery)──► [Internal Tooling Interface] ──► [Structured Role Data Exfiltration]",
+      "badge": "DEEP DIVE #03 // OT / ICS SECURITY",
+      "title": "European Supermarket Refrigeration Sabotage Campaign",
+      "cve": "OT-ICS-REFRIGERATION",
+      "cvss": "8.2 HIGH",
+      "domain": "OT / ICS Security",
+      "nistMapping": "NIST CSF 2.0: PR.PT-04, DE.CM-05, RS.RP-01",
+      "whatHappened": "Multiple supermarket chains across Europe experienced significant operational disruptions after threat actors remotely accessed and altered temperature configurations on commercial refrigeration units.",
+      "technicalMechanism": "Attackers leveraged insecure remote maintenance channels and exposed building management system (BMS) gateways. By bypassing weak authentication on legacy controllers, they manipulated setpoints directly on PLCs managing cooling loops.",
+      "asciiFlow": "[Internet Exposure / Weak VPN] ──► [BMS / ICS Gateway] ──► [PLC Temperature Setpoints] ──► [Refrigeration Sabotage]",
       "remediation": [
-        "Implement behavioral rate-limiting and machine-speed anomaly detection across internal support APIs.",
-        "Enforce strict Zero Trust Access (ZTNA) policies requiring continuous step-up authentication for internal directories.",
-        "Restrict agentic network paths using least-privilege service boundary scopes and synthetic honeytoken monitoring."
+        "Disconnect all BMS and refrigeration controllers from direct internet reach; mandate encrypted, zero-trust VPNs with MFA.",
+        "Change default vendor passwords and implement robust session timeouts on industrial controllers.",
+        "Establish out-of-band telemetry monitoring for critical temperature shifts."
       ],
-      "lessonsLearned": "Agentic offensive frameworks eliminate latency between reconnaissance and exploitation; defensive telemetry must incorporate semantic-aware behavioral inspection of programmatic access."
+      "lessonsLearned": "Physical infrastructure convergence with IT networks continues to introduce catastrophic risk. Operational technology requires aggressive network segmentation and independent sensor verification."
     }
   ],
   "dailyQuestions": [
@@ -215,47 +231,47 @@
       "id": "q-secplus-01",
       "examBadge": "CompTIA Security+ (SY0-701)",
       "domain": "Domain 4.0: Security Operations",
-      "scenario": "A financial application allows users to connect their cryptocurrency wallets via a web browser. An attacker compromises a third-party analytics script delivered from an external vendor CDN, allowing injected client-side JavaScript to intercept user sessions and drain funds. Which of the following technical controls would directly prevent the browser from executing the tampered script?",
+      "scenario": "A security analyst discovers that an attacker gained unauthorized access to an internal workstation by impersonating IT support over Microsoft Teams and subsequently abused Active Directory Certificate Services (AD CS) to obtain a domain controller certificate. Which of the following mitigation strategies is MOST effective to prevent the AD CS escalation vector?",
       "options": [
-        "A) Deploying an IP-based web application firewall (WAF) rule blocking the analytics vendor",
-        "B) Configuring Subresource Integrity (SRI) attributes on all external script tags",
-        "C) Enforcing multi-factor authentication (MFA) on the web application login page",
-        "D) Enabling transport layer security (TLS 1.3) with ephemeral Diffie-Hellman ciphers"
+        "A) Enforce complex password policies for all domain user accounts.",
+        "B) Audit and disable insecure certificate templates that allow enrollee-supplied subject alternative names.",
+        "C) Implement full-disk encryption on all employee workstations.",
+        "D) Deploy a web application firewall (WAF) in front of the Microsoft Teams servers."
       ],
       "correctIndex": 1,
-      "rationale": "Subresource Integrity (SRI) enables browsers to verify that resources fetched from third-party CDNs are delivered without unexpected manipulation by comparing cryptographic hashes. If the script content changes, the hash mismatch causes the browser to reject execution. A WAF inspects server ingress rather than external CDN assets fetched by the client, MFA does not prevent client-side DOM hijacking within an active session, and TLS guarantees transport encryption but not external asset integrity."
+      "rationale": "Option B directly addresses the AD CS vulnerability mechanism where misconfigured templates allow users to supply arbitrary subject names, leading to privilege escalation. Option A, C, and D do not mitigate AD CS misconfigurations."
     },
     {
       "id": "q-secx-01",
       "examBadge": "CompTIA SecurityX (CAS-005)",
       "domain": "Domain 2.0: Security Architecture",
-      "scenario": "A principal architect is redesigning the API authentication layer for an enterprise cloud hypervisor cluster following a critical vulnerability where an API daemon allowed client impersonation by validating the presented public X.509 certificate without verifying the client's possession of the associated private key. Which architectural implementation completely resolves this vulnerability at the transport and session layers?",
+      "scenario": "An enterprise is integrating open-source AI agent frameworks (such as Langflow) into its internal automation pipeline. Recent intelligence highlights critical unauthenticated RCE vulnerabilities in these frameworks. As the Principal Security Architect, which architectural control should you implement FIRST to mitigate zero-day risks in third-party AI orchestration tools?",
       "options": [
-        "A) Implementing an API Gateway that checks the certificate serial number against an LDAP directory via Basic Authentication",
-        "B) Terminating TLS at a dedicated reverse proxy enforcing mandatory bidirectional mTLS with cryptographic verification of the CertificateVerify handshake before forwarding identity headers",
-        "C) Encapsulating API communications inside a perimeter IPSec tunnel using pre-shared keys while retaining the application daemon's native certificate parsing",
-        "D) Requiring client certificates to be accompanied by a JSON Web Token (JWT) signed by a symmetric HMAC key distributed to all cluster nodes"
+        "A) Migrate all AI workloads to public cloud managed services to leverage native provider patching.",
+        "B) Isolate the AI orchestration environment within a restricted, zero-trust microsegment with egress filtering and unprivileged container runtimes.",
+        "C) Require all developers to sign code commits before deployment into the AI pipeline.",
+        "D) Implement signature-based antivirus scanning on all training dataset files."
       ],
       "correctIndex": 1,
-      "rationale": "The root vulnerability occurred because the application accepted public certificates without enforcing proof of private key possession through the standard TLS CertificateVerify handshake. Enforcing mutual TLS (mTLS) at a hardened reverse proxy or gateway ensures the handshake cryptographically validates private key possession via an asymmetric challenge before establishing the session. Distributing symmetric HMAC keys scales poorly and risks shared-secret compromise, IPSec tunnels don't fix application-layer cert logic flaws, and serial number lookups without private key proof remain vulnerable to impersonation."
+      "rationale": "Option B is the correct architectural response for zero-day mitigation in complex third-party tools. Microsegmentation, unprivileged container execution, and egress filtering limit the blast radius of potential RCE exploits. Options A, C, and D fail to protect against unauthenticated application-layer zero-days."
     }
   ],
   "detectionRules": [
     {
       "id": "rule-suricata-01",
       "type": "SURICATA IDS / IPS RULE",
-      "title": "Canonical LXD / MicroCloud Unauthorized API Certificate Impersonation Attempt",
+      "title": "Langflow Unauthenticated API Access and Potential RCE Attempt",
       "targetEngine": "Suricata 7.x+",
       "mitreTechnique": "T1190 - Exploit Public-Facing Application",
-      "code": "alert http $EXTERNAL_NET any -> $HOME_NET 8443 (msg:\"EXPLOIT Canonical LXD API Insecure Client Cert Auth Bypass Attempt\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/1.0/\"; http.header; content:\"X-LXD-client-cert:\"; fast_pattern; classtype:attempted-admin; sid:20261101; rev:1; metadata:created_at 2026_11_01, cve CVE-2026-LXD-BYPASS;)"
+      "code": "alert http $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:\"ET EXPLOIT Langflow Unauthenticated API Access / RCE Attempt (CVE-2026-LANGFLOW)\"; flow:established,to_server; http.uri; content:\"/api/v1/\"; content:\"run\"; distance:0; pcre:\"/\\/api\\/v1\\/(flows|run)/Ui\"; classtype:attempted-admin; sid:202611021; rev:1;)"
     },
     {
       "id": "rule-sigma-01",
       "type": "SIGMA SIEM / EDR RULE",
-      "title": "Suspicious Process Spawning from Ivanti Connect Secure / Linux Gateway Daemons",
+      "title": "Suspicious Certificate Request via Certutil or MMC Indicating AD CS Abuse",
       "targetEngine": "Wazuh / Splunk / Sentinel",
-      "mitreTechnique": "T1059.004 - Command and Scripting Interpreter: Unix Shell",
-      "code": "title: Web Server or Gateway Daemon Spawning Interactive Shell\nid: a89f5b21-4d32-4e9b-b567-202611010001\nstatus: production\ndescription: Detects anomalous shell execution originating from Ivanti Connect Secure or container hypervisor API processes following exploitation.\nlogsource:\n  category: process_creation\n  product: linux\ndetection:\n  selection:\n    ParentImage|endswith:\n      - '/dsrest'\n      - '/lxd'\n      - '/nginx'\n      - '/httpd'\n    Image|endswith:\n      - '/bin/sh'\n      - '/bin/bash'\n      - '/bin/dash'\n      - '/usr/bin/python'\n      - '/usr/bin/perl'\n  condition: selection\nfalsepositives:\n  - Legitimate administrative maintenance scripts initiated via approved orchestration engines\nlevel: critical\ntags:\n  - attack.initial_access\n  - attack.t1190\n  - attack.t1059.004"
+      "mitreTechnique": "T1649 - Steal or Forge Authentication Certificates",
+      "code": "title: Suspicious Certificate Enrollment Activity Indicating AD CS Abuse\nstatus: production\ndescription: Detects suspicious certutil execution or MMC certificate snap-in requests often associated with Active Directory Certificate Services exploitation.\nreferences:\n  - https://thehackernews.com/2026/11/attackers-pose-as-it-support-on.html\nlogsource:\n  category: process_creation\n  product: windows\ndetection:\n  selection_certutil:\n    Image|endswith: '\\certutil.exe'\n    CommandLine|contains:\n      - ' -encode '\n      - ' -decode '\n      - ' -enroll'\n  selection_mmc:\n    Image|endswith: '\\mmc.exe'\n    CommandLine|contains: 'certmgr.msc'\n  condition: selection_certutil or selection_mmc\nfalsepositives:\n  - Legitimate administrative certificate maintenance by authorized PKI engineers.\nlevel: high"
     }
   ]
 }
