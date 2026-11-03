@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-11-02T16:09:42Z",
-  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-02)",
+  "lastUpdated": "2026-11-03T14:25:46Z",
+  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-03)",
   "threatLevel": "CRITICAL (DEFCON 2)",
   "summaryMetrics": {
     "activeKevExploits": 14,
@@ -10,14 +10,14 @@
   },
   "attackLog": [
     {
-      "id": "INC-2026-11-02-01",
-      "incidentOrCve": "Langflow RCE & Auth Bypass",
-      "target": "Langflow (Versions 1.0.0 through 1.12.8)",
-      "domain": "AI & LLM Security",
+      "id": "INC-2026-11-03-01",
+      "incidentOrCve": "CVE-2026-98432",
+      "domain": "Endpoint Security",
+      "target": "Linux Kernel IPv4 TCP stack",
       "severity": "CRITICAL",
       "cvss": "9.8",
-      "attackVector": "Unauthenticated remote attackers can bypass authentication flows and achieve remote code execution on servers running vulnerable Langflow instances.",
-      "immediateSolution": "Upgrade immediately to Langflow version 1.13.0.",
+      "attackVector": "A remote, unauthenticated attacker triggers a use-after-free vulnerability within the Linux kernel's IPv4 TCP subsystem.",
+      "immediateSolution": "Apply vendor-supplied kernel patches across Red Hat Enterprise Linux 8, 9, and 10; migrate Ubuntu testing fixes into production pipelines.",
       "nistImpact": [
         "Protect (PR.PS-02)",
         "Detect (DE.CM-01)",
@@ -26,204 +26,180 @@
       "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-11-02-02",
-      "incidentOrCve": "DarkBlinders Espionage Campaign",
-      "target": "Israeli Targets and Iraqi Kurdish Government Cloud",
-      "domain": "Cloud Security",
+      "id": "INC-2026-11-03-02",
+      "incidentOrCve": "WinRAR Zero-Day Exploitation by Gorbag",
+      "domain": "Application Security",
+      "target": "Ukrainian defense, law enforcement, and local administration",
       "severity": "CRITICAL",
-      "cvss": "9.0",
-      "attackVector": "Iran state-aligned threat actors executed targeted cyber espionage operations, compromising high-profile cloud environments and personal accounts.",
-      "immediateSolution": "Enforce strict multi-factor authentication, audit cloud IAM permissions, and review anomalous API logging.",
+      "cvss": "8.8",
+      "attackVector": "Russia-aligned Gorbag threat actors leverage WinRAR vulnerabilities to distribute information-stealing malware payloads.",
+      "immediateSolution": "Update WinRAR to the latest patched version and enforce application control policies.",
       "nistImpact": [
-        "Protect (PR.AC-04)",
-        "Detect (DE.AE-03)",
+        "Protect (PR.PT-01)",
+        "Detect (DE.AE-01)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-03-03",
+      "incidentOrCve": "BTCPay Server Hot Wallet Compromise",
+      "domain": "Application Security",
+      "target": "BTCPay Server instances (v2.4.1 and earlier)",
+      "severity": "CRITICAL",
+      "cvss": "9.1",
+      "attackVector": "Attackers exploit application flaws to siphon Bitcoin and Litecoin directly from hot wallets on self-hosted instances.",
+      "immediateSolution": "Immediately update BTCPay Server to the latest release and restrict hot wallet balances.",
+      "nistImpact": [
+        "Protect (PR.DS-01)",
         "Respond (RS.AN-01)"
       ],
       "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-11-02-03",
-      "incidentOrCve": "Teams Social Engineering & AD CS Abuse",
-      "target": "Enterprise Domain Controllers via Active Directory Certificate Services",
-      "domain": "Identity & Access Management",
-      "severity": "CRITICAL",
-      "cvss": "8.8",
-      "attackVector": "Attackers pose as IT support via Microsoft Teams, trick users into remote PC control, and abuse insecure AD CS settings to mint domain controller certificates.",
-      "immediateSolution": "Disable vulnerable certificate templates (ESC1-ESC8), harden AD CS permissions, and train staff against IT impersonation.",
-      "nistImpact": [
-        "Protect (PR.AC-01)",
-        "Detect (DE.CM-02)",
-        "Respond (RS.MI-02)"
-      ],
-      "source": "The Hacker News"
-    },
-    {
-      "id": "INC-2026-11-02-04",
-      "incidentOrCve": "CL-UNK-1211 SysGoRAT & AI Scripts",
-      "target": "Government Linux Infrastructure",
-      "domain": "Endpoint Security",
+      "id": "INC-2026-11-03-04",
+      "incidentOrCve": "Synology DSM Ransomware Campaign",
+      "domain": "Cloud Security",
+      "target": "Synology Network Attached Storage (NAS) devices",
       "severity": "HIGH",
       "cvss": "8.5",
-      "attackVector": "State-sponsored threat cluster deploys SysGoRAT alongside suspected AI-generated utility scripts to compromise Linux-based government servers.",
-      "immediateSolution": "Deploy endpoint detection and response (EDR) for Linux, monitor cron jobs and atypical SSH keys, and patch underlying OS vulnerabilities.",
+      "attackVector": "Threat actors exploit an older, patched flaw in DiskStation Manager (DSM) to encrypt enterprise storage devices.",
+      "immediateSolution": "Apply DSM security updates immediately and ensure NAS devices are not exposed directly to the public internet.",
       "nistImpact": [
-        "Protect (PR.PT-01)",
-        "Detect (DE.CM-07)",
-        "Respond (RS.AN-03)"
+        "Protect (PR.IP-12)",
+        "Recover (RC.RP-01)"
       ],
       "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-11-02-05",
-      "incidentOrCve": "VOLTA-AUTODOXER Infostealer",
-      "target": "Windows Workstations (Browsers, Outlook, Slack)",
+      "id": "INC-2026-11-03-05",
+      "incidentOrCve": "European Supermarket Refrigeration Attack",
+      "domain": "OT / ICS Security",
+      "target": "Danfoss refrigeration controls in European supermarkets",
+      "severity": "CRITICAL",
+      "cvss": "8.2",
+      "attackVector": "Remote unauthorized configuration adjustments alter refrigeration settings, compromising cold storage chains.",
+      "immediateSolution": "Isolate OT network segments, disable remote unauthenticated management interfaces, and enforce strict MFA.",
+      "nistImpact": [
+        "Protect (PR.AC-04)",
+        "Detect (DE.CM-02)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-03-06",
+      "incidentOrCve": "3AM Ransomware AI-Assisted UK School Attack",
       "domain": "Endpoint Security",
+      "target": "UK school estate server and endpoint environment",
+      "severity": "CRITICAL",
+      "cvss": "9.0",
+      "attackVector": "3AM ransomware affiliate utilizes AI-driven loops to generate and execute rapid lateral movement and encryption commands.",
+      "immediateSolution": "Implement EDR behavioral blocking policies and isolate unmanaged network hosts immediately.",
+      "nistImpact": [
+        "Detect (DE.CM-03)",
+        "Respond (RS.MI-02)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-03-07",
+      "incidentOrCve": "Harvard University Data Breach",
+      "domain": "Identity & Access Management",
+      "target": "Harvard University Alumni Affairs and Development systems",
       "severity": "HIGH",
       "cvss": "7.8",
-      "attackVector": "Windows infostealer harvests browser credentials, cookies, and chat data, leveraging external LLMs (Claude, Gemini, Kimi) to monetize victim files.",
-      "immediateSolution": "Block execution of unauthorized binaries, implement memory protection, and invalidate compromised session tokens immediately.",
+      "attackVector": "Unauthorized system access exposes personal identification data across 851,000 unique accounts.",
+      "immediateSolution": "Rotate credentials, enforce enterprise-wide hardware token MFA, and notify affected constituents.",
       "nistImpact": [
-        "Protect (PR.DS-01)",
-        "Detect (DE.AE-01)",
-        "Respond (RS.MI-03)"
-      ],
-      "source": "The Hacker News"
-    },
-    {
-      "id": "INC-2026-11-02-06",
-      "incidentOrCve": "BTCPay Server Hot Wallet Drain",
-      "target": "Outdated BTCPay Server Instances",
-      "domain": "Application Security",
-      "severity": "CRITICAL",
-      "cvss": "9.1",
-      "attackVector": "Threat actors exploit known vulnerabilities in unpatched BTCPay Server deployments to drain cryptocurrency hot wallets.",
-      "immediateSolution": "Update BTCPay Server to the latest release and migrate hot wallet assets to cold storage environments.",
-      "nistImpact": [
-        "Protect (PR.PS-01)",
-        "Detect (DE.CM-08)",
-        "Respond (RS.MI-01)"
-      ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-11-02-07",
-      "incidentOrCve": "European Supermarket Refrigeration Sabotage",
-      "target": "Commercial HVAC & Refrigeration Systems",
-      "domain": "OT / ICS Security",
-      "severity": "HIGH",
-      "cvss": "8.2",
-      "attackVector": "Remote cyberattackers altered temperature settings on freezers and cooling units across multi-chain European supermarkets.",
-      "immediateSolution": "Isolate ICS/SCADA networks from the corporate network, enforce VPN access with MFA, and audit vendor remote access tools.",
-      "nistImpact": [
-        "Protect (PR.PT-04)",
-        "Detect (DE.CM-05)",
-        "Respond (RS.RP-01)"
-      ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-11-02-08",
-      "incidentOrCve": "GitLab RCE Exploitation",
-      "target": "Internet-Exposed GitLab Servers (>1,000 instances)",
-      "domain": "Application Security",
-      "severity": "CRITICAL",
-      "cvss": "9.8",
-      "attackVector": "Active remote code execution attacks targeting unpatched, public-facing GitLab server instances.",
-      "immediateSolution": "Apply the latest security patches provided by GitLab and ensure instances are not directly exposed to the public internet without a WAF.",
-      "nistImpact": [
-        "Protect (PR.PS-02)",
-        "Detect (DE.CM-01)",
-        "Respond (RS.MI-01)"
-      ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-11-02-09",
-      "incidentOrCve": "Synology C3RB3R Ransomware",
-      "target": "Synology Network-Attached Storage (NAS) Devices",
-      "domain": "Network Security",
-      "severity": "HIGH",
-      "cvss": "8.6",
-      "attackVector": "Surge of ransomware attacks exploiting legacy firmware and misconfigured admin services on internet-facing NAS appliances.",
-      "immediateSolution": "Update DiskStation Manager (DSM), disable default administrator accounts, and restrict external exposure of management ports.",
-      "nistImpact": [
-        "Protect (PR.AC-03)",
-        "Detect (DE.AE-02)",
+        "Protect (PR.DS-05)",
         "Respond (RS.CO-02)"
       ],
       "source": "BleepingComputer"
     },
     {
-      "id": "INC-2026-11-02-10",
-      "incidentOrCve": "PapRAT Cyber Espionage Campaign",
-      "target": "Organizations in South Asia",
-      "domain": "Endpoint Security",
+      "id": "INC-2026-11-03-08",
+      "incidentOrCve": "ARTEX AI Automated Multi-Agent Campaign",
+      "domain": "AI & LLM Security",
+      "target": "200 organizations across 14 international jurisdictions",
       "severity": "HIGH",
-      "cvss": "7.9",
-      "attackVector": "India-linked threat actor leverages legitimate Windows utilities across three distinct attack chains to conduct long-term espionage.",
-      "immediateSolution": "Monitor execution of native Windows binaries (Living off the Land) and enforce strict application allowlisting.",
+      "cvss": "8.4",
+      "attackVector": "Chinese threat actors employ the open-source ARTEX multi-agent AI framework for automated penetration testing and exploitation.",
+      "immediateSolution": "Monitor for anomalous API usage patterns, audit AI tool deployments, and apply tight egress filtering.",
       "nistImpact": [
-        "Protect (PR.PT-01)",
-        "Detect (DE.CM-07)",
-        "Respond (RS.AN-02)"
+        "Identify (ID.AM-01)",
+        "Detect (DE.AE-03)"
       ],
-      "source": "Dark Reading"
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-03-09",
+      "incidentOrCve": "Sageworks Fintech Platform Incident",
+      "domain": "Cloud Security",
+      "target": "Abrigo Sageworks risk management platform",
+      "severity": "HIGH",
+      "cvss": "7.5",
+      "attackVector": "Irregular system activity forces the offline takedown of financial risk management applications.",
+      "immediateSolution": "Conduct forensic root-cause analysis, isolate affected cloud microservices, and restore from clean immutable backups.",
+      "nistImpact": [
+        "Respond (RS.AN-03)",
+        "Recover (RC.IM-01)"
+      ],
+      "source": "BleepingComputer"
     }
   ],
   "deepDives": [
     {
       "id": "dd-01",
-      "badge": "DEEP DIVE #01 // AI & LLM SECURITY",
-      "title": "Langflow Unauthenticated Authentication Bypass and RCE",
-      "cve": "CVE-2026-LANGFLOW",
+      "badge": "DEEP DIVE #01 // KERNEL VULNERABILITY",
+      "title": "Linux TCP Use-After-Free Vulnerability (CVE-2026-98432)",
+      "cve": "CVE-2026-98432",
       "cvss": "9.8 CRITICAL",
-      "domain": "AI & LLM Security",
-      "nistMapping": "NIST CSF 2.0: PR.PS-02, DE.CM-01, RS.MI-01",
-      "whatHappened": "IBM disclosed two critical vulnerabilities affecting all versions of Langflow from 1.0.0 through 1.12.8, allowing unauthenticated attackers to completely bypass security controls and execute arbitrary system commands.",
-      "technicalMechanism": "The vulnerability stems from improper validation in Langflow's workflow parsing modules. Attackers craft specially structured API requests that bypass session validation routines, directly invoking execution sinks within the agent pipeline handler.",
-      "asciiFlow": "[External Attacker] ──► (Unauthenticated HTTP) ──► [Langflow Vulnerable Endpoint] ──► [OS Command Execution Sink]",
+      "domain": "Endpoint Security",
+      "nistMapping": "PR.PS-02, DE.CM-01, RS.MI-01",
+      "whatHappened": "A high-severity use-after-free flaw was discovered within the Linux kernel's IPv4 TCP stack, allowing remote unauthenticated attackers to achieve arbitrary remote code execution. Major enterprise distributors like Red Hat scrambled to release patches, while downstream distributions like Ubuntu faced delays in their testing repositories.",
+      "technicalMechanism": "The vulnerability stems from improper memory management during complex TCP state transitions where pointer dereferences occur after memory deallocation. By carefully crafting TCP packets, an adversary can manipulate heap layout, resulting in reliable control flow hijacking and kernel-level code execution.",
+      "asciiFlow": "[Remote Attacker] ──► Crafted TCP Packets ──► [Linux Kernel IPv4 Stack] ──► [Heap UAF / RCE]",
       "remediation": [
-        "Immediately upgrade Langflow instances to version 1.13.0 or later.",
-        "Implement network-level segmentation blocking external access to developer AI workflow tools.",
-        "Deploy WAF signatures to detect abnormal payload structures targeting Langflow API routes."
+        "Apply kernel updates immediately across Red Hat and Ubuntu environments.",
+        "Implement strict network-layer rate limiting and SYN-flood protections.",
+        "Deploy runtime memory safety guards and kernel integrity monitors."
       ],
-      "lessonsLearned": "Rapid proliferation of AI agent orchestration tools has outpaced standard secure coding paradigms. Edge AI components must be treated with the same zero-trust perimeter enforcement as critical database servers."
+      "lessonsLearned": "Kernel memory corruption vulnerabilities in foundational network stacks require automated patch delivery pipelines that bypass lengthy opt-in testing channels during zero-day crises."
     },
     {
       "id": "dd-02",
-      "badge": "DEEP DIVE #02 // IDENTITY & ACCESS MANAGEMENT",
-      "title": "Microsoft Teams Social Engineering Combined with AD CS Abuse",
-      "cve": "T1566.003 / T1649",
-      "cvss": "8.8 HIGH",
-      "domain": "Identity & Access Management",
-      "nistMapping": "NIST CSF 2.0: PR.AC-01, DE.CM-02, RS.MI-02",
-      "whatHappened": "Threat actors successfully compromised enterprise domain controllers by combining high-touch social engineering over Microsoft Teams with deep internal privilege escalation via Active Directory Certificate Services.",
-      "technicalMechanism": "Attackers posed as IT helpdesk personnel via Teams, persuading employees to grant remote PC access. Once inside, they abused misconfigured AD CS templates (specifically vulnerable to ESC1-like abuse) to enroll for authentication certificates on behalf of privileged domain accounts.",
-      "asciiFlow": "[Teams Social Engineering] ──► [Remote PC Access] ──► [AD CS Certificate Enrollment] ──► [Domain Controller Compromise]",
+      "badge": "DEEP DIVE #02 // OT CYBERSECURITY",
+      "title": "Cross-Border Supermarket Refrigeration Manipulation",
+      "cve": "T1210 - Exploitation of Remote Services",
+      "cvss": "8.2 HIGH",
+      "domain": "OT / ICS Security",
+      "nistMapping": "PR.AC-04, DE.CM-02, RC.RP-01",
+      "whatHappened": "Overnight, threat actors executed a coordinated cyberattack against refrigeration controls manufactured by Danfoss, targeting supermarkets across Belgium, Sweden, and Estonia. The attack remotely altered temperature parameters, forcing retailers to discard large volumes of perishable goods.",
+      "technicalMechanism": "Attackers gained unauthorized access to building management systems (BMS) and HVAC/refrigeration controllers, likely via exposed industrial IoT gateways or compromised vendor maintenance credentials, directly modifying setpoints through poorly secured proprietary protocols.",
+      "asciiFlow": "[External Threat Actor] ──► [Exposed IIoT Gateway / BMS] ──► [Danfoss Controls] ──► [Refrigeration Sabotage]",
       "remediation": [
-        "Audit Active Directory Certificate Services (AD CS) templates for dangerous configurations (e.g., EDIT_FLAGS, ENROLLEE_SUPPLIES_SUBJECT).",
-        "Implement strict verification protocols for internal IT support interactions.",
-        "Deploy EDR rules alerting on anomalous certutil or MMC certificate requests."
+        "Disconnect all industrial refrigeration and HVAC controllers from direct public internet access.",
+        "Mandate multi-factor authentication (MFA) and zero-trust network access (ZTNA) for vendor remote maintenance.",
+        "Deploy specialized OT intrusion detection systems (IDS) to flag unauthorized configuration modifications."
       ],
-      "lessonsLearned": "Identity is the new perimeter, but human gullibility remains a persistent bypass. Combining collaboration platform trust with foundational cryptographic weaknesses highlights the danger of siloed security assessments."
+      "lessonsLearned": "Physical safety and food security are increasingly dependent on IT/OT convergence security; perimeter isolation and strict monitoring of operational setpoint changes are non-negotiable."
     },
     {
       "id": "dd-03",
-      "badge": "DEEP DIVE #03 // OT / ICS SECURITY",
-      "title": "European Supermarket Refrigeration Sabotage Campaign",
-      "cve": "OT-ICS-REFRIGERATION",
-      "cvss": "8.2 HIGH",
-      "domain": "OT / ICS Security",
-      "nistMapping": "NIST CSF 2.0: PR.PT-04, DE.CM-05, RS.RP-01",
-      "whatHappened": "Multiple supermarket chains across Europe experienced significant operational disruptions after threat actors remotely accessed and altered temperature configurations on commercial refrigeration units.",
-      "technicalMechanism": "Attackers leveraged insecure remote maintenance channels and exposed building management system (BMS) gateways. By bypassing weak authentication on legacy controllers, they manipulated setpoints directly on PLCs managing cooling loops.",
-      "asciiFlow": "[Internet Exposure / Weak VPN] ──► [BMS / ICS Gateway] ──► [PLC Temperature Setpoints] ──► [Refrigeration Sabotage]",
+      "badge": "DEEP DIVE #03 // ARTIFICIAL INTELLIGENCE",
+      "title": "Autonomous AI-Driven Penetration Testing and Ransomware Loops",
+      "cve": "T1059 - Command and Scripting Interpreter",
+      "cvss": "9.0 CRITICAL",
+      "domain": "AI & LLM Security",
+      "nistMapping": "ID.AM-01, DE.AE-03, RS.MI-02",
+      "whatHappened": "Recent attacks against European educational infrastructure and 200 global organizations revealed the use of advanced multi-agent AI frameworks (such as ARTEX and autonomous affiliate loops) to dynamically execute reconnaissance, lateral movement, and ransomware deployment without heavy human intervention.",
+      "technicalMechanism": "The threat actors leverage open-source or custom multi-agent LLM loops to analyze victim environment responses in real-time, automatically generate PowerShell and Bash scripts tailored to discovered defenses, and pivot across internal network segments at machine speed.",
+      "asciiFlow": "[Threat Actor Orchestrator] ──► [Multi-Agent AI Framework] ──► [Automated Recon & Exploitation] ──► [Rapid Encryption]",
       "remediation": [
-        "Disconnect all BMS and refrigeration controllers from direct internet reach; mandate encrypted, zero-trust VPNs with MFA.",
-        "Change default vendor passwords and implement robust session timeouts on industrial controllers.",
-        "Establish out-of-band telemetry monitoring for critical temperature shifts."
+        "Enforce strict EDR behavioral rules capable of detecting anomalous automated script execution chains.",
+        "Monitor external and internal API calls for unauthorized use of LLM-based penetration testing frameworks.",
+        "Implement rapid micro-segmentation to limit the blast radius of autonomous lateral movement."
       ],
-      "lessonsLearned": "Physical infrastructure convergence with IT networks continues to introduce catastrophic risk. Operational technology requires aggressive network segmentation and independent sensor verification."
+      "lessonsLearned": "Defenders must adopt machine-speed automated response capabilities, as human-paced incident response is insufficient against AI-orchestrated attack frameworks."
     }
   ],
   "dailyQuestions": [
@@ -231,47 +207,47 @@
       "id": "q-secplus-01",
       "examBadge": "CompTIA Security+ (SY0-701)",
       "domain": "Domain 4.0: Security Operations",
-      "scenario": "A security analyst discovers that an attacker gained unauthorized access to an internal workstation by impersonating IT support over Microsoft Teams and subsequently abused Active Directory Certificate Services (AD CS) to obtain a domain controller certificate. Which of the following mitigation strategies is MOST effective to prevent the AD CS escalation vector?",
+      "scenario": "An organization discovers that an attacker exploited a known use-after-free vulnerability in the Linux kernel's TCP stack (CVE-2026-98432) to gain remote code execution. As a security analyst, which of the following actions represents the most effective immediate mitigation while official patches are being tested?",
       "options": [
-        "A) Enforce complex password policies for all domain user accounts.",
-        "B) Audit and disable insecure certificate templates that allow enrollee-supplied subject alternative names.",
-        "C) Implement full-disk encryption on all employee workstations.",
-        "D) Deploy a web application firewall (WAF) in front of the Microsoft Teams servers."
+        "A) Disable all local user accounts on the affected Linux servers.",
+        "B) Implement network-level ingress filtering and inspect TCP packet headers via WAF/IPS rules to block exploit payloads.",
+        "C) Upgrade the database management system to the latest vendor version.",
+        "D) Rotate enterprise root certificate authorities."
       ],
       "correctIndex": 1,
-      "rationale": "Option B directly addresses the AD CS vulnerability mechanism where misconfigured templates allow users to supply arbitrary subject names, leading to privilege escalation. Option A, C, and D do not mitigate AD CS misconfigurations."
+      "rationale": "Option B is correct because deploying network-level IPS rules and ingress filtering mitigates remote exploitation attempts while kernel patch testing is underway. Options A, C, and D do not address the network-layer TCP vulnerability directly."
     },
     {
       "id": "q-secx-01",
       "examBadge": "CompTIA SecurityX (CAS-005)",
       "domain": "Domain 2.0: Security Architecture",
-      "scenario": "An enterprise is integrating open-source AI agent frameworks (such as Langflow) into its internal automation pipeline. Recent intelligence highlights critical unauthenticated RCE vulnerabilities in these frameworks. As the Principal Security Architect, which architectural control should you implement FIRST to mitigate zero-day risks in third-party AI orchestration tools?",
+      "scenario": "A principal security architect is reviewing the recent attack involving Danfoss refrigeration controls across European supermarkets, where threat actors manipulated operational setpoints via compromised remote gateways. Which architectural strategy best mitigates risks inherent in IT/OT convergence?",
       "options": [
-        "A) Migrate all AI workloads to public cloud managed services to leverage native provider patching.",
-        "B) Isolate the AI orchestration environment within a restricted, zero-trust microsegment with egress filtering and unprivileged container runtimes.",
-        "C) Require all developers to sign code commits before deployment into the AI pipeline.",
-        "D) Implement signature-based antivirus scanning on all training dataset files."
+        "A) Implement a flat network architecture to ensure unhindered telemetry flow between corporate IT and OT controllers.",
+        "B) Mandate zero-trust network access (ZTNA), strict unidirectional gateways, and mandatory MFA for all remote vendor maintenance access to industrial control systems.",
+        "C) Rely solely on perimeter firewalls without internal micro-segmentation.",
+        "D) Disable all logging on industrial controllers to maximize performance."
       ],
       "correctIndex": 1,
-      "rationale": "Option B is the correct architectural response for zero-day mitigation in complex third-party tools. Microsegmentation, unprivileged container execution, and egress filtering limit the blast radius of potential RCE exploits. Options A, C, and D fail to protect against unauthenticated application-layer zero-days."
+      "rationale": "Option B is correct. Zero-trust principles, unidirectional data diodes or strict segmentation, and mandatory MFA secure the management plane of OT environments against remote compromise. Flat networks (A) and lack of logging (D) exacerbate risk."
     }
   ],
   "detectionRules": [
     {
       "id": "rule-suricata-01",
       "type": "SURICATA IDS / IPS RULE",
-      "title": "Langflow Unauthenticated API Access and Potential RCE Attempt",
+      "title": "Detect Suspicious IPv4 TCP Malformed Packet Patterns for CVE-2026-98432",
       "targetEngine": "Suricata 7.x+",
       "mitreTechnique": "T1190 - Exploit Public-Facing Application",
-      "code": "alert http $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:\"ET EXPLOIT Langflow Unauthenticated API Access / RCE Attempt (CVE-2026-LANGFLOW)\"; flow:established,to_server; http.uri; content:\"/api/v1/\"; content:\"run\"; distance:0; pcre:\"/\\/api\\/v1\\/(flows|run)/Ui\"; classtype:attempted-admin; sid:202611021; rev:1;)"
+      "code": "alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:\"ET EXPLOIT Possible Linux Kernel TCP UAF Attempt (CVE-2026-98432)\"; flow:established,to_server; content:\"|02 04|\"; dsize:>1200; classtype:attempted-admin; sid:202698432; rev:1;)"
     },
     {
       "id": "rule-sigma-01",
       "type": "SIGMA SIEM / EDR RULE",
-      "title": "Suspicious Certificate Request via Certutil or MMC Indicating AD CS Abuse",
+      "title": "Detect Autonomous AI Framework Script Execution and Rapid Lateral Movement",
       "targetEngine": "Wazuh / Splunk / Sentinel",
-      "mitreTechnique": "T1649 - Steal or Forge Authentication Certificates",
-      "code": "title: Suspicious Certificate Enrollment Activity Indicating AD CS Abuse\nstatus: production\ndescription: Detects suspicious certutil execution or MMC certificate snap-in requests often associated with Active Directory Certificate Services exploitation.\nreferences:\n  - https://thehackernews.com/2026/11/attackers-pose-as-it-support-on.html\nlogsource:\n  category: process_creation\n  product: windows\ndetection:\n  selection_certutil:\n    Image|endswith: '\\certutil.exe'\n    CommandLine|contains:\n      - ' -encode '\n      - ' -decode '\n      - ' -enroll'\n  selection_mmc:\n    Image|endswith: '\\mmc.exe'\n    CommandLine|contains: 'certmgr.msc'\n  condition: selection_certutil or selection_mmc\nfalsepositives:\n  - Legitimate administrative certificate maintenance by authorized PKI engineers.\nlevel: high"
+      "mitreTechnique": "T1059 - Command and Scripting Interpreter",
+      "code": "title: Autonomous AI Tool Script Execution\nstatus: production\ndescription: Detects suspicious rapid script execution indicative of multi-agent AI frameworks like ARTEX.\nlogsource:\n  category: process_creation\n  product: windows\ndetection:\n  selection:\n    CommandLine|contains:\n      - 'python'\n      - 'powershell'\n      - 'agent'\n    ParentImage|endswith:\n      - '\\python.exe'\n      - '\\cmd.exe'\n  condition: selection\nfalsepositives:\n  - Legitimate administrative automation\nlevel: high"
     }
   ]
 }
