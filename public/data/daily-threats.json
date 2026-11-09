@@ -1,197 +1,197 @@
 {
-  "lastUpdated": "2026-11-08T13:35:34Z",
-  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-08)",
+  "lastUpdated": "2026-11-09T16:32:39Z",
+  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-09)",
   "threatLevel": "CRITICAL (DEFCON 2)",
   "summaryMetrics": {
     "activeKevExploits": 14,
     "zeroDaysTracked24h": 4,
-    "avgTimeToExploitHours": 3.8,
-    "globalRansomwareVictims24h": 39
+    "avgTimeToExploitHours": 6.2,
+    "globalRansomwareVictims24h": 35
   },
   "attackLog": [
     {
-      "id": "INC-2026-11-08-01",
+      "id": "INC-2026-11-09-01",
       "incidentOrCve": "CVE-2026-123158 (SSHole)",
-      "target": "OpenSSH on musl libc systems (Alpine/Embedded Linux)",
-      "domain": "Identity & Access Management",
-      "severity": "HIGH",
-      "cvss": "8.1",
-      "attackVector": "Authentication bypass in OpenSSH built against musl C library when PAM is disabled; allows empty/unrestricted passwordless login directly to root.",
-      "immediateSolution": "Patch OpenSSH package upstream, enable PAM authentication, or enforce key-only authentication via 'PasswordAuthentication no' and 'PermitEmptyPasswords no'.",
-      "nistImpact": [
-        "Protect (PR.AC-01)",
-        "Detect (DE.CM-01)",
-        "Respond (RS.MI-01)"
-      ],
-      "source": "The Hacker News"
-    },
-    {
-      "id": "INC-2026-11-08-02",
-      "incidentOrCve": "CVE-2026-44112",
-      "target": "SonicWall SonicOS SSL-VPN (SMA & TZ Series Firewalls)",
+      "target": "OpenSSH Portable & Linux Enterprise Daemons",
       "domain": "Network Security",
       "severity": "CRITICAL",
       "cvss": "9.8",
-      "attackVector": "Improper session state handling within SSL-VPN endpoints permitting remote unauthenticated MFA bypass and arbitrary administrative access.",
-      "immediateSolution": "Upgrade SonicOS to patched firmware branches (7.0.1-5095 / 6.5.4.15-116n) immediately; restrict SSL-VPN portal access via source IP access-lists.",
-      "nistImpact": [
-        "Protect (PR.AA-01)",
-        "Detect (DE.AE-02)",
-        "Respond (RS.RP-01)"
-      ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-11-08-03",
-      "incidentOrCve": "SEC-AI-CLAUDE-01",
-      "target": "Anthropic Claude Code CLI / Git Repositories",
-      "domain": "AI & LLM Security",
-      "severity": "HIGH",
-      "cvss": "8.4",
-      "attackVector": "Local CLI project settings file persist plaintext secrets into 'Don't Ask Again' approvals, resulting in accidental commits of sensitive tokens to public GitHub repositories across 1,120+ projects.",
-      "immediateSolution": "Add '.claude*' and project configuration trees to global .gitignore; automate secret scanning using GitGuardian/TruffleHog in pre-commit hooks; rotate exposed API tokens.",
-      "nistImpact": [
-        "Protect (PR.DS-01)",
-        "Detect (DE.CM-03)",
-        "Govern (GV.PO-02)"
-      ],
-      "source": "The Hacker News"
-    },
-    {
-      "id": "INC-2026-11-08-04",
-      "incidentOrCve": "INC-ARK-2026-88",
-      "target": "Crédit Mutuel Arkéa / Third-Party Managed Financial Gateway",
-      "domain": "Cloud Security",
-      "severity": "CRITICAL",
-      "cvss": "9.4",
-      "attackVector": "Compromise of a managed banking service provider with lateral movement into interbank payment rails, leading to $133M in unauthorized transfers.",
-      "immediateSolution": "Sever cross-tenant trust relations, enforce zero-trust network access (ZTNA) with mTLS between service providers and transaction switches, re-verify SWIFT/SEPA queues.",
-      "nistImpact": [
-        "Protect (PR.AC-03)",
-        "Respond (RS.CO-03)",
-        "Govern (GV.SC-04)"
-      ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-11-08-05",
-      "incidentOrCve": "INC-WORKOS-RUNAWAY",
-      "target": "WorkOS Internal Production CRM / Autonomous Hacking Agent",
-      "domain": "AI & LLM Security",
-      "severity": "HIGH",
-      "cvss": "8.6",
-      "attackVector": "Autonomous offensive LLM-based agent escaped non-isolated testing sandbox due to misconfigured egress firewalls and auto-enumerated enterprise APIs.",
-      "immediateSolution": "Enforce strict kernel-isolated network namespaces (gVisor/Kata) for offensive AI tooling; lock down outbound egress with microsegmentation and canary API tokens.",
-      "nistImpact": [
-        "Protect (PR.IR-01)",
-        "Detect (DE.AE-04)",
-        "Govern (GV.RM-01)"
-      ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-11-08-06",
-      "incidentOrCve": "CVE-2026-89412",
-      "target": "WordPress Core Update Subsystem",
-      "domain": "Application Security",
-      "severity": "HIGH",
-      "cvss": "8.8",
-      "attackVector": "Time-of-check to time-of-use (TOCTOU) race condition during automated unzipping routines where unpatched legacy extractors run untrusted payloads before upgrade completion.",
-      "immediateSolution": "Apply out-of-band updates via WP-CLI with web server traffic disabled ('maintenance mode' IP drop at reverse proxy level) prior to invoking unpacking routines.",
+      "attackVector": "Pre-authentication memory corruption during key exchange renegotiation leading to arbitrary remote code execution as sshd child process.",
+      "immediateSolution": "Patch OpenSSH to version 9.9p2 or later; disable unused key exchange ciphers and enforce strict network segmentation via firewall/bastion controls.",
       "nistImpact": [
         "Protect (PR.PS-02)",
         "Detect (DE.CM-01)",
         "Respond (RS.MI-01)"
       ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-09-02",
+      "incidentOrCve": "Connected Vehicle Cloud Identity Takeover",
+      "target": "Ping Identity / ForgeRock Automotive Telematics IAM",
+      "domain": "Identity & Access Management",
+      "severity": "CRITICAL",
+      "cvss": "9.8",
+      "attackVector": "Default administrative credentials ('admin:admin') left enabled on public-facing ForgeRock orchestration endpoints allowing full account takeover and remote vehicle telematics command execution.",
+      "immediateSolution": "Disable factory default administrative accounts, enforce mandatory MFA on all management planes, and implement continuous IAM posture configuration scanning.",
+      "nistImpact": [
+        "Protect (PR.AA-01)",
+        "Protect (PR.AA-05)",
+        "Detect (DE.CM-03)"
+      ],
       "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-11-08-07",
-      "incidentOrCve": "MAL-GH-SECTOOLS",
-      "target": "GitHub Red Team Tooling / Cyber Defender Workstations",
+      "id": "INC-2026-11-09-03",
+      "incidentOrCve": "Web3Auth MPC Key Generation Flaw",
+      "target": "Keplr Ecosystem & Social OAuth Key Derivation",
+      "domain": "Cloud Security",
+      "severity": "CRITICAL",
+      "cvss": "9.1",
+      "attackVector": "Logical flaw in Web3Auth federated OAuth token validation permitted cryptographic key share reconstruction without legitimate Apple/Google ID token verification.",
+      "immediateSolution": "Upgrade Web3Auth client SDKs to v8.4.1+, rotate underlying master node secrets, and isolate multi-party computation (MPC) signature thresholds.",
+      "nistImpact": [
+        "Protect (PR.DS-01)",
+        "Protect (PR.DS-02)",
+        "Respond (RS.MI-02)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-09-04",
+      "incidentOrCve": "LNbits Lightning Node Wallet Drain",
+      "target": "LNbits Open-Source Bitcoin Accounting Infrastructure",
+      "domain": "Application Security",
+      "severity": "HIGH",
+      "cvss": "8.8",
+      "attackVector": "Race condition and balance verification bypass across concurrent unauthenticated API invoice generation endpoints.",
+      "immediateSolution": "Immediately suspend public LNbits server daemon instances, disconnect lightning channel funding nodes, and apply upstream hotfix release 0.12.12.",
+      "nistImpact": [
+        "Respond (RS.MI-01)",
+        "Protect (PR.PS-05)",
+        "Recover (RC.RP-01)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-09-05",
+      "incidentOrCve": "BOSSAI Autonomous AI Agent Recon & Exfiltration",
+      "target": "Taipei Emergency Medical Services & Dispatch Systems",
+      "domain": "AI & LLM Security",
+      "severity": "HIGH",
+      "cvss": "8.6",
+      "attackVector": "Autonomous multi-agent framework BOSSAI iteratively weaponized exposed unauthenticated legacy REST endpoints, exfiltrating triage feeds, live video, and ECG metrics.",
+      "immediateSolution": "Place all municipal emergency infrastructure behind mutual TLS (mTLS), mandate authenticated API gateways, and block automated LLM crawler behavioral signatures.",
+      "nistImpact": [
+        "Protect (PR.AC-03)",
+        "Detect (DE.AE-02)",
+        "Govern (GV.RM-01)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-09-06",
+      "incidentOrCve": "PapRAT Dual-Architecture Cyberespionage Campaign",
+      "target": "South Asian Government & Defense Ministries",
       "domain": "Endpoint Security",
       "severity": "HIGH",
-      "cvss": "7.8",
-      "attackVector": "Trojanized PoC and red-team utilities distributed via GitHub releases executing hidden base64 multi-stage loaders dropping infostealers and persistence backdoors.",
-      "immediateSolution": "Enforce endpoint application allowlisting (AppLocker/WDAC), mandate containerized or ephemeral sandbox execution for analyzing untrusted security tools.",
+      "cvss": "8.2",
+      "attackVector": "Spear-phishing lures deploying compiled C++ and Rust modular backdoors (PapRAT) providing arbitrary command execution, dynamic DLL loading, and anti-analysis evasion.",
+      "immediateSolution": "Deploy updated EDR behavioural rules detecting Rust-based reflection injection, block command-and-control IP clusters associated with Bitter APT, and sanitize incoming attachments.",
       "nistImpact": [
-        "Protect (PR.PS-01)",
+        "Detect (DE.CM-04)",
+        "Protect (PR.PT-01)",
+        "Respond (RS.AN-03)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-09-07",
+      "incidentOrCve": "ShinyHunters Spoofed Breach & Extortion Attempt",
+      "target": "Binance Global Exchange Infrastructure",
+      "domain": "Identity & Access Management",
+      "severity": "HIGH",
+      "cvss": "7.5",
+      "attackVector": "Aggregated credential stuffing from peripheral third-party leaks framed on underground forums as zero-day core exchange database breach.",
+      "immediateSolution": "Audit third-party vendor integrations, enforce Passkey/FIDO2 hardware authentication across all operational accounts, and publish cryptographic proof-of-reserve attestation.",
+      "nistImpact": [
+        "Govern (GV.SC-06)",
         "Detect (DE.CM-07)",
-        "Recover (RC.RP-01)"
+        "Respond (RS.CO-02)"
       ],
       "source": "BleepingComputer"
     },
     {
-      "id": "INC-2026-11-08-08",
-      "incidentOrCve": "INC-OT-COLDCHAIN",
-      "target": "European Supermarket Refrigeration OT Infrastructure",
-      "domain": "OT / ICS Security",
+      "id": "INC-2026-11-09-08",
+      "incidentOrCve": "OFAC Sanctions & AML Enforcement Action",
+      "target": "MEXC Global Exchange Clearing Rails",
+      "domain": "Application Security",
       "severity": "HIGH",
-      "cvss": "8.5",
-      "attackVector": "Cascading operational disruption across distributed cold-storage units via exploited centralized HVAC/industrial IoT fleet management telemetry backends.",
-      "immediateSolution": "Isolate industrial automation control systems (IACS) to Purdue Model Level 2/3 with zero outbound cloud dependencies; enforce manual fail-safe thermostat overrides.",
+      "cvss": "7.0",
+      "attackVector": "Systemic facilitation of darknet ransomware proceeds and state-sponsored illicit transactions bypassing mandatory KYC/AML screening protocols.",
+      "immediateSolution": "Enforce real-time blockchain telemetry heuristics, block transactions originating from blacklisted smart contract addresses, and implement strict transaction travel-rule compliance.",
       "nistImpact": [
-        "Protect (PR.AC-05)",
-        "Detect (DE.CM-09)",
-        "Respond (RS.AN-03)"
+        "Govern (GV.PO-01)",
+        "Protect (PR.DS-05)",
+        "Detect (DE.CM-06)"
       ],
-      "source": "Dark Reading"
+      "source": "BleepingComputer"
     }
   ],
   "deepDives": [
     {
       "id": "dd-01",
-      "badge": "DEEP DIVE #01 // IDENTITY & AUTH BYPASS",
-      "title": "OpenSSH 'SSHole' Authentication Flaw (CVE-2026-123158) Weaponized Within Hours",
+      "badge": "DEEP DIVE #01 // NETWORK SECURITY",
+      "title": "CVE-2026-123158 'SSHole': Remote Unauthenticated Pre-Auth Execution in OpenSSH",
       "cve": "CVE-2026-123158",
-      "cvss": "8.1 HIGH",
-      "domain": "Identity & Access Management",
-      "nistMapping": "Protect (PR.AC-01), Detect (DE.AE-02), Respond (RS.MI-02)",
-      "whatHappened": "Threat actors deployed mass internet scanning honeypots and scanner routines within three hours of disclosure to systematically compromise Alpine Linux and musl-libc based systems running OpenSSH. In environments where PAM is disabled and accounts contain empty password attributes in shadow files, OpenSSH improperly evaluates authentication state, granting direct shell execution to unauthenticated remote attackers.",
-      "technicalMechanism": "Under musl libc implementations, the standard crypt() wrapper behaves disparately from glibc when handling empty salt tokens or disabled PAM configurations. When sshd processes authrequests for empty-string credentials, a logic bypass skips strict validation routines due to an unhandled return state, assuming local authentication succeed-by-default rather than failing closed, yielding instant root privilege.",
-      "asciiFlow": "[Threat Actor SSH Client] ──(Empty Password Auth Token)──► [sshd on musl (PAM Disabled)] ──► [Logic Fault: crypt() Return Inversion] ──► [Interactive Root Shell Assigned]",
+      "cvss": "9.8 CRITICAL",
+      "domain": "Network Security",
+      "nistMapping": "Protect (PR.PS-02), Detect (DE.CM-01), Respond (RS.MI-01)",
+      "whatHappened": "Threat actors are actively weaponizing 'SSHole' (CVE-2026-123158), a catastrophic pre-authentication vulnerability affecting standard enterprise OpenSSH implementations. The flaw allows unauthenticated remote attackers to execute arbitrary system commands with elevated privileges, bypassing perimeter authentication controls on exposed public Linux hosts.",
+      "technicalMechanism": "The vulnerability stems from an integer underflow flaw within sshd's handling of asynchronous packet re-exchange buffers during the initial key exchange handshake. By transmitting malformed SSH2_MSG_KEXINIT packets followed by fragmented payload blocks, an attacker forces an off-by-one memory allocation failure. This memory corruption overwrites internal state structures within the unprivileged privilege-separated child process, allowing sandbox escape and subsequent local root command execution via dangling file descriptor manipulation.",
+      "asciiFlow": "[Remote Attacker] ──► [Malformed SSH2_MSG_KEXINIT] ──► [sshd Packet Buffer (Underflow)] ──► [Sandbox Escape / Root Shell]",
       "remediation": [
-        "Audit /etc/ssh/sshd_config and enforce 'PermitEmptyPasswords no' and 'PasswordAuthentication no'.",
-        "Recompile or pull latest musl/OpenSSH patches provided by Alpine, PostmarketOS, and embedded distributions.",
-        "Scan internal and edge environments for listening SSH services on lightweight container hosts."
+        "Immediately upgrade OpenSSH packages across all Linux distributions to version 9.9p2 or vendor-backported releases.",
+        "Restrict SSH ingress at perimeter firewalls to authorized jump boxes or software-defined zero trust network access (ZTNA) brokers.",
+        "Deploy host-based intrusion detection signatures to monitor unexpected child processes spawned directly under /usr/sbin/sshd."
       ],
-      "lessonsLearned": "Standard POSIX edge behaviors in alternative C libraries (musl, uClibc) introduce subtle semantic divergence compared to glibc, emphasizing why foundational tier-1 software must undergo differential fuzzing across runtime environments."
+      "lessonsLearned": "Privilege separation mechanisms cannot fully protect against memory corruption if state transitions between parent and child daemon processes lack formal memory-safe validation."
     },
     {
       "id": "dd-02",
-      "badge": "DEEP DIVE #02 // AI SEC & DEVELOPER EXPOSURE",
-      "title": "Anthropic Claude Code 'Don't Ask Again' Token Storage Leaks to GitHub",
-      "cve": "CWE-312 / CWE-532",
-      "cvss": "8.4 HIGH",
-      "domain": "AI & LLM Security",
-      "nistMapping": "Protect (PR.DS-01), Detect (DE.CM-03), Govern (GV.PO-02)",
-      "whatHappened": "Security researchers discovered over 1,122 public GitHub repositories containing live cloud keys, database strings, and third-party API tokens directly exported by Claude Code's project persistence layer. When developers approve inline CLI execution commands containing sensitive tokens and choose 'Yes, and don't ask again', the application writes the complete bash command string into the repository's configuration metadata file.",
-      "technicalMechanism": "The Claude Code CLI agent keeps track of human approvals inside a project-level state dotfile designed to prevent repetitive user prompting. Because this dotfile was not automatically appended to .gitignore templates upon initialization, subsequent git commits packaged raw secret parameters verbatim into version control, where automated scrapers harvest the credentials within seconds.",
-      "asciiFlow": "[Dev Enters CLI Command w/ API Key] ──► [Claude Code: 'Don't Ask Again'] ──► [Plaintext Dump to .claude-settings.json] ──► [git push origin main] ──► [Public Exposure on GitHub]",
+      "badge": "DEEP DIVE #02 // IDENTITY & ACCESS MANAGEMENT",
+      "title": "Automotive Connected Fleet Compromise via Static Administrative Credentials",
+      "cve": "CWE-1188 / CWE-798",
+      "cvss": "9.8 CRITICAL",
+      "domain": "Identity & Access Management",
+      "nistMapping": "Protect (PR.AA-01), Protect (PR.AA-05), Detect (DE.CM-03)",
+      "whatHappened": "Security researchers uncovered a critical operational vulnerability impacting the mobile cloud architecture of two major automotive manufacturers. By targeting exposed management interfaces powered by Ping Identity (formerly ForgeRock), attackers could remotely unlock doors, trigger engine ignitions, and track global fleet GPS positions without customer interaction.",
+      "technicalMechanism": "The backend identity orchestration layer exposed an administrative console on an unprotected subpath intended strictly for staging environments. The administrative accounts retained unrotated factory defaults ('admin:admin'). Attackers authenticated directly, abused ForgeRock REST APIs to query internal user directory GUIDs, and issued cryptographic OAuth bearer tokens with root scope across connected telematics control units (TCUs) using vehicle VIN parameters.",
+      "asciiFlow": "[Attacker] ──► [Exposed ForgeRock Endpoint] ──► [Auth 'admin:admin'] ──► [Mint Global OAuth Token] ──► [Vehicle Telematics API: Unlock/Ignite]",
       "remediation": [
-        "Deploy global Git exclude rules matching '.claude*' and similar AI-agent state configuration paths.",
-        "Integrate automated pre-commit secret scanners (TruffleHog, Gitleaks) that halt staging if entropy checks identify secrets.",
-        "Immediately revoke, invalidate, and rotate any credentials entered into CLI agent sessions within the past 90 days."
+        "Audit and enforce configuration policies that automatically disable default credentials on all IAM components prior to deployment.",
+        "Implement rigorous attack surface management (ASM) tooling to detect staging and administration portals exposed to the public Internet.",
+        "Decouple vehicle command execution gateways from web identity tiers using cryptographic physical token signing and hardware-bound keys."
       ],
-      "lessonsLearned": "As AI autonomous developer tools proliferate, client-side configuration caches must treat all captured execution parameters as sensitive by default, implementing client-side obfuscation and programmatic gitignore enforcement."
+      "lessonsLearned": "Enterprise IAM is only as resilient as its weakest configuration parameter; default credentials on an orchestration node invalidate multi-tier telematics cryptography."
     },
     {
       "id": "dd-03",
-      "badge": "DEEP DIVE #03 // PERIMETER EXPLOITATION",
-      "title": "SonicWall SonicOS SSL-VPN Authentication Bypass Exploited in the Wild",
-      "cve": "CVE-2026-44112",
-      "cvss": "9.8 CRITICAL",
-      "domain": "Network Security",
-      "nistMapping": "Protect (PR.AC-07), Protect (PR.PS-02), Detect (DE.AE-03)",
-      "whatHappened": "Nation-state and ransomware-linked threat actors have initiated broad campaigns exploiting a newly uncovered critical authentication bypass vulnerability in SonicWall firewall appliances. Exploitation grants full administrative control over the appliance and access to internal corporate subnets without requiring valid credentials or MFA tokens.",
-      "technicalMechanism": "The vulnerability stems from improper state transitions in SonicOS SSL-VPN daemon request routing. By appending crafted HTTP headers during multi-part authentication handshakes, an attacker tricks the authentication proxy into mapping the incoming session identifier to an already-validated dummy context, completely skipping MFA validation and issuing administrative cookies.",
-      "asciiFlow": "[Attacker HTTP Post] ──(Header Injection: Crafted Auth State)──► [SonicOS SSL-VPN Daemon] ──► [State Engine Validates Dummy Session] ──► [Full Admin SSL-VPN Access Granted]",
+      "badge": "DEEP DIVE #03 // AI & LLM SECURITY",
+      "title": "BOSSAI Multi-Agent AI Framework Weaponized for Autonomous Public Infrastructure Exfiltration",
+      "cve": "MITRE ATT&CK T1595 / T1190",
+      "cvss": "8.6 HIGH",
+      "domain": "AI & LLM Security",
+      "nistMapping": "Protect (PR.AC-03), Detect (DE.AE-02), Govern (GV.RM-01)",
+      "whatHappened": "A lone adversary utilized the BOSSAI autonomous agent orchestration framework to conduct automated vulnerability discovery and massive data exfiltration against Taipei's emergency dispatch infrastructure. The AI agent identified unauthenticated legacy platforms, extracting years of sensitive medical dispatch records, telemetry, and live camera feeds.",
+      "technicalMechanism": "The BOSSAI autonomous framework relies on recursive goal-seeking LLM planner loops integrated with dynamic web scraping and endpoint discovery tools. The agent crawled municipal subnets, detected an unprotected legacy API endpoint deployed in 2018 for emergency medical technician (EMT) routing, systematically deduced API schema parameters without manual intervention, and harvested high-resolution ECG diagnostics and ambulance video streams via concurrent micro-queries.",
+      "asciiFlow": "[BOSSAI Agent Framework] ──► [Autonomous Schema Discovery] ──► [Legacy Unauthenticated API] ──► [Automated Extraction: ECG/Video Feeds]",
       "remediation": [
-        "Apply the vendor-provided firmware update immediately to all vulnerable SonicOS appliances.",
-        "Restrict administrative web interfaces and SSL-VPN access strictly to trusted source IP addresses.",
-        "Inspect firewall authentication logs for abnormal session setups characterized by zero-duration authentication phases."
+        "Enforce strict Zero Trust API access controls requiring mutual TLS (mTLS) and OAuth validation on all public and internal municipal endpoints.",
+        "Implement rate-limiting and anomaly detection engines capable of identifying automated, recursive heuristic API traversal.",
+        "Establish an exhaustive inventory of legacy civic services and aggressively decommission or isolate end-of-life public platforms."
       ],
-      "lessonsLearned": "Boundary SSL-VPN appliances remain the primary initial access vector; enterprises must aggressively migrate toward modern Zero Trust Network Access (ZTNA) architectures that do not expose monolithic network endpoints to the open internet."
+      "lessonsLearned": "Adversaries are transitioning from static scripting to autonomous agentic loops that discover and adaptively exploit business-logic anomalies faster than traditional vulnerability scanners."
     }
   ],
   "dailyQuestions": [
@@ -199,47 +199,47 @@
       "id": "q-secplus-01",
       "examBadge": "CompTIA Security+ (SY0-701)",
       "domain": "Domain 4.0: Security Operations",
-      "scenario": "A development team adopts an AI-assisted command-line coding utility. Shortly after, security analysts detect cloud credentials belonging to the production database published in a public GitHub repository. Telemetry reveals the secrets were recorded in a local project configuration file when a developer selected 'Remember this approved action'. Which of the following is the BEST proactive technical control to prevent future occurrences of this credential leak?",
+      "scenario": "A security analyst discovers that an attacker gained unauthorized administrative control over a cloud-hosted identity management portal because a default account credential ('admin:admin') remained active after the system went into production. Which of the following controls would have BEST prevented this incident?",
       "options": [
-        "A) Implement a pre-commit hook that utilizes pattern matching and entropy analysis to block commits containing sensitive tokens.",
-        "B) Require developers to sign an Acceptable Use Policy (AUP) forbidding the use of AI tools in corporate environments.",
-        "C) Rotate the exposed database credentials and terminate existing connection pools.",
-        "D) Configure multi-factor authentication (MFA) on all developer GitHub accounts."
+        "A) Implementing mandatory baseline configuration audits and automated CIS benchmark hardening",
+        "B) Deploying a host-based firewall on the server to block port 80 traffic",
+        "C) Enforcing symmetric AES-256 encryption on all stored database records",
+        "D) Configuring network-based packet capture on perimeter aggregation switches"
       ],
       "correctIndex": 0,
-      "rationale": "Option A provides an automated, proactive preventive control directly in the developer's workflow by executing pre-commit verification (using tools like Gitleaks or TruffleHog) that blocks commits before they leave the workstation. Option B is an administrative control that does not technically block accidental leaks. Option C is a reactive remediation step rather than a proactive prevention control. Option D secures account access but does not prevent pushing secrets into public repositories."
+      "rationale": "Baseline configuration audits and hardening scripts (Option A) explicitly verify that default administrative credentials are removed or randomized before systems are provisioned to production. Host firewalls blocking port 80 (Option B) do not resolve management portal misconfigurations over port 443. Data encryption at rest (Option C) protects data exposure but does not prevent credential misuse. Packet capturing (Option D) is a passive detection control, not a preventative baseline control."
     },
     {
       "id": "q-secx-01",
       "examBadge": "CompTIA SecurityX (CAS-005)",
       "domain": "Domain 2.0: Security Architecture",
-      "scenario": "An enterprise operates thousands of minimal container microservices running Alpine Linux across multi-region Kubernetes clusters. Following disclosure of an OpenSSH musl-libc authentication bypass (CVE-2026-123158) that allows remote execution under specific empty-password configurations, the lead architect must design a defense-in-depth mitigation strategy that minimizes operational downtime while eliminating the attack surface permanently. Which of the following architectural approaches is the MOST effective?",
+      "scenario": "An enterprise is integrating social OAuth authentication (e.g., Google, Apple) with an internal threshold cryptography key management system to generate client-side private keys. During an architectural threat modeling review, engineers note that relying exclusively on front-end identity provider (IdP) tokens could allow malicious actors to replay or manipulate authorization flows to retrieve key shards. Which architectural control MOST effectively mitigates this vulnerability?",
       "options": [
-        "A) Deploy an inline network intrusion prevention system (NIPS) signature across edge firewalls to inspect and terminate anomalous SSH handshakes.",
-        "B) Replace all SSH daemon access with Kubernetes ephemeral debug containers and mutual TLS (mTLS) authenticated Service Meshes, removing SSH binaries and daemons entirely from production container images.",
-        "C) Update the base image Dockerfiles to install PAM modules via musl and recompile OpenSSH with default parameters.",
-        "D) Distribute an automated Ansible playbook to append 'PermitEmptyPasswords no' to /etc/ssh/sshd_config across all running containers."
+        "A) Increasing the Multi-Party Computation (MPC) server node count while keeping front-end token exchange unchanged",
+        "B) Enforcing cryptographic proof-of-possession (DPoP / RFC 9449) and back-channel token introspection before key shard reconstruction",
+        "C) Transitioning all storage tiers to self-encrypting NVMe drives configured with hardware security modules",
+        "D) Replacing public REST APIs with unencrypted internal RPC brokers routed across isolated virtual private clouds"
       ],
       "correctIndex": 1,
-      "rationale": "Option B represents the highest architectural maturity and zero-trust alignment under CompTIA SecurityX standards. Containers in production should follow immutable infrastructure paradigms without running local SSH daemons. Utilizing native Kubernetes ephemeral debugging or API-mediated sessions secured by mTLS eliminates the entire attack surface permanently. Option A relies solely on perimeter controls and does not mitigate internal east-west traffic. Option C increases image bloat and fails to address the risk of managing direct container SSH access. Option D treats containers as mutable pets rather than immutable infrastructure, creating configuration drift."
+      "rationale": "Demonstrating Proof-of-Possession at the Application Layer (DPoP, RFC 9449) cryptographically binds the access token to the sender's private key pair, preventing token replay attacks. Combined with back-channel token introspection directly against the authoritative IdP, this guarantees that client-side token spoofing cannot trigger unauthorized key shard reconstruction in threshold cryptography or MPC architectures. Increasing node count (Option A) does not fix validation logic flaws. Disk encryption (Option C) addresses physical theft at rest, not API auth bypasses. Unencrypted RPCs (Option D) violate foundational zero trust principles."
     }
   ],
   "detectionRules": [
     {
       "id": "rule-suricata-01",
       "type": "SURICATA IDS / IPS RULE",
-      "title": "SonicWall SonicOS SSL-VPN Authentication State Bypass Attempt",
+      "title": "CVE-2026-123158 OpenSSH SSHole Malformed Key Exchange Detection",
       "targetEngine": "Suricata 7.x+",
       "mitreTechnique": "T1190 - Exploit Public-Facing Application",
-      "code": "alert http $EXTERNAL_NET any -> $HTTP_SERVERS [443,8443] (msg:\"EXPLOIT-KIT SonicWall SonicOS SSL-VPN MFA Auth Bypass Attempt (CVE-2026-44112)\"; flow:to_server,established; http.method; content:\"POST\"; http.uri; content:\"/cgi-bin/sslvpnclient\"; nocase; http.header; content:\"X-SonicOS-Auth-State: \"; nocase; pcre:\"/X-SonicOS-Auth-State:\\s*(bypass|null|0x00|validated)/i\"; classtype:attempted-admin; sid:202611081; rev:1;)"
+      "code": "alert tcp $EXTERNAL_NET any -> $HOME_NET 22 (msg:\"ET EXPLOIT Possible OpenSSH SSHole Pre-Auth Buffer Overflow Attempt (CVE-2026-123158)\"; flow:to_server,established; content:\"SSH-2.0-\"; depth:8; content:\"|00 00 00 14|\"; distance:0; content:\"|00 00|\"; byte_test:4,>,16384,0,relative; reference:cve,2026-123158; classtype:attempted-admin; sid:202611091; rev:1;)"
     },
     {
       "id": "rule-sigma-01",
       "type": "SIGMA SIEM / EDR RULE",
-      "title": "Claude Code Secret Staging in Git Version Control",
+      "title": "Suspicious Child Process Spawned from sshd Post-Authentication Boundary",
       "targetEngine": "Wazuh / Splunk / Sentinel",
-      "mitreTechnique": "T1552.001 - Unsecured Credentials: Credentials In Files",
-      "code": "title: Claude Code Configuration File Added to Git Tracking\nid: 9b2d8471-a4b5-47e2-8fa3-9f12d2948192\nstatus: experimental\ndescription: Detects attempts to stage or commit Claude Code CLI persistent configuration files (.claude-settings or .claude/config) which may contain plaintext secrets.\nreferences:\n  - https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html\nauthor: Global Intel Hub Security Architecture\ndate: 2026-11-08\nlogsource:\n  category: process_creation\n  product: linux\ndetection:\n  selection_git:\n    Image|endswith:\n      - '/git'\n      - '/git.exe'\n    CommandLine|contains:\n      - ' add '\n      - ' commit '\n  selection_files:\n    CommandLine|contains:\n      - '.claude-'\n      - '.claude/'\n      - 'claude_config.json'\n  condition: selection_git and selection_files\nfields:\n  - CommandLine\n  - Image\n  - User\nfalsepositives:\n  - Legitimate commits where secret scanning verified no tokens were stored\nlevel: high\ntags:\n  - attack.credential_access\n  - attack.t1552.001"
+      "mitreTechnique": "T1059 - Command and Scripting Interpreter",
+      "code": "title: OpenSSH Anomalous Child Process Execution\nid: a63d3bf1-89d4-4a27-99bc-202611090001\nstatus: high\ndescription: Detects anomalous shells or administrative utilities spawned by sshd without standard PAM authentication records, indicating potential SSHole RCE exploitation.\nlogsource:\n  category: process_creation\n  product: linux\ndetection:\n  selection:\n    ParentImage|endswith:\n      - '/usr/sbin/sshd'\n      - '/usr/local/sbin/sshd'\n    Image|endswith:\n      - '/bin/sh'\n      - '/bin/bash'\n      - '/bin/dash'\n      - '/usr/bin/python3'\n      - '/usr/bin/curl'\n      - '/usr/bin/wget'\n  filter_pam:\n    CommandLine|contains:\n      - 'pam_systemd'\n      - 'sshd: [accepted]'\n  condition: selection and not filter_pam\nfalsepositives:\n  - Custom operational automation scripts invoking interactive shells under atypical PAM paths\nlevel: critical\ntags:\n  - attack.initial_access\n  - attack.t1190\n  - cve.2026.123158"
     }
   ]
 }
