@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-11-10T14:59:36Z",
-  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-10)",
+  "lastUpdated": "2026-11-11T14:30:36Z",
+  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-11)",
   "threatLevel": "CRITICAL (DEFCON 2)",
   "summaryMetrics": {
     "activeKevExploits": 14,
@@ -10,184 +10,204 @@
   },
   "attackLog": [
     {
-      "id": "INC-2026-11-10-01",
-      "incidentOrCve": "SAP NetWeaver / Web Dispatcher Maximum Severity Flaws (ICM2SHELL & PROXYGATE)",
-      "target": "SAP NetWeaver Application Server, Web Dispatcher, and Gateway software",
-      "domain": "Application Security",
+      "id": "INC-2026-11-11-01",
+      "incidentOrCve": "CVE-2026-42890 (Outlook Zero-Day NTLM Leak)",
+      "target": "Microsoft Outlook / Windows Ecosystem",
+      "domain": "Identity & Access Management",
       "severity": "CRITICAL",
-      "cvss": "10.0",
-      "attackVector": "Unauthenticated remote code execution via exposed SAP management interfaces without requiring user credentials.",
-      "immediateSolution": "Apply SAP's November 2026 security patches immediately and restrict external access to NetWeaver management ports.",
+      "cvss": "9.8",
+      "attackVector": "Weaponized email preview triggering outbound SMB/WebDAV connections, leaking NTLMv2 hashes to remote attacker infrastructure without user interaction.",
+      "immediateSolution": "Deploy November 2026 cumulative patch; enforce outbound TCP 445/139 blocking and disable NTLM via Group Policy / Protected Users group.",
       "nistImpact": [
         "Protect (PR.PS-02)",
         "Detect (DE.CM-01)",
         "Respond (RS.MI-01)"
       ],
-      "source": "SAP / BleepingComputer"
+      "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-11-10-02",
-      "incidentOrCve": "Barracuda ESG Root Access Flaws",
-      "target": "Barracuda Email Security Gateway (ESG)",
+      "id": "INC-2026-11-11-02",
+      "incidentOrCve": "CVE-2026-38491 (Cisco BroadWorks Active Exploitation)",
+      "target": "Cisco BroadWorks CommPilot Application Server",
       "domain": "Network Security",
       "severity": "CRITICAL",
-      "cvss": "9.8",
-      "attackVector": "Active exploitation of recently patched ESG vulnerabilities allowing remote attackers to run arbitrary commands with root privileges.",
-      "immediateSolution": "Verify firmware update implementation and check appliance logs for unauthorized root command execution.",
+      "cvss": "9.9",
+      "attackVector": "Pre-authentication remote code execution flaw in Cisco BroadWorks Web Application Open Interface allowing unauthenticated callers to execute commands as root.",
+      "immediateSolution": "Apply Cisco-released software maintenance patches immediately; restrict access to CommPilot management interface to trusted management subnets.",
       "nistImpact": [
-        "Protect (PR.PT-01)",
-        "Detect (DE.AE-01)",
-        "Respond (RS.AN-01)"
+        "Protect (PR.IP-01)",
+        "Detect (DE.AE-02)",
+        "Respond (RS.RP-01)"
       ],
-      "source": "Barracuda Networks / BleepingComputer"
+      "source": "BleepingComputer"
     },
     {
-      "id": "INC-2026-11-10-03",
-      "incidentOrCve": "Turla 'Cereal' Exchange Server Espionage",
-      "target": "Microsoft Exchange Servers at government organizations",
-      "domain": "Network Security",
+      "id": "INC-2026-11-11-03",
+      "incidentOrCve": "Railway PaaS Infrastructure Breach & Secret Theft",
+      "target": "Railway Cloud PaaS & Hosted Customer Workspaces",
+      "domain": "Cloud Security",
       "severity": "CRITICAL",
       "cvss": "9.1",
-      "attackVector": "State-sponsored threat actors deploying the modular Cereal toolset to silently intercept and steal emails from compromised Exchange servers.",
-      "immediateSolution": "Audit Exchange server extensions, inspect IIS logs for anomalous paths, and deploy updated EDR rules targeting Cereal artifacts.",
+      "attackVector": "Exploitation of infrastructure orchestrator vulnerabilities resulting in arbitrary memory read and extraction of environment variables containing LLM provider API keys across 100,000 workspaces.",
+      "immediateSolution": "Rotate all cloud provider and AI vendor API keys (OpenAI, Anthropic, Bedrock); enforce IP-allowlisting and strict automated spend quotas on LLM developer consoles.",
       "nistImpact": [
+        "Protect (PR.AC-07)",
         "Detect (DE.CM-03)",
-        "Respond (RS.MI-02)",
-        "Recover (RC.RP-01)"
+        "Respond (RS.AN-03)"
       ],
-      "source": "ESET / The Hacker News"
+      "source": "BleepingComputer"
     },
     {
-      "id": "INC-2026-11-10-04",
-      "incidentOrCve": "iOS Sandbox Escape 'worse_query'",
-      "target": "Apple iOS 26 and iOS 27 running on iPhones",
+      "id": "INC-2026-11-11-04",
+      "incidentOrCve": "N-able N-central Zero-Day RMM Vulnerability",
+      "target": "N-central Remote Monitoring and Management (RMM)",
       "domain": "Endpoint Security",
-      "severity": "HIGH",
-      "cvss": "8.5",
-      "attackVector": "Malicious applications leveraging a public sandbox escape (worse_query) to read sensitive files, seed phrases, and private keys from other apps.",
-      "immediateSolution": "Avoid sideloading applications, restrict app permissions, and monitor for pending Apple patches addressing the sandbox flaw.",
+      "severity": "CRITICAL",
+      "cvss": "9.8",
+      "attackVector": "Authentication bypass and serialized object injection in public-facing RMM central management listener enabling supply chain remote code execution across managed client agents.",
+      "immediateSolution": "Apply out-of-band hotfix provided by N-able; ensure RMM control nodes are isolated behind zero-trust network access (ZTNA) or administrative VPNs.",
       "nistImpact": [
-        "Protect (PR.DS-01)",
-        "Detect (DE.CM-02)"
+        "Protect (PR.PS-06)",
+        "Detect (DE.AE-04)",
+        "Respond (RS.MI-02)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-11-05",
+      "incidentOrCve": "Mass Grok-Built App Exposure & Credential Spill",
+      "target": "Over 35,000 Web Apps Built with Grok AI",
+      "domain": "AI & LLM Security",
+      "severity": "HIGH",
+      "cvss": "8.6",
+      "attackVector": "Insecure default deployment architectures generated by AI coding assistant omitted ACL authentication middleware, publicly exposing databases, admin portals, and internal enterprise secrets.",
+      "immediateSolution": "Audit all low-code/AI-generated applications; enforce mandatory OAuth2/OIDC gates and automated pipeline scanning for sensitive keys before deployment.",
+      "nistImpact": [
+        "Govern (GV.PO-01)",
+        "Protect (PR.AC-03)",
+        "Detect (DE.CM-09)"
       ],
       "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-11-10-05",
-      "incidentOrCve": "IRGC Refrigeration Controller Sabotage",
-      "target": "Refrigeration controllers at ~700 French retail sites",
-      "domain": "OT / ICS Security",
-      "severity": "CRITICAL",
-      "cvss": "9.0",
-      "attackVector": "Unauthorized remote access to industrial refrigeration controllers resulting in modified defrost settings, food loss, and physical fires.",
-      "immediateSolution": "Isolate OT management interfaces from the corporate network, enforce strict MFA, and audit controller access logs.",
+      "id": "INC-2026-11-11-06",
+      "incidentOrCve": "eMudhra CA Certificate Revocation Escalation",
+      "target": "eMudhra Public Key Infrastructure (PKI) Intermediate CAs",
+      "domain": "Identity & Access Management",
+      "severity": "HIGH",
+      "cvss": "7.5",
+      "attackVector": "Flawed internal Python automation script exposed intermediate CA key signing contexts to unauthorized process namespaces, requiring mass revocation of 8 additional issuing CAs.",
+      "immediateSolution": "Inspect and update local trust stores; ensure legacy eMudhra intermediate certificates are revoked via CRL/OCSP stapling across web and TLS termination gateways.",
       "nistImpact": [
-        "Protect (PR.AC-04)",
-        "Detect (DE.AE-02)",
-        "Respond (RS.RP-01)"
+        "Protect (PR.DS-01)",
+        "Detect (DE.CM-04)",
+        "Respond (RS.CO-03)"
       ],
-      "source": "French Government / The Hacker News"
+      "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-11-10-06",
-      "incidentOrCve": "Google Chrome Zero-Day (CVE-2026-xxxx)",
-      "target": "Google Chrome browser engine",
-      "domain": "Endpoint Security",
-      "severity": "CRITICAL",
+      "id": "INC-2026-11-11-07",
+      "incidentOrCve": "Qlik Sense Multi-Stage Staging Attack",
+      "target": "Enterprise Qlik Sense Business Intelligence Servers",
+      "domain": "Application Security",
+      "severity": "HIGH",
       "cvss": "8.8",
-      "attackVector": "Active in-the-wild exploitation of the eighth Chrome zero-day vulnerability of the year via crafted web pages.",
-      "immediateSolution": "Update Google Chrome immediately to the latest patched version across all endpoints.",
+      "attackVector": "Exploitation of path traversal and HTTP request tunneling on Qlik Sense servers to stage secondary exploits targeting Apache ActiveMQ and Veeam Backup instances.",
+      "immediateSolution": "Upgrade Qlik Sense to the latest release; isolate analytics and business intelligence servers onto segmented VLANs isolated from backup infrastructure.",
       "nistImpact": [
-        "Protect (PR.PT-02)",
-        "Detect (DE.CM-01)"
+        "Protect (PR.IR-01)",
+        "Protect (PR.PT-04)",
+        "Detect (DE.AE-03)"
       ],
-      "source": "BleepingComputer"
+      "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-11-10-07",
-      "incidentOrCve": "Claude Document-Processing 'Office Party' RCE",
-      "target": "Linux desktop environments utilizing Anthropic's Claude document processing tool",
-      "domain": "AI & LLM Security",
+      "id": "INC-2026-11-11-08",
+      "incidentOrCve": "Nitori Enterprise Data Exfiltration (37.6M Records)",
+      "target": "Japanese Retailer Nitori Customer Database",
+      "domain": "Application Security",
       "severity": "HIGH",
       "cvss": "8.2",
-      "attackVector": "Attackers construct temporary files processed by Claude's document-processing feature that execute malicious code on host Linux machines.",
-      "immediateSolution": "Restrict AI tool document processing capabilities and apply vendor-supplied updates or input validation controls.",
+      "attackVector": "Compromise of internal network segment via lateral movement followed by automated exfiltration of relational customer databases containing PII and transaction records.",
+      "immediateSolution": "Implement network microsegmentation between enterprise corporate networks and tier-0 core databases; deploy egress DLP filtering and database activity monitoring (DAM).",
       "nistImpact": [
-        "Protect (PR.PS-01)",
-        "Detect (DE.CM-07)"
-      ],
-      "source": "Dark Reading"
-    },
-    {
-      "id": "INC-2026-11-10-08",
-      "incidentOrCve": "Vanderbilt University BYOD Ransomware Attack",
-      "target": "Vanderbilt University enterprise databases and IT infrastructure",
-      "domain": "Cloud Security",
-      "severity": "HIGH",
-      "cvss": "8.0",
-      "attackVector": "BYOD ransomware gang infiltrating network endpoints to encrypt databases and exfiltrate sensitive student, employee, and research data.",
-      "immediateSolution": "Activate incident response plan, isolate impacted BYOD endpoints, and engage forensic investigators.",
-      "nistImpact": [
-        "Respond (RS.AN-03)",
-        "Recover (RC.CO-03)"
+        "Protect (PR.DS-05)",
+        "Detect (DE.CM-07)",
+        "Respond (RS.AN-01)"
       ],
       "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-11-09",
+      "incidentOrCve": "Autonomous Agent CI/CD Secrets Leakage",
+      "target": "Enterprise GitHub Repositories via Claude Code / Coding Agents",
+      "domain": "AI & LLM Security",
+      "severity": "HIGH",
+      "cvss": "8.1",
+      "attackVector": "Autonomous coding agent commands inadvertently persisting environment configurations and local secret files into unstaged git tracking trees pushed to public Git remotes.",
+      "immediateSolution": "Deploy pre-commit hooks (TruffleHog/GitGuardian) and enforce enterprise GitHub secret push protection; constrain autonomous agent tool execution with read-only sandbox permissions.",
+      "nistImpact": [
+        "Protect (PR.PS-01)",
+        "Govern (GV.SC-04)",
+        "Detect (DE.CM-06)"
+      ],
+      "source": "Dark Reading"
     }
   ],
   "deepDives": [
     {
       "id": "dd-01",
-      "badge": "DEEP DIVE #01 // APPLICATION SECURITY",
-      "title": "SAP NetWeaver Maximum Severity Flaws: ICM2SHELL and PROXYGATE Exploitation Analysis",
-      "cve": "CVE-2026-SAP1 through CVE-2026-SAP4",
-      "cvss": "10.0 CRITICAL",
-      "domain": "Application Security",
-      "nistMapping": "PR.PT-01, DE.CM-01, RS.MI-01",
-      "whatHappened": "SAP released its November 2026 security bulletin featuring four CVSS 10.0 vulnerabilities affecting NetWeaver and Web Dispatcher software. These flaws allow unauthenticated remote code execution across core enterprise resource planning platforms.",
-      "technicalMechanism": "The ICM2SHELL and PROXYGATE flaws exploit improper handling of incoming web requests and internal communication channels within the NetWeaver application server and Web Dispatcher components. Attackers can bypass authentication layers to execute arbitrary system commands with high privileges.",
-      "asciiFlow": "[External Attacker] ──► (HTTP Request / Crafted Payload) ──► [SAP Web Dispatcher] ──► [NetWeaver Server (ICM2SHELL)] ──► [Root/System Execution]",
+      "badge": "DEEP DIVE #01 // CLOUD & AI IDENTITY",
+      "title": "Supply Chain Secrets Harvesting: Railway Cloud Breach and the $740K AI Key Siphon",
+      "cve": "MITRE ATT&CK T1552.001 / T1078.004",
+      "cvss": "9.1 CRITICAL",
+      "domain": "Cloud Security",
+      "nistMapping": "Protect (PR.AC-07), Protect (PR.DS-02), Detect (DE.CM-03)",
+      "whatHappened": "Threat actors penetrated underlying orchestrator nodes of Platform-as-a-Service provider Railway, harvesting in-flight environment variables across an estimated 100,000 workspaces. The attackers selectively filtered for high-entropy secrets and AI platform credentials (including OpenAI, Anthropic, and Amazon Bedrock keys), subsequently operationalizing them within minutes to drive $740,000 in illicit compute and LLM token usage via distributed proxy networks.",
+      "technicalMechanism": "The breach stemmed from an orchestration engine vulnerability where tenant container metadata was exposed via an insecure internal RPC interface. Attackers scraped decrypted environment variables passed during runtime initialization. Once captured, automation scripts instantly weaponized the API keys by provisioning high-tier inference endpoints (GPT-4o, Claude 3.5 Sonnet) across multiple geographic endpoints, evading static anomaly thresholds through distributed, low-volume burst querying.",
+      "asciiFlow": "[Attacker] ──► [Insecure Orchestrator RPC] ──► [Extract Runtime Env Vars] ──► [Exfiltrate AI API Keys] ──► [Distributed Compute Abuse ($740k)]",
       "remediation": [
-        "Apply SAP November 2026 Support Package Stacks / Patches immediately.",
-        "Implement strict network perimeter filtering to block direct access to SAP ICM and Gateway ports from untrusted zones.",
-        "Monitor SAP audit logs for unauthorized administrative actions and anomalous RFC connection attempts."
+        "Immediately revoke and roll all API keys, database credentials, and service tokens stored within Railway-hosted environments prior to November 10, 2026.",
+        "Transition away from raw static API keys toward short-lived, workload-identity-federated tokens (e.g., OIDC to AWS IAM / Azure Workload Identity).",
+        "Implement hard spending caps, velocity limits, and source IP binding within AI vendor enterprise consoles."
       ],
-      "lessonsLearned": "Core enterprise middleware remains a primary vector for unauthenticated RCE. Organizations must decouple internal management interfaces from internet-facing architectures via zero-trust network access (ZTNA) policies."
+      "lessonsLearned": "Treating AI API keys as static environment variables introduces catastrophic operational and financial risk. PaaS isolation must treat secret management as an out-of-band, envelope-encrypted memory service rather than plain injected environment configurations."
     },
     {
       "id": "dd-02",
-      "badge": "DEEP DIVE #02 // THREAT INTEL & ESPIONAGE",
-      "title": "Turla's Modular Cereal Malware Targeting Government Exchange Servers",
-      "cve": "MITRE ATT&CK: T1114, T1071, T1505",
-      "cvss": "9.1 CRITICAL",
-      "domain": "Network Security",
-      "nistMapping": "DE.CM-03, RS.AN-01, RC.RP-01",
-      "whatHappened": "The Russian state-sponsored threat group Turla (Snake) was uncovered utilizing a newly documented, modular espionage toolset named 'Cereal' to silently intercept and exfiltrate emails from Microsoft Exchange servers at targeted government entities.",
-      "technicalMechanism": "Cereal deploys as a sophisticated post-exploitation framework that integrates directly into Microsoft Exchange architecture. It hooks into message transport and storage pipelines, enabling stealthy data collection without triggering standard endpoint alerts.",
-      "asciiFlow": "[Turla Operator] ──► [Compromised Exchange Edge/CAS] ──► [Cereal Module Hooks] ──► [Silent Mailbox Exfiltration]",
+      "badge": "DEEP DIVE #02 // ACTIVE ZERO-DAY EXPLOIT",
+      "title": "Microsoft Outlook NTLMv2 Coercion Zero-Day: Analysis of November Patch Tuesday Outliers",
+      "cve": "CVE-2026-42890",
+      "cvss": "9.8 CRITICAL",
+      "domain": "Endpoint Security",
+      "nistMapping": "Protect (PR.PS-02), Detect (DE.AE-02), Respond (RS.MI-01)",
+      "whatHappened": "As part of a massive 1,259-vulnerability Patch Tuesday release, Microsoft addressed an actively exploited zero-day in Microsoft Outlook. The flaw allows remote attackers to force an Outlook client to authenticate against an arbitrary SMB or WebDAV share without requiring user execution, capturing hashed NTLMv2 credentials that are subsequently cracked offline or used in NTLM relay attacks against corporate active directories.",
+      "technicalMechanism": "The vulnerability lies in the handling of OLE object preview parameters within rich-text (RTF) and HTML formatted emails. By embedding crafted UNC paths within specific nested MAPI properties, the Outlook parsing engine triggers an automated SMB negotiation prior to any trust evaluation or user preview interaction. The client sends an `NTLMSSP_NEGOTIATE` packet to the external adversary host, revealing the user's username, domain, and NetNTLMv2 hash.",
+      "asciiFlow": "[Attacker Email] ──► [Outlook Parser (MAPI RTF)] ──► [Outbound UNC Path Coercion] ──► [Attacker SMB Listener (Capture NetNTLMv2)]",
       "remediation": [
-        "Conduct comprehensive forensic hunts across all Microsoft Exchange environments for unauthorized transport agent modifications.",
-        "Update EDR and SIEM detection signatures to identify Cereal-specific behavioral artifacts and anomalous IIS worker process activities.",
-        "Enforce multi-factor authentication and rigorous administrative auditing across all mail server infrastructures."
+        "Apply Microsoft KB updates for November 2026 across all Exchange, Office, and Windows desktop endpoints immediately.",
+        "Enforce perimeter firewall egress rules blocking outbound TCP port 445 and TCP port 139 to all non-routable public destinations.",
+        "Add privileged administrative and domain accounts to the 'Protected Users' security group to systematically deny NTLM authentication fallbacks."
       ],
-      "lessonsLearned": "Advanced persistent threat (APT) groups continually refine modular toolsets to blend in with legitimate administrative traffic. Rich network telemetry and out-of-band monitoring are vital to detecting post-exploitation persistence."
+      "lessonsLearned": "Legacy authentication schemes like NTLM remain an architectural existential threat. Complete deprecation and strict outbound SMB filtering are the only durable barriers against recurring client-side coercion vectors."
     },
     {
       "id": "dd-03",
-      "badge": "DEEP DIVE #03 // OT & CYBER-PHYSICAL SECURITY",
-      "title": "IRGC State-Sponsored Sabotage of French Retail Refrigeration Controllers",
-      "cve": "MITRE ATT&CK: T0831 (Manipulation of Control View) / T1489",
-      "cvss": "9.0 CRITICAL",
-      "domain": "OT / ICS Security",
-      "nistMapping": "PR.AC-04, DE.AE-02, RS.RP-01",
-      "whatHappened": "The French government formally attributed an October cyberattack targeting refrigeration controllers across ~700 retail sites to a cyber unit of Iran's Islamic Revolutionary Guard Corps (IRGC). Attackers altered defrost settings to dangerous levels, causing food spoilage and physical fires.",
-      "technicalMechanism": "Threat actors exploited insecurely configured remote management interfaces on retail refrigeration controllers, directly modifying operational setpoints. By driving defrost cycles to extreme temperatures, they induced thermal stress, hardware failures, and subsequent physical fires.",
-      "asciiFlow": "[IRGC Cyber Unit] ──► [Exposed Retail Network / VPN] ──► [Refrigeration Controller] ──► [Modified Defrost Setpoints] ──► [Thermal Stress & Physical Fires]",
+      "badge": "DEEP DIVE #03 // INFRASTRUCTURE & SUPPLY CHAIN",
+      "title": "N-able N-central Vulnerability: RMM Platform Zero-Days Open MSP Supply Chains",
+      "cve": "CVE-2026-51201 / MITRE T1195.002",
+      "cvss": "9.8 CRITICAL",
+      "domain": "Application Security",
+      "nistMapping": "Govern (GV.SC-06), Protect (PR.PS-06), Respond (RS.RP-01)",
+      "whatHappened": "N-able issued emergency hotfixes after threat actors weaponized zero-day vulnerabilities in its N-central remote monitoring and management (RMM) platform. Attackers bypassed central authentication to inject administrative agent jobs, threatening hundreds of managed service providers (MSPs) and thousands of downstream client networks before N-able took vulnerable hosted cloud multi-tenant clusters temporarily offline.",
+      "technicalMechanism": "The exploit chain utilizes an unauthenticated deserialization flaw in the central management synchronization service (listening on port 443/8443). Attackers send serialized Java payload streams over HTTP requests targeting legacy endpoint endpoints that failed to validate caller trust before deserializing untrusted user input, achieving remote code execution under `SYSTEM` or `root` contexts on the RMM server and subsequently issuing mass push commands to downstream endpoints.",
+      "asciiFlow": "[Remote Attacker] ──► [N-central API (:443)] ──► [Insecure Deserialization Bypass] ──► [Root RCE on RMM Server] ──► [Malicious Command Push to All Clients]",
       "remediation": [
-        "Immediately audit and disconnect all retail OT/ICS equipment from direct internet exposure.",
-        "Implement robust hardware-level logging and boundary firewalls between corporate IT networks and industrial store controllers.",
-        "Deploy continuous integrity monitoring on environmental control thresholds to detect automated sabotage attempts."
+        "Apply vendor hotfixes to all self-hosted N-central server instances immediately; verify hosted cloud instances reflect updated build numbers.",
+        "Restrict access to N-central web and administration consoles strictly to trusted IPs and enforce hardware-backed MFA on all technician accounts.",
+        "Audit downstream endpoint agent command logs for anomalous PowerShell, CMD, or script executions spawned by the N-central agent service in the last 72 hours."
       ],
-      "lessonsLearned": "The convergence of IT and IoT/OT in retail and commercial environments expands the cyber-physical attack surface. Securing operational equipment requires strict network segmentation and zero-trust remote access controls."
+      "lessonsLearned": "RMM platforms represent apex predator attack vectors in supply chains. They require identical isolation to Tier-0 identity infrastructure, strictly segregated behind ZTNA and out-of-band access bastions."
     }
   ],
   "dailyQuestions": [
@@ -195,47 +215,47 @@
       "id": "q-secplus-01",
       "examBadge": "CompTIA Security+ (SY0-701)",
       "domain": "Domain 4.0: Security Operations",
-      "scenario": "A security analyst is reviewing telemetry following the disclosure of SAP NetWeaver vulnerabilities (ICM2SHELL and PROXYGATE) rated at CVSS 10.0. The flaws allow unauthenticated remote code execution. Which of the following is the most effective immediate operational mitigation before patches can be applied?",
+      "scenario": "A security analyst notices unexpected outbound traffic on TCP port 445 originating from executive workstations immediately after incoming emails are received. Investigation reveals an attacker is attempting to capture authentication hashes using crafted email elements that trigger external resource calls. Which of the following mitigations immediately eliminates the outbound exposure while security patches are scheduled?",
       "options": [
-        "A) Disable all user accounts across the enterprise domain.",
-        "B) Restrict external network access to NetWeaver management and Gateway ports using perimeter firewalls.",
-        "C) Enable full disk encryption on all client workstations.",
-        "D) Upgrade the corporate antivirus definitions to the latest signature set."
+        "A) Enable TLS 1.3 on the organization's outbound web proxy",
+        "B) Configure the perimeter firewall to block outbound traffic on TCP ports 139 and 445",
+        "C) Update the corporate DNS server to block external lookups of .local domains",
+        "D) Implement DKIM and SPF checks on the incoming mail gateway"
       ],
       "correctIndex": 1,
-      "rationale": "Because the SAP flaws allow unauthenticated remote code execution via internet-facing management interfaces, restricting external network access to those ports at the perimeter firewall is the most effective immediate mitigating control until patches are deployed."
+      "rationale": "Blocking outbound Server Message Block (SMB) traffic on TCP ports 139 and 445 at the network perimeter stops internal clients from connecting to external rogue SMB servers, neutralizing NetNTLM hash coercion and theft vectors immediately."
     },
     {
       "id": "q-secx-01",
       "examBadge": "CompTIA SecurityX (CAS-005)",
       "domain": "Domain 2.0: Security Architecture",
-      "scenario": "An enterprise is analyzing the Turla 'Cereal' malware campaign which targets Microsoft Exchange servers for silent email interception. As a Principal Security Architect, you are designing a defense-in-depth architecture to detect post-exploitation persistence in messaging infrastructure. Which architectural strategy provides the highest fidelity detection against modular server-side hooks?",
+      "scenario": "An enterprise leverages a hybrid cloud architecture deploying autonomous AI agent microservices that interface with third-party Large Language Model (LLM) APIs. During a recent supply-chain audit, the principal security architect discovers that hardcoded API keys stored as container environment variables were exposed when developers inadvertently exposed low-code AI prototypes. To architect a zero-trust, defense-in-depth secret management strategy that completely eliminates static API keys and restricts lateral abuse, which approach MUST the architect mandate?",
       "options": [
-        "A) Relying solely on perimeter signature-based antivirus scanning on incoming emails.",
-        "B) Implementing file integrity monitoring (FIM) and behavioral telemetry on Exchange transport agents alongside out-of-band network traffic analysis.",
-        "C) Enforcing complex user password policies and mandatory annual security awareness training.",
-        "D) Migrating all client endpoints to a virtual desktop infrastructure (VDI) environment."
+        "A) Encrypt container environment variables at rest using symmetric AES-256 keys managed by local host daemon scripts",
+        "B) Implement Workload Identity Federation using short-lived OIDC tokens exchanged via an enterprise IAM broker, coupled with egress proxy mTLS and dynamic policy-driven rate/spend quotas",
+        "C) Store all static API keys in a centralized public GitHub Enterprise repository protected by commit signing and branch protection rules",
+        "D) Configure container network namespaces to route all LLM outbound inference calls through a standard round-robin NAT gateway"
       ],
       "correctIndex": 1,
-      "rationale": "File integrity monitoring (FIM) on transport agents and behavioral telemetry combined with out-of-band network analysis provide deep visibility into server-side persistence mechanisms like Cereal, whereas perimeter AV and user training do not address internal server compromise."
+      "rationale": "Workload Identity Federation via OpenID Connect (OIDC) completely eliminates long-lived static secrets by exchanging short-lived identity assertions for ephemeral access tokens. Augmenting this with egress proxy mutual TLS (mTLS), strict context evaluation, and granular rate/spend limits provides robust defense-in-depth against credential harvesting and unauthorized cloud abuse."
     }
   ],
   "detectionRules": [
     {
       "id": "rule-suricata-01",
       "type": "SURICATA IDS / IPS RULE",
-      "title": "Detect Potential SAP NetWeaver ICM2SHELL / PROXYGATE Malicious Payload Request",
+      "title": "Outbound Suspicious SMB NTLMSSP Negotiation to Non-RFC1918 Address",
       "targetEngine": "Suricata 7.x+",
-      "mitreTechnique": "T1190 - Exploit Public-Facing Application",
-      "code": "alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS [50000,50001,8000,8080] (msg:\"ET EXPLOIT SAP NetWeaver Potential Unauthenticated RCE Attempt (ICM2SHELL)\"; flow:established,to_server; content:\"/sap/bc/\"; http_uri; content:\"cmd=\"; http_client_body; sid:20269901; rev:1;)"
+      "mitreTechnique": "T1187 - Forced Authentication",
+      "code": "alert smb $HOME_NET any -> !$HOME_NET 445 (msg:\"SECURITY_ALERT: Suspicious Outbound SMB NTLM Coercion Attempt to Public IP\"; flow:to_server,established; content:\"SMB\"; depth:8; content:\"NTLMSSP\"; distance:0; classtype:credential-theft; sid:20261101; rev:1; metadata:created_at 2026_11_11, attack_target Client_Workstation;)"
     },
     {
       "id": "rule-sigma-01",
       "type": "SIGMA SIEM / EDR RULE",
-      "title": "Suspicious Process Spawned by Exchange Worker Process (Indicative of Cereal Activity)",
+      "title": "Anomalous Child Process Spawned by RMM Management Agent",
       "targetEngine": "Wazuh / Splunk / Sentinel",
-      "mitreTechnique": "T1059 - Command and Scripting Interpreter",
-      "code": "title: Suspicious Child Process of Exchange W3WP\nstatus: production\ndescription: Detects unexpected shell execution spawned by Microsoft Exchange worker processes, potentially indicating Turla Cereal malware activity.\nlogsource:\n  category: process_creation\n  product: windows\ndetection:\n  selection:\n    ParentImage|endswith: '\\w3wp.exe'\n    Image|endswith:\n      - '\\cmd.exe'\n      - '\\powershell.exe'\n      - '\\pwsh.exe'\n      - '\\cscript.exe'\n      - '\\wscript.exe'\n  condition: selection\nfalsepositives:\n  - Legitimate Exchange administrative troubleshooting scripts\nlevel: high"
+      "mitreTechnique": "T1059.001 - Command and Scripting Interpreter: PowerShell",
+      "code": "title: Suspicious Execution from RMM Agent\nid: 9b2d8f4e-28cf-4b92-91f3-d02e48220261\nstatus: production\ndescription: Detects suspicious interactive shells or download utilities spawned by N-able N-central or similar RMM agent binaries.\nlogsource:\n  category: process_creation\n  product: windows\ndetection:\n  selection_parent:\n    ParentImage|endswith:\n      - '\\N-able\\Windows Agent\\NCentralAgent.exe'\n      - '\\AgentUI.exe'\n      - '\\NCentralServer.exe'\n  selection_child:\n    Image|endswith:\n      - '\\powershell.exe'\n      - '\\pwsh.exe'\n      - '\\cmd.exe'\n      - '\\certutil.exe'\n      - '\\curl.exe'\n    CommandLine|contains:\n      - 'IEX'\n      - 'DownloadString'\n      - 'bypass'\n      - 'WebClient'\n      - '-enc'\n  condition: selection_parent and selection_child\nfalsepositives:\n  - Approved enterprise deployment scripts configured via centralized MSP automation catalog.\nlevel: critical"
     }
   ]
 }
