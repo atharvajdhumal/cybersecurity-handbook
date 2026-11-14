@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-11-12T15:25:05Z",
-  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-12)",
+  "lastUpdated": "2026-11-14T13:38:49Z",
+  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-14)",
   "threatLevel": "CRITICAL (DEFCON 2)",
   "summaryMetrics": {
     "activeKevExploits": 14,
@@ -10,252 +10,250 @@
   },
   "attackLog": [
     {
-      "id": "INC-2026-11-12-01",
-      "incidentOrCve": "CVE-2026-126325",
-      "target": "PTC Windchill and FlexPLM",
-      "domain": "Application Security",
+      "id": "INC-2026-11-14-01",
+      "incidentOrCve": "Check Point PHP2Shell Zero-Day / ESXi Wiper",
+      "target": "Check Point Security Gateways & VMware ESXi Hypervisors",
+      "domain": "Network Security",
       "severity": "CRITICAL",
-      "cvss": "9.2",
-      "attackVector": "Improper input validation and deserialization of untrusted data leading to remote code execution.",
-      "immediateSolution": "Apply vendor-supplied security patches immediately.",
+      "cvss": "9.8",
+      "attackVector": "Perimeter gateway exploitation leveraging PHP2Shell zero-day vulnerability to obtain root execution, followed by pivot into internal virtualization fabrics to execute data wipers across VMware ESXi datastores.",
+      "immediateSolution": "Deploy Check Point emergency hotfix Jumbo Take 126+ immediately; isolate management interfaces; restrict ESXi CLI/API to air-gapped jump hosts.",
       "nistImpact": [
         "Protect (PR.PS-02)",
         "Detect (DE.CM-01)",
         "Respond (RS.MI-01)"
       ],
-      "source": "The Hacker News"
+      "source": "BleepingComputer"
     },
     {
-      "id": "INC-2026-11-12-02",
-      "incidentOrCve": "CVE-2026-118383",
-      "target": "MongoDB Server (Replica Sets)",
+      "id": "INC-2026-11-14-02",
+      "incidentOrCve": "CVE-2026-114713",
+      "target": "UnrealIRCd Open-Source Server Infrastructure",
       "domain": "Application Security",
-      "severity": "CRITICAL",
-      "cvss": "9.0",
-      "attackVector": "Pre-authentication requests crafted by an unauthenticated attacker to crash lagging servers during failover operations.",
-      "immediateSolution": "Upgrade to fixed MongoDB server versions released this week.",
-      "nistImpact": [
-        "Protect (PR.PT-01)",
-        "Detect (DE.CM-02)",
-        "Respond (RS.RP-01)"
-      ],
-      "source": "The Hacker News"
-    },
-    {
-      "id": "INC-2026-11-12-03",
-      "incidentOrCve": "AMD Turin CPU Side-Channel Flaws",
-      "target": "Google Cloud VMs on AMD Turin Chips",
-      "domain": "Cloud Security",
       "severity": "HIGH",
-      "cvss": "8.5",
-      "attackVector": "Side-channel vulnerabilities allowing local code inside a VM to infer kernel or cross-process data on the same core.",
-      "immediateSolution": "Apply guest OS patches and perform a full stop-and-start cycle on affected VMs.",
+      "cvss": "8.6",
+      "attackVector": "Improper neutralization of delimiters allowing unauthenticated remote actors to inject and execute arbitrary server-level commands via specially crafted control messages.",
+      "immediateSolution": "Upgrade UnrealIRCd instances to patched build 6.1.7+; implement egress filtering on daemon network segments.",
       "nistImpact": [
-        "Protect (PR.DS-01)",
-        "Detect (DE.AE-01)",
-        "Respond (RS.MI-02)"
+        "Protect (PR.PS-01)",
+        "Detect (DE.AE-02)"
       ],
       "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-11-12-04",
-      "incidentOrCve": "N-central RMM Exploits",
-      "target": "N-able N-central On-Premises (v2026.4.1 HF2)",
-      "domain": "Endpoint Security",
-      "severity": "CRITICAL",
-      "cvss": "9.8",
-      "attackVector": "Public exploits targeting exposed legacy APIs enabling root RCE and Windows SYSTEM access.",
-      "immediateSolution": "Disable Legacy API if not required, expose behind restricted access controls, and apply vendor hotfixes.",
-      "nistImpact": [
-        "Protect (PR.AC-03)",
-        "Detect (DE.CM-01)",
-        "Respond (RS.MI-01)"
-      ],
-      "source": "The Hacker News"
-    },
-    {
-      "id": "INC-2026-11-12-05",
-      "incidentOrCve": "Operation CloudFire",
-      "target": "Corporate Google Workspace Sessions",
-      "domain": "Identity & Access Management",
+      "id": "INC-2026-11-14-03",
+      "incidentOrCve": "CVE-2026-6460",
+      "target": "PostgreSQL Relational Database Engine (12.x - 17.x)",
+      "domain": "Application Security",
       "severity": "HIGH",
       "cvss": "8.8",
-      "attackVector": "Advanced phishing campaigns utilizing calendar invites and live proxies to steal active corporate sessions.",
-      "immediateSolution": "Implement phishing-resistant MFA (FIDO2/WebAuthn), restrict session token lifetimes, and monitor for impossible travel.",
+      "attackVector": "Legacy 22-year-old type confusion flaw in object creation enabling authenticated database users to achieve host-level remote code execution under the privileges of the postgres service account.",
+      "immediateSolution": "Apply vendor update across PostgreSQL clusters; recompile and relink all external C-language dynamic extensions; enforce strict REVOKE CREATE ON SCHEMA public.",
       "nistImpact": [
-        "Protect (PR.AC-07)",
-        "Detect (DE.CM-03)",
-        "Respond (RS.AN-01)"
+        "Protect (PR.AA-05)",
+        "Govern (GV.SC-06)"
       ],
       "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-11-12-06",
-      "incidentOrCve": "GSocket Linux Persistence",
-      "target": "Linux Server Deployments",
-      "domain": "Endpoint Security",
-      "severity": "HIGH",
-      "cvss": "8.1",
-      "attackVector": "Threat actors abusing the legitimate GSocket open-source tool to establish hidden backdoor access after patching initial entry vectors.",
-      "immediateSolution": "Audit active network sockets, review authorized binary installations, and implement EDR behavioral rules for GSocket execution patterns.",
+      "id": "INC-2026-11-14-04",
+      "incidentOrCve": "Mior & Skyfall Architectural Attacks",
+      "target": "AMD SEV-SNP Confidential Computing Virtual Machines",
+      "domain": "Cloud Security",
+      "severity": "CRITICAL",
+      "cvss": "9.0",
+      "attackVector": "Rogue cloud hypervisor manipulation coupled with malicious BIOS injection bypasses SEV-SNP memory encryption and attestation guarantees, reading guest enclave secrets and falsifying cryptographic attestation measurements.",
+      "immediateSolution": "Upgrade AMD microcode/AGESA firmware to patched hypervisor stepping; implement ephemeral sealed secrets with external hardware security modules (HSMs).",
       "nistImpact": [
-        "Protect (PR.PT-01)",
-        "Detect (DE.AE-03)",
-        "Respond (RS.ER-01)"
+        "Protect (PR.DS-01)",
+        "Protect (PR.DS-02)",
+        "Govern (GV.OC-03)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-14-05",
+      "incidentOrCve": "CryptoBilis Supply Chain Interdiction",
+      "target": "Trezor Safe 5 Hardware Cryptocurrency Wallets",
+      "domain": "Endpoint Security",
+      "severity": "CRITICAL",
+      "cvss": "9.4",
+      "attackVector": "Physical supply chain interdiction by third-party reseller inserting daughterboards that read display memory and exfiltrate BIP-39 seed phrases over cellular bands directly to adversary command nodes.",
+      "immediateSolution": "Recall units procured via unauthorized distributor CryptoBilis; deploy firmware update verifying optical bus integrity; enforce direct-from-OEM procurement policies.",
+      "nistImpact": [
+        "Protect (PR.AT-01)",
+        "Govern (GV.SC-07)",
+        "Detect (DE.CM-06)"
       ],
       "source": "BleepingComputer"
     },
     {
-      "id": "INC-2026-11-12-07",
-      "incidentOrCve": "Apify Internal Credential Breach",
-      "target": "Apify Infrastructure and API Services",
-      "domain": "Cloud Security",
+      "id": "INC-2026-11-14-06",
+      "incidentOrCve": "DPRK 'FaceStealer' Campaign",
+      "target": "Fintech & Web3 Executive Engineering Personas",
+      "domain": "Identity & Access Management",
       "severity": "HIGH",
-      "cvss": "8.0",
-      "attackVector": "Unauthorized access to internal systems resulting in exposure of API tokens and OAuth integrations.",
-      "immediateSolution": "Force rotation of all internal secrets, invalidate compromised API tokens, and enforce mandatory 2FA resets.",
+      "cvss": "8.5",
+      "attackVector": "North Korean state-sponsored actors deploy real-time generative AI video/audio deepfakes during technical recruitment and executive video interviews to compromise workstations and siphon over $400M in assets.",
+      "immediateSolution": "Mandate out-of-band cryptographic proof-of-identity (FIDO2 WebAuthn challenges) during video sessions; restrict developer workstation access to operational production keys.",
       "nistImpact": [
-        "Protect (PR.DS-05)",
+        "Protect (PR.AA-01)",
+        "Detect (DE.CM-03)",
+        "Respond (RS.CO-02)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-14-07",
+      "incidentOrCve": "Quantum Systems Operational Disruption",
+      "target": "German Defense Technology & Military Drone Fleet Infrastructure",
+      "domain": "OT / ICS Security",
+      "severity": "HIGH",
+      "cvss": "8.2",
+      "attackVector": "Advanced state-nexus intrusion against defense manufacturing and drone teleoperation platforms causing lateral degradation of military surveillance drone ground support workflows.",
+      "immediateSolution": "Isolate telemetry networks; rotate ground control station (GCS) cryptographic certificates; implement micro-segmentation between production engineering and IT networks.",
+      "nistImpact": [
+        "Protect (PR.IR-01)",
+        "Detect (DE.AE-04)",
+        "Respond (RS.RP-01)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-14-08",
+      "incidentOrCve": "Agentic LLM Indirect Prompt Injection",
+      "target": "Autonomous ERP & AP Invoice Processing AI Agents",
+      "domain": "AI & LLM Security",
+      "severity": "HIGH",
+      "cvss": "8.1",
+      "attackVector": "Indirect prompt injection embedded in inbound PDF invoices overrides agentic execution flows, causing the LLM agent to modify supplier routing transit numbers and authorize wire transfers without human-in-the-loop validation.",
+      "immediateSolution": "Implement deterministic policy guardrails; enforce dual-custody approval (HITL) for bank credential mutations; sandbox tool-calling privileges to read-only schemas.",
+      "nistImpact": [
+        "Protect (PR.PS-05)",
+        "Detect (DE.AE-01)",
+        "Govern (GV.SC-04)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-14-09",
+      "incidentOrCve": "Luna Moth OAuth Token Thefts",
+      "target": "Legal & Corporate Advisory Sectors",
+      "domain": "Identity & Access Management",
+      "severity": "HIGH",
+      "cvss": "7.9",
+      "attackVector": "Targeted voice-phishing (vishing) campaigns re-engaging uncooperative breach victims, tricking employees into authorizing malicious Microsoft 365 OAuth consent applications to maintain persistent token-based mailbox exfiltration.",
+      "immediateSolution": "Enforce strict tenant-wide admin consent for OAuth applications; revoke all non-expiring refresh tokens; implement Continuous Access Evaluation (CAE).",
+      "nistImpact": [
+        "Protect (PR.AA-03)",
         "Detect (DE.CM-07)",
         "Respond (RS.AN-03)"
       ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-11-12-08",
-      "incidentOrCve": "Greeter Cloud Attack Chain",
-      "target": "Multi-tenant Cloud Environments",
-      "domain": "Cloud Security",
-      "severity": "HIGH",
-      "cvss": "8.3",
-      "attackVector": "Automated cloud reconnaissance and lateral movement where attackers deliberately inject 'hello' markers into logs to mask behavior.",
-      "immediateSolution": "Implement strict anomaly detection for cloud audit logs and correlate unusual log entries with IAM privilege escalation.",
-      "nistImpact": [
-        "Protect (PR.PT-01)",
-        "Detect (DE.CM-01)",
-        "Respond (RS.AN-01)"
-      ],
       "source": "Dark Reading"
-    },
-    {
-      "id": "INC-2026-11-12-09",
-      "incidentOrCve": "Gootloader/CastleRAT/StealC Infrastructure",
-      "target": "Global Malware Delivery Ecosystems",
-      "domain": "Network Security",
-      "severity": "CRITICAL",
-      "cvss": "9.0",
-      "attackVector": "Syndicated malware deployment infrastructures leveraging compromised domains and watering hole tactics.",
-      "immediateSolution": "Block seized domain indicators of compromise at DNS level and audit endpoints for associated RAT artifacts.",
-      "nistImpact": [
-        "Protect (PR.PT-05)",
-        "Detect (DE.CM-08)",
-        "Respond (RS.MI-01)"
-      ],
-      "source": "BleepingComputer"
     }
   ],
   "deepDives": [
     {
       "id": "dd-01",
-      "badge": "DEEP DIVE #01 // APPLICATION SECURITY",
-      "title": "PTC Windchill and FlexPLM Deserialization Vulnerability",
-      "cve": "CVE-2026-126325",
-      "cvss": "9.2 CRITICAL",
-      "domain": "Application Security",
-      "nistMapping": "PR.DS-01, DE.CM-01, RS.MI-01",
-      "whatHappened": "PTC issued emergency patches for a critical input validation and object deserialization vulnerability affecting Windchill and FlexPLM platforms, opening systems up to unauthenticated remote code execution.",
-      "technicalMechanism": "The vulnerability stems from unsafe deserialization routines processing untrusted user input within core application endpoints. Attackers can craft malicious serialized Java objects and transmit them to vulnerable listeners, bypassing validation checks to execute arbitrary system commands under the security context of the application server daemon.",
-      "asciiFlow": "[Attacker Payload] ──► [HTTP Endpoint / Unsafe Deserializer] ──► [OS Command Execution]",
+      "badge": "DEEP DIVE #01 // ZERO-DAY & WIPER CHAIN",
+      "title": "Check Point Gateway Zero-Day to Hypervisor Pivot: The PHP2Shell ESXi Wiper Campaign",
+      "cve": "CVE-2026-PHP2Shell / MITRE T1190 & T1561.002",
+      "cvss": "9.8 CRITICAL",
+      "domain": "Network Security",
+      "nistMapping": "Protect (PR.PS-02), Detect (DE.CM-01), Respond (RS.MI-01)",
+      "whatHappened": "Nation-state and advanced cybercrime operators chained an unauthenticated remote code execution zero-day in Check Point Security Gateways (internally dubbed PHP2Shell) with a targeted VMware ESXi destructive wiping module. Once edge appliances were subverted to root level, attackers pivoted inward against management planes, terminating virtual machines and wiping VMFS datastore block tables, permanently destroying hypervisor infrastructure.",
+      "technicalMechanism": "The exploit abuses input sanitization gaps within the web-based management portal parsing routine. By submitting an obfuscated multipart payload with shell metacharacters, the PHP runtime passes raw shell arguments directly to the underlying Gaia OS binary with root privileges. The adversary then drops an SSH tunnel and invokes esoteric ESXi CLI utilities via stolen management credentials, issuing asynchronous 'dd if=/dev/zero' sweeps against raw storage partitions.",
+      "asciiFlow": "[External Adversary] ──► [HTTP/S Exploit Payload] ──► [Check Point Gaia OS (Root RCE)] ──► [Internal Pivot: SSH/vSphere API] ──► [ESXi Datastore Wiper (VMFS Zeroed)]",
       "remediation": [
-        "Apply vendor hotfixes and patches immediately.",
-        "Implement Web Application Firewall (WAF) signatures to inspect and drop serialized payload headers.",
-        "Isolate internal PLM servers behind Zero Trust network access boundaries."
+        "Apply the emergency vendor hotfix (Jumbo Take release 126 or hotfix HF-026) immediately to all internet-facing Check Point appliances.",
+        "Segregate firewall and hypervisor management networks completely away from general operational subnets into out-of-band VLANs with strict ACLs.",
+        "Perform block-level integrity checks across ESXi storage arrays and preserve offsite, immutable write-once-read-many (WORM) backups."
       ],
-      "lessonsLearned": "Enterprise applications relying on legacy Java architectures must enforce strict object validation filters and migrate toward safer data interchange formats to eliminate deserialization attack surfaces."
+      "lessonsLearned": "Edge appliances remain the primary soft perimeter. Dual-plane architectural separation must exist between network inspection firewalls and underlying virtualization compute planes to prevent automated root-level cascading destruction."
     },
     {
       "id": "dd-02",
-      "badge": "DEEP DIVE #02 // CLOUD & VIRTUALIZATION SECURITY",
-      "title": "AMD Turin CPU Core-Level Side-Channel Exposures",
-      "cve": "AMD-TURIN-SIDE-CHANNEL",
-      "cvss": "8.5 HIGH",
+      "badge": "DEEP DIVE #02 // CONFIDENTIAL COMPUTING BREACH",
+      "title": "Subverting Enclave Trust: Mior & Skyfall Exploitation of AMD SEV-SNP Architectures",
+      "cve": "MITRE T1068 & T1557 / Microcode Flaw",
+      "cvss": "9.0 CRITICAL",
       "domain": "Cloud Security",
-      "nistMapping": "PR.PT-01, DE.AE-01, RS.MI-02",
-      "whatHappened": "Google Cloud issued urgent advisories detailing three architectural side-channel flaws in AMD Turin processors, requiring guest operating system updates and hypervisor-level stop-and-start remediation cycles for virtual machines.",
-      "technicalMechanism": "The flaws exploit microarchitectural resource sharing on individual CPU cores. By monitoring execution timing and cache contention patterns, an unprivileged process or malicious container running inside a VM can infer sensitive data processed by other concurrent processes or the kernel running on the shared hardware thread.",
-      "asciiFlow": "[Compromised Guest Process] ──► [Shared Core Microarchitecture] ──► [Kernel / Cross-Process Data Leak]",
+      "nistMapping": "Protect (PR.DS-01), Protect (PR.DS-02), Govern (GV.OC-03)",
+      "whatHappened": "Security researchers demonstrated the practical compromise of AMD SEV-SNP (Secure Encrypted Virtualization-Secure Nested Paging), exposing the theoretical limit of multi-tenant confidential cloud computing. Using two attack variants named Mior and Skyfall, untrusted infrastructure operators or malicious hypervisors can extract plaintext cryptographic keys and forge remote attestation cryptographic signatures.",
+      "technicalMechanism": "Skyfall exploits deterministic hypervisor-controlled memory page mapping to induce speculative cache side-channel leakages across encrypted VM memory boundaries. Mior goes further by co-opting the platform BIOS initialization sequence, injecting malicious nested page table entries before the AMD Secure Processor (ASP) locks down platform security registers. This permits the hypervisor to inject unverified code into the enclave while generating an attestation report that validates cleanly against the vendor root CA.",
+      "asciiFlow": "[Malicious Host Hypervisor / Compromised BIOS] ──► [Faulty AGESA Page Table Registration] ──► [Bypass AMD Secure Processor (ASP)] ──► [Plaintext RAM Read / Spoofed Attestation] ──► [Cloud VM Keys Stolen]",
       "remediation": [
-        "Update guest operating system microcode and kernel components.",
-        "Perform full stop-and-start power cycles on affected cloud virtual machine instances to engage host-level mitigations.",
-        "Monitor hypervisor telemetry for abnormal hardware performance counter access."
+        "Deploy updated AGESA firmware and AMD microcode packages provided by enterprise server OEMs to close page-aliasing vectors.",
+        "Refactor confidential computing workloads to rely on client-side enveloped data encryption with external physical HSM roots of trust rather than relying solely on host attestation.",
+        "Enforce strict cryptographic binding between attestation reports and short-lived TLS ephemeral keys inside the enclave."
       ],
-      "lessonsLearned": "Multi-tenant cloud architectures demand continuous hardware-software co-design validation to address novel CPU side-channel vectors that bypass traditional software isolation boundaries."
+      "lessonsLearned": "Confidential computing mitigates commodity threats but cannot entirely replace zero-trust tenant architecture. When the physical substrate or hypervisor is fundamentally untrusted, firmware-level validation must be coupled with continuous hardware posture verification."
     },
     {
       "id": "dd-03",
-      "badge": "DEEP DIVE #03 // IDENTITY & ENDPOINT SECURITY",
-      "title": "Operation CloudFire: Google Session Hijacking via Live Proxies",
-      "cve": "OPERATION-CLOUDFIRE",
-      "cvss": "8.8 HIGH",
-      "domain": "Identity & Access Management",
-      "nistMapping": "PR.AC-07, DE.CM-03, RS.AN-01",
-      "whatHappened": "Material Security researchers uncovered 'Operation CloudFire', a sophisticated phishing operation active since August 2026 that successfully hijacks live corporate Google Workspace sessions using calendar invites and transparent reverse proxies.",
-      "technicalMechanism": "The attack deploys adversary-in-the-middle (AitM) proxy infrastructure disguised through calendar notifications. When targets authenticate via the proxy, attackers capture session tokens and authentication cookies in real-time, bypassing standard credential-only checks and traditional static link analyzers.",
-      "asciiFlow": "[Target User] ──► [Phishing Calendar Invite / AitM Proxy] ──► [Stolen Session Cookie / Workspace Access]",
+      "badge": "DEEP DIVE #03 // HARDWARE INTERDICTION",
+      "title": "Physical Supply Chain Interdiction: The Trezor Safe 5 Hardware Trojan Incident",
+      "cve": "MITRE T1195.001 - Supply Chain Compromise: Compromise Software/Hardware Dependencies",
+      "cvss": "9.4 CRITICAL",
+      "domain": "Endpoint Security",
+      "nistMapping": "Protect (PR.AT-01), Govern (GV.SC-07), Detect (DE.CM-06)",
+      "whatHappened": "Cryptocurrency security manufacturer Trezor confirmed that Safe 5 hardware wallets distributed via Southeast Asian authorized reseller CryptoBilis were subjected to physical interdiction. Attackers opened sealed retail packaging, added a custom parasitic surface-mount device (SMD) daughterboard to the display bus, and resealed the packages with counterfeit tamper-evident holographic packaging.",
+      "technicalMechanism": "The added micro-implant bridges the physical interconnect between the secure microcontroller and the internal OLED display. As the user completes the device initialization sequence and writes down the BIP-39 mnemonic recovery phrase, the implant intercepts the raw frame-buffer signals, serializes the recovery seed words, and utilizes an integrated micro-eSIM modem to beacon the phrase via LTE-M/NB-IoT bands to an adversary-controlled server.",
+      "asciiFlow": "[Reseller Interdiction: Micro-SMD Soldered] ──► [User Generates BIP-39 Seed] ──► [OLED Bus Snooped by Daughterboard] ──► [LTE-M Cellular Exfiltration] ──► [Attacker Drains Assets Remotely]",
       "remediation": [
-        "Enforce phishing-resistant MFA mechanisms such as FIDO2 hardware security keys.",
-        "Implement continuous session monitoring and token revocation policies for anomalous geo-locations.",
-        "Hunt for unverified external proxy IPs accessing workspace API endpoints."
+        "Issue an immediate physical recall of all Trezor devices procured via CryptoBilis during the identified compromised distribution window.",
+        "Implement mandatory optical x-ray and acoustic microscopy validation for high-assurance hardware cryptographic modules deployed within enterprise cold storage.",
+        "Deploy the vendor's emergency firmware update that conducts low-level bus resistance and timing impedance telemetry to identify foreign circuit modifications."
       ],
-      "lessonsLearned": "Traditional credential protections are obsolete against proxy-based session hijacking; security architectures must transition to continuous token validation and device posture attestation."
+      "lessonsLearned": "Tamper-evident tape is an inadequate defense against well-funded supply chain interdiction. Critical key generation appliances must have optical and electrical self-verifying silicon architectures and must only be sourced through direct, factory-audited distribution pipelines."
     }
   ],
   "dailyQuestions": [
     {
       "id": "q-secplus-01",
       "examBadge": "CompTIA Security+ (SY0-701)",
-      "domain": "Domain 4.0: Security Operations",
-      "scenario": "A security analyst discovers that multiple Linux servers have been compromised using GSocket, allowing threat actors to maintain backdoor access despite initial vulnerability patches being applied. Which of the following incident response and remediation steps is MOST appropriate to ensure persistent backdoors are eradicated?",
+      "domain": "Domain 2.0: Threats, Vulnerabilities, and Mitigations",
+      "scenario": "A financial firm recently uncovered that three newly acquired enterprise hardware security tokens had been physically modified during distribution by a third-party reseller to intercept and transmit device secrets over cellular networks. Which of the following security concepts specifically addresses this threat, and what is the MOST effective operational control to prevent recurrence?",
       "options": [
-        "A) Restart the affected Linux servers to clear active memory structures.",
-        "B) Perform a comprehensive artifact analysis, audit listening sockets/binaries, and revoke associated credentials.",
-        "C) Update the firewall rules to block external ICMP traffic.",
-        "D) Upgrade the database management system to the latest vendor version."
+        "A) Logic bomb attack; implement static code analysis on the firmware.",
+        "B) Supply chain interdiction; mandate direct-from-OEM procurement with cryptographically verified chain of custody.",
+        "C) Evil twin attack; enforce 802.1X wireless mutual authentication across corporate facilities.",
+        "D) Watering hole attack; deploy endpoint detection and response (EDR) software on all client workstations."
       ],
       "correctIndex": 1,
-      "rationale": "Option B is correct because post-exploitation persistence mechanisms like GSocket require thorough socket auditing, binary verification, and credential rotation since patching the initial entry vector does not remove established backdoors. Option A only affects RAM temporarily; C and D are irrelevant to backdoor socket persistence."
+      "rationale": "The scenario describes a classic physical supply chain interdiction attack (T1195.001), where a physical product is intercepted and tampered with before reaching the end customer. The most effective mitigation is sourcing directly from the original equipment manufacturer (OEM) and establishing strict, tamper-evident cryptographic chain-of-custody protocols rather than using third-party grey-market resellers."
     },
     {
       "id": "q-secx-01",
       "examBadge": "CompTIA SecurityX (CAS-005)",
-      "domain": "Domain 2.0: Security Architecture",
-      "scenario": "An enterprise cloud architect is evaluating multi-tenant isolation risks following disclosures regarding AMD Turin CPU side-channel flaws (Google Cloud advisory) and PTC deserialization vulnerabilities (CVE-2026-126325). From a Zero Trust architectural standpoint, which strategy provides the strongest defense-in-depth posture against these disparate threats?",
+      "domain": "Domain 1.0: Security Architecture and Engineering",
+      "scenario": "An enterprise architect is designing an infrastructure for multi-tenant confidential computing workloads on public cloud infrastructure. Recent research (such as Mior and Skyfall attacks on AMD SEV-SNP) reveals that malicious hypervisors and compromised platform BIOS layers can corrupt page table attestation reports and compromise enclave confidentiality. Which of the following architectural designs offers the STRONGEST defense against rogue hypervisor memory extraction and spoofed attestation?",
       "options": [
-        "A) Rely solely on hypervisor-level isolation and perimeter firewalls.",
-        "B) Implement strict input serialization validation, ephemeral container sandboxing, micro-segmentation, and mandatory guest OS microcode patching with full power-cycle enforcement.",
-        "C) Disable legacy APIs across all applications and mandate single-factor authentication for internal administrative services.",
-        "D) Migrate all workloads to bare-metal servers to eliminate virtualization overhead and CPU sharing."
+        "A) Rely entirely on the cloud provider's out-of-the-box SEV-SNP attestation verification service over mutual TLS.",
+        "B) Implement client-side enveloped data encryption, bind attestation to ephemeral TLS session keys verified by an external enterprise-controlled HSM, and enforce strict microcode baseline validation.",
+        "C) Replace virtual machine enclaves with standard Docker containers running on single-tenant bare-metal hypervisors with host-based intrusion detection.",
+        "D) Shift the encrypted enclave storage to self-encrypting drives (SEDs) with pre-boot authentication managed by the cloud service provider's native key management service."
       ],
       "correctIndex": 1,
-      "rationale": "Option B is correct because mitigating both hypervisor-level hardware side-channels (requiring microcode patches and power cycles) and application-layer deserialization flaws requires a comprehensive defense-in-depth approach encompassing input validation, micro-segmentation, and rigorous patch management. Option A ignores application flaws; C weakens authentication; D is economically and operationally impractical."
+      "rationale": "When relying on confidential computing in untrusted or multi-tenant clouds where hypervisors may be malicious or subverted, an organization cannot rely exclusively on host-provided attestation services. The architect must bind remote attestation cryptographically to short-lived ephemeral session keys verified externally by an enterprise-managed HSM, enforce strict CPU microcode baseline attestation, and envelop data before host ingestion."
     }
   ],
   "detectionRules": [
     {
       "id": "rule-suricata-01",
       "type": "SURICATA IDS / IPS RULE",
-      "title": "Detect Suspicious Java Deserialization Payload Targeting PTC Windchill (CVE-2026-126325)",
+      "title": "Check Point Security Gateway PHP2Shell Command Injection Attempt",
       "targetEngine": "Suricata 7.x+",
       "mitreTechnique": "T1190 - Exploit Public-Facing Application",
-      "code": "alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:\"ET EXPLOIT PTC Windchill Deserialization Attempt (CVE-2026-126325)\"; flow:established,to_server; content:\"ac ED 00 05\"; depth:4; classtype:attempted-admin; sid:2026111201; rev:1;)"
+      "code": "alert http $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:\"EXPLOIT-KIT Check Point Gateway PHP2Shell RCE Zero-Day Attempt\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/clients/MyCPClient.php\"; fast_pattern; http.request_body; content:\"cmd=\"; content:\"bash -i\"; distance:0; pcre:\"/(;|\\|\\||`|\\$\\().*(nc|sh|bash|curl|wget)/i\"; classtype:attempted-admin; sid:202611141; rev:1;)"
     },
     {
       "id": "rule-sigma-01",
       "type": "SIGMA SIEM / EDR RULE",
-      "title": "Detection of GSocket Remote Access Tool Execution on Linux",
+      "title": "Anomalous VMware ESXi Datastore Destruction and Wiping Activity",
       "targetEngine": "Wazuh / Splunk / Sentinel",
-      "mitreTechnique": "T1059 - Command and Scripting Interpreter",
-      "code": "title: GSocket Utility Execution for Persistent Access\nstatus: production\ndescription: Detects execution or process spawning associated with GSocket remote access tool on Linux hosts.\nlogsource:\n  category: process_creation\n  product: linux\ndetection:\n  selection:\n    CommandLine|contains:\n      - 'gsocket'\n      - '.gsocket'\n      - 'gs_s'\n      - 'gs_r'\n  condition: selection\nfalsepositives:\n  - Authorized administrative remote tooling\nlevel: high"
+      "mitreTechnique": "T1561.002 - Disk Structure Wipe",
+      "code": "title: Suspicious ESXi VMFS Datastore Destruction Command\nid: 9b2d87e1-85bc-42f1-a3f2-202611140001\nstatus: production\ndescription: Detects suspicious invocations of disk destruction binaries (dd, parted, esxcli storage) targeting active VMFS datastores from non-standard hypervisor shell sessions.\nreferences:\n  - https://www.bleepingcomputer.com/news/security/check-point-gateways-hacked-via-php2shell-to-deploy-vmware-esxi-wiper/\nauthor: CYBERDEFENSE Global Intel Hub\ndate: 2026/11/14\nlogsource:\n  category: process_creation\n  product: linux\ndetection:\n  selection_binaries:\n    Image|endswith:\n      - '/dd'\n      - '/sh'\n      - '/esxcli'\n      - '/rm'\n  selection_cli:\n    CommandLine|contains:\n      - 'if=/dev/zero'\n      - 'if=/dev/urandom'\n      - '/vmfs/devices/disks/'\n      - 'vmfs-destroy'\n      - 'storage filesystem unmount'\n  condition: selection_binaries and selection_cli\nfields:\n  - ComputerName\n  - User\n  - CommandLine\n  - ParentCommandLine\nfalsepositives:\n  - Authorized hypervisor decommissioning runbooks executed during scheduled change windows.\nlevel: critical"
     }
   ]
 }
