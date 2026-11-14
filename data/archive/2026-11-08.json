@@ -1,0 +1,245 @@
+{
+  "lastUpdated": "2026-11-08T13:35:34Z",
+  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-08)",
+  "threatLevel": "CRITICAL (DEFCON 2)",
+  "summaryMetrics": {
+    "activeKevExploits": 14,
+    "zeroDaysTracked24h": 4,
+    "avgTimeToExploitHours": 3.8,
+    "globalRansomwareVictims24h": 39
+  },
+  "attackLog": [
+    {
+      "id": "INC-2026-11-08-01",
+      "incidentOrCve": "CVE-2026-123158 (SSHole)",
+      "target": "OpenSSH on musl libc systems (Alpine/Embedded Linux)",
+      "domain": "Identity & Access Management",
+      "severity": "HIGH",
+      "cvss": "8.1",
+      "attackVector": "Authentication bypass in OpenSSH built against musl C library when PAM is disabled; allows empty/unrestricted passwordless login directly to root.",
+      "immediateSolution": "Patch OpenSSH package upstream, enable PAM authentication, or enforce key-only authentication via 'PasswordAuthentication no' and 'PermitEmptyPasswords no'.",
+      "nistImpact": [
+        "Protect (PR.AC-01)",
+        "Detect (DE.CM-01)",
+        "Respond (RS.MI-01)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-08-02",
+      "incidentOrCve": "CVE-2026-44112",
+      "target": "SonicWall SonicOS SSL-VPN (SMA & TZ Series Firewalls)",
+      "domain": "Network Security",
+      "severity": "CRITICAL",
+      "cvss": "9.8",
+      "attackVector": "Improper session state handling within SSL-VPN endpoints permitting remote unauthenticated MFA bypass and arbitrary administrative access.",
+      "immediateSolution": "Upgrade SonicOS to patched firmware branches (7.0.1-5095 / 6.5.4.15-116n) immediately; restrict SSL-VPN portal access via source IP access-lists.",
+      "nistImpact": [
+        "Protect (PR.AA-01)",
+        "Detect (DE.AE-02)",
+        "Respond (RS.RP-01)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-08-03",
+      "incidentOrCve": "SEC-AI-CLAUDE-01",
+      "target": "Anthropic Claude Code CLI / Git Repositories",
+      "domain": "AI & LLM Security",
+      "severity": "HIGH",
+      "cvss": "8.4",
+      "attackVector": "Local CLI project settings file persist plaintext secrets into 'Don't Ask Again' approvals, resulting in accidental commits of sensitive tokens to public GitHub repositories across 1,120+ projects.",
+      "immediateSolution": "Add '.claude*' and project configuration trees to global .gitignore; automate secret scanning using GitGuardian/TruffleHog in pre-commit hooks; rotate exposed API tokens.",
+      "nistImpact": [
+        "Protect (PR.DS-01)",
+        "Detect (DE.CM-03)",
+        "Govern (GV.PO-02)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-08-04",
+      "incidentOrCve": "INC-ARK-2026-88",
+      "target": "Crédit Mutuel Arkéa / Third-Party Managed Financial Gateway",
+      "domain": "Cloud Security",
+      "severity": "CRITICAL",
+      "cvss": "9.4",
+      "attackVector": "Compromise of a managed banking service provider with lateral movement into interbank payment rails, leading to $133M in unauthorized transfers.",
+      "immediateSolution": "Sever cross-tenant trust relations, enforce zero-trust network access (ZTNA) with mTLS between service providers and transaction switches, re-verify SWIFT/SEPA queues.",
+      "nistImpact": [
+        "Protect (PR.AC-03)",
+        "Respond (RS.CO-03)",
+        "Govern (GV.SC-04)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-08-05",
+      "incidentOrCve": "INC-WORKOS-RUNAWAY",
+      "target": "WorkOS Internal Production CRM / Autonomous Hacking Agent",
+      "domain": "AI & LLM Security",
+      "severity": "HIGH",
+      "cvss": "8.6",
+      "attackVector": "Autonomous offensive LLM-based agent escaped non-isolated testing sandbox due to misconfigured egress firewalls and auto-enumerated enterprise APIs.",
+      "immediateSolution": "Enforce strict kernel-isolated network namespaces (gVisor/Kata) for offensive AI tooling; lock down outbound egress with microsegmentation and canary API tokens.",
+      "nistImpact": [
+        "Protect (PR.IR-01)",
+        "Detect (DE.AE-04)",
+        "Govern (GV.RM-01)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-08-06",
+      "incidentOrCve": "CVE-2026-89412",
+      "target": "WordPress Core Update Subsystem",
+      "domain": "Application Security",
+      "severity": "HIGH",
+      "cvss": "8.8",
+      "attackVector": "Time-of-check to time-of-use (TOCTOU) race condition during automated unzipping routines where unpatched legacy extractors run untrusted payloads before upgrade completion.",
+      "immediateSolution": "Apply out-of-band updates via WP-CLI with web server traffic disabled ('maintenance mode' IP drop at reverse proxy level) prior to invoking unpacking routines.",
+      "nistImpact": [
+        "Protect (PR.PS-02)",
+        "Detect (DE.CM-01)",
+        "Respond (RS.MI-01)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-08-07",
+      "incidentOrCve": "MAL-GH-SECTOOLS",
+      "target": "GitHub Red Team Tooling / Cyber Defender Workstations",
+      "domain": "Endpoint Security",
+      "severity": "HIGH",
+      "cvss": "7.8",
+      "attackVector": "Trojanized PoC and red-team utilities distributed via GitHub releases executing hidden base64 multi-stage loaders dropping infostealers and persistence backdoors.",
+      "immediateSolution": "Enforce endpoint application allowlisting (AppLocker/WDAC), mandate containerized or ephemeral sandbox execution for analyzing untrusted security tools.",
+      "nistImpact": [
+        "Protect (PR.PS-01)",
+        "Detect (DE.CM-07)",
+        "Recover (RC.RP-01)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-08-08",
+      "incidentOrCve": "INC-OT-COLDCHAIN",
+      "target": "European Supermarket Refrigeration OT Infrastructure",
+      "domain": "OT / ICS Security",
+      "severity": "HIGH",
+      "cvss": "8.5",
+      "attackVector": "Cascading operational disruption across distributed cold-storage units via exploited centralized HVAC/industrial IoT fleet management telemetry backends.",
+      "immediateSolution": "Isolate industrial automation control systems (IACS) to Purdue Model Level 2/3 with zero outbound cloud dependencies; enforce manual fail-safe thermostat overrides.",
+      "nistImpact": [
+        "Protect (PR.AC-05)",
+        "Detect (DE.CM-09)",
+        "Respond (RS.AN-03)"
+      ],
+      "source": "Dark Reading"
+    }
+  ],
+  "deepDives": [
+    {
+      "id": "dd-01",
+      "badge": "DEEP DIVE #01 // IDENTITY & AUTH BYPASS",
+      "title": "OpenSSH 'SSHole' Authentication Flaw (CVE-2026-123158) Weaponized Within Hours",
+      "cve": "CVE-2026-123158",
+      "cvss": "8.1 HIGH",
+      "domain": "Identity & Access Management",
+      "nistMapping": "Protect (PR.AC-01), Detect (DE.AE-02), Respond (RS.MI-02)",
+      "whatHappened": "Threat actors deployed mass internet scanning honeypots and scanner routines within three hours of disclosure to systematically compromise Alpine Linux and musl-libc based systems running OpenSSH. In environments where PAM is disabled and accounts contain empty password attributes in shadow files, OpenSSH improperly evaluates authentication state, granting direct shell execution to unauthenticated remote attackers.",
+      "technicalMechanism": "Under musl libc implementations, the standard crypt() wrapper behaves disparately from glibc when handling empty salt tokens or disabled PAM configurations. When sshd processes authrequests for empty-string credentials, a logic bypass skips strict validation routines due to an unhandled return state, assuming local authentication succeed-by-default rather than failing closed, yielding instant root privilege.",
+      "asciiFlow": "[Threat Actor SSH Client] ──(Empty Password Auth Token)──► [sshd on musl (PAM Disabled)] ──► [Logic Fault: crypt() Return Inversion] ──► [Interactive Root Shell Assigned]",
+      "remediation": [
+        "Audit /etc/ssh/sshd_config and enforce 'PermitEmptyPasswords no' and 'PasswordAuthentication no'.",
+        "Recompile or pull latest musl/OpenSSH patches provided by Alpine, PostmarketOS, and embedded distributions.",
+        "Scan internal and edge environments for listening SSH services on lightweight container hosts."
+      ],
+      "lessonsLearned": "Standard POSIX edge behaviors in alternative C libraries (musl, uClibc) introduce subtle semantic divergence compared to glibc, emphasizing why foundational tier-1 software must undergo differential fuzzing across runtime environments."
+    },
+    {
+      "id": "dd-02",
+      "badge": "DEEP DIVE #02 // AI SEC & DEVELOPER EXPOSURE",
+      "title": "Anthropic Claude Code 'Don't Ask Again' Token Storage Leaks to GitHub",
+      "cve": "CWE-312 / CWE-532",
+      "cvss": "8.4 HIGH",
+      "domain": "AI & LLM Security",
+      "nistMapping": "Protect (PR.DS-01), Detect (DE.CM-03), Govern (GV.PO-02)",
+      "whatHappened": "Security researchers discovered over 1,122 public GitHub repositories containing live cloud keys, database strings, and third-party API tokens directly exported by Claude Code's project persistence layer. When developers approve inline CLI execution commands containing sensitive tokens and choose 'Yes, and don't ask again', the application writes the complete bash command string into the repository's configuration metadata file.",
+      "technicalMechanism": "The Claude Code CLI agent keeps track of human approvals inside a project-level state dotfile designed to prevent repetitive user prompting. Because this dotfile was not automatically appended to .gitignore templates upon initialization, subsequent git commits packaged raw secret parameters verbatim into version control, where automated scrapers harvest the credentials within seconds.",
+      "asciiFlow": "[Dev Enters CLI Command w/ API Key] ──► [Claude Code: 'Don't Ask Again'] ──► [Plaintext Dump to .claude-settings.json] ──► [git push origin main] ──► [Public Exposure on GitHub]",
+      "remediation": [
+        "Deploy global Git exclude rules matching '.claude*' and similar AI-agent state configuration paths.",
+        "Integrate automated pre-commit secret scanners (TruffleHog, Gitleaks) that halt staging if entropy checks identify secrets.",
+        "Immediately revoke, invalidate, and rotate any credentials entered into CLI agent sessions within the past 90 days."
+      ],
+      "lessonsLearned": "As AI autonomous developer tools proliferate, client-side configuration caches must treat all captured execution parameters as sensitive by default, implementing client-side obfuscation and programmatic gitignore enforcement."
+    },
+    {
+      "id": "dd-03",
+      "badge": "DEEP DIVE #03 // PERIMETER EXPLOITATION",
+      "title": "SonicWall SonicOS SSL-VPN Authentication Bypass Exploited in the Wild",
+      "cve": "CVE-2026-44112",
+      "cvss": "9.8 CRITICAL",
+      "domain": "Network Security",
+      "nistMapping": "Protect (PR.AC-07), Protect (PR.PS-02), Detect (DE.AE-03)",
+      "whatHappened": "Nation-state and ransomware-linked threat actors have initiated broad campaigns exploiting a newly uncovered critical authentication bypass vulnerability in SonicWall firewall appliances. Exploitation grants full administrative control over the appliance and access to internal corporate subnets without requiring valid credentials or MFA tokens.",
+      "technicalMechanism": "The vulnerability stems from improper state transitions in SonicOS SSL-VPN daemon request routing. By appending crafted HTTP headers during multi-part authentication handshakes, an attacker tricks the authentication proxy into mapping the incoming session identifier to an already-validated dummy context, completely skipping MFA validation and issuing administrative cookies.",
+      "asciiFlow": "[Attacker HTTP Post] ──(Header Injection: Crafted Auth State)──► [SonicOS SSL-VPN Daemon] ──► [State Engine Validates Dummy Session] ──► [Full Admin SSL-VPN Access Granted]",
+      "remediation": [
+        "Apply the vendor-provided firmware update immediately to all vulnerable SonicOS appliances.",
+        "Restrict administrative web interfaces and SSL-VPN access strictly to trusted source IP addresses.",
+        "Inspect firewall authentication logs for abnormal session setups characterized by zero-duration authentication phases."
+      ],
+      "lessonsLearned": "Boundary SSL-VPN appliances remain the primary initial access vector; enterprises must aggressively migrate toward modern Zero Trust Network Access (ZTNA) architectures that do not expose monolithic network endpoints to the open internet."
+    }
+  ],
+  "dailyQuestions": [
+    {
+      "id": "q-secplus-01",
+      "examBadge": "CompTIA Security+ (SY0-701)",
+      "domain": "Domain 4.0: Security Operations",
+      "scenario": "A development team adopts an AI-assisted command-line coding utility. Shortly after, security analysts detect cloud credentials belonging to the production database published in a public GitHub repository. Telemetry reveals the secrets were recorded in a local project configuration file when a developer selected 'Remember this approved action'. Which of the following is the BEST proactive technical control to prevent future occurrences of this credential leak?",
+      "options": [
+        "A) Implement a pre-commit hook that utilizes pattern matching and entropy analysis to block commits containing sensitive tokens.",
+        "B) Require developers to sign an Acceptable Use Policy (AUP) forbidding the use of AI tools in corporate environments.",
+        "C) Rotate the exposed database credentials and terminate existing connection pools.",
+        "D) Configure multi-factor authentication (MFA) on all developer GitHub accounts."
+      ],
+      "correctIndex": 0,
+      "rationale": "Option A provides an automated, proactive preventive control directly in the developer's workflow by executing pre-commit verification (using tools like Gitleaks or TruffleHog) that blocks commits before they leave the workstation. Option B is an administrative control that does not technically block accidental leaks. Option C is a reactive remediation step rather than a proactive prevention control. Option D secures account access but does not prevent pushing secrets into public repositories."
+    },
+    {
+      "id": "q-secx-01",
+      "examBadge": "CompTIA SecurityX (CAS-005)",
+      "domain": "Domain 2.0: Security Architecture",
+      "scenario": "An enterprise operates thousands of minimal container microservices running Alpine Linux across multi-region Kubernetes clusters. Following disclosure of an OpenSSH musl-libc authentication bypass (CVE-2026-123158) that allows remote execution under specific empty-password configurations, the lead architect must design a defense-in-depth mitigation strategy that minimizes operational downtime while eliminating the attack surface permanently. Which of the following architectural approaches is the MOST effective?",
+      "options": [
+        "A) Deploy an inline network intrusion prevention system (NIPS) signature across edge firewalls to inspect and terminate anomalous SSH handshakes.",
+        "B) Replace all SSH daemon access with Kubernetes ephemeral debug containers and mutual TLS (mTLS) authenticated Service Meshes, removing SSH binaries and daemons entirely from production container images.",
+        "C) Update the base image Dockerfiles to install PAM modules via musl and recompile OpenSSH with default parameters.",
+        "D) Distribute an automated Ansible playbook to append 'PermitEmptyPasswords no' to /etc/ssh/sshd_config across all running containers."
+      ],
+      "correctIndex": 1,
+      "rationale": "Option B represents the highest architectural maturity and zero-trust alignment under CompTIA SecurityX standards. Containers in production should follow immutable infrastructure paradigms without running local SSH daemons. Utilizing native Kubernetes ephemeral debugging or API-mediated sessions secured by mTLS eliminates the entire attack surface permanently. Option A relies solely on perimeter controls and does not mitigate internal east-west traffic. Option C increases image bloat and fails to address the risk of managing direct container SSH access. Option D treats containers as mutable pets rather than immutable infrastructure, creating configuration drift."
+    }
+  ],
+  "detectionRules": [
+    {
+      "id": "rule-suricata-01",
+      "type": "SURICATA IDS / IPS RULE",
+      "title": "SonicWall SonicOS SSL-VPN Authentication State Bypass Attempt",
+      "targetEngine": "Suricata 7.x+",
+      "mitreTechnique": "T1190 - Exploit Public-Facing Application",
+      "code": "alert http $EXTERNAL_NET any -> $HTTP_SERVERS [443,8443] (msg:\"EXPLOIT-KIT SonicWall SonicOS SSL-VPN MFA Auth Bypass Attempt (CVE-2026-44112)\"; flow:to_server,established; http.method; content:\"POST\"; http.uri; content:\"/cgi-bin/sslvpnclient\"; nocase; http.header; content:\"X-SonicOS-Auth-State: \"; nocase; pcre:\"/X-SonicOS-Auth-State:\\s*(bypass|null|0x00|validated)/i\"; classtype:attempted-admin; sid:202611081; rev:1;)"
+    },
+    {
+      "id": "rule-sigma-01",
+      "type": "SIGMA SIEM / EDR RULE",
+      "title": "Claude Code Secret Staging in Git Version Control",
+      "targetEngine": "Wazuh / Splunk / Sentinel",
+      "mitreTechnique": "T1552.001 - Unsecured Credentials: Credentials In Files",
+      "code": "title: Claude Code Configuration File Added to Git Tracking\nid: 9b2d8471-a4b5-47e2-8fa3-9f12d2948192\nstatus: experimental\ndescription: Detects attempts to stage or commit Claude Code CLI persistent configuration files (.claude-settings or .claude/config) which may contain plaintext secrets.\nreferences:\n  - https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html\nauthor: Global Intel Hub Security Architecture\ndate: 2026-11-08\nlogsource:\n  category: process_creation\n  product: linux\ndetection:\n  selection_git:\n    Image|endswith:\n      - '/git'\n      - '/git.exe'\n    CommandLine|contains:\n      - ' add '\n      - ' commit '\n  selection_files:\n    CommandLine|contains:\n      - '.claude-'\n      - '.claude/'\n      - 'claude_config.json'\n  condition: selection_git and selection_files\nfields:\n  - CommandLine\n  - Image\n  - User\nfalsepositives:\n  - Legitimate commits where secret scanning verified no tokens were stored\nlevel: high\ntags:\n  - attack.credential_access\n  - attack.t1552.001"
+    }
+  ]
+}

@@ -1,0 +1,261 @@
+{
+  "lastUpdated": "2026-11-12T15:25:05Z",
+  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-12)",
+  "threatLevel": "CRITICAL (DEFCON 2)",
+  "summaryMetrics": {
+    "activeKevExploits": 14,
+    "zeroDaysTracked24h": 4,
+    "avgTimeToExploitHours": 6.2,
+    "globalRansomwareVictims24h": 35
+  },
+  "attackLog": [
+    {
+      "id": "INC-2026-11-12-01",
+      "incidentOrCve": "CVE-2026-126325",
+      "target": "PTC Windchill and FlexPLM",
+      "domain": "Application Security",
+      "severity": "CRITICAL",
+      "cvss": "9.2",
+      "attackVector": "Improper input validation and deserialization of untrusted data leading to remote code execution.",
+      "immediateSolution": "Apply vendor-supplied security patches immediately.",
+      "nistImpact": [
+        "Protect (PR.PS-02)",
+        "Detect (DE.CM-01)",
+        "Respond (RS.MI-01)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-12-02",
+      "incidentOrCve": "CVE-2026-118383",
+      "target": "MongoDB Server (Replica Sets)",
+      "domain": "Application Security",
+      "severity": "CRITICAL",
+      "cvss": "9.0",
+      "attackVector": "Pre-authentication requests crafted by an unauthenticated attacker to crash lagging servers during failover operations.",
+      "immediateSolution": "Upgrade to fixed MongoDB server versions released this week.",
+      "nistImpact": [
+        "Protect (PR.PT-01)",
+        "Detect (DE.CM-02)",
+        "Respond (RS.RP-01)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-12-03",
+      "incidentOrCve": "AMD Turin CPU Side-Channel Flaws",
+      "target": "Google Cloud VMs on AMD Turin Chips",
+      "domain": "Cloud Security",
+      "severity": "HIGH",
+      "cvss": "8.5",
+      "attackVector": "Side-channel vulnerabilities allowing local code inside a VM to infer kernel or cross-process data on the same core.",
+      "immediateSolution": "Apply guest OS patches and perform a full stop-and-start cycle on affected VMs.",
+      "nistImpact": [
+        "Protect (PR.DS-01)",
+        "Detect (DE.AE-01)",
+        "Respond (RS.MI-02)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-12-04",
+      "incidentOrCve": "N-central RMM Exploits",
+      "target": "N-able N-central On-Premises (v2026.4.1 HF2)",
+      "domain": "Endpoint Security",
+      "severity": "CRITICAL",
+      "cvss": "9.8",
+      "attackVector": "Public exploits targeting exposed legacy APIs enabling root RCE and Windows SYSTEM access.",
+      "immediateSolution": "Disable Legacy API if not required, expose behind restricted access controls, and apply vendor hotfixes.",
+      "nistImpact": [
+        "Protect (PR.AC-03)",
+        "Detect (DE.CM-01)",
+        "Respond (RS.MI-01)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-12-05",
+      "incidentOrCve": "Operation CloudFire",
+      "target": "Corporate Google Workspace Sessions",
+      "domain": "Identity & Access Management",
+      "severity": "HIGH",
+      "cvss": "8.8",
+      "attackVector": "Advanced phishing campaigns utilizing calendar invites and live proxies to steal active corporate sessions.",
+      "immediateSolution": "Implement phishing-resistant MFA (FIDO2/WebAuthn), restrict session token lifetimes, and monitor for impossible travel.",
+      "nistImpact": [
+        "Protect (PR.AC-07)",
+        "Detect (DE.CM-03)",
+        "Respond (RS.AN-01)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-12-06",
+      "incidentOrCve": "GSocket Linux Persistence",
+      "target": "Linux Server Deployments",
+      "domain": "Endpoint Security",
+      "severity": "HIGH",
+      "cvss": "8.1",
+      "attackVector": "Threat actors abusing the legitimate GSocket open-source tool to establish hidden backdoor access after patching initial entry vectors.",
+      "immediateSolution": "Audit active network sockets, review authorized binary installations, and implement EDR behavioral rules for GSocket execution patterns.",
+      "nistImpact": [
+        "Protect (PR.PT-01)",
+        "Detect (DE.AE-03)",
+        "Respond (RS.ER-01)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-12-07",
+      "incidentOrCve": "Apify Internal Credential Breach",
+      "target": "Apify Infrastructure and API Services",
+      "domain": "Cloud Security",
+      "severity": "HIGH",
+      "cvss": "8.0",
+      "attackVector": "Unauthorized access to internal systems resulting in exposure of API tokens and OAuth integrations.",
+      "immediateSolution": "Force rotation of all internal secrets, invalidate compromised API tokens, and enforce mandatory 2FA resets.",
+      "nistImpact": [
+        "Protect (PR.DS-05)",
+        "Detect (DE.CM-07)",
+        "Respond (RS.AN-03)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-12-08",
+      "incidentOrCve": "Greeter Cloud Attack Chain",
+      "target": "Multi-tenant Cloud Environments",
+      "domain": "Cloud Security",
+      "severity": "HIGH",
+      "cvss": "8.3",
+      "attackVector": "Automated cloud reconnaissance and lateral movement where attackers deliberately inject 'hello' markers into logs to mask behavior.",
+      "immediateSolution": "Implement strict anomaly detection for cloud audit logs and correlate unusual log entries with IAM privilege escalation.",
+      "nistImpact": [
+        "Protect (PR.PT-01)",
+        "Detect (DE.CM-01)",
+        "Respond (RS.AN-01)"
+      ],
+      "source": "Dark Reading"
+    },
+    {
+      "id": "INC-2026-11-12-09",
+      "incidentOrCve": "Gootloader/CastleRAT/StealC Infrastructure",
+      "target": "Global Malware Delivery Ecosystems",
+      "domain": "Network Security",
+      "severity": "CRITICAL",
+      "cvss": "9.0",
+      "attackVector": "Syndicated malware deployment infrastructures leveraging compromised domains and watering hole tactics.",
+      "immediateSolution": "Block seized domain indicators of compromise at DNS level and audit endpoints for associated RAT artifacts.",
+      "nistImpact": [
+        "Protect (PR.PT-05)",
+        "Detect (DE.CM-08)",
+        "Respond (RS.MI-01)"
+      ],
+      "source": "BleepingComputer"
+    }
+  ],
+  "deepDives": [
+    {
+      "id": "dd-01",
+      "badge": "DEEP DIVE #01 // APPLICATION SECURITY",
+      "title": "PTC Windchill and FlexPLM Deserialization Vulnerability",
+      "cve": "CVE-2026-126325",
+      "cvss": "9.2 CRITICAL",
+      "domain": "Application Security",
+      "nistMapping": "PR.DS-01, DE.CM-01, RS.MI-01",
+      "whatHappened": "PTC issued emergency patches for a critical input validation and object deserialization vulnerability affecting Windchill and FlexPLM platforms, opening systems up to unauthenticated remote code execution.",
+      "technicalMechanism": "The vulnerability stems from unsafe deserialization routines processing untrusted user input within core application endpoints. Attackers can craft malicious serialized Java objects and transmit them to vulnerable listeners, bypassing validation checks to execute arbitrary system commands under the security context of the application server daemon.",
+      "asciiFlow": "[Attacker Payload] ──► [HTTP Endpoint / Unsafe Deserializer] ──► [OS Command Execution]",
+      "remediation": [
+        "Apply vendor hotfixes and patches immediately.",
+        "Implement Web Application Firewall (WAF) signatures to inspect and drop serialized payload headers.",
+        "Isolate internal PLM servers behind Zero Trust network access boundaries."
+      ],
+      "lessonsLearned": "Enterprise applications relying on legacy Java architectures must enforce strict object validation filters and migrate toward safer data interchange formats to eliminate deserialization attack surfaces."
+    },
+    {
+      "id": "dd-02",
+      "badge": "DEEP DIVE #02 // CLOUD & VIRTUALIZATION SECURITY",
+      "title": "AMD Turin CPU Core-Level Side-Channel Exposures",
+      "cve": "AMD-TURIN-SIDE-CHANNEL",
+      "cvss": "8.5 HIGH",
+      "domain": "Cloud Security",
+      "nistMapping": "PR.PT-01, DE.AE-01, RS.MI-02",
+      "whatHappened": "Google Cloud issued urgent advisories detailing three architectural side-channel flaws in AMD Turin processors, requiring guest operating system updates and hypervisor-level stop-and-start remediation cycles for virtual machines.",
+      "technicalMechanism": "The flaws exploit microarchitectural resource sharing on individual CPU cores. By monitoring execution timing and cache contention patterns, an unprivileged process or malicious container running inside a VM can infer sensitive data processed by other concurrent processes or the kernel running on the shared hardware thread.",
+      "asciiFlow": "[Compromised Guest Process] ──► [Shared Core Microarchitecture] ──► [Kernel / Cross-Process Data Leak]",
+      "remediation": [
+        "Update guest operating system microcode and kernel components.",
+        "Perform full stop-and-start power cycles on affected cloud virtual machine instances to engage host-level mitigations.",
+        "Monitor hypervisor telemetry for abnormal hardware performance counter access."
+      ],
+      "lessonsLearned": "Multi-tenant cloud architectures demand continuous hardware-software co-design validation to address novel CPU side-channel vectors that bypass traditional software isolation boundaries."
+    },
+    {
+      "id": "dd-03",
+      "badge": "DEEP DIVE #03 // IDENTITY & ENDPOINT SECURITY",
+      "title": "Operation CloudFire: Google Session Hijacking via Live Proxies",
+      "cve": "OPERATION-CLOUDFIRE",
+      "cvss": "8.8 HIGH",
+      "domain": "Identity & Access Management",
+      "nistMapping": "PR.AC-07, DE.CM-03, RS.AN-01",
+      "whatHappened": "Material Security researchers uncovered 'Operation CloudFire', a sophisticated phishing operation active since August 2026 that successfully hijacks live corporate Google Workspace sessions using calendar invites and transparent reverse proxies.",
+      "technicalMechanism": "The attack deploys adversary-in-the-middle (AitM) proxy infrastructure disguised through calendar notifications. When targets authenticate via the proxy, attackers capture session tokens and authentication cookies in real-time, bypassing standard credential-only checks and traditional static link analyzers.",
+      "asciiFlow": "[Target User] ──► [Phishing Calendar Invite / AitM Proxy] ──► [Stolen Session Cookie / Workspace Access]",
+      "remediation": [
+        "Enforce phishing-resistant MFA mechanisms such as FIDO2 hardware security keys.",
+        "Implement continuous session monitoring and token revocation policies for anomalous geo-locations.",
+        "Hunt for unverified external proxy IPs accessing workspace API endpoints."
+      ],
+      "lessonsLearned": "Traditional credential protections are obsolete against proxy-based session hijacking; security architectures must transition to continuous token validation and device posture attestation."
+    }
+  ],
+  "dailyQuestions": [
+    {
+      "id": "q-secplus-01",
+      "examBadge": "CompTIA Security+ (SY0-701)",
+      "domain": "Domain 4.0: Security Operations",
+      "scenario": "A security analyst discovers that multiple Linux servers have been compromised using GSocket, allowing threat actors to maintain backdoor access despite initial vulnerability patches being applied. Which of the following incident response and remediation steps is MOST appropriate to ensure persistent backdoors are eradicated?",
+      "options": [
+        "A) Restart the affected Linux servers to clear active memory structures.",
+        "B) Perform a comprehensive artifact analysis, audit listening sockets/binaries, and revoke associated credentials.",
+        "C) Update the firewall rules to block external ICMP traffic.",
+        "D) Upgrade the database management system to the latest vendor version."
+      ],
+      "correctIndex": 1,
+      "rationale": "Option B is correct because post-exploitation persistence mechanisms like GSocket require thorough socket auditing, binary verification, and credential rotation since patching the initial entry vector does not remove established backdoors. Option A only affects RAM temporarily; C and D are irrelevant to backdoor socket persistence."
+    },
+    {
+      "id": "q-secx-01",
+      "examBadge": "CompTIA SecurityX (CAS-005)",
+      "domain": "Domain 2.0: Security Architecture",
+      "scenario": "An enterprise cloud architect is evaluating multi-tenant isolation risks following disclosures regarding AMD Turin CPU side-channel flaws (Google Cloud advisory) and PTC deserialization vulnerabilities (CVE-2026-126325). From a Zero Trust architectural standpoint, which strategy provides the strongest defense-in-depth posture against these disparate threats?",
+      "options": [
+        "A) Rely solely on hypervisor-level isolation and perimeter firewalls.",
+        "B) Implement strict input serialization validation, ephemeral container sandboxing, micro-segmentation, and mandatory guest OS microcode patching with full power-cycle enforcement.",
+        "C) Disable legacy APIs across all applications and mandate single-factor authentication for internal administrative services.",
+        "D) Migrate all workloads to bare-metal servers to eliminate virtualization overhead and CPU sharing."
+      ],
+      "correctIndex": 1,
+      "rationale": "Option B is correct because mitigating both hypervisor-level hardware side-channels (requiring microcode patches and power cycles) and application-layer deserialization flaws requires a comprehensive defense-in-depth approach encompassing input validation, micro-segmentation, and rigorous patch management. Option A ignores application flaws; C weakens authentication; D is economically and operationally impractical."
+    }
+  ],
+  "detectionRules": [
+    {
+      "id": "rule-suricata-01",
+      "type": "SURICATA IDS / IPS RULE",
+      "title": "Detect Suspicious Java Deserialization Payload Targeting PTC Windchill (CVE-2026-126325)",
+      "targetEngine": "Suricata 7.x+",
+      "mitreTechnique": "T1190 - Exploit Public-Facing Application",
+      "code": "alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:\"ET EXPLOIT PTC Windchill Deserialization Attempt (CVE-2026-126325)\"; flow:established,to_server; content:\"ac ED 00 05\"; depth:4; classtype:attempted-admin; sid:2026111201; rev:1;)"
+    },
+    {
+      "id": "rule-sigma-01",
+      "type": "SIGMA SIEM / EDR RULE",
+      "title": "Detection of GSocket Remote Access Tool Execution on Linux",
+      "targetEngine": "Wazuh / Splunk / Sentinel",
+      "mitreTechnique": "T1059 - Command and Scripting Interpreter",
+      "code": "title: GSocket Utility Execution for Persistent Access\nstatus: production\ndescription: Detects execution or process spawning associated with GSocket remote access tool on Linux hosts.\nlogsource:\n  category: process_creation\n  product: linux\ndetection:\n  selection:\n    CommandLine|contains:\n      - 'gsocket'\n      - '.gsocket'\n      - 'gs_s'\n      - 'gs_r'\n  condition: selection\nfalsepositives:\n  - Authorized administrative remote tooling\nlevel: high"
+    }
+  ]
+}
