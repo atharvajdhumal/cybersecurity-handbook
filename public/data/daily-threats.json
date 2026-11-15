@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-11-14T13:38:49Z",
-  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-14)",
+  "lastUpdated": "2026-11-15T14:02:36Z",
+  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-15)",
   "threatLevel": "CRITICAL (DEFCON 2)",
   "summaryMetrics": {
     "activeKevExploits": 14,
@@ -10,250 +10,252 @@
   },
   "attackLog": [
     {
-      "id": "INC-2026-11-14-01",
-      "incidentOrCve": "Check Point PHP2Shell Zero-Day / ESXi Wiper",
-      "target": "Check Point Security Gateways & VMware ESXi Hypervisors",
-      "domain": "Network Security",
+      "id": "INC-2026-11-15-01",
+      "incidentOrCve": "Cursor Marketplace Supply Chain Breach (Claude Code)",
+      "target": "Cursor IDE Developer Ecosystem / Fireworks AI API Infrastructure",
+      "domain": "AI & LLM Security",
       "severity": "CRITICAL",
-      "cvss": "9.8",
-      "attackVector": "Perimeter gateway exploitation leveraging PHP2Shell zero-day vulnerability to obtain root execution, followed by pivot into internal virtualization fabrics to execute data wipers across VMware ESXi datastores.",
-      "immediateSolution": "Deploy Check Point emergency hotfix Jumbo Take 126+ immediately; isolate management interfaces; restrict ESXi CLI/API to air-gapped jump hosts.",
+      "cvss": "9.4",
+      "attackVector": "Lateral exposure via compromised Fireworks AI read-only API access key allowed attackers to back-channel publish a trojanized official Claude Code extension onto the marketplace.",
+      "immediateSolution": "Immediately revoke and roll compromised vendor API tokens, enforce extension code signing validation, and restrict developer IDE plugin installations via MDM policy.",
       "nistImpact": [
         "Protect (PR.PS-02)",
         "Detect (DE.CM-01)",
         "Respond (RS.MI-01)"
       ],
-      "source": "BleepingComputer"
+      "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-11-14-02",
+      "id": "INC-2026-11-15-02",
       "incidentOrCve": "CVE-2026-114713",
-      "target": "UnrealIRCd Open-Source Server Infrastructure",
-      "domain": "Application Security",
+      "target": "UnrealIRCd Chat Server Deployments",
+      "domain": "Network Security",
       "severity": "HIGH",
       "cvss": "8.6",
-      "attackVector": "Improper neutralization of delimiters allowing unauthenticated remote actors to inject and execute arbitrary server-level commands via specially crafted control messages.",
-      "immediateSolution": "Upgrade UnrealIRCd instances to patched build 6.1.7+; implement egress filtering on daemon network segments.",
+      "attackVector": "Improper neutralization of delimiters within IRC server control commands enabling unauthenticated remote command injection leading to host takeover.",
+      "immediateSolution": "Apply vendor hotfix release or patch to latest UnrealIRCd build; restrict ingress IRC ports (6667, 6697) to authenticated corporate subnets.",
       "nistImpact": [
         "Protect (PR.PS-01)",
+        "Protect (PR.AC-05)",
         "Detect (DE.AE-02)"
       ],
       "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-11-14-03",
+      "id": "INC-2026-11-15-03",
       "incidentOrCve": "CVE-2026-6460",
-      "target": "PostgreSQL Relational Database Engine (12.x - 17.x)",
+      "target": "PostgreSQL Core Database Engine & C-Extensions",
       "domain": "Application Security",
       "severity": "HIGH",
       "cvss": "8.8",
-      "attackVector": "Legacy 22-year-old type confusion flaw in object creation enabling authenticated database users to achieve host-level remote code execution under the privileges of the postgres service account.",
-      "immediateSolution": "Apply vendor update across PostgreSQL clusters; recompile and relink all external C-language dynamic extensions; enforce strict REVOKE CREATE ON SCHEMA public.",
+      "attackVector": "22-year-old legacy type confusion vulnerability allowing authenticated users with object creation privileges to achieve remote code execution as postgres daemon.",
+      "immediateSolution": "Upgrade PostgreSQL instances to patched maintenance branches immediately and recompile all installed third-party C-language dynamic extensions.",
       "nistImpact": [
-        "Protect (PR.AA-05)",
-        "Govern (GV.SC-06)"
+        "Protect (PR.PS-02)",
+        "Protect (PR.AC-04)",
+        "Govern (GV.RM-01)"
       ],
       "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-11-14-04",
-      "incidentOrCve": "Mior & Skyfall Architectural Attacks",
+      "id": "INC-2026-11-15-04",
+      "incidentOrCve": "Mior & Skyfall Hardware Attacks",
       "target": "AMD SEV-SNP Confidential Computing Virtual Machines",
       "domain": "Cloud Security",
-      "severity": "CRITICAL",
-      "cvss": "9.0",
-      "attackVector": "Rogue cloud hypervisor manipulation coupled with malicious BIOS injection bypasses SEV-SNP memory encryption and attestation guarantees, reading guest enclave secrets and falsifying cryptographic attestation measurements.",
-      "immediateSolution": "Upgrade AMD microcode/AGESA firmware to patched hypervisor stepping; implement ephemeral sealed secrets with external hardware security modules (HSMs).",
+      "severity": "HIGH",
+      "cvss": "8.5",
+      "attackVector": "Rogue hypervisor and compromised firmware BIOS leverage physical memory manipulation to read encrypted guest memory and forge cryptographic attestation reports.",
+      "immediateSolution": "Deploy latest AMD microcode and hypervisor platform firmware mitigations; establish strict host hardware root-of-trust verification.",
       "nistImpact": [
         "Protect (PR.DS-01)",
-        "Protect (PR.DS-02)",
-        "Govern (GV.OC-03)"
+        "Protect (PR.PS-06)",
+        "Detect (DE.CM-07)"
       ],
       "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-11-14-05",
-      "incidentOrCve": "CryptoBilis Supply Chain Interdiction",
-      "target": "Trezor Safe 5 Hardware Cryptocurrency Wallets",
-      "domain": "Endpoint Security",
+      "id": "INC-2026-11-15-05",
+      "incidentOrCve": "Operation 'FaceStealer' (DPRK Financial Heist)",
+      "target": "Cryptocurrency Exchanges & Web3 Developers",
+      "domain": "Identity & Access Management",
       "severity": "CRITICAL",
-      "cvss": "9.4",
-      "attackVector": "Physical supply chain interdiction by third-party reseller inserting daughterboards that read display memory and exfiltrate BIP-39 seed phrases over cellular bands directly to adversary command nodes.",
-      "immediateSolution": "Recall units procured via unauthorized distributor CryptoBilis; deploy firmware update verifying optical bus integrity; enforce direct-from-OEM procurement policies.",
+      "cvss": "9.1",
+      "attackVector": "Generative AI deepfake video calls simulating recruiters and executives executing live social engineering to deliver initial-access malware and credential stealers.",
+      "immediateSolution": "Mandate out-of-band cryptographically signed verification workflows for high-value administrative authorizations; deploy synthetic media detection on video conference endpoints.",
       "nistImpact": [
         "Protect (PR.AT-01)",
-        "Govern (GV.SC-07)",
-        "Detect (DE.CM-06)"
+        "Protect (PR.AC-06)",
+        "Detect (DE.AE-04)"
       ],
       "source": "BleepingComputer"
     },
     {
-      "id": "INC-2026-11-14-06",
-      "incidentOrCve": "DPRK 'FaceStealer' Campaign",
-      "target": "Fintech & Web3 Executive Engineering Personas",
-      "domain": "Identity & Access Management",
-      "severity": "HIGH",
-      "cvss": "8.5",
-      "attackVector": "North Korean state-sponsored actors deploy real-time generative AI video/audio deepfakes during technical recruitment and executive video interviews to compromise workstations and siphon over $400M in assets.",
-      "immediateSolution": "Mandate out-of-band cryptographic proof-of-identity (FIDO2 WebAuthn challenges) during video sessions; restrict developer workstation access to operational production keys.",
+      "id": "INC-2026-11-15-06",
+      "incidentOrCve": "Trezor Safe 5 Hardware Interception",
+      "target": "Trezor Safe 5 Hardware Wallets (CryptoBilis Supply Chain)",
+      "domain": "Endpoint Security",
+      "severity": "CRITICAL",
+      "cvss": "9.6",
+      "attackVector": "Physical hardware implant embedded during supply-chain transit transmitting mnemonic seed recovery phrases over integrated cellular micro-transceivers.",
+      "immediateSolution": "Audit physical custody chain, retire affected batch serial numbers, and verify enclosure ultrasonic weld integrity via optical comparison tools.",
       "nistImpact": [
-        "Protect (PR.AA-01)",
-        "Detect (DE.CM-03)",
-        "Respond (RS.CO-02)"
+        "Protect (PR.DS-02)",
+        "Govern (GV.SC-06)",
+        "Detect (DE.CM-09)"
       ],
-      "source": "The Hacker News"
+      "source": "BleepingComputer"
     },
     {
-      "id": "INC-2026-11-14-07",
-      "incidentOrCve": "Quantum Systems Operational Disruption",
-      "target": "German Defense Technology & Military Drone Fleet Infrastructure",
-      "domain": "OT / ICS Security",
+      "id": "INC-2026-11-15-07",
+      "incidentOrCve": "PHP2Shell Exploitation Chain",
+      "target": "Check Point Security Gateways & Downstream VMware ESXi",
+      "domain": "Network Security",
+      "severity": "CRITICAL",
+      "cvss": "9.8",
+      "attackVector": "Remote command injection through web administrative interface vulnerabilities (PHP2Shell) pivoting across management network to deploy wiper binaries onto ESXi hypervisors.",
+      "immediateSolution": "Isolate perimeter security gateway management interfaces from untrusted zones; patch Check Point firmware and lockdown hypervisor SSH and vCenter management interfaces.",
+      "nistImpact": [
+        "Protect (PR.AC-05)",
+        "Protect (PR.IR-01)",
+        "Respond (RS.MI-02)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-15-08",
+      "incidentOrCve": "Autonomous Agent Prompt Injection",
+      "target": "Enterprise Financial AI Agent Workflows",
+      "domain": "AI & LLM Security",
       "severity": "HIGH",
       "cvss": "8.2",
-      "attackVector": "Advanced state-nexus intrusion against defense manufacturing and drone teleoperation platforms causing lateral degradation of military surveillance drone ground support workflows.",
-      "immediateSolution": "Isolate telemetry networks; rotate ground control station (GCS) cryptographic certificates; implement micro-segmentation between production engineering and IT networks.",
+      "attackVector": "Indirect prompt injection within incoming invoice attachments driving automated accounts payable agents to update vendor IBAN details without manual review.",
+      "immediateSolution": "Implement strict human-in-the-loop (HITL) gates for financial payload modifications and isolate multi-modal parsing environments from transactional APIs.",
       "nistImpact": [
-        "Protect (PR.IR-01)",
-        "Detect (DE.AE-04)",
+        "Protect (PR.DS-05)",
+        "Detect (DE.AE-03)",
+        "Govern (GV.OC-03)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-15-09",
+      "incidentOrCve": "Defense Drone Operations Disruption",
+      "target": "Quantum Systems Military Drone Support Infrastructure",
+      "domain": "OT / ICS Security",
+      "severity": "HIGH",
+      "cvss": "8.7",
+      "attackVector": "Targeted nation-state intrusion targeting defense contractor command telemetry systems and backend staging infrastructure supporting frontline tactical UAV operations.",
+      "immediateSolution": "Enforce strict network microsegmentation between defense R&D operations and telemetry backbones; mandate zero-trust mutual TLS (mTLS) for drone C2 uplink channels.",
+      "nistImpact": [
+        "Protect (PR.AC-03)",
+        "Detect (DE.CM-03)",
         "Respond (RS.RP-01)"
       ],
       "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-11-14-08",
-      "incidentOrCve": "Agentic LLM Indirect Prompt Injection",
-      "target": "Autonomous ERP & AP Invoice Processing AI Agents",
-      "domain": "AI & LLM Security",
-      "severity": "HIGH",
-      "cvss": "8.1",
-      "attackVector": "Indirect prompt injection embedded in inbound PDF invoices overrides agentic execution flows, causing the LLM agent to modify supplier routing transit numbers and authorize wire transfers without human-in-the-loop validation.",
-      "immediateSolution": "Implement deterministic policy guardrails; enforce dual-custody approval (HITL) for bank credential mutations; sandbox tool-calling privileges to read-only schemas.",
-      "nistImpact": [
-        "Protect (PR.PS-05)",
-        "Detect (DE.AE-01)",
-        "Govern (GV.SC-04)"
-      ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-11-14-09",
-      "incidentOrCve": "Luna Moth OAuth Token Thefts",
-      "target": "Legal & Corporate Advisory Sectors",
-      "domain": "Identity & Access Management",
-      "severity": "HIGH",
-      "cvss": "7.9",
-      "attackVector": "Targeted voice-phishing (vishing) campaigns re-engaging uncooperative breach victims, tricking employees into authorizing malicious Microsoft 365 OAuth consent applications to maintain persistent token-based mailbox exfiltration.",
-      "immediateSolution": "Enforce strict tenant-wide admin consent for OAuth applications; revoke all non-expiring refresh tokens; implement Continuous Access Evaluation (CAE).",
-      "nistImpact": [
-        "Protect (PR.AA-03)",
-        "Detect (DE.CM-07)",
-        "Respond (RS.AN-03)"
-      ],
-      "source": "Dark Reading"
     }
   ],
   "deepDives": [
     {
       "id": "dd-01",
-      "badge": "DEEP DIVE #01 // ZERO-DAY & WIPER CHAIN",
-      "title": "Check Point Gateway Zero-Day to Hypervisor Pivot: The PHP2Shell ESXi Wiper Campaign",
-      "cve": "CVE-2026-PHP2Shell / MITRE T1190 & T1561.002",
-      "cvss": "9.8 CRITICAL",
-      "domain": "Network Security",
-      "nistMapping": "Protect (PR.PS-02), Detect (DE.CM-01), Respond (RS.MI-01)",
-      "whatHappened": "Nation-state and advanced cybercrime operators chained an unauthenticated remote code execution zero-day in Check Point Security Gateways (internally dubbed PHP2Shell) with a targeted VMware ESXi destructive wiping module. Once edge appliances were subverted to root level, attackers pivoted inward against management planes, terminating virtual machines and wiping VMFS datastore block tables, permanently destroying hypervisor infrastructure.",
-      "technicalMechanism": "The exploit abuses input sanitization gaps within the web-based management portal parsing routine. By submitting an obfuscated multipart payload with shell metacharacters, the PHP runtime passes raw shell arguments directly to the underlying Gaia OS binary with root privileges. The adversary then drops an SSH tunnel and invokes esoteric ESXi CLI utilities via stolen management credentials, issuing asynchronous 'dd if=/dev/zero' sweeps against raw storage partitions.",
-      "asciiFlow": "[External Adversary] ──► [HTTP/S Exploit Payload] ──► [Check Point Gaia OS (Root RCE)] ──► [Internal Pivot: SSH/vSphere API] ──► [ESXi Datastore Wiper (VMFS Zeroed)]",
+      "badge": "DEEP DIVE #01 // AI SUPPLY CHAIN",
+      "title": "Cursor & Fireworks AI Secret Compromise: Weaponization of Developer AI Extensions",
+      "cve": "T1195.002 - Supply Chain Compromise",
+      "cvss": "9.4 CRITICAL",
+      "domain": "AI & LLM Security",
+      "nistMapping": "PR.PS-02, PR.AC-01, DE.CM-01, RS.MI-01",
+      "whatHappened": "Adversaries exfiltrated an internal API key issued to AI infrastructure vendor Fireworks AI. Leveraging this credential, attackers gained read and publishing access to upload a trojanized version of the official Claude Code extension onto the Cursor developer marketplace, threatening hundreds of enterprise development teams with source code interception and terminal credential scraping.",
+      "technicalMechanism": "The stolen API token lacked role-based scoping and administrative network context validation. Upon accessing the internal marketplace registry, attackers modified the extension manifest to include a secondary JavaScript payload disguised as telemetry initialization. Once developer IDEs automatically updated the extension, the payload spawned an out-of-band child process to harvest developer environment variables (.env files, AWS/GitHub CLI tokens) and exfiltrated them via encrypted HTTPS POST requests to attacker-controlled C2 infrastructure.",
+      "asciiFlow": "[Compromised Fireworks AI Key] ──► [Cursor Registry Push API] ──► [Trojanized Claude Extension] ──► [Developer IDE Auto-Update] ──► [Exfiltrated .env & API Keys]",
       "remediation": [
-        "Apply the emergency vendor hotfix (Jumbo Take release 126 or hotfix HF-026) immediately to all internet-facing Check Point appliances.",
-        "Segregate firewall and hypervisor management networks completely away from general operational subnets into out-of-band VLANs with strict ACLs.",
-        "Perform block-level integrity checks across ESXi storage arrays and preserve offsite, immutable write-once-read-many (WORM) backups."
+        "Revoke and rotate all developer environment tokens, cloud access keys, and SSH identities across all workstations running the Claude Code extension.",
+        "Implement mandatory cryptographic package signing and dual-authorization verification gates prior to publishing any IDE marketplace plugin update.",
+        "Deploy EDR threat hunting queries across engineering fleet to detect anomalous IDE child process executions (e.g., node/cursor spawning curl, bash, or certutil)."
       ],
-      "lessonsLearned": "Edge appliances remain the primary soft perimeter. Dual-plane architectural separation must exist between network inspection firewalls and underlying virtualization compute planes to prevent automated root-level cascading destruction."
+      "lessonsLearned": "Third-party AI service integrations represent an extension of the primary software supply chain. Machine-to-machine API tokens granted to partners must be tightly scoped with least privilege, bound to egress IP ranges, and never grant implicit publisher rights to critical software distribution pipelines."
     },
     {
       "id": "dd-02",
-      "badge": "DEEP DIVE #02 // CONFIDENTIAL COMPUTING BREACH",
-      "title": "Subverting Enclave Trust: Mior & Skyfall Exploitation of AMD SEV-SNP Architectures",
-      "cve": "MITRE T1068 & T1557 / Microcode Flaw",
-      "cvss": "9.0 CRITICAL",
-      "domain": "Cloud Security",
-      "nistMapping": "Protect (PR.DS-01), Protect (PR.DS-02), Govern (GV.OC-03)",
-      "whatHappened": "Security researchers demonstrated the practical compromise of AMD SEV-SNP (Secure Encrypted Virtualization-Secure Nested Paging), exposing the theoretical limit of multi-tenant confidential cloud computing. Using two attack variants named Mior and Skyfall, untrusted infrastructure operators or malicious hypervisors can extract plaintext cryptographic keys and forge remote attestation cryptographic signatures.",
-      "technicalMechanism": "Skyfall exploits deterministic hypervisor-controlled memory page mapping to induce speculative cache side-channel leakages across encrypted VM memory boundaries. Mior goes further by co-opting the platform BIOS initialization sequence, injecting malicious nested page table entries before the AMD Secure Processor (ASP) locks down platform security registers. This permits the hypervisor to inject unverified code into the enclave while generating an attestation report that validates cleanly against the vendor root CA.",
-      "asciiFlow": "[Malicious Host Hypervisor / Compromised BIOS] ──► [Faulty AGESA Page Table Registration] ──► [Bypass AMD Secure Processor (ASP)] ──► [Plaintext RAM Read / Spoofed Attestation] ──► [Cloud VM Keys Stolen]",
+      "badge": "DEEP DIVE #02 // INFRASTRUCTURE & VIRTUALIZATION",
+      "title": "Check Point PHP2Shell Exploitation Pivoting to VMware ESXi Hypervisor Wiper Execution",
+      "cve": "CVE-2024-24919 / T1190 - Exploit Public-Facing Application",
+      "cvss": "9.8 CRITICAL",
+      "domain": "Network Security",
+      "nistMapping": "PR.AC-05, PR.PS-01, DE.AE-02, RS.MI-02",
+      "whatHappened": "Threat actors are weaponizing command injection vulnerabilities within perimeter Check Point Security Gateways (known colloquially as PHP2Shell chains) to achieve initial network foothold. Rather than maintaining quiet persistence, attackers rapidly pivoted across management interfaces to deliver destructive wiper payloads directly onto VMware ESXi hypervisors, destroying enterprise storage partitions and backup volumes.",
+      "technicalMechanism": "Attackers issue crafted HTTP requests to the Check Point web-based gateway management interface, bypassing authentication filters to execute arbitrary shell commands under web server privileges. Gaining control of the perimeter device, the threat actor exploits pre-existing administrative trust relationships, extracting saved administrative credentials and pivoting into the internal hypervisor management network. Using automated shell scripts, the adversary establishes SSH sessions to VMware ESXi nodes, stops all guest virtual machines, and invokes raw disk-level commands (e.g., 'dd if=/dev/urandom of=/dev/disks/...') to irreversibly destroy VMDK volumes and datastores.",
+      "asciiFlow": "[Attacker HTTP Payload] ──► [Check Point PHP2Shell RCE] ──► [Extracted Admin Credentials] ──► [ESXi Management SSH Pivot] ──► [Raw Disk Wiper Execution]",
       "remediation": [
-        "Deploy updated AGESA firmware and AMD microcode packages provided by enterprise server OEMs to close page-aliasing vectors.",
-        "Refactor confidential computing workloads to rely on client-side enveloped data encryption with external physical HSM roots of trust rather than relying solely on host attestation.",
-        "Enforce strict cryptographic binding between attestation reports and short-lived TLS ephemeral keys inside the enclave."
+        "Apply emergency firmware security updates to all internet-facing Check Point Gateway appliances and revoke administrative sessions.",
+        "Sever all direct routable access between edge gateway interfaces and core hypervisor management subnets (ESXi/vCenter), placing management interfaces behind strict multi-factor jump hosts.",
+        "Audit ESXi host logs for unauthorized SSH service activations and anomalous shell commands manipulating virtual storage controllers."
       ],
-      "lessonsLearned": "Confidential computing mitigates commodity threats but cannot entirely replace zero-trust tenant architecture. When the physical substrate or hypervisor is fundamentally untrusted, firmware-level validation must be coupled with continuous hardware posture verification."
+      "lessonsLearned": "Perimeter firewalls and security appliances must be treated as untrusted zero-trust edges rather than trusted internal network pivots. Hardware gateways should never maintain direct, uninspected administrative pathways into foundational virtualization and recovery infrastructure."
     },
     {
       "id": "dd-03",
-      "badge": "DEEP DIVE #03 // HARDWARE INTERDICTION",
-      "title": "Physical Supply Chain Interdiction: The Trezor Safe 5 Hardware Trojan Incident",
-      "cve": "MITRE T1195.001 - Supply Chain Compromise: Compromise Software/Hardware Dependencies",
-      "cvss": "9.4 CRITICAL",
+      "badge": "DEEP DIVE #03 // HARDWARE ROOT-OF-TRUST",
+      "title": "Trezor Safe 5 Supply Chain Interception: Cellular Hardware Implant Implantation",
+      "cve": "T1195.003 - Hardware Supply Chain Compromise",
+      "cvss": "9.6 CRITICAL",
       "domain": "Endpoint Security",
-      "nistMapping": "Protect (PR.AT-01), Govern (GV.SC-07), Detect (DE.CM-06)",
-      "whatHappened": "Cryptocurrency security manufacturer Trezor confirmed that Safe 5 hardware wallets distributed via Southeast Asian authorized reseller CryptoBilis were subjected to physical interdiction. Attackers opened sealed retail packaging, added a custom parasitic surface-mount device (SMD) daughterboard to the display bus, and resealed the packages with counterfeit tamper-evident holographic packaging.",
-      "technicalMechanism": "The added micro-implant bridges the physical interconnect between the secure microcontroller and the internal OLED display. As the user completes the device initialization sequence and writes down the BIP-39 mnemonic recovery phrase, the implant intercepts the raw frame-buffer signals, serializes the recovery seed words, and utilizes an integrated micro-eSIM modem to beacon the phrase via LTE-M/NB-IoT bands to an adversary-controlled server.",
-      "asciiFlow": "[Reseller Interdiction: Micro-SMD Soldered] ──► [User Generates BIP-39 Seed] ──► [OLED Bus Snooped by Daughterboard] ──► [LTE-M Cellular Exfiltration] ──► [Attacker Drains Assets Remotely]",
+      "nistMapping": "GV.SC-06, PR.DS-02, PR.PS-06, RS.CO-03",
+      "whatHappened": "Hardware cryptocurrency wallet vendor Trezor confirmed that three Safe 5 devices distributed through Southeast Asian reseller CryptoBilis were modified in transit with malicious hardware implants. The covert micro-circuitry successfully intercepted 12- and 24-word BIP39 seed phrases during initial wallet generation and transmitted them directly to an adversary over cellular frequencies, bypassing endpoint isolation completely.",
+      "technicalMechanism": "The physical attackers carefully de-soldered the OEM casing to avoid tripping tamper-evident enclosure seals. They installed an ultra-miniature hardware daughterboard tapped directly into the physical display and touchscreen serial bus traces (I2C/SPI). When the user generates a recovery phrase on-screen, the hardware implant captures the raw display framebuffers or bus signals, decodes the mnemonic words, and queues them into an integrated micro-GSM modem that broadcasts the exfiltrated seed phrase over 2G/LTE frequency bands to attacker infrastructure.",
+      "asciiFlow": "[Factory Shipment] ──► [Interception & Implant Soldered] ──► [User Enters Seed Phrase] ──► [Implant Intercepts I2C/SPI] ──► [Cellular Radio Exfiltration]",
       "remediation": [
-        "Issue an immediate physical recall of all Trezor devices procured via CryptoBilis during the identified compromised distribution window.",
-        "Implement mandatory optical x-ray and acoustic microscopy validation for high-assurance hardware cryptographic modules deployed within enterprise cold storage.",
-        "Deploy the vendor's emergency firmware update that conducts low-level bus resistance and timing impedance telemetry to identify foreign circuit modifications."
+        "Procure hardware security devices and cryptographic key tokens exclusively through direct manufacturer channels with tamper-evident transport bags.",
+        "Conduct optical and ultrasonic non-destructive verification of high-risk cryptographic hardware before provisioning organizational keys.",
+        "Instruct personnel managing cold-storage infrastructure to verify hardware enclosure weight, seams, and perform initial device staging inside RF-shielded Faraday enclosures."
       ],
-      "lessonsLearned": "Tamper-evident tape is an inadequate defense against well-funded supply chain interdiction. Critical key generation appliances must have optical and electrical self-verifying silicon architectures and must only be sourced through direct, factory-audited distribution pipelines."
+      "lessonsLearned": "Air-gapping endpoints is ineffective if the physical hardware bus is compromised prior to deployment. Critical cryptographic systems must adopt end-to-end cryptographic supply-chain attestations, physical tamper-resistant micro-coatings, and radio-frequency RF audits prior to production commissioning."
     }
   ],
   "dailyQuestions": [
     {
       "id": "q-secplus-01",
       "examBadge": "CompTIA Security+ (SY0-701)",
-      "domain": "Domain 2.0: Threats, Vulnerabilities, and Mitigations",
-      "scenario": "A financial firm recently uncovered that three newly acquired enterprise hardware security tokens had been physically modified during distribution by a third-party reseller to intercept and transmit device secrets over cellular networks. Which of the following security concepts specifically addresses this threat, and what is the MOST effective operational control to prevent recurrence?",
+      "domain": "Domain 4.0: Security Operations",
+      "scenario": "A development team utilizing an AI-assisted IDE reports that a popular third-party coding extension was recently compromised on the vendor's marketplace after an external service API key was leaked. An attacker uploaded a malicious update that attempts to steal local environment secrets. Which of the following technical controls represents the MOST effective immediate mitigation to prevent automated installation of untrusted or modified IDE extensions across the enterprise?",
       "options": [
-        "A) Logic bomb attack; implement static code analysis on the firmware.",
-        "B) Supply chain interdiction; mandate direct-from-OEM procurement with cryptographically verified chain of custody.",
-        "C) Evil twin attack; enforce 802.1X wireless mutual authentication across corporate facilities.",
-        "D) Watering hole attack; deploy endpoint detection and response (EDR) software on all client workstations."
+        "A) Deploy an intrusion detection system (IDS) at the perimeter to inspect encrypted HTTPS traffic.",
+        "B) Configure enterprise IDE policy to disable public marketplace installations and enforce an internally managed, code-signed private extension repository.",
+        "C) Implement multi-factor authentication (MFA) on all developer laptop login accounts.",
+        "D) Increase endpoint logging frequency for developer workstations to a 30-day retention policy."
       ],
       "correctIndex": 1,
-      "rationale": "The scenario describes a classic physical supply chain interdiction attack (T1195.001), where a physical product is intercepted and tampered with before reaching the end customer. The most effective mitigation is sourcing directly from the original equipment manufacturer (OEM) and establishing strict, tamper-evident cryptographic chain-of-custody protocols rather than using third-party grey-market resellers."
+      "rationale": "Enforcing an internally managed, code-signed private extension repository via enterprise MDM/IDE policy prevents developers from pulling compromised or unverified packages directly from public marketplaces. Option A is ineffective against pinned TLS traffic without complex interception, Option C addresses interactive user identity rather than extension execution, and Option D is a passive detective control rather than a preventive mitigation."
     },
     {
       "id": "q-secx-01",
       "examBadge": "CompTIA SecurityX (CAS-005)",
-      "domain": "Domain 1.0: Security Architecture and Engineering",
-      "scenario": "An enterprise architect is designing an infrastructure for multi-tenant confidential computing workloads on public cloud infrastructure. Recent research (such as Mior and Skyfall attacks on AMD SEV-SNP) reveals that malicious hypervisors and compromised platform BIOS layers can corrupt page table attestation reports and compromise enclave confidentiality. Which of the following architectural designs offers the STRONGEST defense against rogue hypervisor memory extraction and spoofed attestation?",
+      "domain": "Domain 2.0: Security Architecture",
+      "scenario": "An enterprise architecture team is designing an integration architecture for autonomous LLM agents that process semi-structured vendor invoices received via email and initiate database updates for accounts payable accounts. In light of recent indirect prompt injection threats capable of manipulating transaction details, which of the following security architectures provides the HIGHEST level of resilience and non-repudiation?",
       "options": [
-        "A) Rely entirely on the cloud provider's out-of-the-box SEV-SNP attestation verification service over mutual TLS.",
-        "B) Implement client-side enveloped data encryption, bind attestation to ephemeral TLS session keys verified by an external enterprise-controlled HSM, and enforce strict microcode baseline validation.",
-        "C) Replace virtual machine enclaves with standard Docker containers running on single-tenant bare-metal hypervisors with host-based intrusion detection.",
-        "D) Shift the encrypted enclave storage to self-encrypting drives (SEDs) with pre-boot authentication managed by the cloud service provider's native key management service."
+        "A) Pass invoice email text through a fine-tuned LLM classifier to filter out known malicious system prompt keywords prior to agent consumption.",
+        "B) Isolate the AI agent in a containerized environment and allow it to issue direct parameterized SQL UPDATE commands using least privilege.",
+        "C) Decouple agent inference from execution by structuring the LLM output into an unexecuted draft state, requiring cryptographically signed out-of-band human-in-the-loop (HITL) approval before dispatching transactional API calls.",
+        "D) Implement TLS 1.3 encryption across all internal messaging queues connecting the invoice email ingestion daemon to the LLM agent cluster."
       ],
-      "correctIndex": 1,
-      "rationale": "When relying on confidential computing in untrusted or multi-tenant clouds where hypervisors may be malicious or subverted, an organization cannot rely exclusively on host-provided attestation services. The architect must bind remote attestation cryptographically to short-lived ephemeral session keys verified externally by an enterprise-managed HSM, enforce strict CPU microcode baseline attestation, and envelop data before host ingestion."
+      "correctIndex": 2,
+      "rationale": "Indirect prompt injection cannot be deterministically resolved through token blacklisting or prompt classifiers (Option A), as natural language variations routinely bypass static or model-based filters. Allowing direct database execution (Option B) exposes the system to unauthorized modifications regardless of parameterized SQL. Option D only protects transit confidentiality. Decoupling inference from execution and mandating an out-of-band, cryptographically signed Human-in-the-Loop (HITL) workflow ensures that autonomous agent hallucinations or injected overrides cannot execute high-risk financial state changes unilaterally."
     }
   ],
   "detectionRules": [
     {
       "id": "rule-suricata-01",
       "type": "SURICATA IDS / IPS RULE",
-      "title": "Check Point Security Gateway PHP2Shell Command Injection Attempt",
+      "title": "UnrealIRCd Delimiter Neutralization Remote Command Injection Attempt (CVE-2026-114713)",
       "targetEngine": "Suricata 7.x+",
       "mitreTechnique": "T1190 - Exploit Public-Facing Application",
-      "code": "alert http $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:\"EXPLOIT-KIT Check Point Gateway PHP2Shell RCE Zero-Day Attempt\"; flow:established,to_server; http.method; content:\"POST\"; http.uri; content:\"/clients/MyCPClient.php\"; fast_pattern; http.request_body; content:\"cmd=\"; content:\"bash -i\"; distance:0; pcre:\"/(;|\\|\\||`|\\$\\().*(nc|sh|bash|curl|wget)/i\"; classtype:attempted-admin; sid:202611141; rev:1;)"
+      "code": "alert tcp $EXTERNAL_NET any -> $HOME_NET [6667,6697] (msg:\"ET EXPLOIT UnrealIRCd Delimiter Command Injection Ingress (CVE-2026-114713)\"; flow:to_server,established; content:\"|\"; content:\"/bin/\"; fast_pattern; pcre:\"/\\x7c\\s*(?:sh|bash|curl|wget|python|perl)\\s+/i\"; reference:cve,2026-114713; classtype:attempted-admin; sid:20261115; rev:1;)"
     },
     {
       "id": "rule-sigma-01",
       "type": "SIGMA SIEM / EDR RULE",
-      "title": "Anomalous VMware ESXi Datastore Destruction and Wiping Activity",
+      "title": "Anomalous IDE Process Spawning Interactive Shell or Network Tooling",
       "targetEngine": "Wazuh / Splunk / Sentinel",
-      "mitreTechnique": "T1561.002 - Disk Structure Wipe",
-      "code": "title: Suspicious ESXi VMFS Datastore Destruction Command\nid: 9b2d87e1-85bc-42f1-a3f2-202611140001\nstatus: production\ndescription: Detects suspicious invocations of disk destruction binaries (dd, parted, esxcli storage) targeting active VMFS datastores from non-standard hypervisor shell sessions.\nreferences:\n  - https://www.bleepingcomputer.com/news/security/check-point-gateways-hacked-via-php2shell-to-deploy-vmware-esxi-wiper/\nauthor: CYBERDEFENSE Global Intel Hub\ndate: 2026/11/14\nlogsource:\n  category: process_creation\n  product: linux\ndetection:\n  selection_binaries:\n    Image|endswith:\n      - '/dd'\n      - '/sh'\n      - '/esxcli'\n      - '/rm'\n  selection_cli:\n    CommandLine|contains:\n      - 'if=/dev/zero'\n      - 'if=/dev/urandom'\n      - '/vmfs/devices/disks/'\n      - 'vmfs-destroy'\n      - 'storage filesystem unmount'\n  condition: selection_binaries and selection_cli\nfields:\n  - ComputerName\n  - User\n  - CommandLine\n  - ParentCommandLine\nfalsepositives:\n  - Authorized hypervisor decommissioning runbooks executed during scheduled change windows.\nlevel: critical"
+      "mitreTechnique": "T1059 - Command and Scripting Interpreter",
+      "code": "title: Suspicious Process Spawning from Developer IDE\nid: d6e834b9-8c21-4fa1-b1e9-74d39bc52026\nstatus: production\ndescription: Detects code editor processes (Cursor, VS Code, JetBrains) directly spawning system shells or networking utilities associated with trojanized extensions.\nauthor: CyberDefense SecOps\ndate: 2026/11/15\nlogsource:\n  category: process_creation\n  product: windows\ndetection:\n  selection_parent:\n    ParentImage|endswith:\n      - '\\cursor.exe'\n      - '\\Code.exe'\n      - '\\idea64.exe'\n  selection_child:\n    Image|endswith:\n      - '\\cmd.exe'\n      - '\\powershell.exe'\n      - '\\pwsh.exe'\n      - '\\curl.exe'\n      - '\\certutil.exe'\n      - '\\bash.exe'\n  condition: selection_parent and selection_child\nfalsepositives:\n  - Legitimate developer terminal sessions initiated interactively by the user (correlate with parent process command-line arguments).\nlevel: high\ntags:\n  - attack.execution\n  - attack.t1059\n  - attack.t1195.002"
     }
   ]
 }
