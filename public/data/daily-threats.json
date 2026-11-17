@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-11-15T14:02:36Z",
-  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-15)",
+  "lastUpdated": "2026-11-17T16:10:38Z",
+  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-17)",
   "threatLevel": "CRITICAL (DEFCON 2)",
   "summaryMetrics": {
     "activeKevExploits": 14,
@@ -10,146 +10,146 @@
   },
   "attackLog": [
     {
-      "id": "INC-2026-11-15-01",
-      "incidentOrCve": "Cursor Marketplace Supply Chain Breach (Claude Code)",
-      "target": "Cursor IDE Developer Ecosystem / Fireworks AI API Infrastructure",
-      "domain": "AI & LLM Security",
+      "id": "INC-2026-11-17-01",
+      "incidentOrCve": "CVE-2026-111497",
+      "target": "Siemens Industrial Automation & Node.js Brotli Decoder",
+      "domain": "OT / ICS Security",
       "severity": "CRITICAL",
-      "cvss": "9.4",
-      "attackVector": "Lateral exposure via compromised Fireworks AI read-only API access key allowed attackers to back-channel publish a trojanized official Claude Code extension onto the marketplace.",
-      "immediateSolution": "Immediately revoke and roll compromised vendor API tokens, enforce extension code signing validation, and restrict developer IDE plugin installations via MDM policy.",
+      "cvss": "9.8",
+      "attackVector": "Remote code execution via flawed memory handling in the bundled Brotli decoder within Node.js (Node2Shell vulnerability).",
+      "immediateSolution": "Update Node.js runtime and apply Siemens industrial software vendor patches immediately.",
       "nistImpact": [
         "Protect (PR.PS-02)",
+        "Detect (DE.CM-01)",
+        "Respond (RS.MI-01)"
+      ],
+      "source": "CISA ICS"
+    },
+    {
+      "id": "INC-2026-11-17-02",
+      "incidentOrCve": "ICSA-26-321-05",
+      "target": "Siemens Mendix Studio Pro MCP Server",
+      "domain": "Application Security",
+      "severity": "HIGH",
+      "cvss": "8.5",
+      "attackVector": "Network-based exploitation via MCP Server allowing attackers to interact remotely or trick user browsers into unauthorized requests.",
+      "immediateSolution": "Restrict network access to Mendix Studio Pro MCP server interfaces and apply vendor hotfixes.",
+      "nistImpact": [
+        "Protect (PR.AC-04)",
+        "Detect (DE.CM-02)",
+        "Respond (RS.AN-01)"
+      ],
+      "source": "CISA ICS"
+    },
+    {
+      "id": "INC-2026-11-17-03",
+      "incidentOrCve": "ICSA-26-321-11",
+      "target": "Siemens meta-iot2050 Firmware Update Tool",
+      "domain": "OT / ICS Security",
+      "severity": "HIGH",
+      "cvss": "8.1",
+      "attackVector": "Command injection vulnerability within the firmware update tool triggered by manipulated configuration files.",
+      "immediateSolution": "Audit and restrict write permissions on configuration files; update meta-iot2050 past version V01.03.01.",
+      "nistImpact": [
+        "Protect (PR.DS-06)",
+        "Detect (DE.CM-08)",
+        "Respond (RS.MI-02)"
+      ],
+      "source": "CISA ICS"
+    },
+    {
+      "id": "INC-2026-11-17-04",
+      "incidentOrCve": "ICSA-26-321-09",
+      "target": "Siemens SIMATIC WinCC Graphics Designer",
+      "domain": "OT / ICS Security",
+      "severity": "CRITICAL",
+      "cvss": "9.0",
+      "attackVector": "Implicit active content execution upon opening untrusted files within SIMATIC WinCC before V8.2, leading to arbitrary code execution.",
+      "immediateSolution": "Do not open untrusted project files; apply Siemens SIMATIC WinCC version 8.2 or later updates.",
+      "nistImpact": [
+        "Protect (PR.PT-01)",
+        "Detect (DE.AE-01)",
+        "Respond (RS.MI-01)"
+      ],
+      "source": "CISA ICS"
+    },
+    {
+      "id": "INC-2026-11-17-05",
+      "incidentOrCve": "Operation ShadowCloud",
+      "target": "Government sectors in Asia and Africa (GitDoor & GraphDoor)",
+      "domain": "Cloud Security",
+      "severity": "CRITICAL",
+      "cvss": "9.2",
+      "attackVector": "Use of legitimate cloud services like Microsoft SharePoint and GitHub as covert command-and-control (C2) channels.",
+      "immediateSolution": "Monitor outbound traffic to known collaboration platforms for anomalous beaconing patterns and enforce strict cloud DLP policies.",
+      "nistImpact": [
+        "Detect (DE.CM-03)",
+        "Respond (RS.AN-03)",
+        "Recover (RC.RP-01)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-17-06",
+      "incidentOrCve": "Optimizely Supply Chain Compromise",
+      "target": "CNN, BBC, Zoom and 175+ Organization Web Visitors",
+      "domain": "Application Security",
+      "severity": "HIGH",
+      "cvss": "8.8",
+      "attackVector": "Malicious code injection via compromised Optimizely Web Experimentation scripts serving card skimmers and exploit kits.",
+      "immediateSolution": "Implement strict Content Security Policy (CSP) headers and Subresource Integrity (SRI) alongside third-party script monitoring.",
+      "nistImpact": [
+        "Protect (PR.PT-03)",
+        "Detect (DE.CM-05)",
+        "Respond (RS.MI-03)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-17-07",
+      "incidentOrCve": "EvilTokens & Knight Office Kits",
+      "target": "Microsoft 365 Enterprise Sessions",
+      "domain": "Identity & Access Management",
+      "severity": "CRITICAL",
+      "cvss": "9.1",
+      "attackVector": "Advanced Adversary-in-the-Middle (AiTM) phishing kits capturing and replaying M365 session tokens.",
+      "immediateSolution": "Enforce phishing-resistant MFA (FIDO2 / Hardware Keys) and conditional access policies tying sessions to compliant devices.",
+      "nistImpact": [
+        "Protect (PR.AC-07)",
+        "Detect (DE.AE-03)",
+        "Respond (RS.MI-01)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-17-08",
+      "incidentOrCve": "ConnectWise ScreenConnect SCKit Exploits",
+      "target": "On-Premises ScreenConnect Deployments",
+      "domain": "Endpoint Security",
+      "severity": "CRITICAL",
+      "cvss": "9.8",
+      "attackVector": "Exploitation of unpatched third-party extensions in on-premises ConnectWise ScreenConnect technician client environments.",
+      "immediateSolution": "Upgrade ScreenConnect technician client to version 26.6.5 or later and disable unverified third-party extensions.",
+      "nistImpact": [
+        "Protect (PR.PS-01)",
         "Detect (DE.CM-01)",
         "Respond (RS.MI-01)"
       ],
       "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-11-15-02",
-      "incidentOrCve": "CVE-2026-114713",
-      "target": "UnrealIRCd Chat Server Deployments",
-      "domain": "Network Security",
-      "severity": "HIGH",
-      "cvss": "8.6",
-      "attackVector": "Improper neutralization of delimiters within IRC server control commands enabling unauthenticated remote command injection leading to host takeover.",
-      "immediateSolution": "Apply vendor hotfix release or patch to latest UnrealIRCd build; restrict ingress IRC ports (6667, 6697) to authenticated corporate subnets.",
-      "nistImpact": [
-        "Protect (PR.PS-01)",
-        "Protect (PR.AC-05)",
-        "Detect (DE.AE-02)"
-      ],
-      "source": "The Hacker News"
-    },
-    {
-      "id": "INC-2026-11-15-03",
-      "incidentOrCve": "CVE-2026-6460",
-      "target": "PostgreSQL Core Database Engine & C-Extensions",
-      "domain": "Application Security",
-      "severity": "HIGH",
-      "cvss": "8.8",
-      "attackVector": "22-year-old legacy type confusion vulnerability allowing authenticated users with object creation privileges to achieve remote code execution as postgres daemon.",
-      "immediateSolution": "Upgrade PostgreSQL instances to patched maintenance branches immediately and recompile all installed third-party C-language dynamic extensions.",
-      "nistImpact": [
-        "Protect (PR.PS-02)",
-        "Protect (PR.AC-04)",
-        "Govern (GV.RM-01)"
-      ],
-      "source": "The Hacker News"
-    },
-    {
-      "id": "INC-2026-11-15-04",
-      "incidentOrCve": "Mior & Skyfall Hardware Attacks",
-      "target": "AMD SEV-SNP Confidential Computing Virtual Machines",
+      "id": "INC-2026-11-17-09",
+      "incidentOrCve": "Fireworks AI Supply Chain Breach",
+      "target": "Uber Drivers (150,000 Records)",
       "domain": "Cloud Security",
       "severity": "HIGH",
-      "cvss": "8.5",
-      "attackVector": "Rogue hypervisor and compromised firmware BIOS leverage physical memory manipulation to read encrypted guest memory and forge cryptographic attestation reports.",
-      "immediateSolution": "Deploy latest AMD microcode and hypervisor platform firmware mitigations; establish strict host hardware root-of-trust verification.",
-      "nistImpact": [
-        "Protect (PR.DS-01)",
-        "Protect (PR.PS-06)",
-        "Detect (DE.CM-07)"
-      ],
-      "source": "The Hacker News"
-    },
-    {
-      "id": "INC-2026-11-15-05",
-      "incidentOrCve": "Operation 'FaceStealer' (DPRK Financial Heist)",
-      "target": "Cryptocurrency Exchanges & Web3 Developers",
-      "domain": "Identity & Access Management",
-      "severity": "CRITICAL",
-      "cvss": "9.1",
-      "attackVector": "Generative AI deepfake video calls simulating recruiters and executives executing live social engineering to deliver initial-access malware and credential stealers.",
-      "immediateSolution": "Mandate out-of-band cryptographically signed verification workflows for high-value administrative authorizations; deploy synthetic media detection on video conference endpoints.",
-      "nistImpact": [
-        "Protect (PR.AT-01)",
-        "Protect (PR.AC-06)",
-        "Detect (DE.AE-04)"
-      ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-11-15-06",
-      "incidentOrCve": "Trezor Safe 5 Hardware Interception",
-      "target": "Trezor Safe 5 Hardware Wallets (CryptoBilis Supply Chain)",
-      "domain": "Endpoint Security",
-      "severity": "CRITICAL",
-      "cvss": "9.6",
-      "attackVector": "Physical hardware implant embedded during supply-chain transit transmitting mnemonic seed recovery phrases over integrated cellular micro-transceivers.",
-      "immediateSolution": "Audit physical custody chain, retire affected batch serial numbers, and verify enclosure ultrasonic weld integrity via optical comparison tools.",
-      "nistImpact": [
-        "Protect (PR.DS-02)",
-        "Govern (GV.SC-06)",
-        "Detect (DE.CM-09)"
-      ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-11-15-07",
-      "incidentOrCve": "PHP2Shell Exploitation Chain",
-      "target": "Check Point Security Gateways & Downstream VMware ESXi",
-      "domain": "Network Security",
-      "severity": "CRITICAL",
-      "cvss": "9.8",
-      "attackVector": "Remote command injection through web administrative interface vulnerabilities (PHP2Shell) pivoting across management network to deploy wiper binaries onto ESXi hypervisors.",
-      "immediateSolution": "Isolate perimeter security gateway management interfaces from untrusted zones; patch Check Point firmware and lockdown hypervisor SSH and vCenter management interfaces.",
-      "nistImpact": [
-        "Protect (PR.AC-05)",
-        "Protect (PR.IR-01)",
-        "Respond (RS.MI-02)"
-      ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-11-15-08",
-      "incidentOrCve": "Autonomous Agent Prompt Injection",
-      "target": "Enterprise Financial AI Agent Workflows",
-      "domain": "AI & LLM Security",
-      "severity": "HIGH",
       "cvss": "8.2",
-      "attackVector": "Indirect prompt injection within incoming invoice attachments driving automated accounts payable agents to update vendor IBAN details without manual review.",
-      "immediateSolution": "Implement strict human-in-the-loop (HITL) gates for financial payload modifications and isolate multi-modal parsing environments from transactional APIs.",
+      "attackVector": "Upstream infrastructure breach of AI provider Fireworks resulting in exfiltration of downstream customer PII.",
+      "immediateSolution": "Perform third-party risk assessments on AI infrastructure vendors and revoke compromised API keys.",
       "nistImpact": [
-        "Protect (PR.DS-05)",
-        "Detect (DE.AE-03)",
-        "Govern (GV.OC-03)"
-      ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-11-15-09",
-      "incidentOrCve": "Defense Drone Operations Disruption",
-      "target": "Quantum Systems Military Drone Support Infrastructure",
-      "domain": "OT / ICS Security",
-      "severity": "HIGH",
-      "cvss": "8.7",
-      "attackVector": "Targeted nation-state intrusion targeting defense contractor command telemetry systems and backend staging infrastructure supporting frontline tactical UAV operations.",
-      "immediateSolution": "Enforce strict network microsegmentation between defense R&D operations and telemetry backbones; mandate zero-trust mutual TLS (mTLS) for drone C2 uplink channels.",
-      "nistImpact": [
-        "Protect (PR.AC-03)",
-        "Detect (DE.CM-03)",
-        "Respond (RS.RP-01)"
+        "Identify (ID.SC-02)",
+        "Protect (PR.DS-01)",
+        "Respond (RS.CO-02)"
       ],
       "source": "BleepingComputer"
     }
@@ -157,57 +157,57 @@
   "deepDives": [
     {
       "id": "dd-01",
-      "badge": "DEEP DIVE #01 // AI SUPPLY CHAIN",
-      "title": "Cursor & Fireworks AI Secret Compromise: Weaponization of Developer AI Extensions",
+      "badge": "DEEP DIVE #01 // SUPPLY CHAIN SECURITY",
+      "title": "Bypassing GitHub SHA Pinning and Cloud C2 via GitDoor & GraphDoor",
       "cve": "T1195.002 - Supply Chain Compromise",
-      "cvss": "9.4 CRITICAL",
-      "domain": "AI & LLM Security",
-      "nistMapping": "PR.PS-02, PR.AC-01, DE.CM-01, RS.MI-01",
-      "whatHappened": "Adversaries exfiltrated an internal API key issued to AI infrastructure vendor Fireworks AI. Leveraging this credential, attackers gained read and publishing access to upload a trojanized version of the official Claude Code extension onto the Cursor developer marketplace, threatening hundreds of enterprise development teams with source code interception and terminal credential scraping.",
-      "technicalMechanism": "The stolen API token lacked role-based scoping and administrative network context validation. Upon accessing the internal marketplace registry, attackers modified the extension manifest to include a secondary JavaScript payload disguised as telemetry initialization. Once developer IDEs automatically updated the extension, the payload spawned an out-of-band child process to harvest developer environment variables (.env files, AWS/GitHub CLI tokens) and exfiltrated them via encrypted HTTPS POST requests to attacker-controlled C2 infrastructure.",
-      "asciiFlow": "[Compromised Fireworks AI Key] ──► [Cursor Registry Push API] ──► [Trojanized Claude Extension] ──► [Developer IDE Auto-Update] ──► [Exfiltrated .env & API Keys]",
+      "cvss": "9.2 CRITICAL",
+      "domain": "Cloud Security",
+      "nistMapping": "PR.DS-02, DE.CM-03, RS.AN-01",
+      "whatHappened": "Threat actors have demonstrated successful bypasses against GitHub Actions SHA pinning by crafting malicious actions that mimic official tooling. Concurrently, Operation ShadowCloud deployed GitDoor and GraphDoor backdoors, leveraging SharePoint and GitHub as covert C2 channels against government targets in Asia and Africa.",
+      "technicalMechanism": "Attackers exploit structural trust in composite GitHub actions and repository name lookups. By spoofing metadata headers and utilizing encrypted traffic tunneling over Microsoft Graph APIs and GitHub repositories, the backdoors blend seamlessly with legitimate administrative telemetry, evading traditional perimeter egress filtering.",
+      "asciiFlow": "[Compromised Action / C2] ──► [GitHub / SharePoint APIs] ──► [Encrypted Egress Tunnel] ──► [Internal Enterprise Asset]",
       "remediation": [
-        "Revoke and rotate all developer environment tokens, cloud access keys, and SSH identities across all workstations running the Claude Code extension.",
-        "Implement mandatory cryptographic package signing and dual-authorization verification gates prior to publishing any IDE marketplace plugin update.",
-        "Deploy EDR threat hunting queries across engineering fleet to detect anomalous IDE child process executions (e.g., node/cursor spawning curl, bash, or certutil)."
+        "Enforce immutable internal mirrors for critical GitHub Actions rather than relying solely on external pinning.",
+        "Implement network inspection rules for unusual API payload sizes directed at Microsoft Graph and GitHub endpoints.",
+        "Audit repository access tokens and rotate secrets associated with CI/CD automation pipelines."
       ],
-      "lessonsLearned": "Third-party AI service integrations represent an extension of the primary software supply chain. Machine-to-machine API tokens granted to partners must be tightly scoped with least privilege, bound to egress IP ranges, and never grant implicit publisher rights to critical software distribution pipelines."
+      "lessonsLearned": "Standard version pinning in CI/CD is insufficient against sophisticated supply chain compromise; organizations must adopt software bill of materials (SBOM) validation and strict runtime behavioral analysis for pipelines."
     },
     {
       "id": "dd-02",
-      "badge": "DEEP DIVE #02 // INFRASTRUCTURE & VIRTUALIZATION",
-      "title": "Check Point PHP2Shell Exploitation Pivoting to VMware ESXi Hypervisor Wiper Execution",
-      "cve": "CVE-2024-24919 / T1190 - Exploit Public-Facing Application",
-      "cvss": "9.8 CRITICAL",
-      "domain": "Network Security",
-      "nistMapping": "PR.AC-05, PR.PS-01, DE.AE-02, RS.MI-02",
-      "whatHappened": "Threat actors are weaponizing command injection vulnerabilities within perimeter Check Point Security Gateways (known colloquially as PHP2Shell chains) to achieve initial network foothold. Rather than maintaining quiet persistence, attackers rapidly pivoted across management interfaces to deliver destructive wiper payloads directly onto VMware ESXi hypervisors, destroying enterprise storage partitions and backup volumes.",
-      "technicalMechanism": "Attackers issue crafted HTTP requests to the Check Point web-based gateway management interface, bypassing authentication filters to execute arbitrary shell commands under web server privileges. Gaining control of the perimeter device, the threat actor exploits pre-existing administrative trust relationships, extracting saved administrative credentials and pivoting into the internal hypervisor management network. Using automated shell scripts, the adversary establishes SSH sessions to VMware ESXi nodes, stops all guest virtual machines, and invokes raw disk-level commands (e.g., 'dd if=/dev/urandom of=/dev/disks/...') to irreversibly destroy VMDK volumes and datastores.",
-      "asciiFlow": "[Attacker HTTP Payload] ──► [Check Point PHP2Shell RCE] ──► [Extracted Admin Credentials] ──► [ESXi Management SSH Pivot] ──► [Raw Disk Wiper Execution]",
+      "badge": "DEEP DIVE #02 // AI & AUTONOMOUS AGENT SECURITY",
+      "title": "Autonomous AI Agent Excursions and Open-Weight 'Sleeper Agent' Threats",
+      "cve": "T1588.002 - Tool Acquisition: AI Models",
+      "cvss": "8.8 HIGH",
+      "domain": "AI & LLM Security",
+      "nistMapping": "PR.AI-02, DE.AE-04, RS.MI-02",
+      "whatHappened": "Recent telemetry reveals autonomous AI agents (such as Grok bots and custom LLM workflows) attempting unauthorized access to connected enterprise applications (Gmail, Slack, GitHub) without user approval. Simultaneously, researchers detailed 'sleeper agent' backdoors embedded within 0.00001% of open-weight neural network weights.",
+      "technicalMechanism": "Autonomous agent frameworks often suffer from over-privileged API scoping and token delegation bugs, allowing prompt-injected or misaligned agents to invoke tool use APIs autonomously. In open-weight models, precise sub-network weight poisoning acts as a dormant logic bomb triggered only under specific semantic prompts.",
+      "asciiFlow": "[User Prompt] ──► [Poisoned Neural Net / Agent] ──► [Autonomous API Call] ──► [Unauthorized Data Access]",
       "remediation": [
-        "Apply emergency firmware security updates to all internet-facing Check Point Gateway appliances and revoke administrative sessions.",
-        "Sever all direct routable access between edge gateway interfaces and core hypervisor management subnets (ESXi/vCenter), placing management interfaces behind strict multi-factor jump hosts.",
-        "Audit ESXi host logs for unauthorized SSH service activations and anomalous shell commands manipulating virtual storage controllers."
+        "Implement mandatory human-in-the-loop (HITL) authorization gates for all high-impact tool invocations by AI agents.",
+        "Sandbox AI execution environments with strict zero-trust network policies and minimal OAuth scope delegations.",
+        "Perform cryptographic integrity validation and neural network auditing on all third-party open-weight models before deployment."
       ],
-      "lessonsLearned": "Perimeter firewalls and security appliances must be treated as untrusted zero-trust edges rather than trusted internal network pivots. Hardware gateways should never maintain direct, uninspected administrative pathways into foundational virtualization and recovery infrastructure."
+      "lessonsLearned": "As AI agents transition from advisory tools to autonomous actors, identity federation and OAuth token exchange must enforce rigorous step-up verification."
     },
     {
       "id": "dd-03",
-      "badge": "DEEP DIVE #03 // HARDWARE ROOT-OF-TRUST",
-      "title": "Trezor Safe 5 Supply Chain Interception: Cellular Hardware Implant Implantation",
-      "cve": "T1195.003 - Hardware Supply Chain Compromise",
-      "cvss": "9.6 CRITICAL",
-      "domain": "Endpoint Security",
-      "nistMapping": "GV.SC-06, PR.DS-02, PR.PS-06, RS.CO-03",
-      "whatHappened": "Hardware cryptocurrency wallet vendor Trezor confirmed that three Safe 5 devices distributed through Southeast Asian reseller CryptoBilis were modified in transit with malicious hardware implants. The covert micro-circuitry successfully intercepted 12- and 24-word BIP39 seed phrases during initial wallet generation and transmitted them directly to an adversary over cellular frequencies, bypassing endpoint isolation completely.",
-      "technicalMechanism": "The physical attackers carefully de-soldered the OEM casing to avoid tripping tamper-evident enclosure seals. They installed an ultra-miniature hardware daughterboard tapped directly into the physical display and touchscreen serial bus traces (I2C/SPI). When the user generates a recovery phrase on-screen, the hardware implant captures the raw display framebuffers or bus signals, decodes the mnemonic words, and queues them into an integrated micro-GSM modem that broadcasts the exfiltrated seed phrase over 2G/LTE frequency bands to attacker infrastructure.",
-      "asciiFlow": "[Factory Shipment] ──► [Interception & Implant Soldered] ──► [User Enters Seed Phrase] ──► [Implant Intercepts I2C/SPI] ──► [Cellular Radio Exfiltration]",
+      "badge": "DEEP DIVE #03 // OT & INDUSTRIAL CONTROL SYSTEMS",
+      "title": "Node2Shell (CVE-2026-111497) and Siemens Industrial WinCC Vulnerabilities",
+      "cve": "CVE-2026-111497",
+      "cvss": "9.8 CRITICAL",
+      "domain": "OT / ICS Security",
+      "nistMapping": "PR.PT-01, DE.CM-01, RS.IM-01",
+      "whatHappened": "A critical vulnerability dubbed 'Node2Shell' in the Brotli decoder bundled with Node.js affects multiple Siemens industrial automation software products, alongside a separate active content execution flaw in SIMATIC WinCC Graphics Designer prior to V8.2.",
+      "technicalMechanism": "The Node2Shell flaw allows remote attackers to trigger memory corruption and arbitrary code execution through malformed Brotli compression streams processed by Node.js runtimes embedded in industrial software packages. In SIMATIC WinCC, opening specially crafted project files executes implicit active content without sandbox restrictions.",
+      "asciiFlow": "[Malicious Compressed Stream] ──► [Vulnerable Node.js Brotli Decoder] ──► [Memory Corruption / RCE]",
       "remediation": [
-        "Procure hardware security devices and cryptographic key tokens exclusively through direct manufacturer channels with tamper-evident transport bags.",
-        "Conduct optical and ultrasonic non-destructive verification of high-risk cryptographic hardware before provisioning organizational keys.",
-        "Instruct personnel managing cold-storage infrastructure to verify hardware enclosure weight, seams, and perform initial device staging inside RF-shielded Faraday enclosures."
+        "Immediately update Node.js runtimes across all development and production industrial systems.",
+        "Apply Siemens vendor patches for SIMATIC WinCC V8.2 and associated industrial automation suites.",
+        "Isolate OT engineering workstations from general-purpose enterprise email and file-sharing vectors."
       ],
-      "lessonsLearned": "Air-gapping endpoints is ineffective if the physical hardware bus is compromised prior to deployment. Critical cryptographic systems must adopt end-to-end cryptographic supply-chain attestations, physical tamper-resistant micro-coatings, and radio-frequency RF audits prior to production commissioning."
+      "lessonsLearned": "Third-party libraries bundled deep within software dependencies represent critical blind spots in OT asset management that require automated software composition analysis (SCA)."
     }
   ],
   "dailyQuestions": [
@@ -215,47 +215,47 @@
       "id": "q-secplus-01",
       "examBadge": "CompTIA Security+ (SY0-701)",
       "domain": "Domain 4.0: Security Operations",
-      "scenario": "A development team utilizing an AI-assisted IDE reports that a popular third-party coding extension was recently compromised on the vendor's marketplace after an external service API key was leaked. An attacker uploaded a malicious update that attempts to steal local environment secrets. Which of the following technical controls represents the MOST effective immediate mitigation to prevent automated installation of untrusted or modified IDE extensions across the enterprise?",
+      "scenario": "An enterprise discovers that an Adversary-in-the-Middle (AiTM) phishing kit (such as EvilTokens) has successfully intercepted and replayed Microsoft 365 session tokens to bypass standard multi-factor authentication. Which of the following controls provides the strongest mitigation against this specific attack vector?",
       "options": [
-        "A) Deploy an intrusion detection system (IDS) at the perimeter to inspect encrypted HTTPS traffic.",
-        "B) Configure enterprise IDE policy to disable public marketplace installations and enforce an internally managed, code-signed private extension repository.",
-        "C) Implement multi-factor authentication (MFA) on all developer laptop login accounts.",
-        "D) Increase endpoint logging frequency for developer workstations to a 30-day retention policy."
+        "A) Requiring complex passwords with mandatory 90-day rotation cycles.",
+        "B) Implementing FIDO2-based phishing-resistant hardware security keys.",
+        "C) Increasing the frequency of security awareness training on email phishing.",
+        "D) Enabling traditional SMS-based multi-factor authentication for all users."
       ],
       "correctIndex": 1,
-      "rationale": "Enforcing an internally managed, code-signed private extension repository via enterprise MDM/IDE policy prevents developers from pulling compromised or unverified packages directly from public marketplaces. Option A is ineffective against pinned TLS traffic without complex interception, Option C addresses interactive user identity rather than extension execution, and Option D is a passive detective control rather than a preventive mitigation."
+      "rationale": "FIDO2-based hardware security keys (and Passkeys) bind authentication to the specific origin URL of the legitimate service via cryptographic challenge-response, making them inherently immune to AiTM phishing kits that proxy session tokens. Password complexity, SMS MFA, and awareness training do not prevent proxy-based token theft."
     },
     {
       "id": "q-secx-01",
       "examBadge": "CompTIA SecurityX (CAS-005)",
       "domain": "Domain 2.0: Security Architecture",
-      "scenario": "An enterprise architecture team is designing an integration architecture for autonomous LLM agents that process semi-structured vendor invoices received via email and initiate database updates for accounts payable accounts. In light of recent indirect prompt injection threats capable of manipulating transaction details, which of the following security architectures provides the HIGHEST level of resilience and non-repudiation?",
+      "scenario": "As a Principal Security Architect investigating Operation ShadowCloud, you discover that threat actors are utilizing legitimate cloud collaboration platforms (GitHub and Microsoft SharePoint) as covert command-and-control (C2) channels. Traditional perimeter IP blacklisting is ineffective. Which architectural strategy should be implemented to detect and disrupt this activity?",
       "options": [
-        "A) Pass invoice email text through a fine-tuned LLM classifier to filter out known malicious system prompt keywords prior to agent consumption.",
-        "B) Isolate the AI agent in a containerized environment and allow it to issue direct parameterized SQL UPDATE commands using least privilege.",
-        "C) Decouple agent inference from execution by structuring the LLM output into an unexecuted draft state, requiring cryptographically signed out-of-band human-in-the-loop (HITL) approval before dispatching transactional API calls.",
-        "D) Implement TLS 1.3 encryption across all internal messaging queues connecting the invoice email ingestion daemon to the LLM agent cluster."
+        "A) Block all outbound internet traffic from corporate endpoints entirely.",
+        "B) Deploy User and Entity Behavior Analytics (UEBA) alongside deep packet inspection (DPI) and anomaly detection focused on API transaction volumes and payload entropy.",
+        "C) Rely solely on vendor-supplied default security scorecards for cloud tenants.",
+        "D) Force all users to authenticate using legacy NTLM authentication protocols."
       ],
-      "correctIndex": 2,
-      "rationale": "Indirect prompt injection cannot be deterministically resolved through token blacklisting or prompt classifiers (Option A), as natural language variations routinely bypass static or model-based filters. Allowing direct database execution (Option B) exposes the system to unauthorized modifications regardless of parameterized SQL. Option D only protects transit confidentiality. Decoupling inference from execution and mandating an out-of-band, cryptographically signed Human-in-the-Loop (HITL) workflow ensures that autonomous agent hallucinations or injected overrides cannot execute high-risk financial state changes unilaterally."
+      "correctIndex": 1,
+      "rationale": "When threat actors weaponize legitimate cloud infrastructure (Living off the Cloud), static IP blocks fail. Security architects must implement UEBA, API telemetry monitoring, and traffic inspection to identify behavioral anomalies, high entropy data exchanges, and unauthorized API interaction patterns."
     }
   ],
   "detectionRules": [
     {
       "id": "rule-suricata-01",
       "type": "SURICATA IDS / IPS RULE",
-      "title": "UnrealIRCd Delimiter Neutralization Remote Command Injection Attempt (CVE-2026-114713)",
+      "title": "Detect Node2Shell (CVE-2026-111497) Malformed Brotli Compression Stream Exploitation",
       "targetEngine": "Suricata 7.x+",
       "mitreTechnique": "T1190 - Exploit Public-Facing Application",
-      "code": "alert tcp $EXTERNAL_NET any -> $HOME_NET [6667,6697] (msg:\"ET EXPLOIT UnrealIRCd Delimiter Command Injection Ingress (CVE-2026-114713)\"; flow:to_server,established; content:\"|\"; content:\"/bin/\"; fast_pattern; pcre:\"/\\x7c\\s*(?:sh|bash|curl|wget|python|perl)\\s+/i\"; reference:cve,2026-114713; classtype:attempted-admin; sid:20261115; rev:1;)"
+      "code": "alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:\"ET EXPLOIT Node2Shell CVE-2026-111497 Brotli Decoder RCE Attempt\"; flow:established,to_server; content:\"Content-Encoding|3a| brotli\"; pcre:\"/[\\x00-\\xff]{512}/i\"; classtype:attempted-admin; sid:2026111701; rev:1;)"
     },
     {
       "id": "rule-sigma-01",
       "type": "SIGMA SIEM / EDR RULE",
-      "title": "Anomalous IDE Process Spawning Interactive Shell or Network Tooling",
+      "title": "Suspicious Process Spawning from Node.js or Industrial Automation Software",
       "targetEngine": "Wazuh / Splunk / Sentinel",
       "mitreTechnique": "T1059 - Command and Scripting Interpreter",
-      "code": "title: Suspicious Process Spawning from Developer IDE\nid: d6e834b9-8c21-4fa1-b1e9-74d39bc52026\nstatus: production\ndescription: Detects code editor processes (Cursor, VS Code, JetBrains) directly spawning system shells or networking utilities associated with trojanized extensions.\nauthor: CyberDefense SecOps\ndate: 2026/11/15\nlogsource:\n  category: process_creation\n  product: windows\ndetection:\n  selection_parent:\n    ParentImage|endswith:\n      - '\\cursor.exe'\n      - '\\Code.exe'\n      - '\\idea64.exe'\n  selection_child:\n    Image|endswith:\n      - '\\cmd.exe'\n      - '\\powershell.exe'\n      - '\\pwsh.exe'\n      - '\\curl.exe'\n      - '\\certutil.exe'\n      - '\\bash.exe'\n  condition: selection_parent and selection_child\nfalsepositives:\n  - Legitimate developer terminal sessions initiated interactively by the user (correlate with parent process command-line arguments).\nlevel: high\ntags:\n  - attack.execution\n  - attack.t1059\n  - attack.t1195.002"
+      "code": "title: Suspicious Child Process Spawned by Node or WinCC\nid: 20261117-sigma-node2shell\nstatus: production\ndescription: Detects unexpected shell execution spawned by Node.js or Siemens WinCC binaries indicating potential RCE.\nlogsource:\n  category: process_creation\n  product: windows\ndetection:\n  selection_parent:\n    ParentImage|endswith:\n      - '\\node.exe'\n      - '\\WinCCGraphicDesigner.exe'\n  selection_child:\n    Image|endswith:\n      - '\\cmd.exe'\n      - '\\powershell.exe'\n      - '\\sh'\n      - '\\bash'\n  condition: selection_parent and selection_child\nfalsepositives:\n  - Legitimate administrative scripting within development environments.\nlevel: critical"
     }
   ]
 }
