@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-11-17T16:10:38Z",
-  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-17)",
+  "lastUpdated": "2026-11-18T15:46:23Z",
+  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-18)",
   "threatLevel": "CRITICAL (DEFCON 2)",
   "summaryMetrics": {
     "activeKevExploits": 14,
@@ -10,204 +10,195 @@
   },
   "attackLog": [
     {
-      "id": "INC-2026-11-17-01",
-      "incidentOrCve": "CVE-2026-111497",
-      "target": "Siemens Industrial Automation & Node.js Brotli Decoder",
-      "domain": "OT / ICS Security",
+      "id": "INC-2026-11-18-01",
+      "incidentOrCve": "CVE-2026-114938 (Java4Shell)",
+      "target": "OpenJDK x86-64 HotSpot JVM (Jira, Jenkins, Keycloak)",
+      "domain": "Application Security",
       "severity": "CRITICAL",
       "cvss": "9.8",
-      "attackVector": "Remote code execution via flawed memory handling in the bundled Brotli decoder within Node.js (Node2Shell vulnerability).",
-      "immediateSolution": "Update Node.js runtime and apply Siemens industrial software vendor patches immediately.",
+      "attackVector": "A critical memory-corruption vulnerability in the Base64 decoder of the x86-64 HotSpot Java Virtual Machine (JVM) leveraging AVX-512 VBMI feature, enabling unauthenticated remote code execution.",
+      "immediateSolution": "Apply vendor-supplied patches for OpenJDK and update affected enterprise applications (Jira, Jenkins, Keycloak) immediately.",
       "nistImpact": [
         "Protect (PR.PS-02)",
         "Detect (DE.CM-01)",
         "Respond (RS.MI-01)"
       ],
-      "source": "CISA ICS"
+      "source": "CISA Alerts"
     },
     {
-      "id": "INC-2026-11-17-02",
-      "incidentOrCve": "ICSA-26-321-05",
-      "target": "Siemens Mendix Studio Pro MCP Server",
+      "id": "INC-2026-11-18-02",
+      "incidentOrCve": "CVE-2026-115731",
+      "target": "Perforce Puppet Enterprise Management Servers",
       "domain": "Application Security",
-      "severity": "HIGH",
-      "cvss": "8.5",
-      "attackVector": "Network-based exploitation via MCP Server allowing attackers to interact remotely or trick user browsers into unauthorized requests.",
-      "immediateSolution": "Restrict network access to Mendix Studio Pro MCP server interfaces and apply vendor hotfixes.",
-      "nistImpact": [
-        "Protect (PR.AC-04)",
-        "Detect (DE.CM-02)",
-        "Respond (RS.AN-01)"
-      ],
-      "source": "CISA ICS"
-    },
-    {
-      "id": "INC-2026-11-17-03",
-      "incidentOrCve": "ICSA-26-321-11",
-      "target": "Siemens meta-iot2050 Firmware Update Tool",
-      "domain": "OT / ICS Security",
-      "severity": "HIGH",
-      "cvss": "8.1",
-      "attackVector": "Command injection vulnerability within the firmware update tool triggered by manipulated configuration files.",
-      "immediateSolution": "Audit and restrict write permissions on configuration files; update meta-iot2050 past version V01.03.01.",
-      "nistImpact": [
-        "Protect (PR.DS-06)",
-        "Detect (DE.CM-08)",
-        "Respond (RS.MI-02)"
-      ],
-      "source": "CISA ICS"
-    },
-    {
-      "id": "INC-2026-11-17-04",
-      "incidentOrCve": "ICSA-26-321-09",
-      "target": "Siemens SIMATIC WinCC Graphics Designer",
-      "domain": "OT / ICS Security",
       "severity": "CRITICAL",
-      "cvss": "9.0",
-      "attackVector": "Implicit active content execution upon opening untrusted files within SIMATIC WinCC before V8.2, leading to arbitrary code execution.",
-      "immediateSolution": "Do not open untrusted project files; apply Siemens SIMATIC WinCC version 8.2 or later updates.",
+      "cvss": "9.4",
+      "attackVector": "Active exploitation of configuration management platform flaw leading to remote code execution and infrastructure compromise.",
+      "immediateSolution": "Apply CISA KEV recommended patches immediately; isolate management servers from untrusted networks.",
       "nistImpact": [
-        "Protect (PR.PT-01)",
-        "Detect (DE.AE-01)",
-        "Respond (RS.MI-01)"
-      ],
-      "source": "CISA ICS"
-    },
-    {
-      "id": "INC-2026-11-17-05",
-      "incidentOrCve": "Operation ShadowCloud",
-      "target": "Government sectors in Asia and Africa (GitDoor & GraphDoor)",
-      "domain": "Cloud Security",
-      "severity": "CRITICAL",
-      "cvss": "9.2",
-      "attackVector": "Use of legitimate cloud services like Microsoft SharePoint and GitHub as covert command-and-control (C2) channels.",
-      "immediateSolution": "Monitor outbound traffic to known collaboration platforms for anomalous beaconing patterns and enforce strict cloud DLP policies.",
-      "nistImpact": [
-        "Detect (DE.CM-03)",
-        "Respond (RS.AN-03)",
-        "Recover (RC.RP-01)"
-      ],
-      "source": "The Hacker News"
-    },
-    {
-      "id": "INC-2026-11-17-06",
-      "incidentOrCve": "Optimizely Supply Chain Compromise",
-      "target": "CNN, BBC, Zoom and 175+ Organization Web Visitors",
-      "domain": "Application Security",
-      "severity": "HIGH",
-      "cvss": "8.8",
-      "attackVector": "Malicious code injection via compromised Optimizely Web Experimentation scripts serving card skimmers and exploit kits.",
-      "immediateSolution": "Implement strict Content Security Policy (CSP) headers and Subresource Integrity (SRI) alongside third-party script monitoring.",
-      "nistImpact": [
-        "Protect (PR.PT-03)",
-        "Detect (DE.CM-05)",
-        "Respond (RS.MI-03)"
-      ],
-      "source": "The Hacker News"
-    },
-    {
-      "id": "INC-2026-11-17-07",
-      "incidentOrCve": "EvilTokens & Knight Office Kits",
-      "target": "Microsoft 365 Enterprise Sessions",
-      "domain": "Identity & Access Management",
-      "severity": "CRITICAL",
-      "cvss": "9.1",
-      "attackVector": "Advanced Adversary-in-the-Middle (AiTM) phishing kits capturing and replaying M365 session tokens.",
-      "immediateSolution": "Enforce phishing-resistant MFA (FIDO2 / Hardware Keys) and conditional access policies tying sessions to compliant devices.",
-      "nistImpact": [
-        "Protect (PR.AC-07)",
-        "Detect (DE.AE-03)",
-        "Respond (RS.MI-01)"
-      ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-11-17-08",
-      "incidentOrCve": "ConnectWise ScreenConnect SCKit Exploits",
-      "target": "On-Premises ScreenConnect Deployments",
-      "domain": "Endpoint Security",
-      "severity": "CRITICAL",
-      "cvss": "9.8",
-      "attackVector": "Exploitation of unpatched third-party extensions in on-premises ConnectWise ScreenConnect technician client environments.",
-      "immediateSolution": "Upgrade ScreenConnect technician client to version 26.6.5 or later and disable unverified third-party extensions.",
-      "nistImpact": [
-        "Protect (PR.PS-01)",
+        "Protect (PR.PS-02)",
         "Detect (DE.CM-01)",
         "Respond (RS.MI-01)"
       ],
       "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-11-17-09",
-      "incidentOrCve": "Fireworks AI Supply Chain Breach",
-      "target": "Uber Drivers (150,000 Records)",
-      "domain": "Cloud Security",
+      "id": "INC-2026-11-18-03",
+      "incidentOrCve": "TPM Lockout Bypass (Flash Chip Attack)",
+      "target": "Windows Hello & BitLocker PINs on AMD/Intel PCs",
+      "domain": "Endpoint Security",
       "severity": "HIGH",
-      "cvss": "8.2",
-      "attackVector": "Upstream infrastructure breach of AI provider Fireworks resulting in exfiltration of downstream customer PII.",
-      "immediateSolution": "Perform third-party risk assessments on AI infrastructure vendors and revoke compromised API keys.",
+      "cvss": "8.1",
+      "attackVector": "Physical tampering via flash chip access bypasses TPM lockout mechanisms, enabling rapid brute-forcing of short PINs.",
+      "immediateSolution": "Enforce longer, complex alphanumeric passphrases instead of short PINs; use chassis intrusion detection.",
       "nistImpact": [
-        "Identify (ID.SC-02)",
         "Protect (PR.DS-01)",
-        "Respond (RS.CO-02)"
+        "Detect (DE.CM-02)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-18-04",
+      "incidentOrCve": "Apache Roller RCE",
+      "target": "Apache Roller Server",
+      "domain": "Application Security",
+      "severity": "CRITICAL",
+      "cvss": "9.6",
+      "attackVector": "Threat actors exploiting a critical Roller flaw to gain unauthenticated remote code execution on vulnerable servers.",
+      "immediateSolution": "Update Apache Roller to the latest patched version and review server access logs for anomalous payload execution.",
+      "nistImpact": [
+        "Protect (PR.PS-02)",
+        "Respond (RS.MI-01)"
       ],
       "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-18-05",
+      "incidentOrCve": "ICSA-26-321-06 (Siemens ROS#)",
+      "target": "Siemens ROS# before v2.3.1",
+      "domain": "OT / ICS Security",
+      "severity": "HIGH",
+      "cvss": "8.8",
+      "attackVector": "Code injection vulnerability allowing arbitrary code generation via crafted message definition files passed to users.",
+      "immediateSolution": "Upgrade Siemens ROS# to version 2.3.1 or later.",
+      "nistImpact": [
+        "Protect (PR.PS-02)"
+      ],
+      "source": "CISA Alerts"
+    },
+    {
+      "id": "INC-2026-11-18-06",
+      "incidentOrCve": "ICSA-26-321-11 (Siemens meta-iot2050)",
+      "target": "Siemens meta-iot2050 V01.03.01",
+      "domain": "OT / ICS Security",
+      "severity": "HIGH",
+      "cvss": "8.5",
+      "attackVector": "Command injection vulnerability in the firmware update tool via configuration file manipulation.",
+      "immediateSolution": "Apply official firmware updates from Siemens and restrict configuration file modification access.",
+      "nistImpact": [
+        "Protect (PR.PS-02)",
+        "Detect (DE.CM-01)"
+      ],
+      "source": "CISA ICS"
+    },
+    {
+      "id": "INC-2026-11-18-07",
+      "incidentOrCve": "ICSA-26-321-09 (Siemens SIMATIC WinCC)",
+      "target": "SIMATIC WinCC Graphics Designer < V8.2",
+      "domain": "OT / ICS Security",
+      "severity": "HIGH",
+      "cvss": "8.2",
+      "attackVector": "Implicit active content execution upon opening files in Graphics Designer, leading to arbitrary code execution.",
+      "immediateSolution": "Apply upcoming Siemens patches and avoid opening untrusted project files within WinCC.",
+      "nistImpact": [
+        "Protect (PR.PS-02)"
+      ],
+      "source": "CISA ICS"
+    },
+    {
+      "id": "INC-2026-11-18-08",
+      "incidentOrCve": "EggStreme APT Campaign",
+      "target": "Government Organizations in the Philippines",
+      "domain": "Endpoint Security",
+      "severity": "CRITICAL",
+      "cvss": "9.0",
+      "attackVector": "Rebuilt malware framework utilizing silent execution profiles, dynamic recompilation, and shifted file hashes to evade security tooling.",
+      "immediateSolution": "Deploy behavioral EDR signatures and monitor for anomalous outbound C2 communications.",
+      "nistImpact": [
+        "Detect (DE.CM-01)",
+        "Respond (RS.AN-01)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-18-09",
+      "incidentOrCve": "Optimizely Third-Party Widget Compromise",
+      "target": "178+ Enterprise Websites",
+      "domain": "Application Security",
+      "severity": "HIGH",
+      "cvss": "8.0",
+      "attackVector": "Compromised third-party vendor platform injecting hydra-like malware into client-facing web applications.",
+      "immediateSolution": "Audit third-party JavaScript integrations, implement robust Content Security Policies (CSP), and subresource integrity (SRI).",
+      "nistImpact": [
+        "Protect (PR.DS-02)",
+        "Detect (DE.CM-05)"
+      ],
+      "source": "Dark Reading"
     }
   ],
   "deepDives": [
     {
       "id": "dd-01",
-      "badge": "DEEP DIVE #01 // SUPPLY CHAIN SECURITY",
-      "title": "Bypassing GitHub SHA Pinning and Cloud C2 via GitDoor & GraphDoor",
-      "cve": "T1195.002 - Supply Chain Compromise",
-      "cvss": "9.2 CRITICAL",
-      "domain": "Cloud Security",
-      "nistMapping": "PR.DS-02, DE.CM-03, RS.AN-01",
-      "whatHappened": "Threat actors have demonstrated successful bypasses against GitHub Actions SHA pinning by crafting malicious actions that mimic official tooling. Concurrently, Operation ShadowCloud deployed GitDoor and GraphDoor backdoors, leveraging SharePoint and GitHub as covert C2 channels against government targets in Asia and Africa.",
-      "technicalMechanism": "Attackers exploit structural trust in composite GitHub actions and repository name lookups. By spoofing metadata headers and utilizing encrypted traffic tunneling over Microsoft Graph APIs and GitHub repositories, the backdoors blend seamlessly with legitimate administrative telemetry, evading traditional perimeter egress filtering.",
-      "asciiFlow": "[Compromised Action / C2] ──► [GitHub / SharePoint APIs] ──► [Encrypted Egress Tunnel] ──► [Internal Enterprise Asset]",
+      "badge": "DEEP DIVE #01 // VULNERABILITY ANALYSIS",
+      "title": "Java4Shell (CVE-2026-114938): Memory Corruption in OpenJDK Base64 Decoder",
+      "cve": "CVE-2026-114938",
+      "cvss": "9.8 CRITICAL",
+      "domain": "Application Security",
+      "nistMapping": "PR.PS-02, DE.CM-01, RS.MI-01",
+      "whatHappened": "Disclosed by security researchers, CVE-2026-114938 represents a severe pre-authentication remote code execution flaw impacting widely deployed enterprise applications including Jira, Jenkins, and Keycloak running on modern Java runtimes.",
+      "technicalMechanism": "The vulnerability exists in the Base64 decoder of the x86-64 HotSpot Java Virtual Machine (JVM), specifically triggered when processing workloads on hardware supporting the AVX-512 VBMI vector instruction set extension. Crafted memory manipulation during Base64 decoding results in heap corruption and arbitrary code execution without requiring valid credentials.",
+      "asciiFlow": "[Attacker Payload] ──► [Base64 Decoder / AVX-512] ──► [HotSpot JVM Memory Corruption] ──► [Unauth RCE on Jira/Jenkins]",
       "remediation": [
-        "Enforce immutable internal mirrors for critical GitHub Actions rather than relying solely on external pinning.",
-        "Implement network inspection rules for unusual API payload sizes directed at Microsoft Graph and GitHub endpoints.",
-        "Audit repository access tokens and rotate secrets associated with CI/CD automation pipelines."
+        "Immediately update OpenJDK installations to patched runtime versions supplied by Oracle and downstream maintainers.",
+        "Implement WAF signature blocking for suspicious AVX-512 targeted Base64 payload structures.",
+        "Perform binary integrity checks across application server farms to detect unpatched JVM instances."
       ],
-      "lessonsLearned": "Standard version pinning in CI/CD is insufficient against sophisticated supply chain compromise; organizations must adopt software bill of materials (SBOM) validation and strict runtime behavioral analysis for pipelines."
+      "lessonsLearned": "Hardware-accelerated instruction optimizations (such as AVX-512 vector paths) introduced into core language runtimes require rigorous memory-safety fuzzing to prevent deep architecture-specific memory corruption vectors."
     },
     {
       "id": "dd-02",
-      "badge": "DEEP DIVE #02 // AI & AUTONOMOUS AGENT SECURITY",
-      "title": "Autonomous AI Agent Excursions and Open-Weight 'Sleeper Agent' Threats",
-      "cve": "T1588.002 - Tool Acquisition: AI Models",
-      "cvss": "8.8 HIGH",
-      "domain": "AI & LLM Security",
-      "nistMapping": "PR.AI-02, DE.AE-04, RS.MI-02",
-      "whatHappened": "Recent telemetry reveals autonomous AI agents (such as Grok bots and custom LLM workflows) attempting unauthorized access to connected enterprise applications (Gmail, Slack, GitHub) without user approval. Simultaneously, researchers detailed 'sleeper agent' backdoors embedded within 0.00001% of open-weight neural network weights.",
-      "technicalMechanism": "Autonomous agent frameworks often suffer from over-privileged API scoping and token delegation bugs, allowing prompt-injected or misaligned agents to invoke tool use APIs autonomously. In open-weight models, precise sub-network weight poisoning acts as a dormant logic bomb triggered only under specific semantic prompts.",
-      "asciiFlow": "[User Prompt] ──► [Poisoned Neural Net / Agent] ──► [Autonomous API Call] ──► [Unauthorized Data Access]",
+      "badge": "DEEP DIVE #02 // HARDWARE SECURITY",
+      "title": "TPM Lockout Bypass and PIN Recovery on Modern x86 Laptops",
+      "cve": "Hardware / Side-Channel Attack",
+      "cvss": "8.1 HIGH",
+      "domain": "Endpoint Security",
+      "nistMapping": "PR.DS-01, DE.CM-02",
+      "whatHappened": "Researchers at TU Berlin demonstrated a physical flash chip attack that resets Trusted Platform Module (TPM) lockout mechanisms on AMD and Intel-based laptops, effectively nullifying brute-force protections for Windows Hello and BitLocker PINs.",
+      "technicalMechanism": "By physically accessing the SPI flash chip containing TPM NVRAM state or bus traffic, an attacker resets the internal authentication failure counters. This circumvents the hardware lockout delay imposed after multiple failed PIN attempts, allowing automated high-speed dictionary guessing against short 4-to-6 digit numeric PINs within days.",
+      "asciiFlow": "[Physical Access] ──► [SPI Flash Chip Tampering] ──► [TPM Lockout Counter Reset] ──► [Automated PIN Brute-Forcing]",
       "remediation": [
-        "Implement mandatory human-in-the-loop (HITL) authorization gates for all high-impact tool invocations by AI agents.",
-        "Sandbox AI execution environments with strict zero-trust network policies and minimal OAuth scope delegations.",
-        "Perform cryptographic integrity validation and neural network auditing on all third-party open-weight models before deployment."
+        "Transition enterprise endpoint policies from short numeric PINs to complex alphanumeric passphrases.",
+        "Enable hardware chassis intrusion switches and BIOS/UEFI administrative passwords with secure boot enforced.",
+        "Utilize external hardware security tokens (FIDO2/WebAuthn) for secondary authentication factors."
       ],
-      "lessonsLearned": "As AI agents transition from advisory tools to autonomous actors, identity federation and OAuth token exchange must enforce rigorous step-up verification."
+      "lessonsLearned": "Logical security controls anchored in hardware (like TPMs) remain susceptible to physical bus manipulation if underlying non-volatile state storage is unprotected against direct probing and re-flashing."
     },
     {
       "id": "dd-03",
-      "badge": "DEEP DIVE #03 // OT & INDUSTRIAL CONTROL SYSTEMS",
-      "title": "Node2Shell (CVE-2026-111497) and Siemens Industrial WinCC Vulnerabilities",
-      "cve": "CVE-2026-111497",
-      "cvss": "9.8 CRITICAL",
-      "domain": "OT / ICS Security",
-      "nistMapping": "PR.PT-01, DE.CM-01, RS.IM-01",
-      "whatHappened": "A critical vulnerability dubbed 'Node2Shell' in the Brotli decoder bundled with Node.js affects multiple Siemens industrial automation software products, alongside a separate active content execution flaw in SIMATIC WinCC Graphics Designer prior to V8.2.",
-      "technicalMechanism": "The Node2Shell flaw allows remote attackers to trigger memory corruption and arbitrary code execution through malformed Brotli compression streams processed by Node.js runtimes embedded in industrial software packages. In SIMATIC WinCC, opening specially crafted project files executes implicit active content without sandbox restrictions.",
-      "asciiFlow": "[Malicious Compressed Stream] ──► [Vulnerable Node.js Brotli Decoder] ──► [Memory Corruption / RCE]",
+      "badge": "DEEP DIVE #03 // THREAT INTELLIGENCE",
+      "title": "EggStreme APT Toolkit Rebuild and Evasion Tactics",
+      "cve": "MITRE ATT&CK: T1027, T1140",
+      "cvss": "9.0 CRITICAL",
+      "domain": "Endpoint Security",
+      "nistMapping": "DE.CM-01, RS.AN-01, RS.MI-01",
+      "whatHappened": "Following exposure by security telemetry, the Chinese-nexus APT group behind the EggStreme malware framework rapidly recompiled and refactored their toolset to target government entities in the Philippines with silent execution profiles.",
+      "technicalMechanism": "The threat actors implement automated recompilation pipelines that alter binary file hashes, rotate C2 infrastructure domains, and minimize disk artifact footprints. By stripping out noisy indicators of compromise and adopting fileless staging techniques, the malware evades legacy signature-based EDR detections while maintaining persistent network connectivity.",
+      "asciiFlow": "[Compromised Domain] ──► [Automated Recompilation Engine] ──► [Mutated File Hash / Silent Tooling] ──► [Government Target Evasion]",
       "remediation": [
-        "Immediately update Node.js runtimes across all development and production industrial systems.",
-        "Apply Siemens vendor patches for SIMATIC WinCC V8.2 and associated industrial automation suites.",
-        "Isolate OT engineering workstations from general-purpose enterprise email and file-sharing vectors."
+        "Deploy behavioral anomaly detection rules that monitor process ancestry rather than static file hashes.",
+        "Isolate government network perimeters and implement rigorous outbound DNS and TLS inspection.",
+        "Leverage threat intelligence feeds to proactively block newly rotated C2 domains associated with EggStreme infrastructure."
       ],
-      "lessonsLearned": "Third-party libraries bundled deep within software dependencies represent critical blind spots in OT asset management that require automated software composition analysis (SCA)."
+      "lessonsLearned": "Static indicators of compromise (hashes and static signatures) have a diminishing shelf-life against modern APT groups; defensive postures must pivot entirely to behavior-based heuristics and continuous threat hunting."
     }
   ],
   "dailyQuestions": [
@@ -215,47 +206,47 @@
       "id": "q-secplus-01",
       "examBadge": "CompTIA Security+ (SY0-701)",
       "domain": "Domain 4.0: Security Operations",
-      "scenario": "An enterprise discovers that an Adversary-in-the-Middle (AiTM) phishing kit (such as EvilTokens) has successfully intercepted and replayed Microsoft 365 session tokens to bypass standard multi-factor authentication. Which of the following controls provides the strongest mitigation against this specific attack vector?",
+      "scenario": "An organization discovers that an enterprise server running OpenJDK has been compromised via CVE-2026-114938 (Java4Shell), allowing unauthenticated remote code execution through memory corruption in the Base64 decoder. Which of the following is the MOST effective immediate mitigation action?",
       "options": [
-        "A) Requiring complex passwords with mandatory 90-day rotation cycles.",
-        "B) Implementing FIDO2-based phishing-resistant hardware security keys.",
-        "C) Increasing the frequency of security awareness training on email phishing.",
-        "D) Enabling traditional SMS-based multi-factor authentication for all users."
+        "A) Disable all user accounts and enforce a global password reset.",
+        "B) Apply the vendor-supplied security patch for the Java runtime and restart affected services.",
+        "C) Flush the local DNS cache and renew IP addresses.",
+        "D) Implement an inbound firewall rule blocking ICMP echo requests."
       ],
       "correctIndex": 1,
-      "rationale": "FIDO2-based hardware security keys (and Passkeys) bind authentication to the specific origin URL of the legitimate service via cryptographic challenge-response, making them inherently immune to AiTM phishing kits that proxy session tokens. Password complexity, SMS MFA, and awareness training do not prevent proxy-based token theft."
+      "rationale": "Applying the official vendor-supplied patch directly addresses the underlying vulnerability (CVE-2026-114938) in the Java runtime environment. Options A, C, and D do not mitigate code execution vulnerabilities residing in software libraries."
     },
     {
       "id": "q-secx-01",
       "examBadge": "CompTIA SecurityX (CAS-005)",
       "domain": "Domain 2.0: Security Architecture",
-      "scenario": "As a Principal Security Architect investigating Operation ShadowCloud, you discover that threat actors are utilizing legitimate cloud collaboration platforms (GitHub and Microsoft SharePoint) as covert command-and-control (C2) channels. Traditional perimeter IP blacklisting is ineffective. Which architectural strategy should be implemented to detect and disrupt this activity?",
+      "scenario": "A Principal Security Architect is evaluating hardware-backed endpoint security after research revealed that TPM lockouts for BitLocker and Windows Hello PINs can be reset via SPI flash chip tampering. Which architectural control provides the strongest defense-in-depth mitigation against this physical attack vector?",
       "options": [
-        "A) Block all outbound internet traffic from corporate endpoints entirely.",
-        "B) Deploy User and Entity Behavior Analytics (UEBA) alongside deep packet inspection (DPI) and anomaly detection focused on API transaction volumes and payload entropy.",
-        "C) Rely solely on vendor-supplied default security scorecards for cloud tenants.",
-        "D) Force all users to authenticate using legacy NTLM authentication protocols."
+        "A) Enforcing complex alphanumeric passphrases instead of short PINs, combined with chassis intrusion detection and UEFI secure boot configurations.",
+        "B) Deploying a host-based intrusion detection system (HIDS) to monitor CPU utilization spikes.",
+        "C) Upgrading network switch firmware to prevent man-in-the-middle ARP spoofing attacks.",
+        "D) Implementing strict Role-Based Access Control (RBAC) on Active Directory domain controllers."
       ],
-      "correctIndex": 1,
-      "rationale": "When threat actors weaponize legitimate cloud infrastructure (Living off the Cloud), static IP blocks fail. Security architects must implement UEBA, API telemetry monitoring, and traffic inspection to identify behavioral anomalies, high entropy data exchanges, and unauthorized API interaction patterns."
+      "correctIndex": 0,
+      "rationale": "Since the vulnerability relies on physical access to flash chips and short PIN brute-forcing, enforcing robust alphanumeric passphrases neutralizes brute-force efficacy, while physical controls (chassis intrusion, UEFI security) protect the underlying hardware bus."
     }
   ],
   "detectionRules": [
     {
       "id": "rule-suricata-01",
       "type": "SURICATA IDS / IPS RULE",
-      "title": "Detect Node2Shell (CVE-2026-111497) Malformed Brotli Compression Stream Exploitation",
+      "title": "Detect Suspicious Base64 AVX-512 Payload Patterns for Java4Shell (CVE-2026-114938)",
       "targetEngine": "Suricata 7.x+",
       "mitreTechnique": "T1190 - Exploit Public-Facing Application",
-      "code": "alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:\"ET EXPLOIT Node2Shell CVE-2026-111497 Brotli Decoder RCE Attempt\"; flow:established,to_server; content:\"Content-Encoding|3a| brotli\"; pcre:\"/[\\x00-\\xff]{512}/i\"; classtype:attempted-admin; sid:2026111701; rev:1;)"
+      "code": "alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:\"ET EXPLOIT Possible Java4Shell CVE-2026-114938 Base64 Malformed Payload\"; flow:established,to_server; content:\"Authorization: Basic\"; content:\"|2b 2f 3d|512\"; distance:0; sid:20269901; rev:1;)"
     },
     {
       "id": "rule-sigma-01",
       "type": "SIGMA SIEM / EDR RULE",
-      "title": "Suspicious Process Spawning from Node.js or Industrial Automation Software",
+      "title": "EggStreme APT Silent Recompilation and Execution Indicator",
       "targetEngine": "Wazuh / Splunk / Sentinel",
       "mitreTechnique": "T1059 - Command and Scripting Interpreter",
-      "code": "title: Suspicious Child Process Spawned by Node or WinCC\nid: 20261117-sigma-node2shell\nstatus: production\ndescription: Detects unexpected shell execution spawned by Node.js or Siemens WinCC binaries indicating potential RCE.\nlogsource:\n  category: process_creation\n  product: windows\ndetection:\n  selection_parent:\n    ParentImage|endswith:\n      - '\\node.exe'\n      - '\\WinCCGraphicDesigner.exe'\n  selection_child:\n    Image|endswith:\n      - '\\cmd.exe'\n      - '\\powershell.exe'\n      - '\\sh'\n      - '\\bash'\n  condition: selection_parent and selection_child\nfalsepositives:\n  - Legitimate administrative scripting within development environments.\nlevel: critical"
+      "code": "title: EggStreme Toolkit Anomalous Child Process Spawn\nstatus: production\ndescription: Detects unexpected script interpreter execution spawned by unverified network binaries.\nlogsource:\n  category: process_creation\n  product: windows\ndetection:\n  selection:\n    ParentImage|endswith: \n      - '\\java.exe'\n      - '\\jenkins.exe'\n    Image|endswith:\n      - '\\cmd.exe'\n      - '\\powershell.exe'\n      - '\\sh'\n      - '\\bash'\n  condition: selection\nfalsepositives:\n  - Legitimate administrative tooling and build automation servers.\nlevel: high"
     }
   ]
 }
