@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-11-20T15:34:20Z",
-  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-20)",
+  "lastUpdated": "2026-11-21T14:45:33Z",
+  "feedStatus": "LIVE // AUTONOMOUS CISA KEV & TELEMETRY CORRELATION (2026-11-21)",
   "threatLevel": "CRITICAL (DEFCON 2)",
   "summaryMetrics": {
     "activeKevExploits": 14,
@@ -10,184 +10,204 @@
   },
   "attackLog": [
     {
-      "id": "INC-2026-11-20-01",
-      "incidentOrCve": "CVE-2026-123890",
-      "target": "VMware vCenter Server",
-      "domain": "Cloud Security",
+      "id": "INC-2026-11-21-01",
+      "incidentOrCve": "CVE-2026-129448",
+      "target": "Broadcom VMware vCenter Server",
+      "domain": "Application Security",
       "severity": "CRITICAL",
       "cvss": "9.8",
-      "attackVector": "Authentication bypass in the VMware Directory Service exploited as a zero-day by China-linked threat actors to gain unauthorized admin access and exfiltrate data.",
-      "immediateSolution": "Apply Broadcom emergency security updates immediately and audit vCenter directory service logs.",
+      "attackVector": "Deserialization of untrusted data allowing unauthenticated remote code execution via compromised components.",
+      "immediateSolution": "Apply vendor patches immediately and isolate vCenter instances behind strict perimeter controls.",
       "nistImpact": [
         "Protect (PR.PS-02)",
         "Detect (DE.CM-01)",
         "Respond (RS.MI-01)"
       ],
-      "source": "The Hacker News"
+      "source": "CISA Alerts"
     },
     {
-      "id": "INC-2026-11-20-02",
-      "incidentOrCve": "CVE-2026-76466",
-      "target": "Cisco Expressway",
-      "domain": "Network Security",
+      "id": "INC-2026-11-21-02",
+      "incidentOrCve": "MONAI Label Zero-Day",
+      "target": "Medical-Imaging Server (MONAI Label 0.8.5 and earlier)",
+      "domain": "Application Security",
       "severity": "CRITICAL",
       "cvss": "9.8",
-      "attackVector": "Unauthenticated remote attackers with network access exploit a critical flaw to breach edge devices and pivot to internal enterprise networks.",
-      "immediateSolution": "Apply Cisco hotfixes immediately and restrict management interface access via strict ACLs.",
+      "attackVector": "Autonomous AI agents discovering and weaponizing arbitrary file write vulnerabilities to achieve root access.",
+      "immediateSolution": "Upgrade MONAI Label beyond vulnerable versions or restrict network access to internal segments only.",
       "nistImpact": [
-        "Protect (PR.AC-05)",
-        "Detect (DE.CM-02)",
+        "Protect (PR.PT-01)",
+        "Detect (DE.AE-01)",
         "Respond (RS.AN-01)"
       ],
       "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-11-20-03",
-      "incidentOrCve": "CVE-2026-99312",
-      "target": "Linux KVM on AMD Hosts",
-      "domain": "Cloud Security",
-      "severity": "HIGH",
-      "cvss": "8.6",
-      "attackVector": "Nested virtualization flaw in KVM on AMD processors allows rogue guest virtual machines to read adjacent host and customer memory (approx. 127 GB).",
-      "immediateSolution": "Update Linux kernel to patched versions and disable nested virtualization on multi-tenant hosts where unnecessary.",
+      "id": "INC-2026-11-21-03",
+      "incidentOrCve": "CVE-2026-129975",
+      "target": "GnuPG GPGME Library (< 2.3.0)",
+      "domain": "Application Security",
+      "severity": "CRITICAL",
+      "cvss": "9.1",
+      "attackVector": "Crafted OpenPGP key with an unusually long user ID triggering memory corruption and data exfiltration.",
+      "immediateSolution": "Update GPGME library to version 2.3.0 or later across all dependent applications.",
       "nistImpact": [
         "Protect (PR.DS-01)",
-        "Detect (DE.AE-01)",
-        "Respond (RS.MI-02)"
-      ],
-      "source": "The Hacker News"
-    },
-    {
-      "id": "INC-2026-11-20-04",
-      "incidentOrCve": "F5 BIG-IP RCE Flaws",
-      "target": "F5 BIG-IP Edge Appliances",
-      "domain": "Network Security",
-      "severity": "CRITICAL",
-      "cvss": "9.8",
-      "attackVector": "Multiple critical vulnerabilities allowing remote attackers to trigger denial-of-service (DoS) or achieve full remote code execution.",
-      "immediateSolution": "Apply emergency patches provided by F5 and ensure management planes are firewalled.",
-      "nistImpact": [
-        "Protect (PR.PT-01)",
-        "Detect (DE.CM-01)",
+        "Detect (DE.CM-02)",
         "Respond (RS.MI-01)"
       ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-11-20-05",
-      "incidentOrCve": "SonicWall Gen 6 End-of-Life Risk",
-      "target": "SonicWall Generation 6 Firewalls",
-      "domain": "Network Security",
-      "severity": "CRITICAL",
-      "cvss": "9.0",
-      "attackVector": "Unsupported edge devices actively targeted by AI-driven automated scanners exploiting known unpatched flaws.",
-      "immediateSolution": "Retire and replace Gen 6 firewalls immediately; disconnect internet-facing units.",
-      "nistImpact": [
-        "Protect (PR.MA-02)",
-        "Detect (DE.CM-03)"
-      ],
       "source": "The Hacker News"
     },
     {
-      "id": "INC-2026-11-20-06",
-      "incidentOrCve": "Elecbrakes Safety Control Flaws",
-      "target": "Elecbrakes EB2, VM1, ELBC2000 (OT)",
-      "domain": "OT / ICS Security",
-      "severity": "CRITICAL",
-      "cvss": "9.4",
-      "attackVector": "Remote exploitation allows attackers to manipulate trailer brakes, alter firmware, disable brake lights, and deactivate critical safety features.",
-      "immediateSolution": "Apply manufacturer firmware updates and isolate embedded controllers from public networks.",
-      "nistImpact": [
-        "Protect (PR.DS-02)",
-        "Detect (DE.CM-01)"
-      ],
-      "source": "CISA Alerts"
-    },
-    {
-      "id": "INC-2026-11-20-07",
-      "incidentOrCve": "N-able Cloud Service Outage",
-      "target": "N-able Mail Assure / SpamExperts",
-      "domain": "Application Security",
-      "severity": "HIGH",
-      "cvss": "8.2",
-      "attackVector": "Server compromise resulting in massive global service outages for email security cloud infrastructure.",
-      "immediateSolution": "Follow N-able incident response guidelines and monitor alternative mail relays.",
-      "nistImpact": [
-        "Respond (RS.CO-02)",
-        "Recover (RC.RP-01)"
-      ],
-      "source": "BleepingComputer"
-    },
-    {
-      "id": "INC-2026-11-20-08",
-      "incidentOrCve": "ROMULUS ClickFix RAT Delivery",
-      "target": "Windows Endpoint Systems",
+      "id": "INC-2026-11-21-04",
+      "incidentOrCve": "CVE-2026-23871",
+      "target": "WhatsApp for Android & WhatsApp Business (< 2.26.17.4)",
       "domain": "Endpoint Security",
       "severity": "HIGH",
-      "cvss": "8.8",
-      "attackVector": "Social engineering and ClickFix tactics deliver a novel Remote Access Trojan (RAT) mimicking CNCMachineRMS via binary sideloading.",
-      "immediateSolution": "Deploy EDR behavioral rules to block script-based sideloading and educate users on social engineering.",
+      "cvss": "3.5",
+      "attackVector": "Incomplete validation of external ad-reply URLs exploited in targeted scam and phishing campaigns.",
+      "immediateSolution": "Update WhatsApp for Android to version 2.26.17.4 or later via Google Play Store.",
       "nistImpact": [
-        "Protect (PR.AT-01)",
-        "Detect (DE.AE-02)"
+        "Protect (PR.DS-05)",
+        "Detect (DE.CM-01)",
+        "Respond (RS.CO-02)"
       ],
       "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-21-05",
+      "incidentOrCve": "Meta Muse Prompt Extraction",
+      "target": "Meta Muse AI Assistant Platform",
+      "domain": "AI & LLM Security",
+      "severity": "CRITICAL",
+      "cvss": "8.5",
+      "attackVector": "Malicious webpage silently extracting private conversations, stored memories, and connected account credentials without approval prompts.",
+      "immediateSolution": "Implement strict origin validation and session isolation for web-based AI assistant interactions.",
+      "nistImpact": [
+        "Protect (PR.AC-01)",
+        "Detect (DE.AE-03)",
+        "Respond (RS.AN-03)"
+      ],
+      "source": "The Hacker News"
+    },
+    {
+      "id": "INC-2026-11-21-06",
+      "incidentOrCve": "FBI NCIC Database Breach",
+      "target": "FBI National Crime Information Center",
+      "domain": "Identity & Access Management",
+      "severity": "CRITICAL",
+      "cvss": "9.0",
+      "attackVector": "Compromise of law enforcement data sharing infrastructure allowing unauthorized intelligence access.",
+      "immediateSolution": "Revoke compromised credentials, enforce hardware-backed MFA, and audit lateral movement paths.",
+      "nistImpact": [
+        "Identify (ID.AM-01)",
+        "Protect (PR.AC-07)",
+        "Respond (RS.CO-01)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-21-07",
+      "incidentOrCve": "Bell Canada Agentic Breach",
+      "target": "Bell Canada Enterprise Provisioning Systems",
+      "domain": "Cloud Security",
+      "severity": "HIGH",
+      "cvss": "8.8",
+      "attackVector": "Autonomous threat actor utilizing agentic tooling to infiltrate order processing systems and exfiltrate customer data.",
+      "immediateSolution": "Isolate affected provisioning APIs, rotate service account secrets, and deploy behavior-based API monitoring.",
+      "nistImpact": [
+        "Protect (PR.PT-04)",
+        "Detect (DE.CM-03)",
+        "Respond (RS.AN-01)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-21-08",
+      "incidentOrCve": "N-able Hosted Cloud Outage",
+      "target": "N-able Mail Assure and SpamExperts Services",
+      "domain": "Cloud Security",
+      "severity": "HIGH",
+      "cvss": "8.2",
+      "attackVector": "Server-side security breach causing global service outage and operational disruption.",
+      "immediateSolution": "Failover to redundant cloud infrastructure and review server perimeter hardening configurations.",
+      "nistImpact": [
+        "Protect (PR.IP-09)",
+        "Detect (DE.AE-02)",
+        "Respond (RS.RP-01)"
+      ],
+      "source": "BleepingComputer"
+    },
+    {
+      "id": "INC-2026-11-21-09",
+      "incidentOrCve": "Norwegian Energy Sector Breaches",
+      "target": "Norwegian Energy Utilities (Multiple)",
+      "domain": "OT / ICS Security",
+      "severity": "CRITICAL",
+      "cvss": "9.2",
+      "attackVector": "Coordinated cyber intrusions targeting critical energy sector infrastructure and operational networks.",
+      "immediateSolution": "Enforce air-gapping verification, review ICS perimeter firewall rules, and increase SOC monitoring.",
+      "nistImpact": [
+        "Identify (ID.RA-01)",
+        "Protect (PR.PT-01)",
+        "Respond (RS.MI-02)"
+      ],
+      "source": "Dark Reading"
     }
   ],
   "deepDives": [
     {
       "id": "dd-01",
-      "badge": "DEEP DIVE #01 // CLOUD SECURITY",
-      "title": "Linux KVM Hypervisor Flaw CVE-2026-99312 Cross-VM Memory Access",
-      "cve": "CVE-2026-99312",
-      "cvss": "8.6 HIGH",
-      "domain": "Cloud Security",
-      "nistMapping": "PR.DS-01, DE.AE-01, RS.MI-02",
-      "whatHappened": "Researchers successfully read approximately 127 GB of host and neighboring tenant cloud memory on DigitalOcean infrastructure via a rogue virtual machine, proving severe isolation leakage on AMD-based hosts utilizing nested virtualization.",
-      "technicalMechanism": "An improper memory mapping and state management bug in KVM's nested virtualization handling for AMD processors allowed guest kernel operations to bypass memory boundaries, exposing physical host RAM pages shared across virtual execution rings.",
-      "asciiFlow": "[Rogue VM Guest] ──► [KVM Hypervisor / Nested AMD Flaw] ──► [Host RAM / Adjacent Tenant Memory Access]",
+      "badge": "DEEP DIVE #01 // AI & LLM SECURITY",
+      "title": "Autonomous AI Agent Zero-Day Discovery and Exploitation in Medical Imaging",
+      "cve": "MONAI-LABEL-ZDAY-2026",
+      "cvss": "9.8 CRITICAL",
+      "domain": "AI & LLM Security",
+      "nistMapping": "ID.RA-01, PR.PT-01, DE.AE-01",
+      "whatHappened": "Suspected China-linked threat actors utilized autonomous AI penetration-testing frameworks (such as the open-source Cairn tool) to discover and exploit a previously unknown vulnerability in MONAI Label 0.8.5, gaining root access to university servers.",
+      "technicalMechanism": "The vulnerability enables unauthenticated threat actors to perform arbitrary file writes outside designated storage directories. Autonomous agentic tools rapidly fuzzed parameter inputs, synthesized the exploit payload, and executed post-exploitation enumeration without human intervention.",
+      "asciiFlow": "[AI Agent / Cairn] ──► [MONAI Label Server] ──► [Arbitrary File Write] ──► [Root Access / RCE]",
       "remediation": [
-        "Apply vendor Linux kernel patches immediately.",
-        "Disable nested virtualization globally on multi-tenant cloud worker nodes.",
-        "Implement strict memory page auditing and hypervisor integrity checks."
+        "Immediately upgrade MONAI Label servers past version 0.8.5.",
+        "Implement strict container sandboxing and principle of least privilege for application runtimes.",
+        "Deploy EDR telemetry to detect autonomous scanning and anomalous file-write patterns."
       ],
-      "lessonsLearned": "Multi-tenant cloud infrastructure relying on nested virtualization introduces hypervisor-level trust boundaries that must be hardened and continually fuzzed against hardware-specific instruction quirks."
+      "lessonsLearned": "Offensive AI weaponization has shifted vulnerability discovery from days to seconds. Security architectures must assume automated discovery is constant and prioritize rapid patch cycles."
     },
     {
       "id": "dd-02",
-      "badge": "DEEP DIVE #02 // VIRTUALIZATION INFRASTRUCTURE",
-      "title": "China-Nexus Zero-Day Exploitation of VMware vCenter (CVE-2026-123890)",
-      "cve": "CVE-2026-123890",
-      "cvss": "9.8 CRITICAL",
-      "domain": "Cloud Security",
-      "nistMapping": "PR.PS-02, DE.CM-01, RS.MI-01",
-      "whatHappened": "Tracked actor Armory Castle (formerly UNC5221) utilized a zero-day authentication bypass vulnerability in VMware vCenter Server since early September 2026 to achieve administrative compromise and siphon sensitive enterprise data.",
-      "technicalMechanism": "The vulnerability resides in the VMware Directory Service authentication handler, where improperly validated security tokens allow unauthenticated remote attackers to bypass credential checks and mint administrative sessions.",
-      "asciiFlow": "[External Threat Actor] ──► [vCenter Directory Service Zero-Day] ──► [Unauthorized Admin Access / Data Exfiltration]",
+      "badge": "DEEP DIVE #02 // APPLICATION SECURITY",
+      "title": "GnuPG GPGME Critical Memory Flaw via Malicious OpenPGP Keys",
+      "cve": "CVE-2026-129975",
+      "cvss": "9.1 CRITICAL",
+      "domain": "Application Security",
+      "nistMapping": "PR.DS-01, DE.CM-02, RS.MI-01",
+      "whatHappened": "The GnuPG project disclosed a critical vulnerability in GPGME—the standard library used by applications to interface with GnuPG—triggered by maliciously crafted OpenPGP keys featuring unusually long user IDs.",
+      "technicalMechanism": "When an application processes a malicious OpenPGP key, the abnormal user ID length triggers an unhandled memory corruption bug within GPGME parsers. This allows arbitrary code execution or data theft within the context of the calling application.",
+      "asciiFlow": "[Malicious OpenPGP Key] ──► [GPGME Library Parser] ──► [Memory Corruption Bug] ──► [App Data Exfiltration]",
       "remediation": [
-        "Upgrade Broadcom VMware vCenter Server to the latest patched build.",
-        "Revoke and rotate all active administrative tokens and SSO credentials.",
-        "Inspect vCenter access logs for anomalous SSO authentication requests originating from non-standard IPs."
+        "Update the GPGME library to version 2.3.0 or later across all software dependencies.",
+        "Audit software supply chains to identify all binaries linked against vulnerable GPGME versions.",
+        "Implement input length validation controls at the application ingestion layer."
       ],
-      "lessonsLearned": "Critical enterprise management planes like vCenter represent high-value targets that require aggressive micro-segmentation, zero-trust perimeter controls, and proactive threat hunting for directory service anomalies."
+      "lessonsLearned": "Core cryptographic libraries remain high-value attack surfaces. Automated software composition analysis (SCA) must track transient library dependencies continuously."
     },
     {
       "id": "dd-03",
-      "badge": "DEEP DIVE #03 // OT / ICS SECURITY",
-      "title": "Elecbrakes Trailer Brake Controller Firmware and Safety Vulnerabilities",
-      "cve": "ICSA-26-323-02",
-      "cvss": "9.4 CRITICAL",
-      "domain": "OT / ICS Security",
-      "nistMapping": "PR.DS-02, DE.CM-01, RS.RP-01",
-      "whatHappened": "CISA disclosed critical safety vulnerabilities affecting Elecbrakes EB2, VM1, and ELBC2000 trailer brake controllers, allowing malicious actors to seize control of physical braking systems and disable safety features.",
-      "technicalMechanism": "Weak authentication and unvalidated firmware update routines allow remote attackers to inject rogue payloads over wireless/network interfaces, modifying brake operational parameters and cutting off brake light functionality.",
-      "asciiFlow": "[Remote Attractor / Network] ──► [Weak Auth / Firmware Interface] ──► [Physical Trailer Brake Control Manipulation]",
+      "badge": "DEEP DIVE #03 // CLOUD & INFRASTRUCTURE SECURITY",
+      "title": "CISA KEV Expansion: VMware vCenter Deserialization Espionage Campaigns",
+      "cve": "CVE-2026-129448",
+      "cvss": "9.8 CRITICAL",
+      "domain": "Cloud Security",
+      "nistMapping": "ID.AM-02, PR.IP-12, DE.CM-01",
+      "whatHappened": "CISA added four critical flaws to its KEV catalog, notably highlighting a Broadcom VMware vCenter deserialization vulnerability actively exploited by China-nexus espionage groups ('Armory Castle') prior to standard patch deployment.",
+      "technicalMechanism": "The vulnerability stems from unsafe deserialization of untrusted input passed to vCenter management endpoints. Attackers leverage crafted payloads to achieve unauthenticated remote code execution, bypassing authentication boundaries to pivot across enterprise hypervisors.",
+      "asciiFlow": "[External Attacker] ──► [VMware vCenter Endpoint] ──► [Unsafe Deserialization] ──► [Hypervisor Compromise]",
       "remediation": [
-        "Apply official firmware updates provided by Elecbrakes via secure channels.",
-        "Isolate OT/embedded transport controllers from unsecured or public-facing networks.",
-        "Implement physical integrity checks for fleet assets before transit deployment."
+        "Apply Broadcom/VMware security patches immediately.",
+        "Restrict vCenter management interfaces to dedicated, jump-host-only management VLANs.",
+        "Monitor for anomalous java/python process spawns originating from vCenter daemons."
       ],
-      "lessonsLearned": "As cyber-physical systems and connected transport hardware proliferate, insecure update mechanisms pose immediate life-safety hazards that demand rigorous cryptographic verification."
+      "lessonsLearned": "Advanced adversaries possess zero-day capabilities that outpace routine patching cycles. Micro-segmentation and strict administrative access controls are vital compensating mechanisms."
     }
   ],
   "dailyQuestions": [
@@ -195,47 +215,47 @@
       "id": "q-secplus-01",
       "examBadge": "CompTIA Security+ (SY0-701)",
       "domain": "Domain 4.0: Security Operations",
-      "scenario": "An organization discovers that an unpatched VMware vCenter Server was compromised via an authentication bypass zero-day (CVE-2026-123890) resulting in unauthorized admin access. As the incident responder, what should be the immediate priority after isolating the affected server?",
+      "scenario": "An organization discovers that an attacker utilized a crafted OpenPGP key with an excessively long user ID to trigger a memory corruption bug in the GPGME library (CVE-2026-129975). Which of the following best classifies this type of software vulnerability?",
       "options": [
-        "A) Reinstall the guest OS on all virtual machines managed by the cluster.",
-        "B) Revoke and rotate all SSO credentials, administrative sessions, and apply the vendor patch.",
-        "C) Power down all physical ESXi hypervisors across the enterprise.",
-        "D) Delete all network shares connected to the corporate domain."
+        "A) SQL Injection",
+        "B) Buffer Overflow / Memory Vulnerability",
+        "C) Cross-Site Scripting (XSS)",
+        "D) Insecure Deserialization"
       ],
       "correctIndex": 1,
-      "rationale": "When vCenter is compromised via an auth bypass, attackers often create persistent rogue admin accounts and steal SSO tokens. Rotating all administrative credentials and SSO tokens alongside applying the emergency patch is critical to eradicating persistence."
+      "rationale": "An unusually long user ID triggering a memory bug in a standard library is characteristic of a buffer overflow or memory corruption vulnerability, where input exceeds allocated memory buffers."
     },
     {
       "id": "q-secx-01",
       "examBadge": "CompTIA SecurityX (CAS-005)",
       "domain": "Domain 2.0: Security Architecture",
-      "scenario": "Following disclosures regarding Linux KVM flaws (CVE-2026-99312) allowing rogue guest VMs to read host and adjacent tenant RAM on AMD hosts, a Principal Architect must redesign cloud isolation controls. Which architectural strategy provides the most robust defense-in-depth against cross-VM memory leakage?",
+      "scenario": "A principal security architect is reviewing enterprise risks following reports that autonomous AI penetration-testing agents were used by threat actors to discover zero-day vulnerabilities in medical imaging servers. Which architectural strategy provides the most effective defense-in-depth against automated AI agent exploitation?",
       "options": [
-        "A) Enforce strict tenant segregation using distinct physical host hardware or disable nested virtualization on multi-tenant worker nodes, coupled with memory encryption technologies like SEV-SNP.",
-        "B) Increase hypervisor logging verbosity and rely on signature-based IDS inside guest operating systems.",
-        "C) Implement Web Application Firewalls (WAF) in front of all virtual machine network interfaces.",
-        "D) Migrate all workloads to unmanaged personal operating systems running automatic updates."
+        "A) Relying solely on static signature-based antivirus solutions on endpoint servers",
+        "B) Implementing zero trust network access (ZTNA), strict API micro-segmentation, and behavior-based runtime anomaly detection",
+        "C) Disabling all external logging to prevent attackers from analyzing system telemetry",
+        "D) Moving all sensitive applications to unencrypted public cloud storage buckets for easier auditing"
       ],
-      "correctIndex": 0,
-      "rationale": "Hardware-level memory encryption (such as AMD SEV-SNP) and strict physical or logical separation (disabling nested virtualization in multi-tenant pools) mitigate hypervisor mapping flaws by ensuring guest memory is cryptographically isolated from the host and other tenants."
+      "correctIndex": 1,
+      "rationale": "Autonomous AI agents rapidly probe and exploit application flaws. Defense-in-depth requires ZTNA, micro-segmentation to limit blast radius, and behavioral runtime monitoring to catch automated scanning and exploitation techniques."
     }
   ],
   "detectionRules": [
     {
       "id": "rule-suricata-01",
       "type": "SURICATA IDS / IPS RULE",
-      "title": "Suricata Detection for Potential Cisco Expressway Exploitation Attempt",
+      "title": "Suricata Detection for VMware vCenter Deserialization Attempt (CVE-2026-129448)",
       "targetEngine": "Suricata 7.x+",
       "mitreTechnique": "T1190 - Exploit Public-Facing Application",
-      "code": "alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS 443 (msg:\"ET EXPLOIT Cisco Expressway Unauthorized API Request (CVE-2026-76466)\"; flow:established,to_server; content:\"/api/v2/\"; http_uri; content:\"method=exec\"; http_client_body; classtype:attempted-admin; sid:20267646; rev:1;)"
+      "code": "alert http $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:\"ET EXPLOIT Broadcom VMware vCenter Deserialization Attempt (CVE-2026-129448)\"; flow:established,to_server; content:\"java.io.ObjectInputStream\"; http_client_body; classtype:attempted-rce; sid:20261294; rev:1;)"
     },
     {
       "id": "rule-sigma-01",
       "type": "SIGMA SIEM / EDR RULE",
-      "title": "Sigma Rule for Suspicious Binary Sideloading and ClickFix Execution",
+      "title": "Sigma Rule for Suspicious Autonomous AI Agent File Write Activity",
       "targetEngine": "Wazuh / Splunk / Sentinel",
       "mitreTechnique": "T1059 - Command and Scripting Interpreter",
-      "code": "title: Suspicious Execution via Script Sideloading (ROMULUS Tactic)\nstatus: production\ndescription: Detects execution of unsigned binaries sideloaded via temporary script directories indicative of ClickFix campaigns.\nlogsource:\n  category: process_creation\n  product: windows\ndetection:\n  selection:\n    ParentImage|contains:\n      - '\\AppData\\Local\\Temp\\'\n      - '\\Downloads\\'\n    Image|endswith:\n      - '\\cmd.exe'\n      - '\\powershell.exe'\n      - '\\rundll32.exe'\n  condition: selection\nfalsepositives:\n  - Legitimate administrative software installers\nlevel: high"
+      "code": "title: Autonomous AI Tool File Write Anomaly\nstatus: production\ndescription: Detects unauthorized file creation outside permitted storage directories by imaging servers.\nlogsource:\n  category: file_event\n  product: linux\ndetection:\n  selection:\n    TargetFilename|contains:\n      - '/etc/'\n      - '/root/'\n      - '/bin/'\n    Image|contains: 'monai'\n  condition: selection\nfalsepositives:\n  - Authorized administrative maintenance\nlevel: high"
     }
   ]
 }
